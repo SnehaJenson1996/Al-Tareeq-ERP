@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Report</title>
+    <style>
+        /* ===== General Styles ===== */
+        body { font-family: "Franklin Gothic Book", Arial, sans-serif; font-size: 13px; color: #333; margin: 0; padding: 20px; background: #f9f9f9; }
+        h2, h4 { margin: 0; padding: 0; }
+        h2 { font-size: 22px; }
+        h4 { font-size: 16px; color: #555; margin-bottom: 10px; }
+
+        .header, .footer { text-align: center; }
+        .header { margin-bottom: 20px; }
+        .footer { font-size: 12px; margin-top: 30px; }
+        .footer img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+        /* ===== Tables ===== */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 13px; }
+        th { background-color: #e4b83f; color: #fff; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+
+        /* ===== Section Titles ===== */
+        .section-title { font-weight: bold; font-size: 14px; color: black; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid black; padding-bottom: 3px; }
+
+        /* ===== File Preview ===== */
+        .file-preview { display: inline-block; margin: 5px; text-align: center; }
+        .file-preview img { max-width: 150px; max-height: 150px; border: 1px solid #ccc; padding: 5px; border-radius: 4px; }
+        .file-preview p { font-size: 12px; margin: 2px 0 0 0; word-break: break-all; }
+
+        /* ===== Print ===== */
+        @media print {
+            body { background: #fff; padding: 0; }
+            .header, .footer { page-break-inside: avoid; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <h2>Survey Report</h2>
+    <h4><?= $branch_name ?></h4>
+</div>
+
+<!-- Survey Info -->
+<table>
+    <tr>
+        <td style="width:50%; border:none;">
+            <p><strong>Enquiry Date:</strong> <?= $enquiry_date ?></p>
+            <p><strong>Project Name:</strong> <?= $project_name ?> (<?= $enquiry_category ?>)</p>
+            <p><strong>Customer:</strong> <?= $customer_name ?> (<?= $contact_number ?>)</p> 
+            <p><strong>Sales Person:</strong> <?= $survey['preparedby'] ?? '' ?></p>
+        </td>
+        <td style="width:50%; border:none;">
+            <p><strong>Enquiry Code:</strong> <?= $enquiry_code ?></p>
+            <p><strong>Location:</strong> <?= $project_location ?></p>
+            <p><strong>Submitted On:</strong> <?= $survey['updated_on'] ?></p>
+<p><strong>Surveyor:</strong> <?= !empty($survey['surveyor']) ? $survey['surveyor'] : '' ?></p>        </td>
+    </tr>
+</table>
+
+<!-- Schedule Details -->
+<h4 class="section-title">Schedule Details</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Scheduled Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Hours</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?= $survey['scheduled_date'] ?></td>
+            <td><?= $survey['start_time'] ?></td>
+            <td><?= $survey['end_time'] ?></td>
+            <td><?= $survey['scheduled_hours'] ?></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Actual Survey -->
+<h4 class="section-title">Actual Survey</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Hours</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?= $survey['actual_date'] ?></td>
+            <td><?= $survey['actual_start_time'] ?></td>
+            <td><?= $survey['actual_end_time'] ?></td>
+            <td><?= $survey['actual_hours'] ?></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Comments -->
+<h4 class="section-title">Comments</h4>
+<p><?= $survey['survey_comments'] ?></p>
+
+<!-- Materials -->
+<h4 class="section-title">Materials</h4>
+<p><?= $survey['material_details'] ?></p>
+
+<!-- Files -->
+<!-- <h4 class="section-title">Files</h4>
+<?php if (!empty($survey['file_names'])): ?>
+    <?php foreach (explode(',', $survey['file_names']) as $file): ?>
+        <?php 
+            $file = trim($file);
+            $file_url = base_url('public/survey_files/' . $file);
+            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        ?>
+        <div class="file-preview">
+            <?php if (in_array($ext, ['jpg','jpeg','png','gif','webp'])): ?>
+                <img src="<?= $file_url ?>" alt="<?= $file ?>">
+                <p><?= $file ?></p>
+            <?php else: ?>
+                <p><a href="<?= $file_url ?>" target="_blank"><?= $file ?></a></p>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>No files attached.</p>
+<?php endif; ?> -->
+
+<!-- Footer -->
+<div class="footer">
+    <!-- <p>Generated by Survey Management System</p>
+    <?php // Optional: <img src="<?= $footerPath ?>" alt="Footer"> ?> -->
+</div>
+
+</body>
+</html>

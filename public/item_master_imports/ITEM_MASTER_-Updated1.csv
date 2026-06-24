@@ -1,0 +1,696 @@
+BRAND,Model Group,"REFERENCE/
+PART NO",Model,Description,UOM,Country of Origin,Custom tariff,PACKAGE HEIGHT,PACKAGE WIDTH,PACKAGE DEPTH,PACKAGE WEIGHT,Net wieght,Gross Weight
+RCF,"10"" Woofer",11100005,MR10N301,MIDRANGE MR10N301 8 OHM,Pcs,Italy,85182900,170 mm / 6.69 inches,285 mm / 11.22 inches,285 mm / 11.22 inches,5 kg / 11.02 lbs,4.500,5.000
+RCF,"8"" Woofer",11100006,MR8N301,MIDRANGE MR8N301 8 OHM,Pcs,Italy,85182900,150 mm / 5.91 inches,240 mm / 9.45 inches,240 mm / 9.45 inches,3.77 kg / 8.31 lbs,3.314,3.765
+RCF,"18"" Woofer",11100010,LF18N401,WOOFER  LF18N401 8 OHM,Pcs,Italy,85182900,260 mm / 10.24 inches,520 mm / 20.47 inches,500 mm / 19.69 inches,11.4 kg / 25.13 lbs,9.500,11.400
+RCF,"18"" Woofer",11100012,LF18G401,WOOFER LF18G401 8 OHM,Pcs,Italy,85182900,260 mm / 10.24 inches,500 mm / 19.69 inches,520 mm / 20.47 inches,15 kg / 33.07 lbs,13.000,15.000
+RCF,"15"" Woofer",11100013,LF15N401,WOOFER LF15N401 8 OHM,Pcs,Italy,85182900,215 mm / 8.46 inches,422 mm / 16.61 inches,442 mm / 17.4 inches,10.18 kg / 22.44 lbs,8.768,10.180
+RCF,"15"" Woofer",11100014,LF15G401,WOOFER LF15G401 8 OHM,Pcs,Italy,85182900,220 mm / 8.66 inches,440 mm / 17.32 inches,440 mm / 17.32 inches,14 kg / 30.86 lbs,13.000,14.000
+RCF,"12"" Woofer",11100016,LF12G301,WOOFER LF12G301 8 OHM,Pcs,Italy,85182900,210 mm / 8.27 inches,360 mm / 14.17 inches,360 mm / 14.17 inches,8.05 kg / 17.75 lbs,7.000,8.050
+RCF,"12"" Woofer",11100017,MB12G301,MID-BASS MB12G301 8 OHM,Pcs,Italy,85182900,210 mm / 8.27 inches,360 mm / 14.17 inches,360 mm / 14.17 inches,8 kg / 17.64 lbs,7.000,8.000
+RCF,"18"" Woofer",11100022,LF18N405,WOOFER LF18N405 8 OHM,Pcs,Italy,85182900,255 mm / 10.04 inches,495 mm / 19.49 inches,525 mm / 20.67 inches,10 kg / 22.05 lbs,8.800,10.000
+RCF,"15"" Woofer",11100025,MB15N351,MIDBASS MB15N351 8 OHM,Pcs,Italy,85182900,230 mm / 9.06 inches,440 mm / 17.32 inches,440 mm / 17.32 inches,6.52 kg / 14.37 lbs,5.155,6.524
+RCF,"12"" Woofer",11100026,MB12N351,MIDBASS MB12N351 8 OHM,Pcs,Italy,85182900,210 mm / 8.27 inches,360 mm / 14.17 inches,360 mm / 14.17 inches,5.49 kg / 12.1 lbs,4.500,5.490
+RCF,Coaxial,11100032,CX15N351,COAXIAL CX15N351-8  8 OHM,Pcs,Italy,85182900,240 mm / 9.45 inches,440 mm / 17.32 inches,440 mm / 17.32 inches,8.5 kg / 18.74 lbs,7.000,8.500
+RCF,"21"" Woofer",11100043,LF21N451,WOOFER LF21N451 8 OHM,Pcs,Italy,85182900,284 mm / 11.18 inches,584 mm / 22.99 inches,604 mm / 23.78 inches,13.5 kg / 29.76 lbs,10.900,13.500
+RCF,"18"" Woofer",11100044,L18P400,WOOFER L18P400 8 OHM,Pcs,Italy,85182900,270 mm / 10.63 inches,520 mm / 20.47 inches,500 mm / 19.69 inches,15.5 kg / 34.17 lbs,13.500,15.500
+RCF,"15"" Woofer",11100045,L15P400,WOOFER L15P400 8 OHM,Pcs,Italy,85182900,195 mm / 7.68 inches,420 mm / 16.54 inches,425 mm / 16.73 inches,15.5 kg / 34.17 lbs,13.500,15.500
+RCF,"18"" Woofer",11100046,LF18N451,WOOFER LF18N451 8 OHM,Pcs,Italy,85182900,240 mm / 9.45 inches,510 mm / 20.08 inches,480 mm / 18.9 inches,12.5 kg / 27.56 lbs,10.500,12.500
+RCF,Coaxial,11100058,CX12N351,COAXIAL CX12N351 8 OHM,Pcs,Italy,85182900,240 mm / 9.45 inches,360 mm / 14.17 inches,360 mm / 14.17 inches,7.47 kg / 16.47 lbs,6.289,7.467
+RCF,"8"" Woofer",11100061,MB8N251,MIDBASS MB8N251 8 OHM,Pcs,Italy,85182900,125 mm / 4.92 inches,235 mm / 9.25 inches,220 mm / 8.66 inches,2.47 kg / 5.45 lbs,2.007,2.472
+RCF,"10"" Woofer",11100064,MB10N251,MIDBASS MB10N251 8 OHM,Pcs,Italy,85182900,180 mm / 7.09 inches,290 mm / 11.42 inches,290 mm / 11.42 inches,3 kg / 6.61 lbs,2.500,3.000
+RCF,Coaxial,11100069,CX12N251,COAXIAL CX12N251 8 OHM,Pcs,Italy,85182900,214 mm / 8.43 inches,339 mm / 13.35 inches,354 mm / 13.94 inches,4.1 kg / 9.04 lbs,3.600,4.100
+RCF,Coaxial,11100070,CX15N251,COAXIAL COASSIALE CX15N251 8 OHM,Pcs,Italy,85182900,240 mm / 9.45 inches,440 mm / 17.32 inches,440 mm / 17.32 inches,5.9 kg / 13.01 lbs,4.287,5.904
+RCF,"12"" Woofer",11100071,MB12N301,MIDBASS MB12N301 8 OHM,Pcs,Italy,85182900,194 mm / 7.64 inches,364 mm / 14.33 inches,354 mm / 13.94 inches,4.2 kg / 9.26 lbs,3.400,4.200
+RCF,"15"" Woofer",11100074,MB15N301,MIDBASS MB15N301 8 OHM,Pcs,Italy,85182900,209 mm / 8.23 inches,434 mm / 17.09 inches,439 mm / 17.28 inches,4.7 kg / 10.36 lbs,3.700,4.700
+RCF,"18"" Woofer",11100089,LF18X401,WOOFER LF18X401 8 OHM,Pcs,Italy,85182900,254 mm / 10 inches,524 mm / 20.63 inches,494 mm / 19.45 inches,15 kg / 33.07 lbs,12.500,15.000
+RCF,"15"" Woofer",11100090,LF15X401, WOOFER LF15X401 8 OHM,Pcs,Italy,85182900,209 mm / 8.23 inches,439 mm / 17.28 inches,434 mm / 17.09 inches,13.5 kg / 29.76 lbs,12.000,13.500
+RCF,"18"" Woofer",11100091,LF18X451,WOOFER LF18X451 8 OHM,Pcs,Italy,85182900,254 mm / 10 inches,524 mm / 20.63 inches,494 mm / 19.45 inches,17 kg / 37.48 lbs,15.200,17.000
+RCF,"21"" Woofer",11100092,LF21X451,WOOFER LF21X451 8 OHM,Pcs,Italy,85182900,284 mm / 11.18 inches,584 mm / 22.99 inches,604 mm / 23.78 inches,18.5 kg / 40.79 lbs,15.500,18.500
+RCF,"12"" Woofer",11100100,MB12X351,MID-BASS MB12X351 8 OHM,Pcs,Italy,85182900,194 mm / 7.64 inches,354 mm / 13.94 inches,364 mm / 14.33 inches,8.4 kg / 18.52 lbs,7.600,8.400
+RCF,"15"" Woofer",11100101,MB15X351,MID-BASS MB15X351 8 OHM,Pcs,Italy,85182900,209 mm / 8.23 inches,439 mm / 17.28 inches,434 mm / 17.09 inches,9.5 kg / 20.94 lbs,8.200,9.500
+RCF,"15"" Woofer",11100108,MB15N405,MID-BASS MB15N405 8 OHM,Pcs,Italy,85182900,209 mm / 8.23 inches,439 mm / 17.28 inches,434 mm / 17.09 inches,9.3 kg / 20.5 lbs,8.600,9.300
+RCF,"10"" Woofer",11100110,MB10G251,MID-BASS MB10G251 8 OHM,Pcs,Italy,85182900,180 mm / 7.09 inches,290 mm / 11.42 inches,290 mm / 11.42 inches,5.5 kg / 12.13 lbs,5.000,5.500
+RCF,"10"" Woofer",11100111,MB10N305,MID-BASS MB10N305 8 OHM,Pcs,Italy,85182900,169 mm / 6.65 inches,289 mm / 11.38 inches,289 mm / 11.38 inches,3.8 kg / 8.38 lbs,3.200,3.800
+RCF,"12"" Woofer",11100112,MB12N405,MID-BASS MB12N405 8 OHM,Pcs,Italy,85182900,194 mm / 7.64 inches,354 mm / 13.94 inches,364 mm / 14.33 inches,8.7 kg / 19.18 lbs,7.700,8.700
+RCF,"18"" Woofer",11100145,LF18N408,WOOFER LF18N408 8 OHM,Pcs,Italy,85182900,270 mm / 10.63 inches,520 mm / 20.47 inches,495 mm / 19.49 inches,10.2 kg / 22.49 lbs,9.000,10.200
+RCF,"19"" Woofer",11100167,LN19S400,WOOFER LN19S400 8 OHM,Pcs,Italy,85182900,290 mm / 11.42 inches,505 mm / 19.88 inches,515 mm / 20.28 inches,10.9 kg / 24.03 lbs,10.200,10.900
+RCF,"10"" Woofer",11130015,L10-750YK,WOOFER L10-750YK 8 OHM,Pcs,Italy,85182900,185 mm / 7.28 inches,290 mm / 11.42 inches,285 mm / 11.22 inches,7.9 kg / 17.42 lbs,7.000,7.900
+RCF,"15"" Woofer",11165015,L15P540,WOOFER L15P540 8 OHM,Pcs,Italy,85182900,225 mm / 8.86 inches,435 mm / 17.13 inches,435 mm / 17.13 inches,10.2 kg / 22.49 lbs,8.800,10.200
+RCF,"15"" Woofer",11165017,L15P530,WOOFER L15P530 8 OHM,Pcs,Italy,85182900,215 mm / 8.46 inches,430 mm / 16.93 inches,435 mm / 17.13 inches,10.2 kg / 22.49 lbs,8.700,10.200
+RCF,"18"" Woofer",11185016,L18P300,WOOFER L18P300 8 OHM,Pcs,Italy,85182900,270 mm / 10.63 inches,520 mm / 20.47 inches,495 mm / 19.49 inches,15 kg / 33.07 lbs,13.000,15.000
+RCF,Amplifiers,12100008,DPS 604X,AMPLIF. DPS 604X WITH X-OVER 600 W 230 V,Pcs,China,85184080,100 mm / 3.94 inches,560 mm / 22.05 inches,370 mm / 14.57 inches,6 kg / 13.23 lbs,5.000,6.000
+RCF,Business Music Amplifier,12100026,DMA 82,MATRIX AMPLIFIER DMA 82 160W EU,Pcs,China,85184000,106 mm / 4.17 inches,360 mm / 14.17 inches,381 mm / 15 inches,2.7 kg / 5.95 lbs,1.700,2.700
+RCF,Business Music Amplifier,12100027,DMA 162,MATRIX AMPLIFIER DMA 162 320W EU,Pcs,China,85184000,106 mm / 4.17 inches,360 mm / 14.17 inches,381 mm / 15 inches,2.7 kg / 5.95 lbs,1.700,2.700
+RCF,Business Music Amplifier,12100028,DMA 162P,AMPLIFIER DMA 162P 320W EU,Pcs,China,85184000,106 mm / 4.17 inches,360 mm / 14.17 inches,381 mm / 15 inches,2.65 kg / 5.84 lbs,1.650,2.650
+RCF,Business Music Amplifier,12100035,DMA 504,MATRIX AMPLIFIER DMA 504 2000W EU,Pcs,China,85184000,210 mm / 8.27 inches,550 mm / 21.65 inches,470 mm / 18.5 inches,7.6 kg / 16.76 lbs,6.500,7.600
+RCF,XPS Amplifiers,12100037,XPS 16K,AMPLIFIER XPS 16K 90-240V EU,Pcs,Italy,85184000,150 mm / 5.91 inches,580 mm / 22.83 inches,600 mm / 23.62 inches,18 kg / 39.68 lbs,15.500,18.000
+RCF,Cd/Usb-Mp3 Receiver Amplifier,12100053,ES 2160,MIXER AMPLIFIER MP3/BT ES 2160 160 W,Pcs,China,85184000,200 mm / 7.87 inches,500 mm / 19.69 inches,330 mm / 12.99 inches,6.45 kg / 14.22 lbs,5.500,6.450
+RCF,QPS Amplifiers,12100055,QPS 6.0K,AMPLIFIER QPS 6.0K 6000 W 220-240 V,Pcs,China,85184000,150 mm / 5.91 inches,572 mm / 22.52 inches,570 mm / 22.44 inches,15 kg / 33.07 lbs,13.700,15.000
+RCF,QPS Amplifiers,12100057,QPS 10K,AMPLIFIER QPS 10K 10000 W 220-240 V,Pcs,China,85184000,150 mm / 5.91 inches,572 mm / 22.52 inches,570 mm / 22.44 inches,15.5 kg / 34.17 lbs,14.200,15.500
+RCF,IPS Amplifiers,12100059,IPS 2.5K,AMPLIFIER IPS 2.5K 2500 W 220-240 V,Pcs,China,85184000,140 mm / 5.51 inches,550 mm / 21.65 inches,530 mm / 20.87 inches,12.7 kg / 28 lbs,11.200,12.700
+RCF,IPS Amplifiers,12100061,IPS 5.0K,AMPLIFIER IPS 5.0K 5000 W 220-240 V,Pcs,China,85184000,140 mm / 5.51 inches,550 mm / 21.65 inches,530 mm / 20.87 inches,23.1 kg / 50.93 lbs,21.600,23.100
+RCF,DXT 7000,12100063,MU 7100EN MKII,POWERED MASTER UNIT MU 7100EN MKII,Pcs,Finland,84719000,190 mm / 7.48 inches,540 mm / 21.26 inches,480 mm / 18.9 inches,9.5 kg / 20.94 lbs,8.400,9.500
+RCF,XPS Amplifiers,12100064,XPS 16KD,AMPLIFIER XPS 16KD 90-240V EU,Pcs,Italy,85184000,150 mm / 5.91 inches,580 mm / 22.83 inches,600 mm / 23.62 inches,18 kg / 39.68 lbs,15.500,18.000
+RCF,IPS Amplifiers,12100065,IPS 1.5K,AMPLIFIER IPS 1.5K 1500 W 220-240 V,Pcs,China,85184000,140 mm / 5.51 inches,550 mm / 21.65 inches,530 mm / 20.87 inches,12 kg / 26.46 lbs,10.500,12.000
+RCF,DXT 3000,12100067,MXR 4500/2,MXR 4500/2 RACK MASTER UNIT DXT 4000 2 C,Pcs,Italy,84719000,262 mm / 10.31 inches,523 mm / 20.59 inches,523 mm / 20.59 inches,15.1 kg / 33.29 lbs,11.300,15.100
+RCF,DXT 3000,12100068,MXR 4500/4,MXR 4500/4 RACK MASTER UNIT DXT 4000 4 C,Pcs,Italy,84719000,262 mm / 10.31 inches,523 mm / 20.59 inches,523 mm / 20.59 inches,18 kg / 39.68 lbs,12.750,16.550
+RCF,DXT 3000,12100069,MXR 4500/6,MXR 4500/6 RACK MASTER UNIT DXT 4000 6 C,Pcs,Italy,84719000,262 mm / 10.31 inches,523 mm / 20.59 inches,523 mm / 20.59 inches,18 kg / 39.68 lbs,14.200,18.000
+RCF,Amplifiers,12110012,AM 6020,AMPLIFIER AM 6020,Pcs,Italy,85184080,77 mm / 3.03 inches,285 mm / 11.22 inches,265 mm / 10.43 inches,1.5 kg / 3.31 lbs,1.135,1.500
+RCF,Amplifiers,12135043,MS 520,MS 520  AMPLIFIER AND CONTROL UNIT,Pcs,Italy,85185000,75 mm / 2.95 inches,520 mm / 20.47 inches,280 mm / 11.02 inches,4.18 kg / 9.22 lbs,3.660,4.180
+RCF,Amplifiers Pro,12135054,HPS 2500,HPS 2500 PROFESSIONAL AMPLIFIER,Pcs,China,85184080,160 mm / 6.3 inches,570 mm / 22.44 inches,480 mm / 18.9 inches,23.2 kg / 51.15 lbs,21.350,23.200
+RCF,Amplifiers Pro,12135055,HPS 1500,HPS 1500 PROFESSIONAL AMPLIFIER,Pcs,China,85184080,160 mm / 6.3 inches,570 mm / 22.44 inches,480 mm / 18.9 inches,20.7 kg / 45.64 lbs,17.250,20.700
+RCF,Amplifiers,12135060,UP 2161,UP 2161 - 160W POWER UNIT,Pcs,China,85184080,200 mm / 7.87 inches,330 mm / 12.99 inches,500 mm / 19.69 inches,6.38 kg / 14.07 lbs,5.405,6.380
+RCF,Amplifiers,12135066,UP 2082,UP 2082 - 2 X 80W POWER AMPLIFIER,Pcs,China,85184080,200 mm / 7.87 inches,330 mm / 12.99 inches,500 mm / 19.69 inches,6.78 kg / 14.95 lbs,5.325,6.775
+RCF,Processors,12135068,DX 2006,DX2006 - DIGITAL AUDIO PROCES.  2IN 6OUT,Pcs,China,85185000,90 mm / 3.54 inches,610 mm / 24.02 inches,370 mm / 14.57 inches,4.12 kg / 9.08 lbs,2.720,4.120
+RCF,Amplifiers,12135073,UP 4240,UP 4240 -  240W POWER AMPLIFIER,Pcs,China,85184080,180 mm / 7.09 inches,420 mm / 16.54 inches,480 mm / 18.9 inches,12.75 kg / 28.11 lbs,11.500,12.750
+RCF,Amplifiers,12135081,AM 1064,MIXER AMPLIFIER 60W AM 1064,Pcs,China,85184080,165 mm / 6.5 inches,500 mm / 19.69 inches,380 mm / 14.96 inches,6.72 kg / 14.82 lbs,5.700,6.725
+RCF,Amplifiers,12135083,UP 1121,AMPLIFIER 120W UP 1121,Pcs,China,85184080,165 mm / 6.5 inches,500 mm / 19.69 inches,380 mm / 14.96 inches,8.4 kg / 18.52 lbs,7.200,8.400
+RCF,Amplifiers Pro,12135087,IPS 700,PROFESSIONAL AMPLIFIER IPS 700 230V,Pcs,China,85184080,150 mm / 5.91 inches,580 mm / 22.83 inches,570 mm / 22.44 inches,10.2 kg / 22.49 lbs,9.500,10.200
+RCF,Amplifiers Pro,12135089,IPS 1700,PROFESSIONAL AMPLIFIER  IPS 1700 230,Pcs,China,85184080,150 mm / 5.91 inches,580 mm / 22.83 inches,570 mm / 22.44 inches,13.8 kg / 30.42 lbs,11.200,13.800
+RCF,Amplifiers Pro,12135091,IPS 2700,PROFESSIONAL AMPLIFIER IPS 2700 230V,Pcs,China,85184080,150 mm / 5.91 inches,580 mm / 22.83 inches,570 mm / 22.44 inches,14.9 kg / 32.85 lbs,12.200,14.900
+RCF,Amplifiers Pro,12135093,IPS 3700,PROFESSIONAL AMPLIFIER IPS 3700 230V,Pcs,China,85184080,150 mm / 5.91 inches,580 mm / 22.83 inches,570 mm / 22.44 inches,18.75 kg / 41.34 lbs,16.650,18.750
+RCF,Amplifiers Pro,12135102,QPS 9600,AMPLIFIER QPS9600 230V,Pcs,China,85184080,150 mm / 5.91 inches,580 mm / 22.83 inches,600 mm / 23.62 inches,18.5 kg / 40.79 lbs,16.350,18.500
+RCF,Elisa,12135104,ES 3160 II,ES3160-II RADIO/CD/MP3/BT 160W AMPLIFIER,Pcs,China,85279135,240 mm / 9.45 inches,455 mm / 17.91 inches,535 mm / 21.06 inches,9.9 kg / 21.83 lbs,8.200,9.900
+RCF,Elisa,12135105,ES 3323 II,ES3323-II RADIO/CD/MP3/BT 3ZONE 320W AMP,Pcs,China,85279135,240 mm / 9.45 inches,440 mm / 17.32 inches,530 mm / 20.87 inches,11.97 kg / 26.39 lbs,10.100,11.970
+RCF,Accessories,12399048,RDNET BOARD DMA,ACCESSORY RDNET BOARD DMA,Pcs,Italy,85189000,88 mm / 3.46 inches,219 mm / 8.62 inches,156 mm / 6.14 inches,0.3 kg / 0.66 lbs,0.100,0.300
+RCF,Accessories,12399051,RC 401 EU B,ACCESSORY RC 401 EU B,Pcs,China,85437090,88 mm / 3.46 inches,219 mm / 8.62 inches,156 mm / 6.14 inches,0.31 kg / 0.68 lbs,0.260,0.310
+RCF,Accessories,12399052,RC 401 EU W,ACCESSORY RC 401 EU W,Pcs,China,85437090,88 mm / 3.46 inches,219 mm / 8.62 inches,156 mm / 6.14 inches,0.31 kg / 0.68 lbs,0.260,0.310
+RCF,Accessories,12399053,RC 401 US B,ACCESSORY RC 401 US B,Pcs,China,85437090,88 mm / 3.46 inches,219 mm / 8.62 inches,156 mm / 6.14 inches,0.27 kg / 0.6 lbs,0.220,0.270
+RCF,Accessories,12399054,RC 401 US W,ACCESSORY RC 401 US W,Pcs,China,85437090,88 mm / 3.46 inches,219 mm / 8.62 inches,156 mm / 6.14 inches,0.27 kg / 0.6 lbs,0.220,0.270
+RCF,Accessories,12399062,PNL IN-OUT SPEAKON COMPACT M,PANEL PNL IN-OUT SPEAKON,Pcs,China,85189000,90 mm / 3.54 inches,137 mm / 5.39 inches,125 mm / 4.92 inches,0.15 kg / 0.33 lbs,0.100,0.150
+RCF,Accessories,12399063,PNL IN-OUT AMPHENOL,PANEL PNL IN-OUT AMPHENOL,Pcs,Italy,85189000,90 mm / 3.54 inches,137 mm / 5.39 inches,125 mm / 4.92 inches,0.36 kg / 0.79 lbs,0.307,0.357
+RCF,Accessories,12399065,BT BOARD DMA,ACCESSORY BT BOARD DMA,Pcs,China,85176990,88 mm / 3.46 inches,219 mm / 8.62 inches,156 mm / 6.14 inches,0.05 kg / 0.11 lbs,0.030,0.050
+RCF,Accessories,12399066,MWD1,ACCESSORY MWD1 WIRELESS USB ADAPTER,Pcs,China,85176990,15 mm / 0.59 inches,102 mm / 4.02 inches,115 mm / 4.53 inches,0.02 kg / 0.04 lbs,0.017,0.020
+RCF,Accessories,12399068,TRF-KIT DMA 82,TRANSFORMER TRF-KIT DMA 82,Pcs,Italy,85043180,106 mm / 4.17 inches,360 mm / 14.17 inches,381 mm / 15 inches,4 kg / 8.82 lbs,3.000,4.000
+RCF,Accessories,12399069,TRF-KIT DMA 162,TRANSFORMER TRF-KIT DMA 162,Pcs,Italy,85043180,106 mm / 4.17 inches,360 mm / 14.17 inches,381 mm / 15 inches,4.8 kg / 10.58 lbs,3.800,4.800
+TT+,GTX,12399072,CBL 002,CABLES KIT CBL 002 LK 08N25 0.7M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,0.8 kg / 1.76 lbs,0.600,0.800
+TT+,GTX,12399073,CBL 003,CABLES KIT CBL 003 LK 08N40 1M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,0.96 kg / 2.12 lbs,0.900,0.960
+TT+,GTX,12399074,CBL 004,CABLES KIT CBL 004 LK 08N40 10M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,7.6 kg / 16.76 lbs,7.400,7.600
+TT+,GTX,12399075,CBL 005,CABLES KIT CBL 005 LK 08N40 25M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,18.8 kg / 41.45 lbs,15.800,18.800
+TT+,GTX,12399076,CN-KIT 006,CONNECTORS KIT CN-KIT 006 LKA 08 EXT,Pcs,Italy,85444290,50 mm / 1.97 inches,300 mm / 11.81 inches,100 mm / 3.94 inches,0.5 kg / 1.1 lbs,0.180,0.190
+TT+,GTX,12399077,CBL 006,CABLES KIT CBL 006 LK 19 2M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,0.88 kg / 1.94 lbs,0.879,0.880
+TT+,GTX,12399078,CBL 007,CABLES KIT CBL 007 LK 19 30M,Pcs,Italy,85444290,240 mm / 9.45 inches,480 mm / 18.9 inches,510 mm / 20.08 inches,8.3 kg / 18.3 lbs,8.290,8.300
+TT+,GTX,12399079,CBL 008,CBL 008 LK 19 EXT ADAPTER,Pcs,Italy,85444290,,,,,,
+TT+,GTX,12399080,CBL 009,CABLES KIT CBL 009 LK 08N40 4M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,3.28 kg / 7.65 lbs,3.270,3.280
+TT+,GTX,12399082,CBL 010,CABLES KIT CBL 010 LK FAN-IN 1.5M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,1.4 kg / 3.09 lbs,1.300,1.400
+TT+,GTX,12399085,CN-PAN 001,PANEL CN-PAN 001,Pcs,Italy,73269098,,,,,0.475,0.496
+TT+,GTX,12399086,XLR MALE TO FEMALE CABLE 0.4M,KIT XLR MALE TO FEMALE CABLE 0.4M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,0.13 kg / 0.29 lbs,0.125,0.130
+TT+,GTX,12399087,ETHERNET CAT6 CABLE 0.5M,KIT ETHERNET CAT6 CABLE 0.5M,Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,0.13 kg / 0.29 lbs,0.125,0.130
+TT+,GTX,12399088,PWRCON 0.7M,"KIT PWRCRD H05VVF3X1,5 TRUE1-PWRCON 0.7M",Pcs,Italy,85444290,100 mm / 3.94 inches,300 mm / 11.81 inches,300 mm / 11.81 inches,0.13 kg / 0.29 lbs,0.125,0.130
+RCF,Subwoofer,13000048,S 4012,SUBWOOFER S4012,Pcs,Italy,85182100,560 mm / 22.05 inches,480 mm / 18.9 inches,510 mm / 20.08 inches,24 kg / 52.91 lbs,21.000,24.000
+RCF,Monitor Q,13000056,MQ 50 W,MQ 50-W MONITOR  (WHITE),Pcs,China,85182200,300 mm / 11.81 inches,235 mm / 9.25 inches,220 mm / 8.66 inches,3.16 kg / 6.97 lbs,2.630,3.160
+RCF,Monitor Q,13000058,MQ 30P-W,MQ 30P-W MONITOR  (WHITE),Pcs,China,85182100,275 mm / 10.83 inches,165 mm / 6.5 inches,145 mm / 5.71 inches,1.54 kg / 3.4 lbs,1.188,1.536
+RCF,Monitor Q,13000060,MQ 60H W,MQ 60H-W MONITOR   (WHITE),Pcs,China,85182200,340 mm / 13.39 inches,265 mm / 10.43 inches,180 mm / 7.09 inches,3.39 kg / 7.47 lbs,2.850,3.390
+RCF,Monitor Q,13000068,MQ 30P-B,MONITOR MQ 30P - B (BLACK),Pcs,China,85182100,275 mm / 10.83 inches,165 mm / 6.5 inches,145 mm / 5.71 inches,1.54 kg / 3.4 lbs,1.188,1.536
+RCF,Monitor Q,13000070,MQ 50 B,MQ 50-B MONITOR  (BLACK),Pcs,China,85182200,300 mm / 11.81 inches,235 mm / 9.25 inches,220 mm / 8.66 inches,3.16 kg / 6.97 lbs,2.630,3.160
+RCF,Monitor Q,13000072,MQ 60H B,MONITOR MQ 60H-B  (BLACK),Pcs,China,85182200,340 mm / 13.39 inches,265 mm / 10.43 inches,180 mm / 7.09 inches,3.39 kg / 7.47 lbs,2.850,3.390
+RCF,H Series,13000084,H 1315,SPEAKER H1315,Pcs,Italy,85182200,970 mm / 38.19 inches,780 mm / 30.71 inches,650 mm / 25.59 inches,61.5 kg / 135.58 lbs,51.000,61.500
+RCF,Monitor Q,13000097,MQ 90S B,MONITOR MQ 90S - B (BLACK),Pcs,China,85182100,470 mm / 18.5 inches,370 mm / 14.57 inches,265 mm / 10.43 inches,9.25 kg / 20.39 lbs,8.060,9.250
+RCF,Speakers,13000105,DU 100X,WALL-CEIL SPEAKER DU 100X,Pcs,China,85182200,105 mm / 4.13 inches,240 mm / 9.45 inches,210 mm / 8.27 inches,1.36 kg / 3 lbs,1.116,1.359
+RCF,Monitor Q,13000139,MQ 50i W,MQ50i-W MONITOR (WHITE),Pcs,China,85182200,165 mm / 6.5 inches,300 mm / 11.81 inches,220 mm / 8.66 inches,2.84 kg / 6.26 lbs,2.210,2.840
+TT+,TTL55-56,13000188,TTL 55-A,LINE ARRAY MODULE TTL55-A,Pcs,Italy,85182200,909 mm / 35.79 inches,1144 mm / 45.04 inches,499 mm / 19.65 inches,81 kg / 178.57 lbs,70.500,81.000
+TT+,TT+ Subwoofer,13000190,TTS 56-A,TTS56-A - 230V SUBWOOFER,Pcs,Italy,85182200,1316 mm / 51.81 inches,800 mm / 31.5 inches,1200 mm / 47.24 inches,178.2 kg / 392.86 lbs,122.800,178.200
+RCF,Mytho,13000194,MYTHO 6,MYTHO 6  - STUDIO REFERENCE MONITOR 230V,Pcs,Italy,85182200,490 mm / 19.29 inches,360 mm / 14.17 inches,360 mm / 14.17 inches,14 kg / 30.86 lbs,12.500,14.000
+RCF,Mytho,13000195,MYTHO 8,MYTHO 8  - STUDIO REFERENCE MONITOR 230V,Pcs,Italy,85182200,529 mm / 20.83 inches,414 mm / 16.3 inches,414 mm / 16.3 inches,17.77 kg / 39.18 lbs,16.150,17.765
+RCF,Speakers,13000204,DU 31,DU 31- 8W SPEAKER FLUSH OR WALL  MOUNT,Pcs,China,85182200,260 mm / 10.24 inches,100 mm / 3.94 inches,175 mm / 6.89 inches,0.89 kg / 1.96 lbs,0.600,0.890
+RCF,Column Speakers,13000231,CS 3041,CS 3041 SLIM COLUMN SPEAKER 2 WAY 20W,Pcs,China,85182200,450 mm / 17.72 inches,135 mm / 5.31 inches,130 mm / 5.12 inches,2.24 kg / 4.94 lbs,1.710,2.242
+TT+,TT 51-52,13000243,TT051-A,TT051-A 230V SPEAKER,Pcs,Italy,85182200,424 mm / 16.69 inches,294 mm / 11.57 inches,214 mm / 8.43 inches,8 kg / 17.64 lbs,7.000,8.000
+TT+,TT 51-52,13000245,TT 052-A,TT052-A 230V SPEAKER,Pcs,Italy,85182200,580 mm / 22.83 inches,290 mm / 11.42 inches,220 mm / 8.66 inches,11 kg / 24.25 lbs,9.500,11.000
+RCF,Speakers,13000247,BD 42,BD 42 - BIDIRECTIONAL PROJECTOR 12W,Pcs,China,85182200,290 mm / 11.42 inches,160 mm / 6.3 inches,190 mm / 7.48 inches,1.95 kg / 4.3 lbs,1.660,1.950
+TT+,TT+ Subwoofer,13000271,TTL 36-AS,SUBWOOFER TTL36-AS  115-230V,Pcs,Italy,85182200,1287 mm / 50.67 inches,1194 mm / 47.01 inches,794 mm / 31.26 inches,177 kg / 390.22 lbs,120.000,177.000
+TT+,TT+ Subwoofer,13000272,TTS 36-A,SUBWOOFER TTS36-A  115-230V,Pcs,Italy,85182200,1151 mm / 45.31 inches,1194 mm / 47.01 inches,794 mm / 31.26 inches,154 kg / 339.51 lbs,99.800,154.000
+RCF,C Series,13000304,C 5212-94,C5212 94 SPEAKER,Pcs,Italy,85182200,714 mm / 28.11 inches,514 mm / 20.24 inches,464 mm / 18.27 inches,33 kg / 72.75 lbs,29.000,33.000
+RCF,C Series,13000305,C 5212-64,C5212 64 SPEAKER,Pcs,Italy,85182200,714 mm / 28.11 inches,514 mm / 20.24 inches,464 mm / 18.27 inches,34.5 kg / 76.06 lbs,31.000,34.500
+RCF,C Series,13000306,C 5212-96,C5212 96 SPEAKER,Pcs,Italy,85182200,714 mm / 28.11 inches,514 mm / 20.24 inches,464 mm / 18.27 inches,33 kg / 72.75 lbs,30.000,33.000
+RCF,C Series,13000307,C 5212-66,C5212 66 SPEAKER,Pcs,Italy,85182200,714 mm / 28.11 inches,514 mm / 20.24 inches,464 mm / 18.27 inches,32.8 kg / 72.31 lbs,30.000,32.800
+RCF,C Series,13000308,C 5212-99,C5212 99 SPEAKER,Pcs,Italy,85182200,714 mm / 28.11 inches,514 mm / 20.24 inches,464 mm / 18.27 inches,32.8 kg / 72.31 lbs,30.000,32.800
+RCF,C Series,13000309,C 5215-94,C5215 94 SPEAKER,Pcs,Italy,85182200,779 mm / 30.67 inches,584 mm / 22.99 inches,534 mm / 21.02 inches,39.5 kg / 87.08 lbs,35.000,39.500
+RCF,C Series,13000310,C 5215-64,C5215 64 SPEAKER,Pcs,Italy,85182200,779 mm / 30.67 inches,584 mm / 22.99 inches,534 mm / 21.02 inches,40 kg / 88.18 lbs,35.500,40.000
+RCF,C Series,13000311,C 5215-96,C5215 96 SPEAKER,Pcs,Italy,85182200,779 mm / 30.67 inches,584 mm / 22.99 inches,534 mm / 21.02 inches,38.5 kg / 84.88 lbs,35.000,38.500
+RCF,C Series,13000312,C 5215-66,C5215 66 SPEAKER,Pcs,Italy,85182200,779 mm / 30.67 inches,584 mm / 22.99 inches,534 mm / 21.02 inches,38.5 kg / 84.88 lbs,35.000,38.500
+RCF,C Series,13000313,C 5215-99,C5215 99 SPEAKER,Pcs,Italy,85182200,779 mm / 30.67 inches,584 mm / 22.99 inches,534 mm / 21.02 inches,38.5 kg / 84.88 lbs,35.000,38.500
+RCF,4 Pro,13000364,4PRO 2031-A,4PRO 2031-A 230V SPEAKER,Pcs,Italy,85182200,668 mm / 26.3 inches,434 mm / 17.09 inches,434 mm / 17.09 inches,26 kg / 57.32 lbs,23.000,26.000
+RCF,4 Pro,13000366,4PRO 3031-A,4PRO 3031-A 230V SPEAKER,Pcs,Italy,85182200,744 mm / 29.29 inches,484 mm / 19.06 inches,484 mm / 19.06 inches,31.4 kg / 69.23 lbs,27.000,31.400
+RCF,4 Pro,13000368,4PRO 5031-A,4PRO 5031-A 230V SPEAKER,Pcs,Italy,85182200,1134 mm / 44.65 inches,484 mm / 19.06 inches,484 mm / 19.06 inches,47 kg / 103.62 lbs,40.500,47.000
+RCF,4 Pro,13000370,4PRO 1031-A,4PRO 1031-A 230V SPEAKER,Pcs,Italy,85182200,577 mm / 22.72 inches,374 mm / 14.72 inches,374 mm / 14.72 inches,20.5 kg / 45.19 lbs,17.500,20.500
+TT+,TT+ Two-way speaker,13000377,TT 1-A,ACOUSTIC SPEAKER TT1-A - 230V,Pcs,Italy,85182200,690 mm / 27.17 inches,480 mm / 18.9 inches,430 mm / 16.93 inches,28 kg / 61.73 lbs,25.400,28.000
+TT+,TT+ Two-way speaker,13000378,TT 2-A,ACOUSTIC SPEAKER TT2-A 230V,Pcs,Italy,85182200,900 mm / 35.43 inches,580 mm / 22.83 inches,490 mm / 19.29 inches,37.8 kg / 83.33 lbs,34.400,37.800
+TT+,TT+ Two-way speaker,13000379,TT 5-A,ACOUSTIC SPEAKER TT5-A 230V,Pcs,Italy,85182200,870 mm / 34.25 inches,630 mm / 24.8 inches,580 mm / 22.83 inches,47.5 kg / 104.72 lbs,42.500,47.500
+TT+,TT+ Two-way speaker,13000380,TTP 5-A,ACUSTIC SPEAKER TTP5-A 230V,Pcs,Italy,85182200,1100 mm / 43.31 inches,590 mm / 23.23 inches,780 mm / 30.71 inches,70 kg / 154.32 lbs,66.000,70.000
+RCF,NX,13000399,NXL 24-A,SOUND COLUMN NXL 24-A - 230V,Pcs,Italy,85182200,316 mm / 12.44 inches,1155 mm / 45.47 inches,222 mm / 8.74 inches,29 kg / 63.93 lbs,26.400,29.000
+TT+,TTL33-31,13000402,TTL 33-A II WP STADIUM,ARRAY MOD.TTL33-A II WP STADIUM 220-240V,Pcs,Italy,85189000,395 mm / 15.55 inches,875 mm / 34.45 inches,545 mm / 21.46 inches,37 kg / 81.57 lbs,33.000,37.000
+RCF,H Series,13000406,HS 2200,HORN LOADED ARRAY SYSTEM HS2200,Pcs,Italy,85182100,720 mm / 28.35 inches,860 mm / 33.86 inches,820 mm / 32.28 inches,52.3 kg / 115.3 lbs,50.800,52.300
+RCF,VMAX,13000412,V 35,ACOUSTIC SPEAKER V35,Pcs,Italy,85182200,800 mm / 31.5 inches,500 mm / 19.69 inches,410 mm / 16.14 inches,35 kg / 77.16 lbs,31.000,35.000
+RCF,VMAX,13000413,V 45,ACOUSTIC SPEAKER V45,Pcs,Italy,85182200,1170 mm / 46.06 inches,640 mm / 25.2 inches,610 mm / 24.02 inches,63 kg / 138.89 lbs,63.000,63.000
+RCF,VMAX,13000414,V 218-S,SUBWOOFER V218-S,Pcs,Italy,85182200,630 mm / 24.8 inches,1265 mm / 49.8 inches,805 mm / 31.69 inches,93 kg / 205.03 lbs,78.200,93.000
+RCF,VMAX,13000415,V 221-S,SUBWOOFER V221-S,Pcs,Italy,85182200,600 mm / 23.62 inches,1540 mm / 60.63 inches,900 mm / 35.43 inches,110 kg / 242.51 lbs,110.000,110.000
+RCF,Sub Pro,13000422,SUB 8005-AS,SUBWOOFER SUB 8005-AS 230V,Pcs,Italy,85182100,870 mm / 34.25 inches,880 mm / 34.65 inches,662 mm / 26.06 inches,63 kg / 138.89 lbs,61.500,63.000
+TT+,TTL55-56,13000424,TTL 55-A WP STADIUM,L.ARRAY MOD TTL55-A WP STADIUM 230V,Pcs,Italy,85182200,909 mm / 35.79 inches,1144 mm / 45.04 inches,499 mm / 19.65 inches,71.5 kg / 157.63 lbs,60.000,71.500
+RCF,Sub Live,13000432,SUB 8003-AS II,SUBWOOFER SUB 8003-AS II 230V,Pcs,Italy,85182100,745 mm / 29.33 inches,760 mm / 29.92 inches,580 mm / 22.83 inches,51 kg / 112.44 lbs,45.400,51.000
+RCF,Sub Live,13000434,SUB 905-AS II,SUBWOOFER SUB 905-AS II 230V,Pcs,Italy,85182100,650 mm / 25.59 inches,670 mm / 26.38 inches,500 mm / 19.69 inches,35 kg / 77.16 lbs,30.600,35.000
+RCF,VMAX,13000437,V 6,ACOUSTIC SPEAKER V6,Pcs,Italy,85182200,435 mm / 17.13 inches,315 mm / 12.4 inches,260 mm / 10.24 inches,11 kg / 24.25 lbs,9.000,11.000
+RCF,VMAX,13000438,V 10,ACOUSTIC SPEAKER V10,Pcs,Italy,85182200,585 mm / 23.03 inches,367 mm / 14.45 inches,372 mm / 14.65 inches,20.5 kg / 45.19 lbs,17.700,20.500
+RCF,EVOX,13000440,EVOX 5,EVOX 5 SYSTEM 230V,Pcs,China,85182200,650 mm / 25.59 inches,345 mm / 13.58 inches,480 mm / 18.9 inches,22.8 kg / 50.27 lbs,19.400,22.800
+RCF,EVOX,13000442,EVOX 8,EVOX 8 SYSTEM 230V,Pcs,China,85182200,580 mm / 22.83 inches,400 mm / 15.75 inches,570 mm / 22.44 inches,27.7 kg / 61.07 lbs,24.400,27.700
+RCF,Sub Live,13000453,SUB 702-AS II,SUBWOOFER SUB702-AS II 230V,Pcs,Italy,85182100,524 mm / 20.63 inches,536 mm / 21.1 inches,400 mm / 15.75 inches,22.4 kg / 49.38 lbs,19.200,22.400
+RCF,Sub Live,13000455,SUB 705-AS II,SUBWOOFER SUB705 MKII 230V,Pcs,Italy,85182100,605 mm / 23.82 inches,640 mm / 25.2 inches,470 mm / 18.5 inches,32.4 kg / 71.43 lbs,28.000,32.400
+RCF,Sub Live,13000457,SUB 708-AS II,SUBWOOFER SUB708 MKII 230V,Pcs,Italy,85182100,702 mm / 27.64 inches,557 mm / 21.93 inches,752 mm / 29.61 inches,44 kg / 97 lbs,39.500,44.000
+RCF,Stage monitor,13000460,ST 12-SMA,STAGE MONITOR ST12-A 230V,Pcs,Italy,85182200,604 mm / 23.78 inches,352 mm / 13.86 inches,412 mm / 16.22 inches,19 kg / 41.89 lbs,18.000,19.000
+RCF,Stage monitor,13000462,ST 15-SMA,STAGE MONITOR ST15-A 230V,Pcs,Italy,85182200,802 mm / 31.57 inches,402 mm / 15.83 inches,482 mm / 18.98 inches,21.7 kg / 47.84 lbs,20.700,21.700
+RCF,Headphones,13000465,ICONICA ANGEL WHITE,HEADPHONE ICONICA WHITE RCF,Pcs,China,85183095,240 mm / 9.45 inches,180 mm / 7.09 inches,115 mm / 4.53 inches,1.25 kg / 2.76 lbs,0.450,1.254
+RCF,H Series,13000473,HL 20-WP,SPEAKER HL 20 WP/BMG,Pcs,Italy,85182200,539 mm / 21.22 inches,787 mm / 30.98 inches,382 mm / 15.04 inches,33.2 kg / 73.19 lbs,30.200,33.200
+RCF,HDL,13000477,HDL 50-A,SPEAKER HDL50-A 100-240V,Pcs,Italy,85182200,400 mm / 15.75 inches,1200 mm / 47.24 inches,600 mm / 23.62 inches,60 kg / 132.28 lbs,56.000,60.000
+RCF,NX,13000479,NXL 44-A,SOUND COLUMN NXL44-A - 230V,Pcs,Italy,85182200,437 mm / 17.2 inches,1224 mm / 48.19 inches,330 mm / 12.99 inches,36.5 kg / 80.47 lbs,34.500,36.500
+RCF,Sub Pro,13000493,SUB 9007-AS,SUBWOOFER SUB 9007-AS 100-240V,Pcs,Italy,85182200,760 mm / 29.92 inches,825 mm / 32.48 inches,1135 mm / 44.69 inches,110 kg / 242.51 lbs,96.000,110.000
+RCF,M Series,13000497,M 1001 W,SPEAKER M 1001 W 8ohm,Pcs,China,85182200,590 mm / 23.23 inches,388 mm / 15.28 inches,388 mm / 15.28 inches,14.8 kg / 32.63 lbs,13.200,14.800
+RCF,M Series,13000498,M 1201 W,SPEAKER M1201-W,Pcs,China,85182200,725 mm / 28.54 inches,500 mm / 19.69 inches,475 mm / 18.7 inches,23 kg / 50.71 lbs,20.200,23.000
+TT+,TTL 6 + 11,13000500,TTL 6-AS,SPEAKER TTL 6-AS 90-240V,Pcs,Italy,85182200,430 mm / 16.93 inches,1140 mm / 44.88 inches,520 mm / 20.47 inches,48 kg / 105.82 lbs,45.000,48.000
+TT+,TT+ Stage monitor,13000506,TT 45-CXA,SPEAKER TT45-CXA 230V,Pcs,Italy,85182200,627 mm / 24.69 inches,477 mm / 18.78 inches,691 mm / 27.2 inches,33.7 kg / 74.3 lbs,30.000,33.700
+RCF,HDL,13000508,HDL 53-AS,SUBWOOFER HDL53-AS  100-240  V,Pcs,Italy,85182200,600 mm / 23.62 inches,1200 mm / 47.24 inches,400 mm / 15.75 inches,53.2 kg / 117.29 lbs,50.000,53.200
+RCF,D-LINE,13000516,HD 32-A MK4,SPEAKER HD 32-A MK4 220-240V,Pcs,Italy,85182200,760 mm / 29.92 inches,500 mm / 19.69 inches,500 mm / 19.69 inches,22 kg / 48.5 lbs,18.600,22.000
+RCF,ART 7,13000518,ART 708-A MK4,SPEAKER ART 708-A MK4 220-240V,Pcs,Italy,85182200,520 mm / 20.47 inches,331 mm / 13.03 inches,346 mm / 13.62 inches,12.2 kg / 26.9 lbs,10.600,12.200
+RCF,ART 7,13000520,ART 710-A MK4,SPEAKER ART 710-A MK4 220-240V,Pcs,Italy,85182200,585 mm / 23.03 inches,425 mm / 16.73 inches,405 mm / 15.94 inches,16.8 kg / 37.04 lbs,14.800,16.800
+RCF,ART 7,13000522,ART 712-A MK4,SPEAKER ART 712-A MK4 220-240V,Pcs,Italy,85182200,680 mm / 26.77 inches,440 mm / 17.32 inches,420 mm / 16.54 inches,20.6 kg / 45.42 lbs,18.400,20.600
+RCF,ART 7,13000524,ART 715-A MK4,SPEAKER ART 715-A MK4 220-240V,Pcs,Italy,85182200,750 mm / 29.53 inches,500 mm / 19.69 inches,440 mm / 17.32 inches,23 kg / 50.71 lbs,20.000,23.000
+RCF,ART 7,13000526,ART 732-A MK4,SPEAKER ART 732-A MK4 220-240V,Pcs,Italy,85182200,680 mm / 26.77 inches,440 mm / 17.32 inches,420 mm / 16.54 inches,20.6 kg / 45.42 lbs,18.200,20.600
+RCF,ART 7,13000528,ART 735-A MK4,SPEAKER ART 735-A MK4 220-240V,Pcs,Italy,85182200,750 mm / 29.53 inches,500 mm / 19.69 inches,440 mm / 17.32 inches,24.4 kg / 53.79 lbs,22.000,24.400
+RCF,ART 7,13000530,ART 745-A MK4,SPEAKER ART 745-A MK4 220-240V,Pcs,Italy,85182200,750 mm / 29.53 inches,500 mm / 19.69 inches,440 mm / 17.32 inches,22 kg / 48.5 lbs,19.200,22.000
+RCF,HDL,13000532,HDL12-AS W,SUBWOOFER HDL12-AS W 220-240 V,Pcs,Italy,85182100,435 mm / 17.13 inches,560 mm / 22.05 inches,520 mm / 20.47 inches,28 kg / 61.73 lbs,25.000,28.000
+RCF,ART 3,13000537,ART 310-A MK4,SPEAKER ART 310-A MK4 220-240V,Pcs,Italy,85182200,600 mm / 23.62 inches,396 mm / 15.59 inches,372 mm / 14.65 inches,14.8 kg / 32.63 lbs,12.600,14.800
+RCF,ART 3,13000539,ART 312-A MK4,SPEAKER ART 312-A MK4 220-240V,Pcs,Italy,85182200,406 mm / 15.98 inches,466 mm / 18.35 inches,798 mm / 31.42 inches,19.8 kg / 43.65 lbs,17.200,19.800
+RCF,ART 3,13000541,ART 315-A MK4,SPEAKER ART 315-A MK4 220-240V,Pcs,Italy,85182200,406 mm / 15.98 inches,466 mm / 18.35 inches,798 mm / 31.42 inches,20.2 kg / 44.53 lbs,17.400,20.200
+TT+,TT+ Subwoofer,13000545,TTS 18-A II,SUBWOOFER TTS 18-A II 90-240V,Pcs,Italy,85182100,780 mm / 30.71 inches,800 mm / 31.5 inches,610 mm / 24.02 inches,56.8 kg / 125.22 lbs,52.000,56.800
+RCF,Sub Pro,13000546,SUB 9004-AS,SUBWOOFER SUB 9004-AS 90-240V,Pcs,Italy,85182100,770 mm / 30.31 inches,770 mm / 30.31 inches,630 mm / 24.8 inches,61.8 kg / 136.25 lbs,57.000,61.800
+RCF,NX,13000550,NX 32-A,SPEAKER NX 32-A 220-240V,Pcs,Italy,85182200,655 mm / 25.79 inches,425 mm / 16.73 inches,440 mm / 17.32 inches,23.6 kg / 52.03 lbs,21.100,23.600
+RCF,NX,13000552,NX 45-A,SPEAKER NX 45-A 220-240V,Pcs,Italy,85182200,760 mm / 29.92 inches,480 mm / 18.9 inches,460 mm / 18.11 inches,27 kg / 59.52 lbs,24.500,27.000
+RCF,EVOX,13000561,EVOX 8 W,EVOX 8 W SYSTEM 220-240V,Pcs,China,85182200,580 mm / 22.83 inches,400 mm / 15.75 inches,570 mm / 22.44 inches,27.7 kg / 61.07 lbs,24.400,27.700
+RCF,HVL Series,13000565,HVL 15-P W,SPEAKER HVL 15-P W,Pcs,Italy,85182200,920 mm / 36.22 inches,1405 mm / 55.31 inches,545 mm / 21.46 inches,125 kg / 275.58 lbs,115.000,125.000
+TT+,TT+ Two-way speaker,13000573,TTW 4-A 90-240V,SPEAKER TTW 4-A 90-240V,Pcs,Italy,85182200,,,,,30.400,33.500
+RCF,C Series,13000577,E MAX 3110,SPEAKER E MAX 3110,Pcs,Italy,85182200,565 mm / 22.24 inches,409 mm / 16.1 inches,374 mm / 14.72 inches,21 kg / 46.3 lbs,16.160,16.700
+RCF,C Series,13000578,E MAX 3112,SPEAKER E MAX 3112,Pcs,China,85182200,684 mm / 26.93 inches,449 mm / 17.68 inches,493 mm / 19.41 inches,26 kg / 57.32 lbs,22.000,26.000
+RCF,Installed Sound - Media Series,13000581,COMPACT M 05,SPEAKER COMPACT M 05,Pcs,China,85182200,324 mm / 12.76 inches,215 mm / 8.46 inches,196 mm / 7.72 inches,5.1 kg / 11.24 lbs,4.200,5.100
+RCF,Installed Sound - Media Series,13000582,COMPACT M 06,SPEAKER COMPACT M 06,Pcs,China,85182200,386 mm / 15.2 inches,256 mm / 10.08 inches,235 mm / 9.25 inches,7 kg / 15.43 lbs,5.500,7.000
+RCF,ART Passive,13000585,ART 310 MK4,SPEAKER ART 310 MK4 8ohm,Pcs,Italy,85182200,600 mm / 23.62 inches,391 mm / 15.39 inches,369 mm / 14.53 inches,15 kg / 33.07 lbs,13.000,15.000
+RCF,ART Passive,13000586,ART 312 MK4,SPEAKER ART 312 MK4 8ohm,Pcs,Italy,85182200,740 mm / 29.13 inches,461 mm / 18.15 inches,401 mm / 15.79 inches,18.6 kg / 41.01 lbs,16.000,18.600
+RCF,ART Passive,13000587,ART 315 MK4,SPEAKER ART 315 MK4 8ohm,Pcs,Italy,85182200,740 mm / 29.13 inches,461 mm / 18.15 inches,401 mm / 15.79 inches,19.4 kg / 42.77 lbs,16.800,19.400
+RCF,D-LINE,13000589,HD 15-A,SPEAKER HD 15-A 230V,Pcs,Italy,85182200,700 mm / 27.56 inches,450 mm / 17.72 inches,500 mm / 19.69 inches,24.5 kg / 54.01 lbs,22.000,24.500
+RCF,D-LINE,13000591,HD 35-A,SPEAKER HD 35-A 230V,Pcs,Italy,85182200,750 mm / 29.53 inches,440 mm / 17.32 inches,480 mm / 18.9 inches,24.5 kg / 54.01 lbs,22.000,24.500
+RCF,D-LINE,13000593,HDM 45-A,SPEAKER HDM 45-A 90-240V,Pcs,Italy,85182200,750 mm / 29.53 inches,440 mm / 17.32 inches,480 mm / 18.9 inches,24.5 kg / 54.01 lbs,22.000,24.500
+RCF,Installed Sound - Media Series,13000594,COMPACT M 08,SPEAKER COMPACT M 08,Pcs,China,85182200,477 mm / 18.78 inches,322 mm / 12.68 inches,295 mm / 11.61 inches,12.4 kg / 27.34 lbs,10.500,12.400
+RCF,Installed Sound - Media Series,13000595,COMPACT M 10,SPEAKER COMPACT M 10,Pcs,China,85182200,545 mm / 21.46 inches,363 mm / 14.29 inches,333 mm / 13.11 inches,20 kg / 44.09 lbs,17.000,20.000
+RCF,Installed Sound - Media Series,13000596,COMPACT M 12,SPEAKER COMPACT M 12,Pcs,China,85182200,655 mm / 25.79 inches,442 mm / 17.4 inches,400 mm / 15.75 inches,25.5 kg / 56.22 lbs,22.000,25.500
+RCF,Ayra,13000597,AYRA PRO 5,STUDIO MONITOR AYRA PRO5 90-240V EU,Pcs,China,85182200,,,,,4.300,6.000
+RCF,Ayra,13000598,AYRA PRO 6,STUDIO MONITOR AYRA PRO6 90-240V EU,Pcs,China,85182200,,,,,5.500,6.200
+RCF,Ayra,13000599,AYRA PRO 8,STUDIO MONITOR AYRA PRO8 90-240V EU,Pcs,China,85182200,,,,,8.600,9.500
+RCF,COMPACT C,13000602,COMPACT C 45,SPEAKER COMPACT C 45,Pcs,Italy,85182200,755 mm / 29.72 inches,472 mm / 18.58 inches,513 mm / 20.2 inches,35 kg / 77.16 lbs,32.500,35.000
+TT+,TT+ Two-way speaker,13000604,TTP 4-A 90-240V,SPEAKER TTP 4-A 90-240V,Pcs,Italy,85182200,,,,,30.400,33.500
+RCF,HDL,13000605,HDL 28-A W,LINE ARRAY MODULE HDL 28-A W 90-240V,Pcs,Italy,85182200,375 mm / 14.76 inches,650 mm / 25.59 inches,500 mm / 19.69 inches,24 kg / 52.91 lbs,20.600,23.600
+RCF,NX,13000609,NXL 44-A MK2,SPEAKER NXL 44-A MK2 220-240V,Pcs,Italy,85182200,400 mm / 15.75 inches,1115 mm / 43.9 inches,327 mm / 12.87 inches,35.5 kg / 78.26 lbs,33.500,35.500
+RCF,NX,13000610,NXL 24-A MK2,SPEAKER NXL 24-A MK2 220-240V,Pcs,Italy,85182200,320 mm / 12.6 inches,1080 mm / 42.52 inches,230 mm / 9.06 inches,27.5 kg / 60.63 lbs,24.500,27.500
+RCF,Subwoofer Series,13000617,S 10,SUBWOOFER S 10,Pcs,China,85182100,368 mm / 14.49 inches,405 mm / 15.94 inches,495 mm / 19.49 inches,22.2 kg / 48.94 lbs,19.600,22.200
+RCF,Subwoofer Series,13000618,S 12,SUBWOOFER S 12,Pcs,China,85182100,423 mm / 16.65 inches,470 mm / 18.5 inches,575 mm / 22.64 inches,27.4 kg / 60.41 lbs,24.600,27.400
+RCF,Installed Sound - Media Series,13000623,COMPACT M 04,SPEAKER COMPACT M 04,Pcs,China,85182100,168 mm / 6.61 inches,233 mm / 9.17 inches,150 mm / 5.91 inches,2.9 kg / 6.39 lbs,2.300,2.900
+RCF,HVL Series,13000640,HVL 15-L W,SPEAKER HVL 15-L W,Pcs,Italy,85182200,920 mm / 36.22 inches,1405 mm / 55.31 inches,545 mm / 21.46 inches,120 kg / 264.55 lbs,110.000,120.000
+RCF,HDL,13000641,HDL 50-A 4K,LINE ARRAY MODULE HDL 50-A 4K 90-240V EU,Pcs,Italy,85182200,400 mm / 15.75 inches,1200 mm / 47.24 inches,600 mm / 23.62 inches,62.4 kg / 137.57 lbs,58.400,62.400
+RCF,COMPACT C,13000642,COMPACT C 32,SPEAKER COMPACT C 32,Pcs,Italy,85182200,665 mm / 26.18 inches,442 mm / 17.4 inches,400 mm / 15.75 inches,25.5 kg / 56.22 lbs,23.500,25.500
+RCF,ART 9,13000654,ART 910-A,SPEAKER ART 910-A 220-240V,Pcs,Italy,85182200,616 mm / 24.25 inches,370 mm / 14.57 inches,390 mm / 15.35 inches,18.8 kg / 41.45 lbs,16.000,18.800
+RCF,ART 9,13000655,ART 912-A,SPEAKER ART 912-A 220-240V,Pcs,Italy,85182200,685 mm / 26.97 inches,430 mm / 16.93 inches,423 mm / 16.65 inches,21.2 kg / 46.74 lbs,19.200,21.200
+RCF,ART 9,13000656,ART 915-A,SPEAKER ART 915-A 220-240V,Pcs,Italy,85182200,760 mm / 29.92 inches,475 mm / 18.7 inches,470 mm / 18.5 inches,26.5 kg / 58.42 lbs,22.400,26.500
+RCF,X-MAX,13000657,X-MAX 10,SPEAKER X-MAX 10,Pcs,CN,85182200,545 mm / 21.46 inches,363 mm / 14.29 inches,333 mm / 13.11 inches,20 kg / 44.09 lbs,17.000,20.000
+RCF,X-MAX,13000658,X-MAX 12,SPEAKER X-MAX 12,Pcs,CN,85182200,655 mm / 25.79 inches,442 mm / 17.4 inches,400 mm / 15.75 inches,25.5 kg / 56.22 lbs,22.000,25.500
+RCF,HDL,13000664,HDL 35-AS W,SUBWOOFER HDL 35-AS W 90-240V EU,Pcs,Italy,85182100,530 mm / 20.87 inches,560 mm / 22.05 inches,525 mm / 20.67 inches,35 kg / 77.16 lbs,30.200,35.000
+RCF,Subwoofer Series,13000667,S 15,SUBWOOFER S 15,Pcs,China,85182100,478 mm / 18.82 inches,540 mm / 21.26 inches,670 mm / 26.38 inches,30.5 kg / 67.24 lbs,27.500,30.500
+RCF,NX,13000668,NX 910-A,SPEAKER NX 910-A 220-240V,Pcs,Italy,85182200,556 mm / 21.89 inches,388 mm / 15.28 inches,348 mm / 13.7 inches,18.1 kg / 39.9 lbs,16.400,18.100
+RCF,NX,13000673,NX 912-A,SPEAKER NX 912-A 220-240V,Pcs,Italy,85182200,666 mm / 26.22 inches,461 mm / 18.15 inches,416 mm / 16.38 inches,22.8 kg / 50.27 lbs,20.800,22.800
+RCF,NX,13000674,NX 915-A,SPEAKER NX 915-A 220-240V,Pcs,Italy,85182200,751 mm / 29.57 inches,506 mm / 19.92 inches,474 mm / 18.66 inches,26.6 kg / 58.64 lbs,24.100,26.600
+RCF,ART 9,13000680,ART 932-A,SPEAKER ART 932-A 220-240V,Pcs,Italy,85182200,685 mm / 26.97 inches,430 mm / 16.93 inches,423 mm / 16.65 inches,22.5 kg / 49.6 lbs,19.000,22.500
+RCF,ART 9,13000682,ART 935-A,SPEAKER ART 935-A 220-240V,Pcs,Italy,85182200,760 mm / 29.92 inches,475 mm / 18.7 inches,470 mm / 18.5 inches,26.4 kg / 58.2 lbs,24.400,26.400
+TT+,TT+ Two-way Speakers,13000686,TT 515-A,SPEAKER TT 515-A 220-240V,Pcs,Italy,85182200,510 mm / 20.08 inches,290 mm / 11.42 inches,200 mm / 7.87 inches,11.3 kg / 24.91 lbs,10.000,11.300
+RCF,ART 9,13000691,ART 945-A,SPEAKER ART 945-A 220-240V,Pcs,Italy,85182200,760 mm / 29.92 inches,475 mm / 18.7 inches,470 mm / 18.5 inches,26.2 kg / 57.76 lbs,22.800,26.200
+TT+,TT+ Subwoofer,13000693,TT 808-AS,SUBWOOFER TT 808-AS 220-240V,Pcs,Italy,85182200,290 mm / 11.42 inches,480 mm / 18.9 inches,650 mm / 25.59 inches,21 kg / 46.3 lbs,19.500,21.000
+RCF,"Acustica ""H"" Series",13000698,Q 15 8ohm,SPEAKER Q 15,Pcs,Italy,85182200,965 mm / 37.99 inches,585 mm / 23.03 inches,775 mm / 30.51 inches,59 kg / 130.07 lbs,55.000,59.000
+RCF,HVL Series,13000700,HVL 15-P1 W,SPEAKER HVL 15-P1 W,Pcs,Italy,85182200,840 mm / 33.07 inches,1405 mm / 55.31 inches,545 mm / 21.46 inches,120 kg / 264.55 lbs,110.000,120.000
+RCF,HVL Series,13000701,HVL 15-L1 W,SPEAKER HVL 15-L1 W,Pcs,Italy,85182200,840 mm / 33.07 inches,1405 mm / 55.31 inches,545 mm / 21.46 inches,120 kg / 264.55 lbs,110.000,120.000
+RCF,HVL Series,13000705,HVL 15-S W,SPEAKER HVL 15-S W,Pcs,Italy,85182200,840 mm / 33.07 inches,1405 mm / 55.31 inches,545 mm / 21.46 inches,120 kg / 264.55 lbs,110.000,120.000
+RCF,ART 9-AX,13000706,ART 910-AX,SPEAKER ART 910-AX 220-240V,Pcs,Italy,85182200,615 mm / 24.21 inches,370 mm / 14.57 inches,390 mm / 15.35 inches,19.2 kg / 42.33 lbs,16.200,19.200
+RCF,ART 9-AX,13000708,ART 912-AX,SPEAKER ART 912-AX 220-240V,Pcs,Italy,85182200,685 mm / 26.97 inches,423 mm / 16.65 inches,430 mm / 16.93 inches,22 kg / 48.5 lbs,18.700,22.000
+RCF,ART 9-AX,13000710,ART 915-AX,SPEAKER ART 915-AX 220-240V,Pcs,Italy,85182200,760 mm / 29.92 inches,470 mm / 18.5 inches,475 mm / 18.7 inches,24.5 kg / 54.01 lbs,20.400,24.500
+RCF,Installed Sound - Media Series,13000720,COMPACT M 05 W,SPEAKER COMPACT M 05 W,Pcs,China,85182200,324 mm / 12.76 inches,215 mm / 8.46 inches,196 mm / 7.72 inches,5.1 kg / 11.24 lbs,4.200,5.100
+RCF,Installed Sound - Media Series,13000721,COMPACT M 06 W,SPEAKER COMPACT M 06 W,Pcs,China,85182200,386 mm / 15.2 inches,256 mm / 10.08 inches,235 mm / 9.25 inches,7 kg / 15.43 lbs,5.500,7.000
+RCF,Installed Sound - Media Series,13000722,COMPACT M 08 W,SPEAKER COMPACT M 08 W,Pcs,China,85182200,477 mm / 18.78 inches,322 mm / 12.68 inches,295 mm / 11.61 inches,12.4 kg / 27.34 lbs,10.500,12.400
+RCF,Installed Sound - Media Series,13000723,COMPACT M 10 W,SPEAKER COMPACT M 10 W,Pcs,China,85182200,545 mm / 21.46 inches,363 mm / 14.29 inches,333 mm / 13.11 inches,20 kg / 44.09 lbs,17.000,20.000
+RCF,Installed Sound - Media Series,13000724,COMPACT M 12 W,SPEAKER COMPACT M 12 W,Pcs,China,85182200,655 mm / 25.79 inches,442 mm / 17.4 inches,400 mm / 15.75 inches,25.5 kg / 56.22 lbs,22.000,25.500
+RCF,Installed Sound - Media Series,13000725,COMPACT M 04 W,SPEAKER COMPACT M 04 W,Pcs,China,85182200,168 mm / 6.61 inches,233 mm / 9.17 inches,150 mm / 5.91 inches,2.9 kg / 6.39 lbs,2.300,2.900
+RCF,"Stadia ""HL"" System",13000726,HL 6 16ohm,SPEAKER HL 6,Pcs,Italy,85182200,260 mm / 10.24 inches,550 mm / 21.65 inches,425 mm / 16.73 inches,13.3 kg / 29.32 lbs,11.800,13.300
+RCF,"Acustica ""H"" Series",13000727,Q 15-L 8ohm,SPEAKER Q 15-L,Pcs,Italy,85182200,9650 mm / 379.92 inches,5850 mm / 230.32 inches,7750 mm / 305.12 inches,59 kg / 130.07 lbs,55.000,59.000
+RCF,"Acustica ""H"" Series",13000728,Q 15-P 8ohm,SPEAKER Q 15-P,Pcs,Italy,85182200,9650 mm / 379.92 inches,5850 mm / 230.32 inches,7750 mm / 305.12 inches,59 kg / 130.07 lbs,55.000,59.000
+RCF,"Stadia ""HL"" System",13000732,HL 35-S 8ohm,SUBWOOFER HL 35-S,Pcs,Italy,85182100,530 mm / 20.87 inches,560 mm / 22.05 inches,525 mm / 20.67 inches,33 kg / 72.75 lbs,28.000,33.000
+RCF,COMPACT A,13000738,COMPACT A 10,SPEAKER COMPACT A 10,Pcs,Italy,85182200,616 mm / 24.25 inches,370 mm / 14.57 inches,390 mm / 15.35 inches,18.2 kg / 40.12 lbs,16.200,18.200
+RCF,COMPACT A,13000739,COMPACT A 12,SPEAKER COMPACT A 12,Pcs,Italy,85182200,685 mm / 26.97 inches,430 mm / 16.93 inches,423 mm / 16.65 inches,21.4 kg / 47.18 lbs,18.800,21.400
+RCF,COMPACT A,13000740,COMPACT A 15,SPEAKER COMPACT A 15,Pcs,Italy,85182200,760 mm / 29.92 inches,475 mm / 18.7 inches,470 mm / 18.5 inches,25.5 kg / 56.22 lbs,23.500,25.500
+RCF,NX,13000743,NX 985-A,SPEAKER NX 985-A 220-240V,Pcs,Italy,85182200,530 mm / 20.87 inches,1110 mm / 43.7 inches,490 mm / 19.29 inches,51 kg / 112.44 lbs,45.000,51.000
+RCF,Sub Live,13000752,SUB 8008-AS,SUBWOOFER SUB 8008-AS 100-240V EU,Pcs,Italy,85182100,600 mm / 23.62 inches,1370 mm / 53.94 inches,900 mm / 35.43 inches,86 kg / 189.6 lbs,80.000,86.000
+RCF,NX,13000766,NX 932-A,SPEAKER NX 932-A 220-240V,Pcs,Italy,85182200,666 mm / 26.22 inches,461 mm / 18.15 inches,416 mm / 16.38 inches,26 kg / 57.32 lbs,23.000,26.000
+RCF,NX,13000768,NX 945-A,SPEAKER NX 945-A 220-240V,Pcs,Italy,85182200,751 mm / 29.57 inches,506 mm / 19.92 inches,474 mm / 18.66 inches,31 kg / 68.34 lbs,27.400,31.000
+RCF,NX,13000783,NX 912-SMA,STAGE MONITOR NX 912-SMA 220-240V,Pcs,Italy,85182200,675 mm / 26.57 inches,425 mm / 16.73 inches,370 mm / 14.57 inches,23 kg / 50.71 lbs,20.000,23.000
+RCF,NX,13000785,NX 915-SMA,STAGE MONITOR NX 915-SMA 220-240V,Pcs,Italy,85182200,745 mm / 29.33 inches,505 mm / 19.88 inches,425 mm / 16.73 inches,27.5 kg / 60.63 lbs,23.900,27.500
+RCF,Sub Live,13000787,SUB 18-AS,SUBWOOFER SUB 18-AS 220-240V,Pcs,Italy,85182100,735 mm / 28.94 inches,745 mm / 29.33 inches,565 mm / 22.24 inches,44 kg / 97 lbs,37.600,44.000
+TT+,GTX,13000796,GTX 10,SPEAKER GTX 10,Pcs,Italy,85182200,539 mm / 21.22 inches,787 mm / 30.98 inches,382 mm / 15.04 inches,33.2 kg / 73.19 lbs,31.500,33.200
+RCF,COMPACT C,13000803,COMPACT C 45 WP,SPEAKER COMPACT C 45 WP,Pcs,Italy,85182200,755 mm / 29.72 inches,472 mm / 18.58 inches,513 mm / 20.2 inches,35 kg / 77.16 lbs,32.500,35.000
+TT+,GTX,13000804,GTX 12,SPEAKER GTX 12,Pcs,Italy,85182200,605 mm / 23.82 inches,1210 mm / 47.64 inches,400 mm / 15.75 inches,71.2 kg / 156.97 lbs,64.200,71.200
+RCF,NX,13000805,NXW 44-A,SPEAKER NXW 44-A 220-240V,Pcs,Italy,85182200,400 mm / 15.75 inches,1115 mm / 43.9 inches,327 mm / 12.87 inches,33.65 kg / 74.19 lbs,31.550,33.650
+RCF,Sub Live,13000809,SUB 708-AS MK3,SUBWOOFER SUB 708-AS MK3 220-240V,Pcs,Italy,85182100,735 mm / 28.94 inches,565 mm / 22.24 inches,745 mm / 29.33 inches,45.6 kg / 100.53 lbs,40.600,45.600
+RCF,Sub Live,13000812,SUB 705-AS MK3,SUBWOOFER SUB 705-AS MK3 220-240V,Pcs,Italy,85182100,648 mm / 25.51 inches,638 mm / 25.12 inches,478 mm / 18.82 inches,34.9 kg / 76.94 lbs,30.100,34.900
+RCF,Sub Live,13000818,SUB 702-AS MK3,SUBWOOFER SUB 702-AS MK3 220-240V,Pcs,Italy,85182100,565 mm / 22.24 inches,575 mm / 22.64 inches,420 mm / 16.54 inches,25.5 kg / 56.22 lbs,21.600,25.500
+TT+,GTX,13000820,GTS 29,SUBWOOFER GTS 29,Pcs,Italy,85182200,620 mm / 24.41 inches,1360 mm / 53.54 inches,800 mm / 31.5 inches,107 kg / 235.89 lbs,96.000,107.000
+RCF,ART 7,13000821,ART 708-A MK5,SPEAKER ART 708-A MK5 220-240V,Pcs,Italy,85182200,520 mm / 20.47 inches,331 mm / 13.03 inches,346 mm / 13.62 inches,12.2 kg / 26.9 lbs,10.600,12.200
+RCF,ART 7,13000822,ART 710-A MK5,SPEAKER ART 710-A MK5 220-240V,Pcs,Italy,85182200,585 mm / 23.03 inches,425 mm / 16.73 inches,405 mm / 15.94 inches,16.8 kg / 37.04 lbs,14.800,16.800
+RCF,ART 7,13000823,ART 712-A MK5,SPEAKER ART 712-A MK5 220-240V,Pcs,Italy,85182200,680 mm / 26.77 inches,440 mm / 17.32 inches,420 mm / 16.54 inches,20.6 kg / 45.42 lbs,18.400,20.600
+RCF,ART 7,13000824,ART 715-A MK5,SPEAKER ART 715-A MK5 220-240V,Pcs,Italy,85182200,750 mm / 29.53 inches,500 mm / 19.69 inches,440 mm / 17.32 inches,23 kg / 50.71 lbs,20.000,23.000
+RCF,ART 7,13000825,ART 732-A MK5,SPEAKER ART 732-A MK5 220-240V,Pcs,Italy,85182200,680 mm / 26.77 inches,440 mm / 17.32 inches,420 mm / 16.54 inches,20.6 kg / 45.42 lbs,17.800,20.600
+RCF,ART 7,13000826,ART 735-A MK5,SPEAKER ART 735-A MK5 220-240V,Pcs,Italy,85182200,750 mm / 29.53 inches,500 mm / 19.69 inches,440 mm / 17.32 inches,24.4 kg / 53.79 lbs,22.000,24.400
+RCF,ART 7,13000827,ART 745-A MK5,SPEAKER ART 745-A MK5 220-240V,Pcs,Italy,85182200,750 mm / 29.53 inches,500 mm / 19.69 inches,440 mm / 17.32 inches,22 kg / 48.5 lbs,19.200,22.000
+RCF,"Stadia ""HL"" System",13000830,HL 38-S WP,SUBWOOFER HL 38-S WP 002,Pcs,Italy,85182100,,,,,48.700,51.000
+RCF,Sub Live,13000835,SUB 15-AX,SUBWOOFER SUB 15-AX 220-240V,Pcs,Italy,85182100,640 mm / 25.2 inches,650 mm / 25.59 inches,480 mm / 18.9 inches,36.5 kg / 80.47 lbs,31.500,36.500
+RCF,Sub Live,13000836,SUB 18-AX,SUBWOOFER SUB 18-AX 220-240V,Pcs,Italy,85182100,735 mm / 28.94 inches,745 mm / 29.33 inches,565 mm / 22.24 inches,49.5 kg / 109.13 lbs,43.900,49.500
+RCF,EVOX,13000843,EVOX 12 W,SPEAKER EVOX 12 W 220-240V,Pcs,Italy,85182200,636 mm / 25.04 inches,459 mm / 18.07 inches,613 mm / 24.13 inches,43.89 kg / 96.76 lbs,36.400,43.890
+RCF,Sub Live,13000844,SUB 8003-AS MK3,SUBWOOFER SUB 8003-AS MK3 100-240V EU,Pcs,Italy,85182100,735 mm / 28.94 inches,745 mm / 29.33 inches,565 mm / 22.24 inches,49 kg / 108.03 lbs,43.200,49.000
+RCF,Sub Live,13000846,SUB 905-AS MK3,SUBWOOFER SUB 905-AS MK3 100-240V EU,Pcs,Italy,85182100,640 mm / 25.2 inches,650 mm / 25.59 inches,480 mm / 18.9 inches,35 kg / 77.16 lbs,31.300,35.000
+TT+,GTX,13000862,GTS 19G,SUBWOOFER GTS 19G,Pcs,Italy,85182200,605 mm / 23.82 inches,815 mm / 32.09 inches,725 mm / 28.54 inches,54 kg / 119.05 lbs,48.500,54.000
+TT+,GTX,13000864,GTX 10i,SPEAKER GTX 10i,Pcs,Italy,85182200,539 mm / 21.22 inches,787 mm / 30.98 inches,382 mm / 15.04 inches,37 kg / 81.57 lbs,32.000,37.000
+TT+,GTX,13000865,GTX 10Pi,SPEAKER GTX 10Pi,Pcs,Italy,85182200,539 mm / 21.22 inches,787 mm / 30.98 inches,382 mm / 15.04 inches,37 kg / 81.57 lbs,32.000,37.000
+TT+,GTX,13000866,GTX 10Wi,SPEAKER GTX 10Wi,Pcs,Italy,85182200,539 mm / 21.22 inches,787 mm / 30.98 inches,382 mm / 15.04 inches,34.2 kg / 75.4 lbs,32.500,34.200
+RCF,KX,13000870,KX 515-A W,SPEAKER KX 515-A W 220-240V,Pcs,Italy,85182200,510 mm / 20.08 inches,290 mm / 11.42 inches,200 mm / 7.87 inches,11.3 kg / 24.91 lbs,10.000,11.300
+RCF,Sub Pro,13000872,SUB 808-AS W,SUBWOOFER SUB 808-AS W 220-240V,Pcs,Italy,85182200,290 mm / 11.42 inches,480 mm / 18.9 inches,650 mm / 25.59 inches,21 kg / 46.3 lbs,19.500,21.000
+RCF,NX,13000874,NX 932-A W,SPEAKER NX 932-A W 220-240V,Pcs,Italy,85182200,666 mm / 26.22 inches,461 mm / 18.15 inches,416 mm / 16.38 inches,26 kg / 57.32 lbs,23.000,26.000
+RCF,NX,13000876,NX 945-A W,SPEAKER NX 945-A W 220-240V,Pcs,Italy,85182200,751 mm / 29.57 inches,506 mm / 19.92 inches,474 mm / 18.66 inches,31 kg / 68.34 lbs,27.400,31.000
+RCF,Sub Live,13000878,SUB 15-AX W,SUBWOOFER SUB 15-AX W 220-240V,Pcs,Italy,85182100,640 mm / 25.2 inches,650 mm / 25.59 inches,480 mm / 18.9 inches,36.5 kg / 80.47 lbs,31.500,36.500
+RCF,Sub Live,13000880,SUB 18-AX W,SUBWOOFER SUB 18-AX W 220-240V,Pcs,Italy,85182100,735 mm / 28.94 inches,745 mm / 29.33 inches,565 mm / 22.24 inches,49.5 kg / 109.13 lbs,43.900,49.500
+RCF,KX,13000882,KXL 4-A,SPEAKER KXL 4-A 100-240V EU,Pcs,Italy,85182200,410 mm / 16.14 inches,865 mm / 34.06 inches,365 mm / 14.37 inches,33.5 kg / 73.85 lbs,30.400,33.500
+RCF,KX,13000884,KXW 4-A,SPEAKER KXW 4-A 100-240V,Pcs,Italy,85182200,410 mm / 16.14 inches,865 mm / 34.06 inches,365 mm / 14.37 inches,33.5 kg / 73.85 lbs,30.400,33.500
+RCF,NX,13000888,NXL 14-A,SPEAKER NXL 14-A 220-240V,Pcs,Italy,85182200,600 mm / 23.62 inches,232 mm / 9.13 inches,302 mm / 11.89 inches,14.6 kg / 32.19 lbs,12.800,14.600
+RCF,Sub Pro,13000889,SUB 9029-AS,SUBWOOFER SUB 9029-AS 100-240V EU,Pcs,Italy,85182200,570 mm / 22.44 inches,830 mm / 32.68 inches,1350 mm / 53.15 inches,98 kg / 216.05 lbs,93.000,98.000
+RCF,Sub Pro,13000890,SUB 9019-AS,SUBWOOFER SUB 9019-AS 100-240V EU,Pcs,Italy,85182100,560 mm / 22.05 inches,800 mm / 31.5 inches,750 mm / 29.53 inches,58 kg / 127.87 lbs,53.400,58.000
+RCF,NX,13000891,NXL 14-A W,SPEAKER NXL 14-A W 220-240V,Pcs,Italy,85182200,600 mm / 23.62 inches,232 mm / 9.13 inches,302 mm / 11.89 inches,14.6 kg / 32.19 lbs,12.800,14.600
+RCF,KX,13000897,KX 515-A,SPEAKER KX 515-A 220-240V,Pcs,Italy,85182200,510 mm / 20.08 inches,290 mm / 11.42 inches,200 mm / 7.87 inches,11.3 kg / 24.91 lbs,10.000,11.300
+RCF,Sub Pro,13000899,SUB 808-AS,SUBWOOFER SUB 808-AS 220-240V,Pcs,Italy,85182200,290 mm / 11.42 inches,480 mm / 18.9 inches,650 mm / 25.59 inches,21 kg / 46.3 lbs,19.500,21.000
+RCF,KX,13000900,KX 08-A,SPEAKER KX 08-A 220-240V,Pcs,Italy,85182200,,,,,11.000,12.500
+RCF,KX,13000902,KX 10-A,SPEAKER KX 10-A 220-240V,Pcs,Italy,85182200,,,,,14.000,15.500
+RCF,KX,13000904,KX 32-A,SPEAKER KX 32-A 100-240V EU,Pcs,Italy,85182200,,,,,23.650,25.850
+RCF,KX,13000906,KX 45-A,SPEAKER KX 45-A 100-240V EU,Pcs,Italy,85182200,,,,,28.400,32.000
+RCF,COMPACT C,13000911,COMPACT C 32 WP,SPEAKER COMPACT C 32 WP,Pcs,Italy,85182200,665 mm / 26.18 inches,442 mm / 17.4 inches,400 mm / 15.75 inches,25.5 kg / 56.22 lbs,23.500,25.500
+RCF,Sub Pro,13000916,SUB 9016-AS,SUBWOOFER SUB 9016-AS 100-240V EU,Pcs,Italy,85182100,560 mm / 22.05 inches,595 mm / 23.43 inches,647 mm / 25.47 inches,50 kg / 110.23 lbs,45.500,50.000
+TT+,GTX,13000919,GTX 10i IP,SPEAKER GTX 10i IP,Pcs,Italy,85182200,539 mm / 21.22 inches,787 mm / 30.98 inches,382 mm / 15.04 inches,37 kg / 81.57 lbs,32.000,37.000
+TT+,GTX,13000920,GTX 10Pi IP,SPEAKER GTX 10Pi IP,Pcs,Italy,85182200,539 mm / 21.22 inches,787 mm / 30.98 inches,382 mm / 15.04 inches,37 kg / 81.57 lbs,32.000,37.000
+TT+,GTX,13000921,GTX 10Wi IP,SPEAKER GTX 10Wi IP,Pcs,Italy,85182200,539 mm / 21.22 inches,787 mm / 30.98 inches,382 mm / 15.04 inches,34.2 kg / 75.4 lbs,32.500,34.200
+RCF,HDL,13040009,HDL 18-AS,SPEAKER HDL 18-AS 230V,Pcs,Italy,85182100,639 mm / 25.16 inches,814 mm / 32.05 inches,734 mm / 28.9 inches,60.2 kg / 132.72 lbs,53.000,60.200
+RCF,HDL,13040020,HDL 15-AS,SPEAKER HDL 15-AS 230V,Pcs,Italy,85182100,610 mm / 24.02 inches,660 mm / 25.98 inches,675 mm / 26.57 inches,44 kg / 97 lbs,39.000,44.000
+RCF,D-LINE,13040024,HD 10-A MK4,SPEAKER HD 10-A MK4 230V,Pcs,China,85182200,640 mm / 25.2 inches,400 mm / 15.75 inches,380 mm / 14.96 inches,14 kg / 30.86 lbs,12.120,14.000
+RCF,D-LINE,13040026,HD 12-A MK4,SPEAKER HD 12-A  MK4 230V,Pcs,China,85182200,760 mm / 29.92 inches,500 mm / 19.69 inches,500 mm / 19.69 inches,21.4 kg / 47.18 lbs,17.400,21.400
+RCF,M Series,13041002,M 501,SPEAKER M501,Pcs,China,85182200,394 mm / 15.51 inches,257 mm / 10.12 inches,247 mm / 9.72 inches,5.7 kg / 12.57 lbs,4.986,5.700
+RCF,M Series,13041003,M 601,SPEAKER M601,Pcs,China,85182200,440 mm / 17.32 inches,302 mm / 11.89 inches,287 mm / 11.3 inches,8 kg / 17.64 lbs,7.200,8.000
+RCF,M Series,13041004,M 801,SPEAKER M801,Pcs,China,85182200,524 mm / 20.63 inches,354 mm / 13.94 inches,333 mm / 13.11 inches,12.4 kg / 27.34 lbs,11.000,12.400
+RCF,M Series,13041011,M 502,SPEAKER M502,Pcs,China,85182200,539 mm / 21.22 inches,257 mm / 10.12 inches,247 mm / 9.72 inches,8.8 kg / 19.4 lbs,8.000,8.800
+RCF,M Series,13041012,M 602,SPEAKER M602,Pcs,China,85182200,609 mm / 23.98 inches,302 mm / 11.89 inches,287 mm / 11.3 inches,12.6 kg / 27.78 lbs,11.600,12.600
+RCF,M Series,13041015,M 1001,SPEAKER M1001,Pcs,China,85182200,590 mm / 23.23 inches,388 mm / 15.28 inches,388 mm / 15.28 inches,14.8 kg / 32.63 lbs,13.200,14.800
+RCF,M Series,13041017,M 1201,SPEAKER M1201,Pcs,China,85182200,725 mm / 28.54 inches,500 mm / 19.69 inches,475 mm / 18.7 inches,23 kg / 50.71 lbs,20.200,23.000
+RCF,Subwoofer,13041018,S 5012,SUBWOOFER S5012,Pcs,China,85182100,480 mm / 18.9 inches,550 mm / 21.65 inches,520 mm / 20.47 inches,20.6 kg / 45.42 lbs,18.000,20.600
+RCF,M Series,13041023,M 501 W,SPEAKER M501-W,Pcs,China,85182200,394 mm / 15.51 inches,257 mm / 10.12 inches,247 mm / 9.72 inches,5.7 kg / 12.57 lbs,4.986,5.700
+RCF,M Series,13041024,M 601 W,SPEAKER M601-W,Pcs,China,85182200,440 mm / 17.32 inches,302 mm / 11.89 inches,287 mm / 11.3 inches,8 kg / 17.64 lbs,7.420,8.280
+RCF,M Series,13041025,M 801 W,SPEAKER M801-W,Pcs,China,85182200,524 mm / 20.63 inches,354 mm / 13.94 inches,333 mm / 13.11 inches,12.4 kg / 27.34 lbs,11.000,12.500
+RCF,Horn Speakers EN54,13100004,HD 31EN,HORN SPEAKER HD 31EN 30W,Pcs,Taiwan,85182995,326 mm / 12.83 inches,234 mm / 9.21 inches,234 mm / 9.21 inches,2.51 kg / 5.53 lbs,2.010,2.510
+RCF,Speakers EN54,13100011,MR 52EN B,MR 52BEN SPEAKER EN 54-24 2-WAY 30 W BLA,Pcs,Taiwan,85182200,300 mm / 11.81 inches,310 mm / 12.2 inches,200 mm / 7.87 inches,3.5 kg / 7.72 lbs,3.000,3.500
+RCF,Monitor,13100012,MR 33T,SPEAKER MONITOR 33T,Pcs,China,85182200,300 mm / 11.81 inches,240 mm / 9.45 inches,215 mm / 8.46 inches,2.69 kg / 5.93 lbs,2.140,2.690
+RCF,Monitor,13100013,MR 33T W,SPEAKER MONITOR 33WT,Pcs,China,85182200,300 mm / 11.81 inches,240 mm / 9.45 inches,215 mm / 8.46 inches,2.69 kg / 5.93 lbs,2.140,2.690
+RCF,Monitor,13100014,MR 44T,SPEAKER MONITOR 44 T,Pcs,China,85182200,380 mm / 14.96 inches,260 mm / 10.24 inches,260 mm / 10.24 inches,4.54 kg / 10.01 lbs,3.730,4.540
+RCF,Monitor,13100015,MR 44T W,SPEAKER MONITOR 44WT,Pcs,China,85182200,380 mm / 14.96 inches,260 mm / 10.24 inches,260 mm / 10.24 inches,4.54 kg / 10.01 lbs,3.730,4.540
+RCF,Monitor,13100016,MR 55,SPEAKER MONITOR 55,Pcs,China,85182200,380 mm / 14.96 inches,260 mm / 10.24 inches,260 mm / 10.24 inches,4.65 kg / 10.25 lbs,3.870,4.650
+RCF,Monitor,13100017,MR 55 W,SPEAKER MONITOR 55W,Pcs,China,85182200,380 mm / 14.96 inches,260 mm / 10.24 inches,260 mm / 10.24 inches,4.65 kg / 10.25 lbs,3.870,4.650
+RCF,Horn Speakers,13100018,HD 210TY,HORN HD 210-TY,Pcs,India,85182995,310 mm / 12.2 inches,220 mm / 8.66 inches,220 mm / 8.66 inches,2.65 kg / 5.84 lbs,2.410,2.650
+RCF,Monitor Series,13100034,MR 40,COUPLE SPEAKERS MR 40,Pcs,China,85182200,285 mm / 11.22 inches,400 mm / 15.75 inches,235 mm / 9.25 inches,5.3 kg / 11.68 lbs,4.400,5.300
+RCF,Monitor Series,13100035,MR 40T,COUPLE SPEAKERS MR 40T,Pcs,China,85182200,285 mm / 11.22 inches,400 mm / 15.75 inches,235 mm / 9.25 inches,5.5 kg / 12.13 lbs,4.600,5.500
+RCF,Monitor Series,13100036,MR 40 W,COUPLE SPEAKERS MR 40 W,Pcs,China,85182200,285 mm / 11.22 inches,400 mm / 15.75 inches,235 mm / 9.25 inches,5.3 kg / 11.68 lbs,4.400,5.300
+RCF,Monitor Series,13100037,MR 40T W,COUPLE SPEAKERS MR 40T W,Pcs,China,85182200,285 mm / 11.22 inches,400 mm / 15.75 inches,235 mm / 9.25 inches,5.5 kg / 12.13 lbs,4.600,5.500
+RCF,Monitor Series,13100038,MR 50,COUPLE SPEAKERS MR 50,Pcs,China,85182200,370 mm / 14.57 inches,510 mm / 20.08 inches,250 mm / 9.84 inches,8.5 kg / 18.74 lbs,7.600,8.500
+RCF,Monitor Series,13100039,MR 50T,COUPLE SPEAKERS MR 50T,Pcs,China,85182200,370 mm / 14.57 inches,510 mm / 20.08 inches,250 mm / 9.84 inches,8.9 kg / 19.62 lbs,8.000,8.900
+RCF,Monitor Series,13100040,MR 50 W,COUPLE SPEAKERS MR 50 W,Pcs,China,85182200,370 mm / 14.57 inches,510 mm / 20.08 inches,250 mm / 9.84 inches,8.5 kg / 18.74 lbs,7.600,8.500
+RCF,Monitor Series,13100041,MR 50T W,COUPLE SPEAKERS MR 50T W,Pcs,China,85182200,370 mm / 14.57 inches,510 mm / 20.08 inches,250 mm / 9.84 inches,8.9 kg / 19.62 lbs,8.000,8.900
+RCF,Business Music Speakers,13100044,CMR 50T W,CELING SPEAKER CMR 50T W,Pcs,China,85182100,229 mm / 9.02 inches,362 mm / 14.25 inches,362 mm / 14.25 inches,5.5 kg / 12.13 lbs,4.000,5.500
+RCF,Business Music Speakers,13100045,CMR 60T W,CELING SPEAKER CMR 60T W,Pcs,China,85182100,280 mm / 11.02 inches,362 mm / 14.25 inches,362 mm / 14.25 inches,6 kg / 13.23 lbs,4.500,6.000
+RCF,Speakers EN54,13100046,WMF 33EN,WALL MOUNT SPEAKER WMF 33EN,Pcs,China,85182100,186 mm / 7.32 inches,596 mm / 23.46 inches,276 mm / 10.87 inches,7 kg / 15.43 lbs,5.000,7.000
+RCF,Business Music Speakers,13100050,WMR 60T,SPEAKER WMR 60T,Pcs,China,85182100,298 mm / 11.73 inches,468 mm / 18.43 inches,338 mm / 13.31 inches,7.5 kg / 16.53 lbs,6.000,7.500
+RCF,Business Music Speakers,13100051,WMR 50T,SPEAKER WMR 50T,Pcs,China,85182100,278 mm / 10.94 inches,418 mm / 16.46 inches,308 mm / 12.13 inches,5.3 kg / 11.68 lbs,4.500,5.300
+RCF,VSA,13100053,VSA 2050 II B,COLUMN SPEAKER VSA 2050 II B 220-240V,Pcs,Italy,85182200,180 mm / 7.09 inches,2264 mm / 89.13 inches,200 mm / 7.87 inches,31.5 kg / 69.45 lbs,20.000,31.500
+RCF,VSA,13100055,VSA 1250 II B,COLUMN SPEAKER VSA 1250 II B 220-240V,Pcs,Italy,85182200,169 mm / 6.65 inches,1534 mm / 60.39 inches,189 mm / 7.44 inches,15.8 kg / 34.83 lbs,13.800,15.800
+RCF,VSA,13100057,VSA 850 II B,COLUMN SPEAKER VSA 850 II B 220-240V,Pcs,Italy,85182200,169 mm / 6.65 inches,1184 mm / 46.61 inches,189 mm / 7.44 inches,13.2 kg / 29.1 lbs,11.200,13.200
+RCF,Business Music Speakers,13100071,WMR 60T W,SPEAKER WMR 60T W,Pcs,China,85182100,298 mm / 11.73 inches,468 mm / 18.43 inches,338 mm / 13.31 inches,7.5 kg / 16.53 lbs,6.000,7.500
+RCF,Business Music Speakers,13100074,WMR 50T W,SPEAKER WMR 50T W,Pcs,China,85182100,278 mm / 10.94 inches,418 mm / 16.46 inches,308 mm / 12.13 inches,5.3 kg / 11.68 lbs,4.500,5.300
+RCF,"Acustica ""P"" Series",13100081,P 4228 W,OUTDOOR SPEAKER P 4228 W,Pcs,Italy,85182200,290 mm / 11.42 inches,590 mm / 23.23 inches,290 mm / 11.42 inches,15.6 kg / 34.39 lbs,14.200,15.600
+RCF,"Acustica ""P"" Series",13100082,P 3115T W,P 3115T W  COAX. WEATHERPROOF SPEAKER,Pcs,Italy,85182200,530 mm / 20.87 inches,490 mm / 19.29 inches,490 mm / 19.29 inches,23.2 kg / 51.15 lbs,19.200,23.200
+RCF,"Acustica ""P"" Series",13100083,P 6215 W,P 6215 W COAXIAL WEATHERPROOF SPEAKER,Pcs,Italy,85182200,519 mm / 20.43 inches,489 mm / 19.25 inches,489 mm / 19.25 inches,21.4 kg / 47.18 lbs,17.400,21.400
+RCF,"Acustica ""P"" Series",13100084,P 1108T W,P 1108T W 2 WAY WEATHERPROOF SPEAKER,Pcs,Italy,85182200,534 mm / 21.02 inches,289 mm / 11.38 inches,289 mm / 11.38 inches,13.2 kg / 29.1 lbs,12.000,13.200
+RCF,Ceiling Speakers,13100087,PL 6X B,CELING SPEAKER PL 6X B,Pcs,China,85182200,240 mm / 9.45 inches,240 mm / 9.45 inches,110 mm / 4.33 inches,1.56 kg / 3.44 lbs,1.281,1.560
+RCF,Ceiling Speakers,13100088,PL 8X B,CELING SPEAKER PL 8X B,Pcs,China,85182200,280 mm / 11.02 inches,280 mm / 11.02 inches,130 mm / 5.12 inches,2.09 kg / 4.61 lbs,1.734,2.087
+RCF,Monitor Q Series,13100089,MQ 50C B,MONITOR MQ 50C B  (BLACK),Pcs,China,85182200,235 mm / 9.25 inches,310 mm / 12.2 inches,310 mm / 12.2 inches,2.99 kg / 6.59 lbs,2.100,2.990
+RCF,Subwoofer Series,13100096,S 19,SUBWOOFER S 19,Pcs,Italy,85182100,565 mm / 22.24 inches,680 mm / 26.77 inches,760 mm / 29.92 inches,48 kg / 105.82 lbs,44.000,48.000
+RCF,Subwoofer Series,13100097,S 29,SUBWOOFER S 29,Pcs,Italy,85182200,620 mm / 24.41 inches,1360 mm / 53.54 inches,800 mm / 31.5 inches,90 kg / 198.42 lbs,85.000,90.000
+RCF,Business Music Speakers,13100098,PMR 60T W,PENDANT SPEAKER PMR 60T W,Pcs,China,85182100,340 mm / 13.39 inches,362 mm / 14.25 inches,362 mm / 14.25 inches,6.5 kg / 14.33 lbs,5.100,6.500
+RCF,Business Music Speakers,13100100,PMR 60T B,PENDANT SPEAKER PMR 60T B,Pcs,China,85182100,340 mm / 13.39 inches,362 mm / 14.25 inches,362 mm / 14.25 inches,6.5 kg / 14.33 lbs,5.100,6.500
+RCF,Subwoofer Series,13100108,S 29 WP,SUBWOOFER S 29 WP,Pcs,Italy,85182200,,,,,85.000,90.000
+RCF,Business Music Speakers,13100111,CMR 30,PAIR OF CELING SPEAKERS CMR 30 15W,Pcs,China,85182100,,,,,0.736,1.000
+RCF,Business Music Speakers,13100112,CMR-S 60T W,CEILING SUBWOOFER CMR-S 60T W,Pcs,China,85182100,,,,,4.500,6.000
+RCF,Subwoofer Series,13100117,S 19 WP,SUBWOOFER S 19 WP,Pcs,Italy,85182100,,,,,44.000,48.000
+RCF,Speakers,13110071,ELISA 50,FLUSH MOUNTING CEILING SPEAKER ELISA 5,Pcs,China,85182100,95 mm / 3.74 inches,200 mm / 7.87 inches,130 mm / 5.12 inches,1.1 kg / 2.43 lbs,0.951,1.098
+RCF,Horn Speakers,13133039,HD 3216,HORN HD 3216,Pcs,India,85182995,305 mm / 12.01 inches,325 mm / 12.8 inches,190 mm / 7.48 inches,2.61 kg / 5.75 lbs,1.946,2.614
+RCF,Ceiling,13133044,WS 620XT,MARINE SPEAKER WS 620 XT,Pcs,China,85182100,,,,,1.160,1.579
+RCF,Horn,13133046,HF64,HORN HF64,Pcs,China,85189000,195 mm / 7.68 inches,265 mm / 10.43 inches,260 mm / 10.24 inches,2.4 kg / 5.29 lbs,1.979,2.403
+RCF,Horn,13133047,HF94,HORN HF94,Pcs,China,85189000,155 mm / 6.1 inches,265 mm / 10.43 inches,265 mm / 10.43 inches,2 kg / 4.41 lbs,1.621,1.998
+RCF,Horn,13133048,HF101,HF101 HORN,Pcs,China,85189000,130 mm / 5.12 inches,205 mm / 8.07 inches,200 mm / 7.87 inches,0.83 kg / 1.83 lbs,0.658,0.834
+RCF,Horn,13133080,HF950,HORN HF950,Pcs,China,85189000,239 mm / 9.41 inches,332 mm / 13.07 inches,332 mm / 13.07 inches,2.1 kg / 4.63 lbs,1.170,2.100
+RCF,Speakers,13133081,MG 90,MG 90 10W MEGAPHONE,Pcs,China,85185000,300 mm / 11.81 inches,220 mm / 8.66 inches,220 mm / 8.66 inches,1.27 kg / 2.8 lbs,0.920,1.270
+RCF,Accessories,13360010,ART  V-BR,AC ART V-BR,Pcs,Italy,73269098,,,,,3.928,4.345
+RCF,Accessories,13360011,ART  H-BR,AC ART H-BR,Pcs,Italy,73269098,,,,,3.844,4.231
+RCF,Accessories,13360034,AC PMA,AC PMA - POLE MOUNT,Pcs,China,73269098,70 mm / 2.76 inches,845 mm / 33.27 inches,110 mm / 4.33 inches,1.88 kg / 4.14 lbs,1.734,1.882
+RCF,Accessories,13360035,AC S260,SPEAKER CABINET FLOOR STAND-STEEL,Pcs,China,73269098,150 mm / 5.91 inches,1265 mm / 49.8 inches,150 mm / 5.91 inches,8.81 kg / 19.42 lbs,8.146,8.812
+RCF,Accessories,13360038,AC 50B,AC 50B - FLUSH MOUNT BOX FOR ELISA 50,Pcs,China,39269097,80 mm / 3.15 inches,190 mm / 7.48 inches,130 mm / 5.12 inches,0.2 kg / 0.44 lbs,0.097,0.200
+RCF,Accessories,13360039,RC 62 W,RC62-W  REMOTE CONTROL (WHITE),Pcs,China,85437090,30 mm / 1.18 inches,140 mm / 5.51 inches,110 mm / 4.33 inches,0.05 kg / 0.11 lbs,0.035,0.050
+RCF,Accessories,13360041,RC 62 S,RC62-S  REMOTE CONTROL (SILVER),Pcs,China,85437090,30 mm / 1.18 inches,140 mm / 5.51 inches,110 mm / 4.33 inches,0.05 kg / 0.11 lbs,0.035,0.050
+RCF,Accessories,13360042,H-BR ART 310,AC ART310 H-BR - BRACKET X HORIZ. MOUNT.,Pcs,Italy,73269098,90 mm / 3.54 inches,715 mm / 28.15 inches,320 mm / 12.6 inches,2.52 kg / 5.56 lbs,2.090,2.521
+RCF,Accessories,13360043,CVR ART 312,COVER CVR ART 312,Pcs,Romania,42029219,90 mm / 3.54 inches,720 mm / 28.35 inches,400 mm / 15.75 inches,1.69 kg / 3.73 lbs,1.690,1.690
+RCF,Accessories,13360044,CVR ART 310,COVER CVR ART 310,Pcs,Romania,42029219,80 mm / 3.15 inches,600 mm / 23.62 inches,400 mm / 15.75 inches,1.4 kg / 3.09 lbs,1.100,1.400
+RCF,Attenuators/Transformers,13360045,TD 10,LINE TRANSFORMER TD10,Pcs,Italy,85043180,120 mm / 4.72 inches,135 mm / 5.31 inches,125 mm / 4.92 inches,0.59 kg / 1.3 lbs,0.504,0.593
+RCF,Attenuators/Transformers,13360048,TD 120,LINE TRANSFORMER TD120,Pcs,Italy,85043180,130 mm / 5.12 inches,125 mm / 4.92 inches,125 mm / 4.92 inches,1.91 kg / 4.21 lbs,1.826,1.911
+TT+,Accessories,13360068,AC PMA TT,AC TT PMA - POLE MOUNT TT+,Pcs,China,73269098,115 mm / 4.53 inches,120 mm / 4.72 inches,120 mm / 4.72 inches,0.44 kg / 0.97 lbs,0.390,0.437
+RCF,Accessories,13360080,MQ 60H link-W,MQ60H LINK-W (WHITE),Pcs,China,73269098,,,,,0.510,0.706
+RCF,Accessories,13360081,MQ 60H link-B,MQ60H LINK-B (BLACK),Pcs,China,73269098,,,,,0.510,0.706
+TT+,Accessories,13360083,RP 1X TTL 33,RAIN PROTECTION RP 1X TTL 33,Pcs,China,42029219,95 mm / 3.74 inches,235 mm / 9.25 inches,140 mm / 5.51 inches,0.68 kg / 1.5 lbs,0.510,0.684
+RCF,Attenuators/Transformers,13360089,IM 2220,IM 2220 - AUDIO IMPEDANCE TESTER,Pcs,China,90303330,95 mm / 3.74 inches,235 mm / 9.25 inches,205 mm / 8.07 inches,1.17 kg / 2.58 lbs,1.060,1.170
+RCF,Elisa,13360101,AR 3000,AR 3000 - 3000 SERIES RACK  ACCESSORY,Pcs,Italy,73269098,80 mm / 3.15 inches,180 mm / 7.09 inches,520 mm / 20.47 inches,1.92 kg / 4.23 lbs,1.557,1.922
+RCF,Accessories,13360106,V-BR PRO8,AC PRO8 V-BR - VERTICAL BRACKET,Pcs,Italy,73269098,100 mm / 3.94 inches,530 mm / 20.87 inches,460 mm / 18.11 inches,6.4 kg / 14.11 lbs,5.800,6.400
+RCF,Accessories,13360111,AC PRO-LF,AC PRO-LF PROFESSIONAL LOCKING FLANGE,Pcs,Denmark,73269098,0,0,0,0.76 kg / 1.68 lbs,0.643,0.763
+RCF,Accessories EN54,13360112,AC 1503,AC1503 CER. TERMINAL BLOCK + THERM. FUSE,Pcs,China,85366990,,,,,0.049,0.058
+RCF,Accessories,13360118,AC P08 A-BR,CLUSTER BRACKETS FOR P1108/P3108,Pcs,Italy,85189000,,,,,5.500,6.500
+TT+,Accessories,13360120,FL-B TTL 55,TTL55-A FLY BAR,Pcs,Italy,73269098,160 mm / 6.3 inches,1024 mm / 40.31 inches,824 mm / 32.44 inches,87 kg / 191.8 lbs,78.500,87.000
+TT+,Accessories,13360122,QL-PIN D11.1 L25.4 4X,4 QUICK LOCK PINS FOR TTL55-A,Pack,US,73181900,30 mm / 1.18 inches,240 mm / 9.45 inches,220 mm / 8.66 inches,0.29 kg / 0.64 lbs,0.278,0.293
+TT+,Accessories,13360127,FL-B PK TTL 55,FLY BAR PICKUP TTL55,Pcs,Italy,73269098,70 mm / 2.76 inches,330 mm / 12.99 inches,290 mm / 11.42 inches,2 kg / 4.41 lbs,1.950,2.000
+TT+,Accessories,13360131,FL-B LINK TTL 55-33-31,LINK BAR TTL55-33-31,Pcs,Italy,73269098,105 mm / 4.13 inches,1055 mm / 41.54 inches,725 mm / 28.54 inches,43.5 kg / 95.9 lbs,43.500,43.500
+TT+,Accessories,13360133,KRT-WH TTL 55,KART WITH WHEELS KRT-WH TTL 55,Pcs,Italy,87168000,190 mm / 7.48 inches,1060 mm / 41.73 inches,380 mm / 14.96 inches,14 kg / 30.86 lbs,10.000,14.000
+TT+,Accessories,13360134,CVR TTL 55,COVER CVR TTL 55,Pcs,Italy,42029219,230 mm / 9.06 inches,540 mm / 21.26 inches,370 mm / 14.57 inches,3.08 kg / 6.79 lbs,2.115,3.080
+TT+,Accessories,13360135,CVR TTS 56,COVER CVR TTS 56,Pcs,Italy,42029219,80 mm / 3.15 inches,1200 mm / 47.24 inches,800 mm / 31.5 inches,4.9 kg / 10.8 lbs,4.600,4.900
+TT+,Accessories,13360136,RP 1X TTL 55,RAIN PROTECTION RP 1X TTL 55,Pcs,China,42029219,95 mm / 3.74 inches,140 mm / 5.51 inches,325 mm / 12.8 inches,0.69 kg / 1.52 lbs,0.507,0.695
+TT+,Accessories,13360137,RP 1X TTS 56,AC RAIN COVER TTS56-A,Pack,Italy,42029219,64 mm / 2.52 inches,524 mm / 20.63 inches,114 mm / 4.49 inches,0.52 kg / 1.15 lbs,0.424,0.516
+RCF,Accessories,13360140,CVR FRONT TTS 56,COVER CVR FRONT TTS 56,Pcs,Italy,42029219,50 mm / 1.97 inches,1190 mm / 46.85 inches,580 mm / 22.83 inches,11.4 kg / 25.13 lbs,10.000,11.400
+TT+,Accessories,13360157,NYLON SLEED TTS 56,NYLON SLED FOR TTS56-A,Pcs,Italy,39269097,594 mm / 23.39 inches,124 mm / 4.88 inches,94 mm / 3.7 inches,4.64 kg / 10.23 lbs,4.361,4.645
+TT+,Accessories,13360169,CVR TT 051,COVER CVR TT 051,Pcs,Romania,42029219,85 mm / 3.35 inches,390 mm / 15.35 inches,270 mm / 10.63 inches,0.49 kg / 1.08 lbs,0.494,0.494
+TT+,Accessories,13360170,CVR TT 052,COVER CVR TT 052,Pcs,Italy,42029219,85 mm / 3.35 inches,460 mm / 18.11 inches,270 mm / 10.63 inches,0.06 kg / 0.13 lbs,0.062,0.062
+TT+,Accessories,13360171,CL-BR TT 051-052,AC TT051/52 PIPE CLAMP,Pcs,Italy,73269098,90 mm / 3.54 inches,170 mm / 6.69 inches,170 mm / 6.69 inches,1.15 kg / 2.54 lbs,0.985,1.148
+TT+,Accessories,13360172,PM-KIT TT 051-052,AC TT051/52 STAND ADAPTER,Pcs,Italy,73269098,90 mm / 3.54 inches,170 mm / 6.69 inches,170 mm / 6.69 inches,0.61 kg / 1.34 lbs,0.441,0.607
+RCF,Accessories,13360183,H-BR 2X M 501,AC M501 H-BR PAIR BRACKETS HORIZ.ASSEMB.,Pair,Italy,73269098,95 mm / 3.74 inches,345 mm / 13.58 inches,170 mm / 6.69 inches,3.76 kg / 8.29 lbs,3.552,3.757
+RCF,Accessories,13360184,H-BR 2X M 502,AC M502 H-BR PAIR BRACKETS HORIZ.ASSEMB.,Pair,Italy,73269098,95 mm / 3.74 inches,510 mm / 20.08 inches,170 mm / 6.69 inches,4.7 kg / 10.36 lbs,4.405,4.704
+RCF,Accessories,13360185,H-BR 2X M 601,AC M601 H-BR PAIR BRACKETS HORIZ.ASSEMB.,Pair,Italy,73269098,95 mm / 3.74 inches,400 mm / 15.75 inches,200 mm / 7.87 inches,4.5 kg / 9.92 lbs,4.196,4.497
+RCF,Accessories,13360186,H-BR 2X M 602,AC M602 H-BR PAIR OF HORIZ. BRACKETS,Pair,Italy,73269098,95 mm / 3.74 inches,580 mm / 22.83 inches,200 mm / 7.87 inches,5.46 kg / 12.04 lbs,5.145,5.464
+RCF,Accessories,13360187,H-BR 2X M 801,AC M801 H-BR PAIR OF HORIZ. BRACKETS,Pair,Italy,73269098,95 mm / 3.74 inches,490 mm / 19.29 inches,230 mm / 9.06 inches,5.31 kg / 11.71 lbs,4.976,5.306
+RCF,Accessories,13360188,SWM-BR M,AC WM-M WALL MOUNT FOR MEDIA,Pcs,China,73269098,124 mm / 4.88 inches,249 mm / 9.8 inches,139 mm / 5.47 inches,1.95 kg / 4.3 lbs,1.730,1.945
+RCF,Accessories,13360192,H-BR 2X NC12,AC NC12 H-BR PAIR BRACKETS HORIZ.ASSEMB.,Pair,Italy,73269098,85 mm / 3.35 inches,680 mm / 26.77 inches,320 mm / 12.6 inches,8.4 kg / 18.52 lbs,8.000,8.400
+RCF,Accessories,13360193,H-BR 2X NC15,AC NC15 H-BR PAIR BRACKETS HORIZ.ASSEMB.,Pair,Italy,73269098,85 mm / 3.35 inches,750 mm / 29.53 inches,360 mm / 14.17 inches,9.4 kg / 20.72 lbs,9.000,9.400
+RCF,Accessories,13360197,V-BR 2X NC12,AC NC12 V-BR PAIR BRACKETS VERT. ASSEMB.,Pair,Italy,73269098,85 mm / 3.35 inches,510 mm / 20.08 inches,420 mm / 16.54 inches,9 kg / 19.84 lbs,8.600,9.000
+RCF,Accessories,13360198,AC NC15 V-BR,AC NC15 V-BR PAIR BRACKETS VERT. ASSEMB.,Pcs,Italy,85189000,,,,,9.600,10.200
+RCF,Accessories,13360201,FL-BR NC 12-15,AC NC-FB2 FLYING BRACKET NC12/15,Pcs,Italy,73269098,100 mm / 3.94 inches,300 mm / 11.81 inches,115 mm / 4.53 inches,1.12 kg / 2.47 lbs,0.992,1.117
+TT+,Accessories,13360204,H-BR 2X TT 051,AC TT051 H-BR  PAIR HORIZONTAL BRACK.,Pair,Italy,73269098,90 mm / 3.54 inches,375 mm / 14.76 inches,220 mm / 8.66 inches,4.95 kg / 10.91 lbs,4.650,4.945
+TT+,Accessories,13360205,H-BR 2X TT 052,AC TT052 H-BR  PAIR HORIZONTAL BRACK.,Pair,Italy,73269098,90 mm / 3.54 inches,520 mm / 20.47 inches,220 mm / 8.66 inches,5.84 kg / 12.87 lbs,5.488,5.842
+TT+,Accessories,13360207,FL-B LG TTL 55,LONG FLY BAR TTL55,Pcs,Italy,73269098,170 mm / 6.69 inches,1040 mm / 40.94 inches,1090 mm / 42.91 inches,131.4 kg / 289.69 lbs,114.800,131.400
+RCF,Accessories,13360208,CVR HD 10,COVER CVR HD 10,Pcs,Romania,42029219,80 mm / 3.15 inches,600 mm / 23.62 inches,400 mm / 15.75 inches,1 kg / 2.2 lbs,1.000,1.000
+RCF,Accessories,13360209,CVR HD 12-32,COVER CVR HD 12-32,Pcs,Romania,42029219,90 mm / 3.54 inches,720 mm / 28.35 inches,400 mm / 15.75 inches,1.45 kg / 3.2 lbs,1.452,1.452
+RCF,Accessories,13360215,H-BR 2X HD 10,AC HD-FD 10 H-BR,Pair,Italy,73269098,105 mm / 4.13 inches,600 mm / 23.62 inches,330 mm / 12.99 inches,10 kg / 22.05 lbs,8.000,10.000
+RCF,Accessories,13360216,H-BR 2X HD 12-32,AC HD-FD 12 H-BR,Pair,Italy,73269098,105 mm / 4.13 inches,720 mm / 28.35 inches,410 mm / 16.14 inches,10.89 kg / 24.01 lbs,10.050,10.892
+RCF,Accessories,13360222,QL-PIN D9.6 L31 4X,SPARE PINS 4X FLY BAR HDL20- HDL18,Pack,China,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.2 kg / 0.44 lbs,0.187,0.196
+RCF,Accessories,13360225,FL-B LINK HDL 20-18 2X,LINK BAR HDL18 TO HDL20,Pcs,Italy,73269098,50 mm / 1.97 inches,315 mm / 12.4 inches,295 mm / 11.61 inches,4.28 kg / 9.44 lbs,4.178,4.276
+RCF,Accessories,13360234,H-BR 2X M 1001,AC M1001 H-BR PAIR OF HORIZ. BRACKETS,Pair,Italy,73269098,95 mm / 3.74 inches,544 mm / 21.42 inches,270 mm / 10.63 inches,5.76 kg / 12.7 lbs,5.400,5.760
+RCF,Processors,13360235,TS 9918,TS 9918 REMOTE CONTROL,Pcs,Italy,85437090,88 mm / 3.46 inches,219 mm / 8.62 inches,156 mm / 6.14 inches,0.22 kg / 0.49 lbs,0.220,0.220
+RCF,Systems,13360237,RC 2946,RC 2946 REMOTE CONTROL,Pcs,China,85437090,70 mm / 2.76 inches,200 mm / 7.87 inches,170 mm / 6.69 inches,0.8 kg / 1.76 lbs,0.200,0.800
+RCF,Accessories,13360239,H-BR 2X M 1201,AC M1201 H-BR PAIR BRACKETS HORIZ. ASS.,Pair,Italy,73269098,95 mm / 3.74 inches,665 mm / 26.18 inches,325 mm / 12.8 inches,7.23 kg / 15.94 lbs,6.810,7.229
+RCF,Processors,13360243,TS 9918 W,TS 9918-W REMOTE CONTROL,Pcs,Italy,85437090,88 mm / 3.46 inches,219 mm / 8.62 inches,156 mm / 6.14 inches,0.22 kg / 0.49 lbs,0.220,0.220
+TT+,Accessories,13360244,CVR TT 1,COVER CVR TT 1,Pcs,Romania,42029219,90 mm / 3.54 inches,720 mm / 28.35 inches,400 mm / 15.75 inches,1.33 kg / 2.93 lbs,1.326,1.326
+TT+,Accessories,13360245,CVR TT 2,COVER CVR TT 2,Pcs,Italy,42029219,90 mm / 3.54 inches,770 mm / 30.31 inches,480 mm / 18.9 inches,1.57 kg / 3.46 lbs,1.570,1.570
+TT+,Accessories,13360246,CVR TT 5,COVER CVR TT 5,Pcs,Italy,42029219,90 mm / 3.54 inches,770 mm / 30.31 inches,480 mm / 18.9 inches,2.22 kg / 4.89 lbs,2.220,2.220
+TT+,Accessories,13360248,AC WOOD KART TTP-5,DOLLY KART AC WOOD KART TTP-5,Pcs,Italy,87168000,,,,,10.200,13.800
+TT+,Accessories,13360249,FL-B V TTP 5,FLY BAR ASSEMBLY AC V-FLY BAR TTP-5,Pcs,Italy,73269098,80 mm / 3.15 inches,1015 mm / 39.96 inches,755 mm / 29.72 inches,22 kg / 48.5 lbs,19.000,22.000
+TT+,Accessories,13360250,CVR TTP 5,COVER CVR TTP 5,Pcs,RO,42029219,0,0,0,2.5 kg / 5.51 lbs,1.920,2.500
+TT+,Accessories,13360251,H-PLATE TTP 5 2X,AC H-PLATE TTP-5 LIFTING BRACKET X TTP-5,Pair,Romania,73269098,105 mm / 4.13 inches,600 mm / 23.62 inches,330 mm / 12.99 inches,19.5 kg / 42.99 lbs,17.500,19.500
+TT+,Accessories,13360252,FL-B H 6X TTP 5,AC H-BUMP TTP-5 LIFTING BAR FOR TTP-5,Pcs,Italy,73269098,165 mm / 6.5 inches,1530 mm / 60.24 inches,185 mm / 7.28 inches,14 kg / 30.86 lbs,12.500,14.000
+TT+,Accessories,13360253,H-BR TT 1,HORIZONTAL BRACKET FOR TT 1 H-BR,Pcs,Italy,73269098,84 mm / 3.31 inches,634 mm / 24.96 inches,354 mm / 13.94 inches,7 kg / 15.43 lbs,5.000,7.000
+TT+,Accessories,13360254,V-BR TT 1,VERTICAL BRACKET FOR AC TT1 V-BR,Pcs,Italy,73269098,85 mm / 3.35 inches,575 mm / 22.64 inches,385 mm / 15.16 inches,7.5 kg / 16.53 lbs,6.000,7.500
+TT+,Accessories,13360255,AC TT1 PLATE,INSTALLATION BRACKET 2X  AC TT1 PLATE,Pair,Italy,73269098,,,,,6.010,6.680
+TT+,Accessories,13360256,END-PLATE TT 1 2X,END BRACKET FOR CHAIN 2X  AC TT1 AND PL,Pair,Italy,73269098,68 mm / 2.68 inches,424 mm / 16.69 inches,200 mm / 7.87 inches,2.5 kg / 5.51 lbs,1.800,2.500
+TT+,Accessories,13360258,AC RAIN COVER TT1-A,RAIN PROTECTION RP 1X TT 1,Pcs,Italy,42029219,,,,,1.500,2.300
+TT+,Accessories,13360259,H-BR TT 2,HORIZONTAL BRACKET FOR TT2 H-BR,Pcs,Italy,73269098,90 mm / 3.54 inches,810 mm / 31.89 inches,410 mm / 16.14 inches,7.5 kg / 16.53 lbs,6.000,7.500
+TT+,Accessories,13360260,V-BR TT 2,VERTICAL BRACKET FOR AC TT2 V-BR,Pcs,Italy,73269098,80 mm / 3.15 inches,620 mm / 24.41 inches,415 mm / 16.34 inches,9 kg / 19.84 lbs,7.500,9.000
+TT+,Accessories,13360261,PLATE TT 2 2X,INSTALLATION BRACKET 2X AC TT2 PLATE,Pair,Italy,73269098,94 mm / 3.7 inches,524 mm / 20.63 inches,434 mm / 17.09 inches,7 kg / 15.43 lbs,6.000,7.000
+TT+,Accessories,13360262,END-PLATE TT 2 2X,END BRACKET FOR CHAIN 2X  AC TT2 END PL,Pair,Italy,73269098,75 mm / 2.95 inches,650 mm / 25.59 inches,210 mm / 8.27 inches,3 kg / 6.61 lbs,2.200,3.000
+TT+,Accessories,13360264,AC RAIN COVER TT2-A,RAIN PROTECTION RP 1X TT 2,Pcs,Italy,42029219,,,,,1.700,2.500
+TT+,Accessories,13360265,H-BR TT 5,HORIZONTAL BRACKET FOR TT5 H-BR,Pcs,Italy,73269098,90 mm / 3.54 inches,815 mm / 32.09 inches,440 mm / 17.32 inches,8 kg / 17.64 lbs,6.500,8.000
+TT+,Accessories,13360266,V-BR TT 5,VERTICAL BRACKET FOR AC TT5 V-BR,Pcs,Italy,73269098,95 mm / 3.74 inches,735 mm / 28.94 inches,515 mm / 20.28 inches,10 kg / 22.05 lbs,8.500,10.000
+TT+,Accessories,13360267,AC TT5 PLATE,INSTALLATION BRACKET 2X  AC TT5 PLATE,Pair,Italy,73269098,,,,,10.000,11.000
+TT+,Accessories,13360268,END-PLATE TT 5 2X,END BRACKET FOR CHAIN 2X  AC TT5 END PL,Pair,Italy,73269098,75 mm / 2.95 inches,650 mm / 25.59 inches,210 mm / 8.27 inches,3.5 kg / 7.72 lbs,2.600,3.500
+RCF,Accessories,13360270,CVR 4PRO 1031,COVER CVR 4PRO 1031,Pcs,Italy,42029219,80 mm / 3.15 inches,600 mm / 23.62 inches,400 mm / 15.75 inches,1.08 kg / 2.38 lbs,1.080,1.080
+RCF,Accessories,13360271,CVR 4PRO 2031,COVER CVR 4PRO 2031,Pcs,Italy,42029219,90 mm / 3.54 inches,720 mm / 28.35 inches,400 mm / 15.75 inches,1.33 kg / 2.93 lbs,1.330,1.330
+RCF,Accessories,13360272,CVR 4PRO 3031,COVER CVR 4PRO 3031,Pcs,Italy,42029219,90 mm / 3.54 inches,770 mm / 30.31 inches,480 mm / 18.9 inches,1.6 kg / 3.53 lbs,1.598,1.598
+RCF,Accessories,13360273,CVR 4PRO 5031,COVER CVR 4PRO 5031,Pcs,Italy,42029219,90 mm / 3.54 inches,1150 mm / 45.28 inches,500 mm / 19.69 inches,2.31 kg / 5.09 lbs,2.310,2.310
+TT+,Accessories,13360284,FL-B H TTP 5,AC H- FLY BAR TTP-5 LIFTING BRACKET,Pcs,Italy,73269098,105 mm / 4.13 inches,600 mm / 23.62 inches,330 mm / 12.99 inches,12 kg / 26.46 lbs,10.000,12.000
+RCF,Accessories,13360285,AC 2 POLE HDL20,AC 2 X POLE MOUNT HDL20,Pcs,Italy,73269098,275 mm / 10.83 inches,770 mm / 30.31 inches,545 mm / 21.46 inches,9 kg / 19.84 lbs,8.000,9.000
+RCF,Accessories,13360295,CVR SUB 8005,COVER CVR SUB 8005,Pcs,Italy,42029219,90 mm / 3.54 inches,800 mm / 31.5 inches,600 mm / 23.62 inches,4.3 kg / 9.48 lbs,3.384,4.300
+RCF,Accessories,13360296,FL-B LINK HDL 10-15 2X,LINK BAR HDL15 TO HDL10,Pcs,Italy,73269098,55 mm / 2.17 inches,305 mm / 12.01 inches,185 mm / 7.28 inches,4.6 kg / 10.14 lbs,4.400,4.600
+RCF,Accessories,13360304,CVR EVOX 5,COVER CVR EVOX 5,Pcs,China,42029219,160 mm / 6.3 inches,500 mm / 19.69 inches,360 mm / 14.17 inches,2.15 kg / 4.74 lbs,1.610,2.150
+RCF,Accessories,13360305,CVR EVOX 8,COVER CVR EVOX 8,Pcs,China,42029219,160 mm / 6.3 inches,600 mm / 23.62 inches,470 mm / 18.5 inches,2.66 kg / 5.86 lbs,1.880,2.660
+RCF,Accessories,13360306,KRT-WH EVOX,DETACHABLE TROLLEY EVOX,Pcs,China,85189000,80 mm / 3.15 inches,500 mm / 19.69 inches,260 mm / 10.24 inches,1.31 kg / 2.89 lbs,1.312,1.312
+RCF,Attenuators/Transformers,13360312,TM80,AC TM80,Pcs,Italy,85043180,120 mm / 4.72 inches,181 mm / 7.13 inches,79 mm / 3.11 inches,2.3 kg / 5.07 lbs,1.700,2.300
+TT+,Accessories,13360315,RP 1X TT 5,RAIN PROTECTION RP 1X TT 5,Pcs,Italy,42029219,82 mm / 3.23 inches,672 mm / 26.46 inches,231 mm / 9.09 inches,2.8 kg / 6.17 lbs,1.900,2.800
+TT+,Accessories,13360316,RP 1X TTP 5,RAIN PROTECTION RP 1X TTP 5,Pcs,Italy,42029219,85 mm / 3.35 inches,674 mm / 26.54 inches,224 mm / 8.82 inches,2.9 kg / 6.39 lbs,2.000,2.900
+RCF,Accessories,13360319,CVR ST 12-SMA,COVER CVR ST 12-SMA,Pcs,Italy,42029219,80 mm / 3.15 inches,600 mm / 23.62 inches,400 mm / 15.75 inches,1.3 kg / 2.87 lbs,1.300,1.300
+RCF,Accessories,13360320,CVR ST 15-SMA,COVER CVR ST 15-SMA,Pcs,Italy,42029219,90 mm / 3.54 inches,720 mm / 28.35 inches,400 mm / 15.75 inches,1.51 kg / 3.33 lbs,1.507,1.507
+RCF,Accessories,13360321,COVER SUB 702 AS II,COVER CVR SUB 702 II,Pcs,Italy,42029219,,,,,1.698,1.698
+RCF,Accessories,13360322,CVR SUB 705 II,COVER CVR SUB 705 II,Pcs,Romania,42029219,90 mm / 3.54 inches,650 mm / 25.59 inches,650 mm / 25.59 inches,2.2 kg / 4.85 lbs,2.198,2.198
+RCF,Accessories,13360323,CVR SUB 708 II,COVER CVR SUB 708 II,Pcs,Romania,42029219,90 mm / 3.54 inches,750 mm / 29.53 inches,750 mm / 29.53 inches,3.01 kg / 6.64 lbs,3.012,3.012
+TT+,Accessories,13360328,V-BR TT 22 II,TT 22-A MKII V-BRACKET,Pcs,Italy,73269098,110 mm / 4.33 inches,550 mm / 21.65 inches,720 mm / 28.35 inches,5.29 kg / 11.66 lbs,5.290,5.290
+RCF,Accessories,13360332,STAGE BUMPERS M 18,STAGE BUMPERS M18,Pcs,China,40169997,125 mm / 4.92 inches,120 mm / 4.72 inches,220 mm / 8.66 inches,1.28 kg / 2.82 lbs,1.115,1.279
+RCF,Accessories,13360335,QL-PIN D11.2 L31 4X,PINS KIT HDL 50-A  4F,Pack,China,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.26 kg / 0.57 lbs,0.262,0.262
+RCF,Accessories,13360339,CVR SUB 9007,COVER CVR SUB 9007,Pcs,Italy,42029219,80 mm / 3.15 inches,1200 mm / 47.24 inches,800 mm / 31.5 inches,5.5 kg / 12.13 lbs,4.676,5.500
+RCF,Accessories,13360340,QL-PIN D12.6 L32 4X,QUICK LOCK PINS KIT 4R,Pack,China,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.3 kg / 0.66 lbs,0.300,0.300
+RCF,Attenuators/Transformers,13360341,IT 4000,IT 4000 INPUT TRANSFORMER 100V TO 0DB,Pcs,Italy,85043180,90 mm / 3.54 inches,110 mm / 4.33 inches,100 mm / 3.94 inches,0.21 kg / 0.46 lbs,0.161,0.211
+TT+,Accessories,13360342,AC TT051-052 L-BR,AC TT051-052 L-BRACKET,Pcs,Italy,73269098,,,,,3.220,3.540
+RCF,Accessories,13360343,RM-KIT M 18,RACK BRACKETS M18,Pcs,China,73269098,105 mm / 4.13 inches,165 mm / 6.5 inches,98 mm / 3.86 inches,0.92 kg / 2.03 lbs,0.846,0.916
+RCF,Accessories,13360348,KRT-WH SUB 9007,KART WITH WHEELS AC KART SUB9007-AS,Pcs,Italy,87168000,200 mm / 7.87 inches,2050 mm / 80.71 inches,725 mm / 28.54 inches,17.6 kg / 38.8 lbs,9.600,17.600
+RCF,Accessories,13360352,RP 9007 RAIN PROTECTION,RAIN PROTECTION RP 1X SUB 9007,Pcs,Italy,42029219,,,,,4.000,4.400
+RCF,Accessories,13360355,TC 120 TOURING CASE,TOURING CASE TR 120,Pcs,Italy,,,,,,0.000,0.000
+RCF,Accessories,13360378,CVR SUB 8003 II,COVER CVR SUB 8003 II,Pcs,Romania,42029219,90 mm / 3.54 inches,750 mm / 29.53 inches,750 mm / 29.53 inches,2.95 kg / 6.5 lbs,1.350,2.950
+RCF,Accessories,13360379,CVR SUB 905 II,COVER CVR SUB 905 II,Pcs,Romania,42029219,90 mm / 3.54 inches,650 mm / 25.59 inches,650 mm / 25.59 inches,2.95 kg / 6.5 lbs,1.350,2.950
+TT+,Accessories,13360384,KRT-WH TTS 18 II,KART WITH WHEELS KRT-WH TTS 18 II,Pcs,Italy,87168000,200 mm / 7.87 inches,565 mm / 22.24 inches,730 mm / 28.74 inches,14 kg / 30.86 lbs,10.100,14.000
+RCF,Accessories,13360385,KRT-WH SUB 9004,KART WITH WHEELS KRT-WH SUB 9004,Pcs,Italy,87168000,200 mm / 7.87 inches,580 mm / 22.83 inches,725 mm / 28.54 inches,14.31 kg / 31.55 lbs,13.360,14.310
+TT+,Accessories,13360396,CVR TTS 18 II,COVER CVR TTS 18 II,Pcs,Italy,42029219,0,0,0,3.5 kg / 7.72 lbs,2.900,3.500
+TT+,Accessories,13360397,CVR SUB 9004,COVER CVR SUB 9004,Pcs,Italy,42029219,0,0,0,3.5 kg / 7.72 lbs,2.900,3.500
+TT+,Accessories,13360398,V-BR NX 45,VERTICAL BRACKET V-BR NX 45,Pcs,Italy,73269098,0,0,0,6.23 kg / 13.73 lbs,6.230,6.230
+RCF,Accessories,13360408,CVR NX 32,COVER CVR NX 32,Pcs,Italy,42029219,0,0,0,2.5 kg / 5.51 lbs,1.348,2.500
+RCF,Accessories,13360409,CVR NX 45,COVER CVR NX 45,Pcs,Italy,42029219,0,0,0,2.8 kg / 6.17 lbs,1.615,2.800
+RCF,Accessories,13360426,RM-KIT DMA,RACK MOUNT KIT RM-KIT DMA,Pcs,China,73269098,342 mm / 13.46 inches,263 mm / 10.35 inches,562 mm / 22.13 inches,1.4 kg / 3.09 lbs,0.400,0.490
+RCF,Accessories,13360432,FL-B HDL 28 W,FLY BAR FL-B HDL 28 W,Pcs,,73269098,125 mm / 4.92 inches,645 mm / 25.39 inches,495 mm / 19.49 inches,29.8 kg / 65.7 lbs,25.200,29.800
+RCF,Digital Mixer,13360435,M 18 BAG,TRANSPORTATION BAG BG M 18,Pcs,China,42029219,0,0,0,0.5 kg / 1.1 lbs,0.495,0.495
+RCF,Accessories,13360437,RP 9004 RAIN PROTECTION,RAIN PROTECTION RP 1X SUB 9004,Pcs,Italy,42029219,,,,,3.300,3.900
+RCF,Accessories,13360438,CUSTODIA CVR HD 15,COVER CVR HD 15,Pcs,Italy,42029219,90 mm / 3.54 inches,770 mm / 30.31 inches,480 mm / 18.9 inches,2.2 kg / 4.85 lbs,1.715,2.200
+TT+,Accessories,13360439,H-PLATE TT4,,Pcs,,,125 mm / 4.92 inches,425 mm / 16.73 inches,345 mm / 13.58 inches,8.5 kg / 18.74 lbs,,
+RCF,Accessories,13360441,BG M 20X - E 12,TRANSPORTATION BAG BG M 20X - E 12,Pcs,China,42029219,,,,,0.817,1.500
+RCF,Accessories,13360442,SWM-BR VSA II BLACK,SWIVEL BRACKET SWM-BR VSA II BLACK,Pcs,Italy,73269098,74 mm / 2.91 inches,314 mm / 12.36 inches,154 mm / 6.06 inches,1.7 kg / 3.75 lbs,1.500,1.700
+RCF,Accessories,13360449,SWM-BR COMPACT M,WALL MOUNT BRACKET SWM-BR COMPACT M,Pcs,China,73269098,120 mm / 4.72 inches,160 mm / 6.3 inches,120 mm / 4.72 inches,0.83 kg / 1.83 lbs,0.727,0.830
+RCF,Accessories,13360456,FL-B H Q 15,FLY BAR FL-B H Q 15,Pcs,Italy,73269098,80 mm / 3.15 inches,570 mm / 22.44 inches,200 mm / 7.87 inches,12 kg / 26.46 lbs,10.000,12.000
+RCF,Accessories,13360457,FL-B V Q 15,FLY BAR FL-B V Q 15,Pcs,Italy,73269098,140 mm / 5.51 inches,885 mm / 34.84 inches,800 mm / 31.5 inches,24 kg / 52.91 lbs,20.000,24.000
+TT+,Accessories,13360459,H-BR TT 515,HORIZONTAL BRACKET H-BR TT 515,Pcs,Italy,73269098,90 mm / 3.54 inches,500 mm / 19.69 inches,300 mm / 11.81 inches,2 kg / 4.41 lbs,1.800,2.000
+RCF,Accessories,13360468,SWM-BR COMPACT M W,WALL MOUNT BRACKET SWM-BR COMPACT M W,Pcs,China,73269098,120 mm / 4.72 inches,160 mm / 6.3 inches,120 mm / 4.72 inches,0.83 kg / 1.83 lbs,0.727,0.830
+RCF,Accessories,13360471,H-BR ART 910,HORIZONTAL BRACKET H-BR ART 910,Pcs,China,73269098,135 mm / 5.31 inches,630 mm / 24.8 inches,365 mm / 14.37 inches,5.36 kg / 11.82 lbs,4.450,5.360
+RCF,Accessories,13360472,FL-BR ART 910,FLYING BRACKET FL-BR ART 910,Pcs,China,73269098,95 mm / 3.74 inches,360 mm / 14.17 inches,215 mm / 8.46 inches,2.53 kg / 5.58 lbs,2.070,2.530
+RCF,Accessories,13360473,CVR ART 910,COVER CVR ART 910,Pcs,Romania,42029219,95 mm / 3.74 inches,620 mm / 24.41 inches,400 mm / 15.75 inches,1.6 kg / 3.53 lbs,0.700,1.600
+RCF,Accessories,13360474,CVR ART 912,COVER CVR ART 912,Pcs,Romania,42029219,100 mm / 3.94 inches,735 mm / 28.94 inches,415 mm / 16.34 inches,2 kg / 4.41 lbs,1.000,2.000
+RCF,Accessories,13360475,H-BR ART 912,HORIZONTAL BRACKET H-BR ART 912,Pcs,China,73269098,145 mm / 5.71 inches,700 mm / 27.56 inches,325 mm / 12.8 inches,5.7 kg / 12.57 lbs,4.500,5.700
+RCF,Accessories,13360476,V-BR ART 912,VERTICAL BRACKET V-BR ART 912,Pcs,China,73269098,105 mm / 4.13 inches,530 mm / 20.87 inches,440 mm / 17.32 inches,6.2 kg / 13.67 lbs,5.200,6.200
+RCF,Accessories,13360477,FL-BR ART 912,FLYING BRACKET FL-BR ART 912,Pcs,China,73269098,150 mm / 5.91 inches,415 mm / 16.34 inches,385 mm / 15.16 inches,4.5 kg / 9.92 lbs,3.600,4.500
+RCF,Accessories,13360478,CVR ART 915,COVER CVR ART 915,Pcs,Romania,42029219,100 mm / 3.94 inches,755 mm / 29.72 inches,500 mm / 19.69 inches,2.38 kg / 5.25 lbs,1.710,2.380
+RCF,Accessories,13360479,H-BR ART 915,HORIZONTAL BRACKET H-BR ART 915,Pcs,China,73269098,140 mm / 5.51 inches,765 mm / 30.12 inches,365 mm / 14.37 inches,6.2 kg / 13.67 lbs,5.000,6.200
+RCF,Accessories,13360480,V-BR ART 915,VERTICAL BRACKET V-BR ART 915,Pcs,China,73269098,105 mm / 4.13 inches,550 mm / 21.65 inches,470 mm / 18.5 inches,6.6 kg / 14.55 lbs,5.600,6.600
+RCF,Accessories,13360481,FL-BR ART 915,FLYING BRACKET FL-BR ART 915,Pcs,China,73269098,160 mm / 6.3 inches,435 mm / 17.13 inches,435 mm / 17.13 inches,4.8 kg / 10.58 lbs,3.800,4.800
+TT+,Accessories,13360482,CVR TT 515,COVER CVR TT 515,Pcs,Italy,42029219,80 mm / 3.15 inches,460 mm / 18.11 inches,350 mm / 13.78 inches,1.8 kg / 3.97 lbs,0.720,1.800
+TT+,Accessories,13360484,V-BR TT 515,VERTICAL BRACKET V-BR TT 515,Pcs,Italy,73269098,165 mm / 6.5 inches,325 mm / 12.8 inches,225 mm / 8.86 inches,4.5 kg / 9.92 lbs,3.500,4.500
+TT+,Accessories,13360485,FL-BR TT 515,FLYING BRACKET FL-BR TT 515,Pcs,Italy,73269098,80 mm / 3.15 inches,370 mm / 14.57 inches,130 mm / 5.12 inches,2.1 kg / 4.63 lbs,1.700,2.100
+TT+,Accessories,13360486,CVR TT 808,COVER CVR TT 808,Pcs,Italy,42029219,85 mm / 3.35 inches,755 mm / 29.72 inches,510 mm / 20.08 inches,1.8 kg / 3.97 lbs,1.300,1.800
+RCF,Accessories,13360487,C-BR 4X Q 15,FLYING BRACKET C-BR 10° Q 15,Pcs,Italy,73269098,125 mm / 4.92 inches,885 mm / 34.84 inches,775 mm / 30.51 inches,11 kg / 24.25 lbs,10.000,11.000
+RCF,Accessories,13360489,TILE BRIDGE 4X CMR,INSTALLATION PLATE TILE BRIDGE 4X CMR,Pack,China,73269098,50 mm / 1.97 inches,735 mm / 28.94 inches,360 mm / 14.17 inches,3.75 kg / 8.27 lbs,4.290,3.750
+RCF,Accessories,13360490,MUD RING 4X CMR,INSTALLATION PLATE MUD RING 4X CMR,Pack,China,73269098,100 mm / 3.94 inches,740 mm / 29.13 inches,365 mm / 14.37 inches,2.87 kg / 6.33 lbs,2.430,2.870
+RCF,Accessories,13360492,GRILLE KIT 4X CMR B,ACCESSORY GRILLE KIT 4X CMR B,Pack,China,73269098,115 mm / 4.53 inches,355 mm / 13.98 inches,178 mm / 7.01 inches,1.4 kg / 3.09 lbs,1.000,1.400
+RCF,Accessories,13360495,CVR NX 910,COVER CVR NX 910,Pcs,Italy,42029219,80 mm / 3.15 inches,600 mm / 23.62 inches,400 mm / 15.75 inches,1.6 kg / 3.53 lbs,1.060,1.600
+RCF,Accessories,13360496,CVR NX 912,COVER CVR NX 912,Pcs,Italy,42029219,90 mm / 3.54 inches,720 mm / 28.35 inches,400 mm / 15.75 inches,1.8 kg / 3.97 lbs,1.000,1.800
+RCF,Accessories,13360497,CVR NX 915,COVER CVR NX 915,Pcs,Italy,42029219,90 mm / 3.54 inches,720 mm / 28.35 inches,400 mm / 15.75 inches,2.2 kg / 4.85 lbs,1.750,2.200
+TT+,Accessories,13360500,V-BR TT 808,VERTICAL BRACKET V-BR TT 808,Pcs,Italy,73269098,90 mm / 3.54 inches,340 mm / 13.39 inches,670 mm / 26.38 inches,6.5 kg / 14.33 lbs,5.500,6.500
+TT+,Accessories,13360501,FL-B LINK TT 515,LINK BAR FL-B LINK TT 515,Pcs,Italy,73269098,165 mm / 6.5 inches,325 mm / 12.8 inches,225 mm / 8.86 inches,4.5 kg / 9.92 lbs,3.500,4.500
+RCF,Accessories,13360505,HN-KIT COMPACT C 32 C 45,HORN KIT HN-KIT COMPACT C 32 C 45,Pcs,Italy,85189000,185 mm / 7.28 inches,280 mm / 11.02 inches,265 mm / 10.43 inches,2 kg / 4.41 lbs,1.450,2.000
+RCF,Accessories,13360506,2X PLATE H-BR NX 910-912-915,INSTALL.PLT 2X PLATE H-BR NX 910-12-15,Pcs,Italy,73269098,100 mm / 3.94 inches,180 mm / 7.09 inches,180 mm / 7.09 inches,1.7 kg / 3.75 lbs,1.600,1.700
+TT+,GTX,13360508,FL-B 006,FLY BAR FL-B 006,Pcs,Italy,73269098,125 mm / 4.92 inches,645 mm / 25.39 inches,495 mm / 19.49 inches,29.8 kg / 65.7 lbs,25.200,29.800
+TT+,GTX,13360509,KRT-WH 002,KART WITH WHEELS KRT-WH 002,Pcs,Italy,87168000,240 mm / 9.45 inches,620 mm / 24.41 inches,830 mm / 32.68 inches,21 kg / 46.3 lbs,18.500,21.000
+RCF,Accessories,13360515,RP 001,RAIN PROTECTION RP 001,Pcs,Italy,42029219,65 mm / 2.56 inches,280 mm / 11.02 inches,130 mm / 5.12 inches,0.65 kg / 1.43 lbs,0.500,0.650
+RCF,Accessories,13360517,CVR NX 985,COVER CVR NX 985,Pcs,Italy,42029219,90 mm / 3.54 inches,650 mm / 25.59 inches,660 mm / 25.98 inches,3.55 kg / 7.83 lbs,2.900,3.550
+RCF,Accessories,13360518,CVR SUB 8008,COVER CVR SUB 8008,Pcs,Italy,42029219,80 mm / 3.15 inches,1200 mm / 47.24 inches,800 mm / 31.5 inches,4.7 kg / 10.36 lbs,3.600,4.700
+TT+,GTX,13360519,FL-B 005,FLY BAR FL-B 005,Pcs,Italy,73269098,160 mm / 6.3 inches,1210 mm / 47.64 inches,590 mm / 23.23 inches,48 kg / 105.82 lbs,41.000,48.000
+TT+,GTX,13360520,KRT-WH 003,CART WITH WHEELS KRT-WH 003,Pcs,Italy,87168000,195 mm / 7.68 inches,575 mm / 22.64 inches,1200 mm / 47.24 inches,12.7 kg / 28 lbs,10.000,12.700
+RCF,Accessories,13360521,FL-B LGT HL 40 WP 002,FLY BAR LIGHT FL-B LGT HL 40 WP 002,Pcs,Italy,73269098,,,,,14.500,18.900
+TT+,GTX,13360526,FL-B CMP 001,FLY BAR COMPRESSION FL-B CMP 001,Pcs,Italy,73269098,120 mm / 4.72 inches,1180 mm / 46.46 inches,690 mm / 27.17 inches,20 kg / 44.09 lbs,17.500,20.000
+RCF,Accessories,13360528,CVR 005,COVER CVR 005,Pcs,Romania,42029219,90 mm / 3.54 inches,650 mm / 25.59 inches,650 mm / 25.59 inches,3.09 kg / 6.81 lbs,2.198,3.090
+RCF,Accessories,13360529,CVR 004,COVER CVR 004,Pcs,Hungary,42029219,90 mm / 3.54 inches,650 mm / 25.59 inches,650 mm / 25.59 inches,3.09 kg / 6.81 lbs,2.198,3.090
+RCF,Accessories,13360530,CVR 003,COVER CVR 003,Pcs,Hungary,42029219,90 mm / 3.54 inches,750 mm / 29.53 inches,750 mm / 29.53 inches,3.9 kg / 8.6 lbs,3.010,3.900
+RCF,Accessories,13360533,V-BR 002,VERTICAL BRACKET V-BR 002 (PAIR),Pair,Italy,73269098,90 mm / 3.54 inches,520 mm / 20.47 inches,430 mm / 16.93 inches,8.1 kg / 17.86 lbs,6.600,8.100
+RCF,Accessories,13360534,FLY BAR HL 40 WP 002,FLY BAR HL 40 WP 002,Pcs,Italy,73269098,,,,,25.200,29.800
+RCF,Accessories,13360535,H-BR 001,HORIZONTAL BRACKET H-BR 001 (PAIR),Pair,Italy,73269098,100 mm / 3.94 inches,800 mm / 31.5 inches,275 mm / 10.83 inches,12.1 kg / 26.68 lbs,10.600,12.100
+TT+,GTX,13360537,KRT-WH 001,CART WITH WHEELS KRT-WH 001,Pcs,Italy,87168000,350 mm / 13.78 inches,1240 mm / 48.82 inches,710 mm / 27.95 inches,60 kg / 132.28 lbs,56.000,60.000
+RCF,Accessories,13360538,H-BR 003,HORIZONTAL BRACKET H-BR 003 (PAIR),Pair,Italy,73269098,80 mm / 3.15 inches,680 mm / 26.77 inches,180 mm / 7.09 inches,11 kg / 24.25 lbs,9.400,11.000
+RCF,Accessories,13360539,WM-BR 001,WALL MOUNT BRACKET WM-BR 001,Pcs,Italy,73269098,75 mm / 2.95 inches,450 mm / 17.72 inches,100 mm / 3.94 inches,2.73 kg / 6.02 lbs,2.050,2.728
+RCF,Accessories,13360541,V-BR 001,VERTICAL BRACKET V-BR 001 (PAIR),Pair,Italy,73269098,90 mm / 3.54 inches,450 mm / 17.72 inches,400 mm / 15.75 inches,8.3 kg / 18.3 lbs,6.800,8.300
+RCF,Accessories,13360545,H-BR 005,HORIZONTAL BRACKET H-BR 005 (PAIR),Pair,Italy,73269098,140 mm / 5.51 inches,465 mm / 18.31 inches,285 mm / 11.22 inches,5 kg / 11.02 lbs,4.200,5.000
+RCF,Accessories,13360547,H-BR 006,HORIZONTAL BRACKET H-BR 006 (PAIR),Pair,Italy,73269098,100 mm / 3.94 inches,545 mm / 21.46 inches,200 mm / 7.87 inches,9 kg / 19.84 lbs,7.800,9.000
+RCF,Accessories,13360549,V-BR 006,VERTICAL BRACKET V-BR 006 (PAIR),Pair,Italy,73269098,90 mm / 3.54 inches,250 mm / 9.84 inches,300 mm / 11.81 inches,7 kg / 15.43 lbs,5.600,7.000
+RCF,Accessories,13360550,H-BR 004,HORIZONTAL BRACKET H-BR 004 (PAIR),Pair,Italy,73269098,140 mm / 5.51 inches,405 mm / 15.94 inches,265 mm / 10.43 inches,4 kg / 8.82 lbs,3.200,4.000
+RCF,Accessories,13360551,H-BR 007,HORIZONTAL BRACKET H-BR 007 (PAIR),Pair,Italy,73269098,100 mm / 3.94 inches,610 mm / 24.02 inches,200 mm / 7.87 inches,9.6 kg / 21.16 lbs,8.400,9.600
+RCF,Accessories,13360552,V-BR 007,VERTICAL BRACKET V-BR 007 (PAIR),Pair,Italy,73269098,90 mm / 3.54 inches,300 mm / 11.81 inches,330 mm / 12.99 inches,7.3 kg / 16.09 lbs,6.000,7.300
+TT+,GTX,13360555,STCK-KIT 001,STACKING KIT STCK-KIT 001,Pcs,Italy,73269098,120 mm / 4.72 inches,1350 mm / 53.15 inches,765 mm / 30.12 inches,40 kg / 88.18 lbs,35.000,40.000
+TT+,GTX,13360556,FL-B EXT 006,FLY BAR EXTENSION FL-B EXT 006,Pcs,Italy,73269098,145 mm / 5.71 inches,1380 mm / 54.33 inches,160 mm / 6.3 inches,24 kg / 52.91 lbs,21.500,24.000
+TT+,GTX,13360557,CVR 001,COVER CVR 001,Pcs,Italy,42029219,80 mm / 3.15 inches,1200 mm / 47.24 inches,800 mm / 31.5 inches,,6.500,7.500
+TT+,GTX,13360558,FL-B EXT 007,FLY BAR EXTENSION FL-B EXT 007,Pcs,Italy,73269098,190 mm / 7.48 inches,810 mm / 31.89 inches,110 mm / 4.33 inches,13.9 kg / 30.64 lbs,13.000,13.900
+TT+,GTX,13360559,CVR 002,COVER CVR 002,Pcs,Italy,42029219,80 mm / 3.15 inches,1215 mm / 47.83 inches,805 mm / 31.69 inches,4.9 kg / 10.8 lbs,3.900,4.900
+TT+,GTX,13360561,FL-B PK 007,FLY BAR PICKUP FL-B PK 007,Pcs,Italy,73269098,155 mm / 6.1 inches,305 mm / 12.01 inches,155 mm / 6.1 inches,3 kg / 6.61 lbs,2.300,3.000
+TT+,GTX,13360562,QL-PIN 006,QUICK LOCK PIN QL-PIN 006,Pcs,China,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.4 kg / 0.88 lbs,0.370,0.380
+TT+,GTX,13360563,FL-B CMP KIT 002,FLY BAR COMPRESSION KIT FL-B CMP KIT 002,Pcs,Japan,73269098,240 mm / 9.45 inches,480 mm / 18.9 inches,510 mm / 20.08 inches,23.5 kg / 51.81 lbs,22.000,23.500
+TT+,GTX,13360564,FL-B 007,FLY BAR FL-B 007,Pcs,Italy,73269098,145 mm / 5.71 inches,1380 mm / 54.33 inches,160 mm / 6.3 inches,28 kg / 61.73 lbs,25.200,28.000
+TT+,GTX,13360565,KRT-WH 004,CART WITH WHEELS KRT-WH 004,Pcs,Italy,87168000,280 mm / 11.02 inches,1390 mm / 54.72 inches,790 mm / 31.1 inches,69.6 kg / 153.44 lbs,55.000,69.600
+TT+,GTX,13360566,CVR 006,COVER CVR 006,Pcs,Italy,42029219,110 mm / 4.33 inches,1360 mm / 53.54 inches,910 mm / 35.83 inches,9.7 kg / 14.13 lbs,8.300,9.700
+TT+,GTX,13360567,CVR 007,COVER CVR 007,Pcs,Italy,42029219,80 mm / 3.15 inches,1200 mm / 47.24 inches,800 mm / 31.5 inches,6.41 kg / 14.13 lbs,3.560,6.410
+TT+,GTX,13360568,KRT-WH 005,KART WITH WHEELS KRT-WH 005,Pcs,Italy,87168000,275 mm / 10.83 inches,770 mm / 30.31 inches,545 mm / 21.46 inches,10.5 kg / 23.15 lbs,8.500,10.500
+TT+,GTX,13360570,CVR 008,COVER CVR 008,Pcs,Italy,42029219,95 mm / 3.74 inches,755 mm / 29.72 inches,750 mm / 29.53 inches,3.6 kg / 7.94 lbs,2.900,3.600
+RCF,Accessories,13360597,H-BR 004 W,HORIZONTAL BRACKET H-BR 004 W (PAIR),Pair,Italy,73269098,140 mm / 5.51 inches,405 mm / 15.94 inches,265 mm / 10.43 inches,4 kg / 8.82 lbs,3.200,4.000
+RCF,Accessories,13360602,H-BR 005 W,HORIZONTAL BRACKET H-BR 005 W (PAIR),Pair,Italy,73269098,140 mm / 5.51 inches,465 mm / 18.31 inches,285 mm / 11.22 inches,5 kg / 11.02 lbs,4.200,5.000
+RCF,Accessories,13360603,H-BR 006 W,HORIZONTAL BRACKET H-BR 006 W (PAIR),Pair,Italy,73269098,100 mm / 3.94 inches,545 mm / 21.46 inches,200 mm / 7.87 inches,9 kg / 19.84 lbs,7.800,9.000
+RCF,Accessories,13360604,H-BR 007 W,HORIZONTAL BRACKET H-BR 007 W (PAIR),Pair,Italy,73269098,100 mm / 3.94 inches,610 mm / 24.02 inches,200 mm / 7.87 inches,9.6 kg / 21.16 lbs,8.400,9.600
+RCF,Accessories,13360605,V-BR 006 W,VERTICAL BRACKET V-BR 006 W (PAIR),Pair,Italy,73269098,90 mm / 3.54 inches,250 mm / 9.84 inches,300 mm / 11.81 inches,7 kg / 15.43 lbs,5.600,7.000
+RCF,Accessories,13360606,V-BR 007 W,VERTICAL BRACKET V-BR 007 W (PAIR),Pair,Italy,73269098,90 mm / 3.54 inches,300 mm / 11.81 inches,330 mm / 12.99 inches,7.3 kg / 16.09 lbs,6.000,7.300
+RCF,Accessories,13360607,V-BR 002 W,VERTICAL BRACKET V-BR 002 W (PAIR),Pair,Italy,73269098,90 mm / 3.54 inches,520 mm / 20.47 inches,430 mm / 16.93 inches,8.1 kg / 17.86 lbs,6.600,8.100
+RCF,Accessories,13360609,H-BR 003 W,HORIZONTAL BRACKET H-BR 003 W (PAIR),Pair,Italy,73269098,80 mm / 3.15 inches,680 mm / 26.77 inches,180 mm / 7.09 inches,11 kg / 24.25 lbs,9.400,11.000
+RCF,Accessories,13360611,CVR 010,COVER CVR 010,Pcs,Italy,42029219,80 mm / 3.15 inches,740 mm / 29.13 inches,415 mm / 16.34 inches,2.05 kg / 4.52 lbs,1.650,2.050
+RCF,Accessories,13360612,CVR 011,COVER CVR 011,Pcs,Italy,42029219,80 mm / 3.15 inches,630 mm / 24.8 inches,410 mm / 16.14 inches,1.65 kg / 3.64 lbs,1.300,1.650
+RCF,Accessories,13360613,QL-PIN 007,QUICK LOCK PIN QL-PIN 007,Pcs,China,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.4 kg / 0.88 lbs,0.350,0.400
+TT+,GTX,13360625,FL-B PK 012,FLY BAR PICKUP FL-B PK 012,Pcs,Italy,42029219,80 mm / 3.15 inches,1200 mm / 47.24 inches,800 mm / 31.5 inches,2.1 kg / 4.63 lbs,1.900,2.100
+RCF,Accessories,13360626,QL-PIN 008,QUICK LOCK PIN QL-PIN 008,Pcs,China,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.2 kg / 0.44 lbs,0.186,0.205
+RCF,Accessories,13360627,QL-PIN 009,QUICK LOCK PIN QL-PIN 009,Pcs,China,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.22 kg / 0.49 lbs,0.198,0.215
+TT+,GTX,13360630,STCK-KIT 003,STACKING KIT STCK-KIT 003,Pcs,Italy,73269098,100 mm / 3.94 inches,750 mm / 29.53 inches,650 mm / 25.59 inches,20 kg / 44.09 lbs,16.000,20.000
+TT+,GTX,13360631,STCK-KIT 004,STACKING KIT STCK-KIT 004,Pcs,Italy,73269098,,,,,11.000,12.200
+RCF,Accessories,13360633,QL-PIN 010,QUICK LOCK PIN QL-PIN 010,Pcs,,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.4 kg / 0.88 lbs,0.350,0.400
+RCF,Accessories,13360634,QL-PIN 011,QUICK LOCK PIN QL-PIN 011,Pcs,,73181900,20 mm / 0.79 inches,145 mm / 5.71 inches,125 mm / 4.92 inches,0.4 kg / 0.88 lbs,0.350,0.400
+RCF,Accessories,13360638,PM-KIT M20 W,POLE MOUNT KIT PM-KIT M20 W,Pcs,China,73269098,60 mm / 2.36 inches,780 mm / 30.71 inches,105 mm / 4.13 inches,1.3 kg / 2.87 lbs,1.430,1.600
+TT+,GTX,13360649,FLB60649,FLY BAR LIGHT FLB60649,Pcs,Italy,73269098,200 mm / 7.87 inches,755 mm / 29.72 inches,635 mm / 25 inches,20.5 kg / 45.19 lbs,18.500,20.500
+RCF,Accessories,13360655,KRT-WH 007,CART WITH WHEELS CRT60655,Pcs,,87168000,,,,,10.000,12.700
+RCF,Accessories,13360656,CVR 016,COVER CVR60656,Pcs,Italy,42029219,,,,,3.560,6.410
+RCF,Accessories,13360657,KRT-WH 008,CART WITH WHEELS CRT60657,Pcs,,87168000,,,,,8.500,10.500
+RCF,Accessories,13360658,CVR 017,COVER CVR60658,Pcs,Italy,42029219,,,,,2.800,3.500
+TT+,GTX,13360673,FLB60673,FLYING BRACKET FLB60673,Pcs,,73269098,,,,,10.000,11.500
+TT+,GTX,13360676,FLB60676,FLY BAR FLB60676,Pcs,,73269098,,,,,,
+TT+,GTX,13360677,FLB60677,FLYING BRACKET FLB60677,Pcs,,73269098,,,,,,
+RCF,Accessories,13360678,PMK60678,POLE MOUNT KIT PMK60678,Pcs,China,73269098,230 mm / 9.06 inches,110 mm / 4.33 inches,110 mm / 4.33 inches,0.92 kg / 2.03 lbs,0.660,0.920
+RCF,Accessories,13360679,PMK60679,POLE MOUNT KIT PMK60679,Pcs,China,73269098,230 mm / 9.06 inches,110 mm / 4.33 inches,110 mm / 4.33 inches,0.92 kg / 2.03 lbs,0.660,0.920
+RCF,Accessories,13360681,VBR60681,VERTICAL BRACKET VBR60681,Pcs,Italy,73269098,165 mm / 6.5 inches,325 mm / 12.8 inches,225 mm / 8.86 inches,4.5 kg / 9.92 lbs,3.500,4.500
+RCF,Accessories,13360682,VBR60682,VERTICAL BRACKET VBR60682,Pcs,,73269098,165 mm / 6.5 inches,325 mm / 12.8 inches,225 mm / 8.86 inches,4.5 kg / 9.92 lbs,3.500,4.500
+RCF,Accessories,13360683,HBR60683,HORIZONTAL BRACKET HBR60683,Pcs,,73269098,90 mm / 3.54 inches,500 mm / 19.69 inches,300 mm / 11.81 inches,2 kg / 4.41 lbs,1.800,2.000
+RCF,Accessories,13360684,HBR60684,HORIZONTAL BRACKET HBR60684,Pcs,,73269098,90 mm / 3.54 inches,500 mm / 19.69 inches,300 mm / 11.81 inches,2 kg / 4.41 lbs,1.800,2.000
+RCF,Accessories,13360685,CVR60685,COVER CVR60685,Pcs,Italy,42029219,80 mm / 3.15 inches,460 mm / 18.11 inches,350 mm / 13.78 inches,1.8 kg / 3.97 lbs,0.720,1.800
+RCF,Accessories,13360687,HBR60687,HORIZONTAL BRACKET HBR60687,Pcs,,73269098,100 mm / 3.94 inches,800 mm / 31.5 inches,275 mm / 10.83 inches,12.1 kg / 26.68 lbs,10.600,12.100
+RCF,Accessories,13360688,CVR60688,COVER CVR60688,Pcs,Italy,42029219,,,,,0.720,1.800
+RCF,Accessories,13360690,FLB60690,LINK BAR FLB60690,Pcs,,73269098,165 mm / 6.5 inches,325 mm / 12.8 inches,225 mm / 8.86 inches,4.5 kg / 9.92 lbs,3.500,4.500
+RCF,Accessories,13360691,FLB60691,FLYING BRACKET FLB60691,Pcs,,73269098,80 mm / 3.15 inches,370 mm / 14.57 inches,130 mm / 5.12 inches,2.1 kg / 4.63 lbs,1.700,2.100
+RCF,Accessories,13360692,HBR60692,HORIZONTAL BRACKET HBR60692,Pcs,,73269098,90 mm / 3.54 inches,500 mm / 19.69 inches,300 mm / 11.81 inches,2 kg / 4.41 lbs,1.800,2.000
+RCF,Accessories,13360693,VBR60693,VERTICAL BRACKET VBR60693,Pcs,,73269098,165 mm / 6.5 inches,325 mm / 12.8 inches,225 mm / 8.86 inches,4.5 kg / 9.92 lbs,3.500,4.500
+RCF,Accessories,13360694,CVR60694,COVER CVR60694,Pcs,Italy,42029219,90 mm / 3.54 inches,770 mm / 30.31 inches,480 mm / 18.9 inches,2.36 kg / 5.2 lbs,1.560,2.360
+RCF,Accessories,13360697,FLB60697,FLY BAR FLB60697,Pcs,,73269098,105 mm / 4.13 inches,225 mm / 8.86 inches,580 mm / 22.83 inches,6.5 kg / 14.33 lbs,5.500,6.500
+RCF,Accessories,13360698,VBR60698,VERTICAL BRACKET VBR60698,Pcs,,73269098,125 mm / 4.92 inches,345 mm / 13.58 inches,425 mm / 16.73 inches,6.5 kg / 14.33 lbs,5.500,6.500
+RCF,Accessories,13360704,VBR60704,VERTICAL BRACKET VBR60704,Pcs,Italy,73269098,110 mm / 4.33 inches,550 mm / 21.65 inches,720 mm / 28.35 inches,7.1 kg / 15.65 lbs,5.290,7.100
+RCF,Accessories,13360707,VBR60707,VERTICAL BRACKET VBR60707,Pcs,,73269098,,,,,6.230,6.230
+RCF,Accessories,13360708,CVR60708,COVER CVR60708,Pcs,Italy,42029219,,,,,1.300,1.800
+RCF,Accessories,13360709,HBR60709,HORIZONTAL BRACKET HBR60709,Pcs,,73269098,,,,,5.500,6.500
+RCF,Accessories,13360710,CVR60710,COVER CVR60710,Pcs,Italy,42029219,80 mm / 3.15 inches,600 mm / 23.62 inches,400 mm / 15.75 inches,1.5 kg / 3.31 lbs,1.000,1.500
+RCF,Accessories,13360711,HBR60711,HORIZONTAL BRACKET HBR60711,Pcs,,73269098,60 mm / 2.36 inches,530 mm / 20.87 inches,220 mm / 8.66 inches,2.5 kg / 5.51 lbs,2.200,2.500
+RCF,Accessories,13360712,VBR60712,VERTICAL BRACKET VBR60712,Pcs,,73269098,,,,,1.800,2.100
+RCF,Accessories,13360713,CVR60713,COVER CVR60713,Pcs,Italy,42029219,80 mm / 3.15 inches,600 mm / 23.62 inches,400 mm / 15.75 inches,,0.890,
+RCF,Accessories,13360714,HBR60714,HORIZONTAL BRACKET HBR60714,Pcs,,73269098,60 mm / 2.36 inches,530 mm / 20.87 inches,220 mm / 8.66 inches,3 kg / 6.61 lbs,2.000,3.000
+RCF,Accessories,13360715,VBR60715,VERTICAL BRACKET VBR60715,Pcs,,73269098,60 mm / 2.36 inches,340 mm / 13.39 inches,300 mm / 11.81 inches,2.7 kg / 5.95 lbs,1.700,2.700
+RCF,Accessories,13360716,HBR60716,HORIZONTAL BRACKET HBR60716,Pcs,,73269098,,,,,1.800,2.000
+RCF,Microphones,14115014,MD 7600,MD7600 MICROPHONE,Pcs,Philippines,85181095,242 mm / 9.53 inches,70 mm / 2.76 inches,125 mm / 4.92 inches,0.8 kg / 1.76 lbs,0.600,0.800
+RCF,Microphones,14115021,MD 6000X,MD 6000X - HANDHELD MIC. PTT XLR3 CONN.,Pcs,Philippines,85181095,60 mm / 2.36 inches,140 mm / 5.51 inches,110 mm / 4.33 inches,0.27 kg / 0.6 lbs,0.205,0.265
+RCF,Microphones,14115026,MC 5002,MC 5002 PROFESSIONAL SURFACE MIC.,Pcs,Philippines,85181095,0,0,0,0.33 kg / 0.73 lbs,0.251,0.329
+RCF,Wireless,14250007,TX 2006,TX2006-KIT WIR. MIC. UHF HAND-HELD 6 CH,Pcs,China,85181095,60 mm / 2.36 inches,270 mm / 10.63 inches,390 mm / 15.35 inches,1.45 kg / 3.2 lbs,1.000,1.450
+RCF,Wireless,14250008,TX 4016,TX4016-KIT WIR. MIC. UHF HAND-HELD 16 CH,Pcs,China,85181095,60 mm / 2.36 inches,270 mm / 10.63 inches,390 mm / 15.35 inches,1.5 kg / 3.31 lbs,1.200,1.500
+RCF,Wireless,14250009,PX 2106,PX 2106-KIT WIR. MIC. UHF POCK.+MIC. 6CH,Pcs,China,85181095,,,,,1.000,1.300
+RCF,DXT 7000,14322018,BM 7624D,BM 7624D SEL.PAG.MIC. LCD 24 CONF. BUTT.,Pcs,Finland,85181095,0,0,0,1.5 kg / 3.31 lbs,1.000,1.495
+RCF,DXT 9000,14322025,BM 3222,BM 3222 GATE MIC CONSOLE,Pcs,Italy,85181095,129 mm / 5.08 inches,329 mm / 12.95 inches,144 mm / 5.67 inches,2.54 kg / 5.6 lbs,2.016,2.542
+RCF,Accessories,14322031,BM 404,MIC CONSOLE BM 404,Pcs,Italy,85181000,130 mm / 5.12 inches,330 mm / 12.99 inches,150 mm / 5.91 inches,1.1 kg / 2.43 lbs,0.812,1.100
+RCF,Cables,14380017,CJ 228E,CJ228E CABLE 2X2X8/10 JE-H(ST)H 30/60 FR,Pcs,Italy,85444995,90 mm / 3.54 inches,340 mm / 13.39 inches,340 mm / 13.39 inches,0.19 kg / 0.42 lbs,0.190,0.190
+RCF,Cables,14380021,CJ 428E,CJ428E CABLE 4X2X8/10 JE-H(ST)H 30/60 FR,Pcs,Italy,85444995,90 mm / 3.54 inches,340 mm / 13.39 inches,340 mm / 13.39 inches,0.34 kg / 0.75 lbs,0.335,0.335
+RCF,Cables,14380030,CV 210,CV210 CABLE SPEAKER 100V SEZ 2X1MMQ EVAC,Pcs,Italy,,0,0,0,0.05 kg / 0.11 lbs,0.054,0.054
+RCF,Cables,14380031,CV 215,CV215 CABLE SPEAKER 100V SEZ 2X1.5MMQ EV,Pcs,Italy,,0,0,0,0.08 kg / 0.18 lbs,0.078,0.078
+RCF,Cables,14380032,CV 225,CV225 CABLE SPEAKER 100V SEZ 2X2.5MMQ EV,Pcs,Italy,,0,0,0,0.1 kg / 0.22 lbs,0.102,0.102
+RCF,"3"" VC Comp. Driver",15100004,ND840 16ohm,C.DRIVER ND840 16ohm,Pcs,Italy,85182900,63 mm / 2.48 inches,142 mm / 5.59 inches,144 mm / 5.67 inches,1.7 kg / 3.75 lbs,1.400,1.700
+RCF,"1,75"" VC Comp. Driver",15100023,NDX595,C.DRIVER NDX595 8 OHM,Pcs,Italy,85182900,65 mm / 2.56 inches,111 mm / 4.37 inches,113 mm / 4.45 inches,1.13 kg / 2.49 lbs,1.040,1.125
+RCF,"1,75"" VC Comp. Driver",15100024,NDX495,C.DRIVER NDX495 8 OHM,Pcs,Italy,85182900,65 mm / 2.56 inches,111 mm / 4.37 inches,113 mm / 4.45 inches,0.89 kg / 1.96 lbs,0.851,0.889
+RCF,"1,75"" VC Comp. Driver",15100025,CDX495,C.DRIVER CDX495 8 OHM,Pcs,Italy,85182900,68 mm / 2.68 inches,153 mm / 6.02 inches,155 mm / 6.1 inches,2.63 kg / 5.8 lbs,2.458,2.625
+RCF,"3"" VC Comp. Driver",15100030,NDT895,C.DRIVER NDT895 8 OHM,Pcs,Italy,85182900,63 mm / 2.48 inches,142 mm / 5.59 inches,144 mm / 5.67 inches,1.6 kg / 3.53 lbs,1.600,1.600
+RCF,"1,75"" VC Comp. Driver",15100031,CDK455,C.DRIVER CDK455 8 OHM,Pcs,Italy,85182900,74 mm / 2.91 inches,122 mm / 4.8 inches,123 mm / 4.84 inches,1.35 kg / 2.98 lbs,1.230,1.350
+RCF,"4"" VC Comp. Driver",15100033,NDT995,C.DRIVER NDT995 8 OHM,Pcs,Italy,85182900,79 mm / 3.11 inches,169 mm / 6.65 inches,171 mm / 6.73 inches,2.92 kg / 6.44 lbs,2.720,2.920
+RCF,Driver,15110017,D 5076,DRIVER UNIT D 5076,Pcs,Italy,85182995,85 mm / 3.35 inches,120 mm / 4.72 inches,110 mm / 4.33 inches,1.7 kg / 3.75 lbs,1.645,1.700
+RCF,"3"" VC Comp. Driver",15120058,N850,C.DRIVER N850 8 OHM,Pcs,Italy,85182900,114 mm / 4.49 inches,203 mm / 7.99 inches,205 mm / 8.07 inches,7 kg / 15.43 lbs,6.000,7.000
+RCF,"1,5"" VC Comp. Driver",15129019,ND1411-M,C.DRIVER ND1411-M 8 OHM,Pcs,Italy,85182900,65 mm / 2.56 inches,95 mm / 3.74 inches,97 mm / 3.82 inches,0.72 kg / 1.59 lbs,0.685,0.722
+RCF,"3"" VC Comp. Driver",15129022,ND850 1.4,C.DRIVER ND850 - 1.4  8 OHM,Pcs,Italy,85182900,68 mm / 2.68 inches,153 mm / 6.02 inches,155 mm / 6.1 inches,2.66 kg / 5.86 lbs,2.500,2.660
+RCF,"2.5"" VC Comp. Driver",15129024,ND650,C.DRIVER ND650 8 OHM,Pcs,Italy,85182900,63 mm / 2.48 inches,142 mm / 5.59 inches,144 mm / 5.67 inches,2.02 kg / 4.45 lbs,1.877,2.021
+RCF,"1,75"" VC Comp. Driver",15129027,ND350,C.DRIVER ND350 8 OHM,Pcs,Italy,85182900,65 mm / 2.56 inches,111 mm / 4.37 inches,113 mm / 4.45 inches,0.89 kg / 1.96 lbs,0.851,0.889
+RCF,"1,75"" VC Comp. Driver",15129028,ND 350-I 8 OHM,C.DRIVER ND350-I 8 OHM,Pcs,Italy,85182900,,,,,0.853,0.857
+RCF,"2.5"" VC Comp. Driver",15129036,ND650 16 OHM,C.DRIVER ND650 16 OHM,Pcs,Italy,85182900,63 mm / 2.48 inches,142 mm / 5.59 inches,144 mm / 5.67 inches,2.02 kg / 4.45 lbs,1.877,2.021
+RCF,"3"" VC Comp. Driver",15129037,ND850 2.0,C.DRIVER ND850 2.0  8 OHM,Pcs,Italy,85182900,102 mm / 4.02 inches,150 mm / 5.91 inches,152 mm / 5.98 inches,2.95 kg / 6.5 lbs,2.740,2.950
+RCF,"4"" VC Comp. Driver",15129038,ND950 1.4,C.DRIVER ND950 1.4 8 OHM,Pcs,Italy,85182900,79 mm / 3.11 inches,169 mm / 6.65 inches,171 mm / 6.73 inches,3.7 kg / 8.16 lbs,3.500,3.700
+RCF,"4"" VC Comp. Driver",15129040,ND950 2.0,C.DRIVER ND950 2.0 8 OHM,Pcs,Italy,85182900,116 mm / 4.57 inches,169 mm / 6.65 inches,171 mm / 6.73 inches,4.02 kg / 8.86 lbs,3.820,4.020
+RCF,"1,75"" VC Comp. Driver",15129042,CD350,C.DRIVER CD350  8 OHM,Pcs,Italy,85182900,74 mm / 2.91 inches,122 mm / 4.8 inches,123 mm / 4.84 inches,1.35 kg / 2.98 lbs,1.230,1.350
+RCF,"1,5"" VC Comp. Driver",15129043,CD1411-M,C.DRIVER CD1411-M 8 OHM,Pcs,Italy,85182900,65 mm / 2.56 inches,111 mm / 4.37 inches,113 mm / 4.45 inches,1.09 kg / 2.4 lbs,0.949,1.086
+RCF,"3"" VC Comp. Driver",15129044,CD850 2.0,C.DRIVER CD850 2.0 8 OHM,Pcs,Italy,85182900,114 mm / 4.49 inches,203 mm / 7.99 inches,205 mm / 8.07 inches,5.97 kg / 13.16 lbs,5.725,5.966
+RCF,"2.5"" VC Comp. Driver",15129046,CD650,C.DRIVER CD650 8 OHM,Pcs,Italy,85182900,75 mm / 2.95 inches,188 mm / 7.4 inches,190 mm / 7.48 inches,4.66 kg / 10.27 lbs,4.332,4.662
+RCF,"1,75"" VC Comp. Driver",15129047,CD400,C.DRIVER CD400 08 OHM,Pcs,Italy,85182900,68 mm / 2.68 inches,153 mm / 6.02 inches,155 mm / 6.1 inches,2.63 kg / 5.8 lbs,2.458,2.625
+RCF,"1,75"" VC Comp. Driver",15129049,ND 350-I 16 OHM,C.DRIVER ND350-I 16 OHM,Pcs,Italy,85182900,,,,,0.900,1.100
+RCF,"2.5"" VC Comp. Driver",15129051,ND640,C.DRIVER ND640 8 OHM,Pcs,Italy,85182900,74 mm / 2.91 inches,122 mm / 4.8 inches,123 mm / 4.84 inches,1.17 kg / 2.58 lbs,1.060,1.170
+RCF,"3"" VC Comp. Driver",15129052,ND840,C.DRIVER ND840 8 OHM,Pcs,Italy,85182900,63 mm / 2.48 inches,142 mm / 5.59 inches,144 mm / 5.67 inches,1.7 kg / 3.75 lbs,1.400,1.700
+RCF,"4"" VC Comp. Driver",15129053,ND940,C.DRIVER ND940 8 OHM,Pcs,Italy,85182900,79 mm / 3.11 inches,169 mm / 6.65 inches,171 mm / 6.73 inches,2.87 kg / 6.33 lbs,2.720,2.870
+RCF,"1,75"" VC Comp. Driver",15129054,ND340,C.DRIVER ND340 8 OHM,Pcs,Italy,85182900,65 mm / 2.56 inches,95 mm / 3.74 inches,97 mm / 3.82 inches,0.81 kg / 1.79 lbs,0.630,0.810
+RCF,Processors,17100004,MZ 8060,AUDIO MATRIX MZ 8060 8 IN 6 OUT,Pcs,Italy,85185000,170 mm / 6.69 inches,575 mm / 22.64 inches,480 mm / 18.9 inches,5 kg / 11.02 lbs,4.500,5.000
+RCF,Power Supply EN54,17100005,PS 4248,POWER SUPPLY PS 4248 EN54-4 48V,Pcs,Philippines,85044090,120 mm / 4.72 inches,570 mm / 22.44 inches,400 mm / 15.75 inches,5.64 kg / 12.43 lbs,4.700,5.640
+RCF,DXT 7000,17100015,LT 7208EN MKII,TRANSF. INTERFACE LT 7208EN MKII,Pcs,Finland,85045000,190 mm / 7.48 inches,540 mm / 21.26 inches,480 mm / 18.9 inches,14 kg / 30.86 lbs,13.000,14.000
+TT+,GTX,17100016,PD 32A,POWER BOX MODULE PD 32A/EU,Pcs,Italy,85185000,100 mm / 3.94 inches,530 mm / 20.87 inches,450 mm / 17.72 inches,4.5 kg / 9.92 lbs,3.500,4.500
+TT+,GTX,17100019,SD 6/4,BOX SIGNAL DISTRIBUTOR SD 6/4,Pcs,Italy,85185000,100 mm / 3.94 inches,530 mm / 20.87 inches,350 mm / 13.78 inches,4.5 kg / 9.92 lbs,3.500,4.500
+TT+,GTX,17100020,TT RACK 11U,TT RACK 11U,Pcs,Italy,85189000,,,,,49.600,64.600
+RCF,Digital Mixer,17140073,M 18,DIGITAL MIXER M 18 - EU,Pcs,China,85437090,378 mm / 14.88 inches,253 mm / 9.96 inches,132 mm / 5.2 inches,3.4 kg / 7.5 lbs,2.750,3.400
+RCF,E Series,17140084,E 16,MIXER E 16 90-240V,Pcs,China,85437090,215 mm / 8.46 inches,635 mm / 25 inches,705 mm / 27.76 inches,12.2 kg / 26.9 lbs,10.300,12.200
+RCF,E Series,17140086,E 12,MIXER E 12 90-240 V,Pcs,China,85437090,215 mm / 8.46 inches,580 mm / 22.83 inches,506 mm / 19.92 inches,8 kg / 17.64 lbs,6.900,8.000
+RCF,E Series,17140087,E 24,MIXER E 24 90-240V,Pcs,China,85437090,705 mm / 27.76 inches,815 mm / 32.09 inches,215 mm / 8.46 inches,15.8 kg / 34.83 lbs,14.300,15.800
+RCF,Digital Mixer,17140093,M 20X 90-240 V,MIXER M 20X 90-240 V,Pcs,China,85437090,,,,,7.900,9.000
+RCF,Rack,17170080,CR 2615,"19"" rack cabinet, 15U CR2615",Pcs,Italy,85381000,630 mm / 24.8 inches,800 mm / 31.5 inches,630 mm / 24.8 inches,32 kg / 70.55 lbs,28.000,32.000
+RCF,Audio Sources,17170108,MS 1033,CD/MP3 PLAYER AND FM TUNER - MS1033,Pcs,China,85279135,120 mm / 4.72 inches,540 mm / 21.26 inches,380 mm / 14.96 inches,4.6 kg / 10.14 lbs,3.600,4.600
+RCF,Rack,17170137,PV 2603,"PV 2603 FORCED VENTIL. UNIT FOR 19"" RACK",Pcs,Italy,84145925,60 mm / 2.36 inches,490 mm / 19.29 inches,330 mm / 12.99 inches,5.43 kg / 11.97 lbs,4.910,5.430
+RCF,Rack,17170145,PU 1,"PU 1 - 1 UNIT 19"" RACK PANEL BLACK",Pcs,Italy,73269098,60 mm / 2.36 inches,490 mm / 19.29 inches,200 mm / 7.87 inches,0.5 kg / 1.1 lbs,0.475,0.496
+RCF,Rack,17170148,PU 4,"PU 4 - 4 UNIT 19"" RACK PANEL BLACK",Pcs,Italy,73269098,60 mm / 2.36 inches,490 mm / 19.29 inches,200 mm / 7.87 inches,1.62 kg / 3.57 lbs,1.577,1.618
+RCF,DXT 7000,17170151,RO 7102,RO 7172 - DRY OUTPUT CONTACT CARD MU7100,Pcs,Finland,84733020,,,,,0.100,0.300
+RCF,DXT 7000,17170152,AC 7212,AC7212 SPARE AM. CHANGE-OVER CARD 7802,Pcs,Finland,84733020,100 mm / 3.94 inches,160 mm / 6.3 inches,200 mm / 7.87 inches,0.3 kg / 0.66 lbs,0.100,0.300
+RCF,DXT 7000,17170156,LT 7208EN,LT 7208 TRANF. INTERFACE FOR MU 7100EN,Pcs,Finland,85045020,0,0,0,14 kg / 30.86 lbs,13.000,14.000
+RCF,DXT 7000,17170157,MU 7100EN,MU 7100EN DXT 7000 SYSTEM MAIN UNIT,Pcs,Finland,84719000,0,0,0,9.5 kg / 20.94 lbs,8.400,9.500
+RCF,Systems,17170166,ZM 2100,ZM 2100 MASTER UNIT,Pcs,China,84719000,296 mm / 11.65 inches,580 mm / 22.83 inches,490 mm / 19.29 inches,10.6 kg / 23.37 lbs,8.200,10.600
+RCF,Audio Sources,17170168,RD 2016,DIGITAL PLAYER / RECORDER 2016,Pcs,China,85198195,110 mm / 4.33 inches,550 mm / 21.65 inches,300 mm / 11.81 inches,3.1 kg / 6.83 lbs,2.200,3.100
+RCF,Forum 9000,17180007,FCA 100 Black,FCA 100 BLACK - 100 MT REEL CAT 5 CABLE,Pcs,China,85444920,,,,,4.168,4.713
+RCF,Forum 9000,17180009,CABLE TESTER,FORUM CABLE TESTER,Pcs,China,90303330,,,,,0.137,0.160
+RCF,Cables,17180030,DCA 6010,DCA6010 10M CONN.CABLE WITH CONN.XFORUM,Pcs,Italy,85444210,20 mm / 0.79 inches,150 mm / 5.91 inches,200 mm / 7.87 inches,0.54 kg / 1.19 lbs,0.500,0.535
+RCF,Forum 6000,17180033,DPS 6202,DPS 6202 - ADD. POWER SUPPLY X DEC 6104,Pcs,Italy,85044090,130 mm / 5.12 inches,510 mm / 20.08 inches,380 mm / 14.96 inches,7.99 kg / 17.61 lbs,6.221,7.993
+RCF,Forum 6000,17180037,DTC 6012,DTC 6012-TRANS. CASE FOR 12 BASE DMS6410,Pcs,Italy,42021910,250 mm / 9.84 inches,500 mm / 19.69 inches,360 mm / 14.17 inches,9.8 kg / 21.61 lbs,9.800,9.800
+RCF,DXT 7000,xxx,L,,,,,,,,,,

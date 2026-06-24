@@ -1,0 +1,759 @@
+Sl no,"Part No.
+230 volt",Brand,Model,Description,Unit,MRP QAR,MRP AED
+1,13000641,RCF,HDL 50-A 4K,"Active three-way line array module, 2 x 12"" + 4 x 6"" + 2 x 3"" CD, 8000 Wpeak, RDNet",PCS,"43,696.00","43,163.00"
+,13000511,RCF,HDL 30-A,"Active 2-way line array module 2X10"" + 4"", 1100Wrms, 2200 Wpeak, RDNet",PCS,"21,848.00","21,581.00"
+,13000579,RCF,HDL 28-A,"Active 2-way line array module 2X8"" + 3"", 1100Wrms, 2200 Wpeak, RDNet",PCS,"17,543.00","17,329.00"
+,13000588,RCF,HDL 26-A,"Active 2-way line array module 2X6"" + 2"", 1000Wrms, 2000 Wpeak, RDNet",PCS,"12,915.00","12,758.00"
+,13000606,RCF,HDL 26-A W,"Active 2-way line array module2X6"" + 2"", 1000Wrms, 2000 Wpeak, RDNet, white",PCS,"12,915.00","12,758.00"
+,13000580,RCF,HDL 38-AS,"Active line array subwoofer for HDL30, 18"", 1600Wrms, 3200 Wpeak",PCS,"25,507.00","25,196.00"
+,13000583,RCF,HDL 36-AS,"Active line array subwoofer for HDL28, 15"", 1600Wrms, 3200 Wpeak",PCS,"21,740.00","21,475.00"
+,13000575,RCF,HDL 35-AS,"Active line array subwoofer for HDL26, 15"", 1100Wrms, 2200 Wpeak",PCS,"19,803.00","19,562.00"
+,13000664,RCF,HDL 35-AS W,"Active line array subwoofer for HDL26, 15"", 2200 W, white",PCS,"19,803.00","19,562.00"
+,13040007,RCF,HDL 20-A,"Active 2-way line array module 2x10"" + 2"", 700Wrms, 1400Wpeak",PCS,"14,960.00","14,777.00"
+,13040016,RCF,HDL 10-A,"Active 2-way line array module 2x8"" + 2"", 700Wrms, 1400Wpeak",PCS,"10,870.00","10,738.00"
+,13040022,RCF,HDL 10-A W,"Active 2-way line array module 2x8"" + 2"", 700Wrms, 1400Wpeak, white",PCS,"10,870.00","10,738.00"
+,13000496,RCF,HDL 6-A,"Active 2-way line array module 2x6,5"" + 1"", 700Wrms, 1400Wpeak",PCS,7641,7548
+,13000514,RCF,HDL 6-A W,"Active 2-way line array module 2x6,5"" + 1"", 700Wrms, 1400Wpeak, white",PCS,"7,641.00","7,548.00"
+,13000505,RCF,HDL12-AS,"Active line array subwoofer for HDL6, 12"", 700Wrms, 1400Wpeak",PCS,"9,902.00","9,781.00"
+,13000897,RCF,KX 515-A,"Two-way Active speaker system 2 x 5"" + 1.75"" v.c., 1000Wrms, 2000 Wpeak, RDNET",PCS,"8,287.00","8,186.00"
+,13000870,RCF,KX 515-A W,"Two-way Active speaker system 2 x 5"" + 1.75"" v.c., 1000Wrms, 2000 Wpeak, RDNET, white",PCS,"8,287.00","8,186.00"
+,13000882,RCF,KXL 4-A,"Active two-way line array module 2 x 10""+ 4"", 1.600 Wrms, 3.200 Wpeak, RDNET",PCS,24216,23920
+,13000884,RCF,KXW 4-A,"Active two-way wide directivity speaker 2 x 10""+ 4"", 1.600 Wrms, 3.200 Wpeak, RDNET",PCS,24216,23920
+,13000900,RCF,KX 08-A,"8"" + 1,75"", 1.000Wrms, 2.000 Wpeak, RDNET",PCS,9148,9037
+,13000902,RCF,KX 10-A,"10"" + 1,75"", 1.000Wrms, 2.000 Wpeak, RDNET",PCS,10655,10525
+,13000904,RCF,KX 32-A,"Two-way Active speaker system 12""+ 3"", 1.600 Wrms, 3.200 Wpeak, RDNET",PCS,16036,15841
+,13000906,RCF,KX 45-A,"Two-way Active speaker system 15""+ 4"", 1.600 Wrms, 3.200 Wpeak, RDNET",PCS,17651,17435
+,13000889,RCF,SUB 9029-AS,"2 x 19"" active subwoofer, 4.000 Wrms, 8.000 Wpeak, RDNET",PCS,36593,36146
+,13000890,RCF,SUB 9019-AS,"1 x 19"" active subwoofer, 2.000 Wrms, 4.000 Wpeak, RDNET",PCS,22601,22326
+,13000916,RCF,SUB 9016-AS,"1 x 16"" active subwoofer, 2.000 Wrms, 4.000 Wpeak, RDNET",PCS,16144,15947
+,13000494,RCF,SUB 9006-AS,"2 x 18"" active subwoofer",PCS,33364,32957
+,13000372,RCF,SUB 8006-AS,"Double 18"" Bass Reflex Active Subwoofer, 2500Wrms, 5000Wpeak",PCS,25507,25196
+,13000392,RCF,SUB 8004-AS,"Bass Reflex 18"" Active Subwoofer, 1250Wrms, 2500Wpeak",PCS,15606,15415
+,13000899,RCF,SUB 808-AS,"2 x 8"" Active Subwoofer, 1.000Wrms, 2.000 Wpeak, RDNET",PCS,10117,9993
+,13000872,RCF,SUB 808-AS W,"2 x 8"" Active Subwoofer, 1.000Wrms, 2.000 Wpeak, RDNET, white",PCS,10117,9993
+,17170154,RCF,RDNET CONTROL 8,8 output Master Unit,PCS,6242,6166
+,17170163,RCF,RDNET CONTROL 2,2 output Master Unit,PCS,1130,1116
+,13360334,RCF,FL-B HDL 50,Suspension bar to fly up to 20 pcs + 1x fly bar pick up,PCS,12162,12013
+,13360389,RCF,FL-B LINK HDL 50-30,Link bar HDL50-HDL30,PCS,6350,6272
+,13360380,RCF,FL-B HDL 30,Suspension bar to fly up to 20 pcs,PCS,6135,6060
+,13360393,RCF,STCK-KIT 2X HDL 30,Stacking kit 2 x HDL30,PCS,990,978
+,13360394,RCF,FL-B PK HDL 30,Flybar pickup for HDL30,PCS,915,904
+,13360411,RCF,FL-B HDL 28,Suspension bar to fly up to 20 pcs,PCS,6027,5954
+,13360336,RCF,KRT-WH 4X HDL 50,HDL50 trasportation kart for 4 modules,PCS,5058,4997
+,13360338,RCF,CVR 4X HDL 50,Cover 4 X to be associated to 1 kart,PCS,1722,1701
+,13360386,RCF,CVR 4X HDL 30,Cover for 4 x HDL30,PCS,1184,1169
+,13360382,RCF,KRT-WH 4X HDL 30,HDL30 trasportation kart for 4 modules,PCS,3175,3136
+,13360412,RCF,KRT-WH 4X HDL 28,HDL28 trasportation kart for 4 modules,PCS,3067,3030
+,13360422,RCF,CVR 4X HDL 28,Cover for 4 x HDL28,PCS,1076,1063
+,13360430,RCF,KRT-WH 3X HDL 38,HDL38 trasportation kart for 3 modules,PCS,3875,3827
+,13360431,RCF,KRT-WH 3X HDL 36,HDL36 trasportation kart for 3 modules,PCS,3552,3508
+,13360434,RCF,CVR 3X HDL 36,Cover for 3x HDL36,PCS,1184,1169
+,13360433,RCF,CVR 3X HDL 38,Cover for 3x HDL38,PCS,1345,1329
+,13360337,RCF,RP 1X HDL 50,Rain cover for 1 module HDL50-A,PCS,452,447
+,13360388,RCF,RP 1X HDL 30,"Rain cover for 1 module HDL 30-A, HDL 28-A, HDL 35-AS, HDL 36-AS, HDL 38-AS, KX 4-A ",PCS,172,170
+,12100004,RCF,CR 16-ND,"Including RD-net control 8, DX1616, patch bay, 4X LK25 OUT, 1RU PS",PCS,66943,66126
+,12399021,RCF,CBL LKS 25-2 FANOUT,"25 pin to 8X XLR, cable 1.0 M, fanout 1.0 M",PCS,1991,1967
+,12399022,RCF,CBL LK 25 MULTIPIN 20M,25 pin male female 20 M,PCS,2529,2498
+,12399023,RCF,CBL LK 25 MULTIPIN 10M,25 pin male female 10 M,PCS,2153,2126
+,12399016,RCF,CBL ETHERCON 0.7M,To connect RDNET in HDL50-A array,PCS,194,191
+,12399017,RCF,CBL ETHERCON 1.5M,Ethercon link cable 1.5 m.,PCS,215,213
+,12399035,RCF,CBL ETHERCON 3M,CAT 5E etherCON cable 3 m.,PCS,237,234
+,12399018,RCF,CBL ETHERCON 5M,CAT 5E etherCON cable 5 m.,PCS,258,255
+,12399019,RCF,CBL ETHERCON TO XLR F 0.2M,To connect XLR to RDNET RJ45,PCS,194,191
+,12399020,RCF,CBL ETHERCON TO XLR M 0.2M,To connect XLR to RDNET RJ45,PCS,194,191
+,12100006,RCF,PR 63,Touring case including power distribution unit,PCS,34655,34233
+,12399024,RCF,CBL LKS 19 ARRAY FANOUT,Array FAN OUT cable 0.5 - 1.3 - 2.1 - 2.9 - 3.7 - 4.5 M,PCS,1937,1914
+,12399025,RCF,CBL LKS 19 SUB FANOUT,SUB FAN OUT cable 2X 2.5 - 2X 5.0 - 2X 10.0 M,PCS,2529,2498
+,12399026,RCF,CBL LKS 19 BREAKOUT,Breakout BOX with LKS 19 INOUT/OUTPUT TO 6x powercon,PCS,3605,3561
+,13360146,RCF,CBL LKS 19 POWER 20M,LKS 19 power cable 20 M,PCS,3713,3668
+,12399027,RCF,CBL LKS 19 POWER 10M,LKS 19 power cable 10 M,PCS,2422,2392
+,12399028,RCF,CBL POWERCON LINK 10M,Power distribution cable,PCS,452,447
+,12399029,RCF,CBL POWERCON LINK 5M,Powercon link cable 5 m to link HDL 50-A 4K.,PCS,312,308
+,12399030,RCF,CBL POWERCON LINK 1.5M,Powercon link cable 1.5 m to link HDL 50-A 4K.,PCS,226,223
+,12399031,RCF,CBL POWERCON LINK 0.7M,To link 2x HDL50-A,PCS,194,191
+,13360218,RCF,FL-B HDL 20-18,Fly bar for HDL20 and HDL18 up to 16 HDL20 modules,PCS,5489,5422
+,13360229,RCF,FL-B LGT HDL 20,Light fly bar for HDL20 up to 4 HDL20 modules,PCS,2852,2817
+,13360221,RCF,FL-B PK HDL 20-18,Spare Pickup Point (including 2 Qick lock pins) for 2 motors pick up,PCS,721,712
+,13360223,RCF,KRT-WH 4X HDL 20,Kart with wheels for 4 HDL20,PCS,2852,2817
+,13360283,RCF,RP 2X HDL 20,Rain cover for 2 module HDL20/10,PCS,237,234
+,13360274,RCF,FL-B HDL 10,Fly bar for HDL10 up to 16 modules,PCS,5166,5103
+,13360276,RCF,FL-B LGT HDL 10,Light fly bar for HDL10 up to 4 modules,PCS,2691,2658
+,13360275,RCF,KRT-WH 4X HDL 10,Kart with wheels for 4 HDL10,PCS,2637,2605
+,13360314,RCF,FL-B HDL 10 W,Fly bar for HDL10 up to 16 modules - white colour,PCS,5166,5103
+,13360313,RCF,FL-B LGT HDL 10 W,Light fly bar for HDL10 up to 4 modules - white colour,PCS,2691,2658
+,13360360,RCF,FL-B HDL 6,Fly bar for HDL6 and HDL12 including accessories for staking and pole mount,PCS,3713,3668
+,13360373,RCF,FL-B HDL 6 W,Fly bar for HDL6 and HDL12 white colour,PCS,3713,3668
+,13360371,RCF,CL-BR HDL 6,Clamp bracket for HDL 6-A and HDL 26-A,PCS,495,489
+,13360372,RCF,FL-B PK HDL 6,"Spare Pickup Point for HDL6, HDL 26-A, HDL 35-AS, HL 35-S, HL 6, KX 4-A ",PCS,592,585
+,13360366,RCF,KRT-WH 6X HDL 6,Kart for 6 x HDL6,PCS,2529,2498
+,13360381,RCF,RP 1X HDL 6,"Rain cover for 1 module HDL 6-A, HDL 26-A, KX 515-A, KX 10-A, KX 08-A",PCS,269,266
+,13360375,RCF,FL-B LINK HDL 6-12 2X,Link bar for HDL6 and HDL12,PCS,1012,999
+,13360377,RCF,PM-KIT 3X HDL 6,HDL6 pole mount accessory to hold up to 3 modules ,PCS,1453,1435
+,13360232,RCF,AC PMX,Pole mount - up to 60Kg,PCS,1453,1435
+,13360238,RCF,WH PRO 4X,Kit 4 swivel castor 100mm wheels with roller bearing,PCS,549,542
+,13360688,RCF,CVR60688,Cover for KX 515-A,PCS,269,266
+,13360690,RCF,FLB60690,Accessory to link a KX 515 to a flying SUB 808,PCS,463,457
+,13360691,RCF,FLB60691,Suspension bar for KX 515,PCS,409,404
+,13360692,RCF,HBR60692,Horizontal bracket for KX 515,PCS,312,308
+,13360716,RCF,HBR60716,"Horizontal bracket for KX 515, white",PCS,312,308
+,13360693,RCF,VBR60693,Vertical bracket for KX 515,PCS,495,489
+,13360678,RCF,PMK60678,Pole mount accessory for KX 515 and NXL 14,PCS,129,128
+,13360679,RCF,PMK60679,"Pole mount accessory for KX 515 and NXL 14, white",PCS,129,128
+,13360694,RCF,CVR60694,Cover for KX 4-A,PCS,495,489
+,13360697,RCF,FLB60697,Vertical fly bar for KX 4-A,PCS,2529,2498
+,13360698,RCF,VBR60698,Vertical bracket for KX 4-A,PCS,969,957
+,13360713,RCF,CVR60713,Cover for KX 08-A,PCS,312,308
+,13360714,RCF,HBR60714,Horizontal bracket for KX 08-A,PCS,355,351
+,13360715,RCF,VBR60715,Vertical bracket for KX 08-A,PCS,463,457
+,13360710,RCF,CVR60710,Cover for KX 10-A,PCS,301,298
+,13360711,RCF,HBR60711,Horizontal bracket for KX 10-A,PCS,377,372
+,13360712,RCF,VBR60712,Vertical bracket for KX 10-A,PCS,484,478
+,13360704,RCF,VBR60704,Vertical bracket for KX 32-A,PCS,1345,1329
+,13360655,RCF,KRT-WH 007,SUB 9029 trasportation kart for 1 module,PCS,2744,2711
+,13360656,RCF,CVR 016,Cover for 1x SUB 9029,PCS,1238,1223
+,13360657,RCF,KRT-WH 008,SUB 9019 trasportation kart for 1 module,PCS,2099,2073
+,13360658,RCF,CVR 017,Cover for 1x SUB 9019,PCS,743,734
+,13360361,RCF,KRT-WH SUB 9006,Kart for 1 SUB 9006-AS,PCS,2691,2658
+,13360363,RCF,CVR SUB 9006,Cover for 1 SUB 9006-AS,PCS,1184,1169
+,13360362,RCF,RP 1X SUB 9006,Rain cover to protect SUB 9006-AS,PCS,990,978
+,13360242,RCF,CVR SUB 8006,Cover for SUB8006-AS,PCS,1130,1116
+,13360233,RCF,RP 1X SUB 8006,Rain cover protection for amplifier SUB8006-AS,PCS,151,149
+,13360231,RCF,STCK-KIT SUB 8006,Pair of accessories to lock FLY BAR HDL 20-18 to SUB 8006-AS or to lock FLY BAR HDL 10 to SUB 8004-AS. M20 fixing point.,PCS,721,712
+,13360286,RCF,CVR SUB 8004,Cover for SUB8004-AS,PCS,592,585
+,13360708,RCF,CVR60708,Cover for SUB 808-AS,PCS,355,351
+,13360709,RCF,HBR60709,Vertical bracket for SUB 808-AS,PCS,678,670
+,13360110,RCF,AC PRO-PM,Pole mount accessory for satellite loudspeaker on a subwoofer,PCS,818,808
+,13360638,RCF,PM-KIT M20 W,"M20 Pole mount, white",PCS,226,223
+,13360132,RCF,QL-PIN D11.1 L44.5 4X,Quick lock pin kit (4x). Please refer to RCF pin table (www.rcf.it/en/pin-table) to check compatible products.,PCS,1614,1595
+,13360219,RCF,QL-PIN D9.6 L21.3 4X,Quick lock pin kit (4x). Please refer to RCF pin table (www.rcf.it/en/pin-table) to check compatible products.,PCS,474,468
+,13360220,RCF,QL-PIN D9.6 L26.9 4X,Quick lock pin kit (4x). Please refer to RCF pin table (www.rcf.it/en/pin-table) to check compatible products.,PCS,570,563
+,13360613,RCF,QL-PIN 007,Quick lock pin kit (4x). Please refer to RCF pin table (www.rcf.it/en/pin-table) to check compatible products.,PCS,549,542
+,13360626,RCF,QL-PIN 008,Quick lock pin kit (4x). Please refer to RCF pin table (www.rcf.it/en/pin-table) to check compatible products.,PCS,441,436
+,13360627,RCF,QL-PIN 009,Quick lock pin kit (4x). Please refer to RCF pin table (www.rcf.it/en/pin-table) to check compatible products.,PCS,441,436
+,13360633,RCF,QL-PIN 010,Quick lock pin kit (4x). Please refer to RCF pin table (www.rcf.it/en/pin-table) to check compatible products.,PCS,495,489
+,13360634,RCF,QL-PIN 011,Quick lock pin kit (4x). Please refer to RCF pin table (www.rcf.it/en/pin-table) to check compatible products.,PCS,441,436
+,13360145,RCF,CBL POWER BOX 6X,AC Stage Box,PCS,2960,2924
+,13360067,RCF,PM-KIT M20,M20 Pole mount,PCS,226,223
+,13360066,RCF,M20 PLATE,Threaded plate for M20 pole mount,PCS,97,96
+,13360109,RCF,AC PRO-FS,Professional loudspeaker floor stand,PCS,1130,1116
+,13000481,RCF,EVOX 12,"Digital active speaker system 8x4"" drivers + 15"" sub, 700Wrms, 1400Wpeak",PCS,12054,11907
+,13000843,RCF,EVOX 12 W,"Digital active speaker system 8x4"" drivers + 15"" sub, 700Wrms, 1400WpeaK, White",PCS,12054,11907
+,13000554,RCF,EVOX J8,"Digital active speaker system 8x2"" drivers + 12"" sub, 700Wrms, 1400Wpeak",PCS,5005,4944
+,13000567,RCF,EVOX J8 W,Evox J8 in white colour,PCS,5005,4944
+,13000556,RCF,EVOX JMIX8,Evox J8 with digital mixer,PCS,6565,6485
+,13000569,RCF,EVOX JMIX8 W,Evox J8 with digital mixer in white colour,PCS,6565,6485
+,13000654,RCF,ART 910-A,"Digital active speaker system 10"" + 1.75"" v.c., 1050Wrms, 2100Wpeak",PCS,3336,3296
+,13000655,RCF,ART 912-A,"Digital active speaker system 12"" + 1.75"" v.c., 1050Wrms, 2100Wpeak",PCS,3713,3668
+,13000656,RCF,ART 915-A,"Digital active speaker system 15"" + 1.75"" v.c., 1050Wrms, 2100Wpeak",PCS,4359,4306
+,13000680,RCF,ART 932-A,"Digital active speaker system 12"" + 3"" v.c., 1050Wrms, 2100Wpeak",PCS,5597,5528
+,13000682,RCF,ART 935-A,"Digital active speaker system 15"" + 3"" v.c., 1050Wrms, 2100Wpeak",PCS,6135,6060
+,13000691,RCF,ART 945-A,"Digital active speaker system 15"" + 4"" v.c., 1050Wrms, 2100Wpeak",PCS,8287,8186
+,13000706,RCF,ART 910-AX,"Digital active speaker system 10"" + 1.75"" v.c., 1050Wrms, 2100Wpeak, BT audio & control, Touch color display, sub presets",PCS,4843,4784
+,13000708,RCF,ART 912-AX,"Digital active speaker system 12"" + 1.75"" v.c., 1050Wrms, 2100Wpeak, BT audio & control, Touch color display, sub presets",PCS,5220,5156
+,13000710,RCF,ART 915-AX,"Digital active speaker system 15"" + 1.75"" v.c., 1050Wrms, 2100Wpeak, BT audio & control, Touch color display, sub presets",PCS,5919,5847
+,13000821,RCF,ART 708-A MK5,"Digital active speaker system 8"" + 1.4"" v.c., 700Wrms, 1400Wpeak",PCS,2368,2339
+,13000822,RCF,ART 710-A MK5,"Digital active speaker system 10"" + 1.75"" v.c., 700Wrms, 1400Wpeak",PCS,2906,2870
+,13000823,RCF,ART 712-A MK5,"Digital active speaker system 12"" + 1.75"" v.c., 700Wrms, 1400Wpeak",PCS,3121,3083
+,13000824,RCF,ART 715-A MK5,"Digital active speaker system 15"" + 1.75"" v.c., 700Wrms, 1400Wpeak",PCS,3605,3561
+,13000825,RCF,ART 732-A MK5,"Digital active speaker system 12"" + 3"" v.c., 700Wrms, 1400Wpeak",PCS,4789,4731
+,13000826,RCF,ART 735-A MK5,"Digital active speaker system 15"" + 3"" v.c., 700Wrms, 1400Wpeak",PCS,5489,5422
+,13000827,RCF,ART 745-A MK5,"Digital active speaker system 15"" + 4"" v.c., 700Wrms, 1400Wpeak",PCS,7534,7442
+,13000548,RCF,ART 725 MK4,"Speaker system 15"" + 2"", 700Wrms, 1400Wpeak",PCS,6027,5954
+,13000668,RCF,NX 910-A,"Two-way Active speaker system 10"" + 1.75"" v.c., 2.100 Wpeak",PCS,4951,4890
+,13000673,RCF,NX 912-A,"Two-way Active speaker system 12"" + 1.75"" v.c., 2.100 Wpeak",PCS,5597,5528
+,13000674,RCF,NX 915-A,"Two-way Active speaker system 15"" + 1.75"" v.c., 2.100 Wpeak",PCS,6673,6591
+,13000766,RCF,NX 932-A,"Two-way Active speaker system 12"" + 3"" v.c., 2.100 Wpeak",PCS,7534,7442
+,13000874,RCF,NX 932-A W,"Two-way Active speaker system 12"" + 3"" v.c., 2.100 Wpeak, white",PCS,7534,7442
+,13000768,RCF,NX 945-A,"Two-way Active speaker system 15"" + 4"" v.c., 2.100 Wpeak",PCS,9041,8930
+,13000876,RCF,NX 945-A W,"Two-way Active speaker system 15"" + 4"" v.c., 2.100 Wpeak, white",PCS,9041,8930
+,13000888,RCF,NXL 14-A,"Two-way Active speaker system 2 x 6"" + 1.75"" v.c., 1050Wrms, 2100 Wpeak",PCS,6565,6485
+,13000891,RCF,NXL 14-A W,"Two-way Active speaker system 2 x 6"" + 1.75"" v.c., 1050Wrms, 2100 Wpeak, white",PCS,6565,6485
+,13000610,RCF,NXL 24-A MK2,"Active 2-way array, 4x6"" woofers + 2.5"" v.c., 1050Wrms, 2100Wpeak",PCS,11193,11057
+,13000609,RCF,NXL 44-A MK2,"Active 2-way array, 3x10"" woofers + 3"" v.c., 1050Wrms, 2100Wpeak",PCS,15606,15415
+,13000805,RCF,NXW 44-A,"Active 2-way wide directivity speaker, 3x10"" woofers + 3"" v.c., 1050Wrms, 2100Wpeak",PCS,15606,15415
+,13000743,RCF,NX 985-A,"Three-way Active speaker system 15"" + 8"" + 1.75"" v.c., 1050Wrms, 2100 Wpeak",PCS,11946,11801
+,13000260,RCF,NX 15-SMA,"Active coaxial stage monitor 15""+1"", 700Wrms, 1400Wpeak",PCS,10224,10100
+,13000235,RCF,NX 12-SMA,"Active coaxial stage monitor 12""+1"", 700Wrms, 1400Wpeak",PCS,8933,8824
+,13000233,RCF,NX 10-SMA,"Active coaxial stage monitor 10""+1"", 400Wrms, 800Wpeak",PCS,6673,6591
+,13000783,RCF,NX 912-SMA,"Active high-output multipurpose monitor 12"" + 1.75"" v.c., 2.100 Wpeak",PCS,6565,6485
+,13000785,RCF,NX 915-SMA,"Active high-output multipurpose monitor 15"" + 1.75"" v.c., 2.100 Wpeak",PCS,7534,7442
+,13000818,RCF,SUB 702-AS MK3,"12"" Bass Reflex Active Subwoofer, 700Wrms, 1400Wpeak",PCS,4843,4784
+,13000812,RCF,SUB 705-AS MK3,"15"" Bass Reflex Active Subwoofer, 700Wrms, 1400Wpeak",PCS,6135,6060
+,13000809,RCF,SUB 708-AS MK3,"18"" Bass Reflex Active Subwoofer, 700Wrms, 1400Wpeak",PCS,7749,7655
+,13000846,RCF,SUB 905-AS MK3,"15"" Bass Reflex Active Subwoofer, 1100Wrms, 2200Wpeak, presets",PCS,7964,7867
+,13000844,RCF,SUB 8003-AS MK3,"18"" Bass reflex Active Subwoofer, 1100Wrms, 2200Wpeak, presets",PCS,9256,9143
+,13000835,RCF,SUB 15-AX,"15"" Bass Reflex Active Subwoofer, 1100Wrms, 2200Wpeak, BT control, Touch color display, speaker presets",PCS,8072,7973
+,13000836,RCF,SUB 18-AX,"18"" Bass reflex Active Subwoofer, 1100Wrms, 2200Wpeak, BT control, Touch color display, speaker presets",PCS,9579,9462
+,13000878,RCF,SUB 15-AX W,"15"" Bass Reflex Active Subwoofer, 1100Wrms, 2200Wpeak, BT control, Touch color display, speaker presets, white",PCS,8072,7973
+,13000880,RCF,SUB 18-AX W,"18"" Bass reflex Active Subwoofer, 1100Wrms, 2200Wpeak, BT control, Touch color display, speaker presets, white",PCS,9579,9462
+,13000787,RCF,SUB 18-AS,"18"" Bass reflex Active Subwoofer, 1100Wrms, 2200Wpeak",PCS,8072,7973
+,13000752,RCF,SUB 8008-AS,"Double 18"" Bass Reflex Active Subwoofer, 2200Wrms, 4400Wpeak",PCS,17651,17435
+,13360324,RCF,CVR EVOX 12,Cover for Evox 12,PCS,700,691
+,13360406,RCF,CVR-WH EVOX J,Cover  with wheels for EVOX J8 and EVOX JMIX8,PCS,1130,1116
+,13360407,RCF,CVR EVOX J,Cover  for EVOX J8 and EVOX JMIX8,PCS,377,372
+,13360473,RCF,CVR ART 910,"ART cover for ART 9 series 10""",PCS,366,361
+,13360474,RCF,CVR ART 912,"ART cover for ART 9 series 12""",PCS,387,383
+,13360478,RCF,CVR ART 915,"ART cover for ART 9 series 15""",PCS,420,415
+,13360471,RCF,H-BR ART 910,"Horizontal bracket for ART 9 series 10""",PCS,495,489
+,13360475,RCF,H-BR ART 912,"Horizontal bracket for ART 9 series 12""",PCS,495,489
+,13360479,RCF,H-BR ART 915,"Horizontal bracket for ART 9 series 15""",PCS,495,489
+,13360476,RCF,V-BR ART 912,"Vertical bracket for ART 9 series 12""",PCS,495,489
+,13360480,RCF,V-BR ART 915,"Vertical bracket for ART 9 series 15""",PCS,560,553
+,13360472,RCF,FL-BR ART 910,"Suspension bar for ART 9 series 10""",PCS,387,383
+,13360477,RCF,FL-BR ART 912,"Suspension bar for ART 9 series 12""",PCS,495,489
+,13360481,RCF,FL-BR ART 915,"Suspension bar for ART 9 series 15""",PCS,527,521
+,13360515,RCF,RP 001,"Amplifier rain cover to protect 2X ART 945, NX 932/945/985, NXL 24/44, NXW 44, NX 912/915-SMA, KX 32/45-A",PCS,291,287
+,13360164,RCF,H-BR 2X ART 708,"2 x horizontal bracket for ART 7 series 8""",PCS,549,542
+,13360103,RCF,H-BR 2X ART 710,"2 x horizontal bracket for ART7 series 10""",PCS,560,553
+,13360104,RCF,H-BR 2X ART 712,"2 x horizontal bracket for ART 7 series 12""",PCS,613,606
+,13360105,RCF,H-BR 2X ART 715,"2 x horizontal bracket for ART 7 series 15""",PCS,646,638
+,13360166,RCF,CVR ART 708,"ART Cover for ART 7 series 8""",PCS,269,266
+,13360113,RCF,CVR ART 710,"ART cover for ART 7 series 10""",PCS,291,287
+,13360114,RCF,CVR ART 722,"ART cover for ART 7 series 12""",PCS,344,340
+,13360115,RCF,CVR ART 725,"ART cover for ART 7 series 15""",PCS,377,372
+,13360506,RCF,2X PLATE H-BR NX 910-912-915,"Adapter plate to use H-BR 007 with NX 910-A, H-BR 003 with NX 912-A and KX 32-A, HBR60706 with NX 915-A and KX 45-A",PCS,947,936
+,13360495,RCF,CVR NX 910,Cover for NX 910-A,PCS,377,372
+,13360496,RCF,CVR NX 912,"Cover for NX 912-A, NX 932-A, KX 32-A",PCS,441,436
+,13360497,RCF,CVR NX 915,Cover for NX 915-A and KX 45-A,PCS,474,468
+,13360707,RCF,VBR60707,NX 945-A and KX 45-A vertical U braket,PCS,1614,1595
+,13360535,RCF,H-BR 001,"2x Horizontal bracket for C 45, NX 945-A and KX 45-A",PCS,1044,1031
+,13360687,RCF,HBR60687,2x Horizontal bracket for NX 945-A W,PCS,1044,1031
+,13360685,RCF,CVR60685,Cover for NXL 14-A,PCS,398,393
+,13360681,RCF,VBR60681,Vertical bracket for NXL 14-A,PCS,646,638
+,13360683,RCF,HBR60683,Horizontal bracket for NXL 14-A,PCS,441,436
+,13360682,RCF,VBR60682,Vertical bracket for NXL 14-A W,PCS,646,638
+,13360684,RCF,HBR60684,Horizontal bracket for NXL 14-A W,PCS,441,436
+,13360278,RCF,FL-B NXL 24,Fly bar for NXL24 up to 2 pieces,PCS,1184,1169
+,13360279,RCF,FL-B LINK NXL 24,Accessory to link a second NXL24 to a flying NXL24 (straight or 2 angles),PCS,904,893
+,13360280,RCF,PM-KIT NXL 24,Pole mount accessory for stacking NXL24 on SUB8004 (or M20 pole mount),PCS,409,404
+,13360281,RCF,STCK-KIT NXL 24,Accessory for stacking 2 NXL24 on SUB8006 or 8004 (or M20 pole mount),PCS,904,893
+,13360345,RCF,FL-B NXL 44,Fly bar for NXL44 up to 2 pieces,PCS,1507,1488
+,13360346,RCF,FL-B LINK NXL 44,Accessory to link a second NXL44 to a flying NXL44 (straight or 2 angles),PCS,1453,1435
+,13360347,RCF,STCK-KIT NXL 44,Accessory for stacking 2 NXL44 on SUB8006 or 8004 (or M20 pole mount),PCS,1776,1754
+,13360167,RCF,CVR NX10-SMA,Cover for NX 10 SMA,PCS,366,361
+,13360168,RCF,CVR NX12-SMA,Cover for NX 12 SMA,PCS,387,383
+,13360174,RCF,CVR NX15-SMA,Cover for NX 15 SMA,PCS,409,404
+,13360612,RCF,CVR 011,Cover for NX 912-SMA,PCS,441,436
+,13360611,RCF,CVR 010,Cover for NX 915-SMA,PCS,474,468
+,13360517,RCF,CVR NX 985,Cover for NX 985,PCS,796,787
+,13360528,RCF,CVR 005,Cover for SUB 702-AS MK3,PCS,527,521
+,13360529,RCF,CVR 004,"Cover for SUB 705-AS MK3, SUB 905-AS MK3 and SUB 15-AX",PCS,581,574
+,13360530,RCF,CVR 003,"Cover for SUB 708-AS MK3, SUB 8003-AS MK3 and SUB 18-AX",PCS,732,723
+,13360518,RCF,CVR SUB 8008,Cover for SUB 8008,PCS,1076,1063
+,17140088,RCF,F 6X,6 channel mixing console with multi-FX,PCS,1076,1063
+,17140089,RCF,F 10XR,10 channel mixing console with multi-FX & Recording,PCS,1507,1488
+,17140090,RCF,F 12XR,12 channel mixing console with multi-FX & Recording,PCS,2099,2073
+,17140091,RCF,F 16XR,16 channel mixing console with multi-FX & Recording,PCS,2852,2817
+,13360416,RCF,RM-KIT F 12XR,Rack mount kit for F 12XR,PCS,108,106
+,13360417,RCF,BG F 6X,Carrying bag for F 6X,PCS,280,276
+,13360418,RCF,BG F 10XR,Carrying bag for F 10XR,PCS,291,287
+,13360419,RCF,BG F 12XR,Carrying bag for F 12XR,PCS,312,308
+,13360420,RCF,BG F 16XR,Carrying bag for F 16XR,PCS,334,330
+,12399066,RCF,MWD1,Wireless usb adapter,PCS,65,64
+,12100037,RCF,XPS 16K,"Class D power amplifier with DSP - 4 x 4.000 W @ 2.7 ohm, RDNET",PCS,49292,48691
+,12100064,RCF,XPS 16KD,"Class D power amplifier with DSP - 4 x 4.000 W @ 2.7 ohm, RDNET, DANTE",PCS,51768,51136
+,12100065,RCF,IPS 1.5K,Class H power amplifier - 2 x 750 W @ 4 ohm,PCS,3390,3349
+,12100059,RCF,IPS 2.5K,Class H power amplifier - 2 x 1.250 W @ 4 ohm,PCS,4628,4571
+,12100061,RCF,IPS 5.0K,Class H power amplifier - 2 x 2.600 W @ 4 ohm,PCS,6888,6804
+,12100055,RCF,QPS 6.0K,Class HD power amplifier - 4 x 1.500 W @ 2 ohm,PCS,10009,9887
+,12100057,RCF,QPS 10K,Class HD power amplifier - 4 x 2.500 W @ 2 ohm,PCS,11085,10950
+,12399033,RCF,DX 1616,"16X16 matrix audio processor, AES-EBU, ethernet, Dante",PCS,28736,28385
+,12135033,RCF,DX 4008,4 IN 8 OUT Digital speaker processor,PCS,11946,11801
+,13100022,RCF,VSA 2050 II,"20 x 3,5"" speakers, 96 dB Max SPL, RDNet",PCS,29812,29449
+,13100025,RCF,VSA 1250 II,"12 x 3,5"" speakers, 94 dB Max SPL, RDNet",PCS,23139,22857
+,13100028,RCF,VSA 850 II,"8 x 3,5"" speakers, 93 dB Max SPL, RDNet",PCS,19265,19030
+,13360410,RCF,SWM-BR VSA II,Swivel bracket for VSA II,PCS,969,957
+,13100053,RCF,VSA 2050 II B,"20 x 3,5"" speakers, 96 dB Max SPL, RDNet, Black",PCS,29812,29449
+,13100055,RCF,VSA 1250 II B,"12 x 3,5"" speakers, 94 dB Max SPL, RDNet, Black",PCS,23139,22857
+,13100057,RCF,VSA 850 II B,"8 x 3,5"" speakers, 93 dB Max SPL, RDNet, Black",PCS,19265,19030
+,13360442,RCF,SWM-BR VSA II BLACK,Swivel bracket for VSA II Black,PCS,969,957
+,13360330,RCF,VSA SMART RC,Smartphone remote control for VSA,PCS,1044,1031
+,13360318,RCF,TA1000 VSA,100V to 0dB trasformer adapter for VSA,PCS,312,308
+,13100024,RCF,VSA 2050 CUST MKII,"20 x 3,5"" speakers, 96 dB Max SPL, RDNet",PCS,35732,35296
+,13100027,RCF,VSA 1250 CUST MKII,"12 x 3,5"" speakers, 94 dB Max SPL, RDNet",PCS,27875,27535
+,13100030,RCF,VSA 850 CUST MKII,"8 x 3,5"" speakers, 93 dB Max SPL, RDNet",PCS,23139,22857
+,12100026,RCF,DMA 82,Digital Mixer Amplifier 2 x 80Wrms,PCS,3390,3349
+,12100027,RCF,DMA 162,Digital Mixer Amplifier 2 x 160Wrms,PCS,3821,3774
+,12100028,RCF,DMA 162P,Digital Power Amplifier 320Wrms,PCS,2906,2870
+,12100035,RCF,DMA 504,Digital Mixer Amplifier 4 x 500 Wrms,PCS,9686,9568
+,12399068,RCF,TRF-KIT DMA 82,2x 80 W / 100 V Transformer Kit,PCS,1722,1701
+,12399069,RCF,TRF-KIT DMA 162,2x 160 W / 100 V Transformer Kit,PCS,2099,2073
+,12399065,RCF,BT BOARD DMA,DMA amplifiers bluethooth card,PCS,646,638
+,13360426,RCF,RM-KIT DMA,Rack mount kit for DMA,PCS,97,96
+,14322031,RCF,BM 404,Desktop paging console,PCS,1507,1488
+,12399051,RCF,RC 401 EU B,"Wall mount remote control, compatible with EU standard box, Black",PCS,312,308
+,12399052,RCF,RC 401 EU W,"Wall mount remote control, compatible with EU standard box, White",PCS,312,308
+,12399053,RCF,RC 401 US B,"Wall mount remote control, compatible with US standard box, Black",PCS,312,308
+,12399054,RCF,RC 401 US W,"Wall mount remote control, compatible with US standard box, White",PCS,312,308
+,12399048,RCF,RDNET BOARD DMA,Optional network board,PCS,355,351
+,13100051,RCF,WMR 50T,"IP55 - Two-way wall mount monitor speaker 5"" + 1"", „40 W AES power handling, with transformer",PCS,1044,1031
+,13100050,RCF,WMR 60T,"IP55 - Two-way wall mount monitor speaker 6,5"" + 1"", „80 W AES power handling, with transformer",PCS,1184,1169
+,13100074,RCF,WMR 50T W,"IP55 - Two-way wall mount monitor speaker 5"" + 1"", „40 W AES power handling, with transformer, White",PCS,1044,1031
+,13100071,RCF,WMR 60T W,"IP55 - Two-way wall mount monitor speaker 6,5"" + 1"", „80 W AES power handling, with transformer, White",PCS,1184,1169
+,13100044,RCF,CMR 50T W,"Two-way ceiling monitor speaker 5"" + 1"", „40 W AES power handling, with transformer, White",PCS,1044,1031
+,13100045,RCF,CMR 60T W,"Two-way ceiling monitor speaker 6,5"" + 1"", „80 W AES power handling, with transformer, White",PCS,1130,1116
+,13100112,RCF,CMR-S 60T W,"Ceiling subwoofer 6,5"", 80 W AES power handling, with transformer",PCS,1184,1169
+,13100098,RCF,PMR 60T W,"Two-way pendant monitor speaker 6,5"" + 1"", „80 W AES power handling, with transformer, White",PCS,1507,1488
+,13100100,RCF,PMR 60T B,"Two-way pendant monitor speaker 6,5"" + 1"", „80 W AES power handling, with transformer, Black",PCS,1507,1488
+,13100111,RCF,CMR 30,"Pair of ceiling monitors, aluminium - 60 W peak - 16 OHM",PCS,915,904
+,13360492,RCF,GRILLE KIT 4X CMR B,Set of 4 black grilles for CMR 60T and CMR 50T ceiling speakers,PCS,398,393
+,13360489,RCF,TILE BRIDGE 4X CMR,Tile bridge accessory for CMR 60T and CMR 50T installation in standard false ceiling structures,PCS,517,510
+,13360490,RCF,MUD RING 4X CMR,Set of 4 mud ring accessories for CMR 60T and CMR 50T installation in new constructions ceilings,PCS,420,415
+,13100034,RCF,MR 40,"Pair of two-way bass reflex speakers 4""+ 1"", 40W",PCS,1130,1116
+,13100036,RCF,MR 40 W,"Pair of two-way bass reflex speakers 4""+ 1"", 40W, White",PCS,1130,1116
+,13100035,RCF,MR 40T,"Pair of two-way bass reflex speakers 4""+ 1"", 40W with transformer",PCS,1345,1329
+,13100037,RCF,MR 40T W,"Pair of two-way bass reflex speakers 4""+ 1"", 40W with transformer, White",PCS,1345,1329
+,13100038,RCF,MR 50,"Pair of two-way bass reflex speakers 5""+ 1"", 60W",PCS,1614,1595
+,13100040,RCF,MR 50 W,"Pair of two-way bass reflex speakers 5""+ 1"", 60W, White",PCS,1614,1595
+,13100039,RCF,MR 50T,"Pair of two-way bass reflex speakers 5""+ 1"", 60W with transformer",PCS,1883,1860
+,13100041,RCF,MR 50T W,"Pair of two-way bass reflex speakers 5""+ 1"", 60W with transformer, White",PCS,1883,1860
+,13360367,RCF,MA 4,U bracket for MR 40T,PCS,108,106
+,13360368,RCF,MA 4 W,U bracket for MR 40T W,PCS,108,106
+,13360369,RCF,MA 5,U bracket for MR 50T,PCS,108,106
+,13360370,RCF,MA 5 W,U bracket for MR 50T W,PCS,108,106
+,13000726,RCF,HL 6 16ohm,"Passive two-way line array module 2X6"" + 1.75"" v.c., 250 W AES",PCS,6780,6698
+,13000732,RCF,HL 35-S 8ohm,"Passive flyable subwoofer for HL 6, 15"", 900 W AES",PCS,12592,12439
+,13000830,RCF,HL 38-S WP,"Weatherproof passive flyable subwoofer 18"", 1.500 W AES",PCS,18296,18073
+,13000407,RCF,HL 2260,"IP55 horn loaded two way array system. 2x12"" Woofer+4"" CD, 22,5°x60",PCS,27660,27322
+,13000404,RCF,HL 2240,"IP55 horn loaded two way array system. 2x12"" Woofer+4"" CD, 22,5°x40",PCS,27660,27322
+,13000405,RCF,HL 2290,"IP55 horn loaded two way array system. 2x12"" Woofer+4"" CD, 22,5°x90",PCS,27660,27322
+,13000266,RCF,H 1315 WP,Weather-proof version of H1315,PCS,25938,25621
+,13000565,RCF,HVL 15-P W,"Three-way passive speaker system 2 x 15” + 2 x 10” + 2 x 4”, bi-amped 1000 W (LF) + 900 W (MHF) AES power handling, Weatherproof, 45° x 15° coverage angles, White",PCS,52736,52093
+,13000640,RCF,HVL 15-L W,"Three-way passive speaker system 2 x 15” + 2 x 10” + 2 x 4”, bi-amped 1000 W (LF) + 900 W (MHF) AES power handling, Weatherproof, 90° x 30° coverage angles, White",PCS,52736,52093
+,13000700,RCF,HVL 15-P1 W,"Three-way passive speaker system 2 x 15” + 2 x 10” + 2 x 4”, bi-amped 1000 W (LF) + 900 W (MHF) AES power handling, Weatherproof, 60° x 30° coverage angles, White",PCS,52736,52093
+,13000701,RCF,HVL 15-L1 W,"Three-way passive speaker system 2 x 15” + 2 x 10” + 2 x 4”, bi-amped 1000 W (LF) + 900 W (MHF) AES power handling, Weatherproof, 90° x 30° coverage angles, White",PCS,52736,52093
+,13000705,RCF,HVL 15-S W,"2 x 15"" long throw passive subwoofer, 3000 W AES power handling, Weatherproof, White",PCS,43911,43376
+,13000698,RCF,Q 15 8ohm,"Passive two-way point source module 15"" + 4"", 22.5°x60° constant directivity coverage, 1500 W AES",PCS,19803,19562
+,13000727,RCF,Q 15-L 8ohm,"Passive two-way point source module 15"" + 4"", 22.5°x90° constant directivity coverage, 1500 W AES",PCS,19803,19562
+,13000728,RCF,Q 15-P 8ohm,"Passive two-way point source module 15"" + 4"", 22.5°x40° constant directivity coverage, 1500 W AES",PCS,19803,19562
+,13000534,RCF,C-MAX 4110,"2 way full range high power nearfield monitor 10"" - 1"" - 90x70°, 350W",PCS,5597,5528
+,13000535,RCF,C-MAX 4112,"2 way full range high power nearfield monitor 12"" - 1"" - 90x70°, 400W",PCS,6242,6166
+,13000657,RCF,X-MAX 10,"Two-way full range high power passive speaker 10"" + 1.4"" v.c - 90x70°, 700Wpeak",PCS,2744,2711
+,13000658,RCF,X-MAX 12,"Two-way full range high power passive speaker 12"" + 1.4"" v.c - 90x70°, 800Wpeak",PCS,3444,3402
+,13000281,RCF,C 3108-96,"2 way speaker sys. - 8"" - 1"" - 90x60° - 300W ",PCS,4466,4412
+,13000282,RCF,C 3108-126,"2 way speaker sys. - 8"" - 1"" - 120x60° - 300W ",PCS,4466,4412
+,13000283,RCF,C 3110-96,"2 way speaker sys. - 10"" - 1"" - 90x60° - 300W ",PCS,5220,5156
+,13000284,RCF,C 3110-126,"2 way speaker sys. - 10"" - 1"" - 120x60° - 300W ",PCS,5220,5156
+,13000617,RCF,S 10,"Bass reflex subwoofer, 10"", 400W",PCS,2798,2764
+,13000618,RCF,S 12,"Bass reflex subwoofer, 12"", 400W",PCS,3498,3455
+,13000667,RCF,S 15,"Bass reflex subwoofer, 15"", 500W",PCS,4305,4253
+,13000168,RCF,S 8015LP,"15"" subwoofer - 800W bandpass  - under seat configuration",PCS,6888,6804
+,13000398,RCF,S 8015 II,"Subwoofer 15"", 1.000 W - reflex",PCS,6996,6910
+,13000390,RCF,S 8018 II,"Subwoofer 18"", 1.500 W - reflex",PCS,7426,7336
+,13000391,RCF,S 8028 II,"Subwoofer 2 x 18"", 3.000 W - reflex",PCS,13346,13183
+,13100096,RCF,S 19,"Weatherproof subwoofer 19"", 1.500 W - reflex",PCS,8180,8080
+,13100097,RCF,S 29,"Weatherproof subwoofer 2 x 19"", 3.000 W - reflex",PCS,15283,15096
+,13100117,RCF,S 19 WP,"Weatherproof subwoofer 19"", 1500W - reflex",PCS,9902,9781
+,13100108,RCF,S 29 WP,"Weatherproof subwoofer 2 x 19"", 3000W - reflex",PCS,18834,18605
+,13000203,RCF,P 1108T,"2 way weather-proof speaker sys. - 8'' - 1''- 90°x70° horn- 100 W 16 ohm, with 60W line transf.",PCS,3229,3189
+,13100084,RCF,P 1108T W,"2 way weather-proof speaker sys. - 8'' - 1''- 90°x70° horn- 100 W 16 ohm, with 60W line transf., White",PCS,3229,3189
+,13000125,RCF,P 2110T,"weather-proof speaker system, coaxial 10""+1"", 200W 16 ohm, with 60W line transf.",PCS,4789,4731
+,13000198,RCF,P 3108,2 way weather-proof speaker sys. - 8'' - 1''- 90°x70° horn- 300 W ,PCS,5166,5103
+,13000135,RCF,P 3115T,"weather-proof speaker system, coaxial 15""+1"", 300W 16 ohm, with 120W line transf.",PCS,6996,6910
+,13100082,RCF,P 3115T W,"weather-proof speaker system, coaxial 15""+1"", 300W 16 ohm, with 120W line transf., White",PCS,6996,6910
+,13000199,RCF,P 4228,"2 way weather-proof speaker sys. - 2x8"" woofer + 2""driver - 400W",PCS,8072,7973
+,13100081,RCF,P 4228 W,"2 way weather-proof speaker sys. - 2x8"" woofer + 2""driver - 400W, White",PCS,8072,7973
+,13000202,RCF,P 5228-L,"2 way weather-proof ARRAY MODULE - 2x8"" woofer + 2x1""driver - 400W",PCS,8610,8505
+,13000131,RCF,P 6215,"High efficiency weather-proof speaker system, coaxial 15""+2"", 600W",PCS,8610,8505
+,13100083,RCF,P 6215 W,"High efficiency weather-proof speaker system, coaxial 15""+2"", 600W, White",PCS,8610,8505
+,13000230,RCF,P 8015S,"weather-proof sub-woofer sys. - 15"" - 800W",PCS,6027,5954
+,13000738,RCF,COMPACT A 10,"Speaker system 10"" + 1.75"" v.c., 350 W AES",PCS,2744,2711
+,13000739,RCF,COMPACT A 12,"Speaker system 12"" + 1.75"" v.c, 400 W AES",PCS,3229,3189
+,13000740,RCF,COMPACT A 15,"Speaker system 15"" + 1.75"" v.c, 450 W AES",PCS,3767,3721
+,13000642,RCF,COMPACT C 32,"Two-way professional speaker 12""+ 3"" v.c., 600 W RMS",PCS,7964,7867
+,13000602,RCF,COMPACT C 45,"Two-way professional speaker  15""+ 4"" v.c., 700 W RMS",PCS,9686,9568
+,13000911,RCF,COMPACT C 32 WP,"Weatherproof two-way professional speaker 12""+ 3"" v.c., 600 W RMS, ",PCS,9686,9568
+,13000803,RCF,COMPACT C 45 WP,"Weatherproof two-way professional speaker  15""+ 4"" v.c., 700 W RMS",PCS,11839,11694
+,13000623,RCF,COMPACT M 04,"Two-way passive speaker system 4""+ 1"", 60W",PCS,990,978
+,13000581,RCF,COMPACT M 05,"Two-way passive speaker system 5""+ 1"", 80W",PCS,1184,1169
+,13000582,RCF,COMPACT M 06,"Two-way passive speaker system 6""+ 1"", 100W",PCS,1614,1595
+,13000594,RCF,COMPACT M 08,"Two-way passive speaker system 8""+ 1"", 200W",PCS,2314,2286
+,13000595,RCF,COMPACT M 10,"Two-way passive speaker system 10""+ 1"", 300W",PCS,3121,3083
+,13000596,RCF,COMPACT M 12,"Two-way passive speaker system 12""+ 1"", 300W",PCS,4036,3987
+,13000725,RCF,COMPACT M 04 W,"Two-way passive speaker system 4""+ 1"" v.c., 60W, White",PCS,990,978
+,13000720,RCF,COMPACT M 05 W,"Two-way passive speaker system 5""+ 1"" v.c., 80W, White",PCS,1184,1169
+,13000721,RCF,COMPACT M 06 W,"Two-way passive speaker system 6""+ 1"" v.c., 100W, White",PCS,1614,1595
+,13000722,RCF,COMPACT M 08 W,"Two-way passive speaker system 8""+ 1.4"" v.c., 300W, White",PCS,2314,2286
+,13000723,RCF,COMPACT M 10 W,"Two-way passive speaker system 10""+ 1.4"" v.c., 300W, White",PCS,3121,3083
+,13000724,RCF,COMPACT M 12 W,"Two-way passive speaker system 12""+ 1.4"" v.c., 300W, White",PCS,4036,3987
+,13000169,RCF,L 2406T,"3-way column array - 6 x 5"" + 4 x 1"" - 200W",PCS,4413,4359
+,13000177,RCF,L 2406T W,"3-way column array - 6 x 5"" + 4 x 1"" - 200W, white",PCS,4413,4359
+,13360521,RCF,FL-B LGT HL 40 WP 002,"Lightweight fly-bar for HL 38-S WP, up to 4 modules",PCS,3444,3402
+,13360534,RCF,FLY BAR HL 40 WP 002,"Fly-bar for HL 38-S WP, up to 8 modules",PCS,5919,5847
+,13360031,RCF,AC EB 4X,Set of 4 eye bolts,PCS,194,191
+,13360282,RCF,FL-B HL,Fly bar for HL2240-60-90-00,PCS,6350,6272
+,13360487,RCF,C-BR 4X Q 15,"Set of 4 flying brackets to install Q 15 modules with a coupling angle of 10°, instead of the native 22.5°",PCS,689,680
+,13360456,RCF,FL-B H Q 15,Horizontal fly bar for Q 15,PCS,1238,1223
+,13360457,RCF,FL-B V Q 15,Vertical fly bar for Q 15,PCS,3444,3402
+,13360095,RCF,C-BR 2X P10,Cluster brackets for P2110 (including 4 brackets to cluster 2 speakers),PCS,969,957
+,13360094,RCF,C-BR 2X P15,Cluster brackets for P3115/P6215 (including 4 brackets to cluster 2 speakers),PCS,1012,999
+,13360119,RCF,C-BR 2X P28,Cluster brackets for P4228/P5228L (including 4 brackets to cluster 2 speakers),PCS,1012,999
+,13360217,RCF,CL-BR NC,"Pipe clamp accessory to mount C3108, C3110",PCS,689,680
+,13360199,RCF,SWM-BR NC,"Wall mount swivel bracket for C3108-96, C3108-126, C3110-96, C3108-126, M 10 and M 12",PCS,667,659
+,13360190,RCF,H-BR 2X NC08,U Bracket Horiz.Wall-Mounting C3108-96 and C3108-126 - 2 pcs,PCS,474,468
+,13360191,RCF,H-BR 2X NC10,U Bracket Horiz.Wall-Mounting C3110-96 and C3110-126 - 2 pcs,PCS,495,489
+,13360195,RCF,V-BR 2X NC08,U Bracket Vert.Wall-Mounting C3108-96 and C3108-126 - 2 pcs,PCS,301,298
+,13360196,RCF,V-BR 2X NC10,U Bracket Vert.Wall-Mounting C3110-96 and C3110-126 - 2 pcs,PCS,323,319
+,13360200,RCF,FL-BR NC 06-08-10,Flying bracket NC 06/08/10,PCS,355,351
+,13360541,RCF,V-BR 001,2x Vertical bracket for C 45,PCS,1184,1169
+,13360539,RCF,WM-BR 001,"Wall mount bracket for M 12, C 32 and C 45 (to be used with the new horizontal brackets)",PCS,291,287
+,13360505,RCF,HN-KIT COMPACT C 32 C 45,Kit to change COMPACT C 32 and COMPACT C 45 speakers' directivity from 100° x 50° to 100° x 25° or 60° x 25°,PCS,517,510
+,13360550,RCF,H-BR 004,2x Horizontal bracket for M 05,PCS,667,659
+,13360545,RCF,H-BR 005,2x Horizontal bracket for M 06,PCS,721,712
+,13360547,RCF,H-BR 006,2x Horizontal bracket for M 08,PCS,839,829
+,13360551,RCF,H-BR 007,2x Horizontal bracket for M 10,PCS,893,882
+,13360538,RCF,H-BR 003,"2x Horizontal bracket for C 32 and M 12, KX 32-A",PCS,936,925
+,13360549,RCF,V-BR 006,2x Vertical bracket for M 08,PCS,936,925
+,13360552,RCF,V-BR 007,2x Vertical bracket for M 10,PCS,990,978
+,13360533,RCF,V-BR 002,2x Vertical bracket for C 32 and M 12,PCS,1076,1063
+,13360449,RCF,SWM-BR COMPACT M,"Swivel wall mount bracket for COMPACT M 05, M 06, M 08",PCS,183,181
+,13360597,RCF,H-BR 004 W,2x Horizontal bracket for M 05 W,PCS,667,659
+,13360602,RCF,H-BR 005 W,2x Horizontal bracket for M 06 W,PCS,721,712
+,13360603,RCF,H-BR 006 W,2x Horizontal bracket for M 08 W,PCS,839,829
+,13360604,RCF,H-BR 007 W,2x Horizontal bracket for M 10 W,PCS,893,882
+,13360609,RCF,H-BR 003 W,2x Horizontal bracket for M 12 W,PCS,936,925
+,13360605,RCF,V-BR 006 W,2x Vertical bracket for M 08 W,PCS,936,925
+,13360606,RCF,V-BR 007 W,2x Vertical bracket for M 10 W,PCS,990,978
+,13360607,RCF,V-BR 002 W,2x Vertical bracket for M 12 W,PCS,1076,1063
+,13360468,RCF,SWM-BR COMPACT M W,"Swivel wall mount bracket for COMPACT M 05 W, M 06 W, M 08 W",PCS,183,181
+,12399062,RCF,PNL IN-OUT SPEAKON COMPACT M,Speakon in-out connector optional panel,PCS,151,149
+,12399063,RCF,PNL IN-OUT AMPHENOL,"Input panel with amphenol IP67 connectors for Compact M (M 04 excluded), COMPACT C 32 / C 45, Q 15, SUB S 10 / S 12 / S 15",PCS,646,638
+,12100063,RCF,MU 7100EN MKII,"Master unit DXT 7000 system 8 x 80W, 4 Ohm, EN54-16",PCS,29597,29236
+,17100015,RCF,LT 7208EN MKII,Tranformer interface unit incl. 8 EOL DXT 7000EN system,PCS,10009,9887
+,17170159,RCF,MT 7308,"Amplifier Manager unit, 8 ampifiers IN/OUT",PCS,9686,9568
+,14322015,RCF,BM 7608,8 zone paging microphone for DXT7000 system,PCS,3842,3795
+,14322016,RCF,BM 7608D,8 zone paging mic. for DXT7000 system with keypad and LCD,PCS,6135,6060
+,14322014,RCF,BM 7608DFM,8 zone fireman mic. for DXT7000 system with keypad and LCD,PCS,7749,7655
+,17170140,RCF,SV 7982,Volume and program remote control,PCS,2260,2233
+,17170141,RCF,LI 7903,Remote local input / Control device,PCS,1959,1935
+,17170153,RCF,SI 7120,Monitored logic input board,PCS,732,723
+,xxx,RCF,BM 7xxx-D,16 button extention to apply to BM7624-D (up to max of 120 total buttons),PCS,3875,3827
+,12100009,RCF,MX 3500/2,"DXT3000 integrated voice alarm main unit, 500W, 2 channels",PCS,17758,17542
+,12100010,RCF,MX 3500/4,"DXT3000 integrated voice alarm main unit, 500W, 4 channels",PCS,20664,20412
+,12100011,RCF,MX 3500/6,"DXT3000 integrated voice alarm main unit, 500W, 6 channels",PCS,23462,23176
+,17170177,RCF,MX 3250/2,"DXT3000 integrated voice alarm main unit, 250W, 2 channels",PCS,13453,13289
+,17170183,RCF,MX 3250/4,"DXT3000 integrated voice alarm main unit, 250W, 4 channels",PCS,15606,15415
+,17170184,RCF,MX 3250/6,"DXT3000 integrated voice alarm main unit, 250W, 6 channels",PCS,17651,17435
+,12100067,RCF,MXR 4500/2,Rack version of MX 3500/2,PCS,19050,18817
+,12100068,RCF,MXR 4500/4,Rack version of MX 3500/4,PCS,20987,20731
+,12100069,RCF,MXR 4500/6,Rack version of MX 3500/6,PCS,23570,23282
+,14380028,RCF,BM 3804,Monitored paging microphone - 2 zone - desktop,PCS,2637,2605
+,14380037,RCF,BM 3804FM,Fireman paging microphone cons. for DXT 3000,PCS,3605,3561
+,14380036,RCF,BE 3806,6 buttons extension for BM3804,PCS,990,978
+,13360317,RCF,BATT 18AH 2X,"Pair of battery 12V, 18Ah for DXT3000 system",PCS,807,797
+,13360344,RCF,MG 3006,DXT3000 monitored GPI bord,PCS,743,734
+,12399015,RCF,IE 3008,Interlink for DXT 3000 systems,PCS,3067,3030
+,12399049,RCF,IT 3010,DXT 3000 transformer board,PCS,2045,2020
+,14322030,RCF,ME 3801,Wall mount emergency mic.,PCS,2744,2711
+,12399044,RCF,RC 3005,Remote control for music source integrated in the master unit front panel,PCS,377,372
+,17170176,RCF,EOL 3-9,DXT9000/3000 end of line,PCS,344,340
+,17100006,RCF,PS 6648,"48V EN54-4 pw supply, battery charger/moniotring - 200 Ah max 6x15A OUT",PCS,12054,11907
+,17360040,RCF,BH 1042,Rack battery support,PCS,667,659
+,43901111,RCF,BATT 12V-26AH,Battery 12V/26 AH for DXT systems,PCS,635,627
+,43901112,RCF,BATT 12V-40AH,Battery 12V/40 AH for DXT systems,PCS,1076,1063
+,43901113,RCF,BATT 12V-55AH,Battery 12V/55 AH for DXT systems,PCS,1399,1382
+,43901114,RCF,BATT 12V-100AH,Battery 12V/100 AH for DXT systems,PCS,2314,2286
+,43901115,RCF,BATT 12V-150AH,Battery 12V/150 AH for DXT systems,PCS,3498,3455
+,43901116,RCF,BATT 12V-200AH,Battery 12V/200 AH for DXT systems,PCS,4574,4518
+,13100008,RCF,PLP 50EN,"5"" ceiling speaker plastic fire dome, 6W, 70-100V",PCS,183,181
+,13100007,RCF,PL 50EN,"5"" ceiling speaker metal fire dome, 6W, 70-100V",PCS,237,234
+,13133082,RCF,PL 68EN,"Ceiling speaker - 6"", 6W - EN54-24",PCS,355,351
+,13100009,RCF,PL 82EN,"2 way 8"" ceiling speaker metal fire dome 20W, 70-100V",PCS,527,521
+,13133065,RCF,PL 70EN,"6"" twin-cone flush mounting ceiling speaker, white frame+grid, 6W, 70-100V. Steel back-can included - EN54-24",PCS,495,489
+,13100019,RCF,DUP 5EN,"Wall surface 5.5"" speaker, 6W, 70-100V, EN54-24",PCS,291,287
+,13133064,RCF,DU 50EN,"5"" twin-cone wall/ceiling mounting speaker, white, 6W, 70-100V - EN54-24",PCS,474,468
+,13133083,RCF,DU 60EN,"5"" twin-cone ceiling flush/semi flush mounting speaker, white, 6W, 70-100V - EN54-24",PCS,517,510
+,13100021,RCF,DP 4EN,"Unidirectional sound projectors - 5"" 10W (IP55) - EN54-24",PCS,463,457
+,13133076,RCF,DP 5EN,"Unidirectional sound projectors - 5"" 10W (IP65) - EN54-24",PCS,775,765
+,13133071,RCF,DP 1420EN,"Unidirectional sound projector, alu., IP 36, 20W, 70-100V - BS5839-8 - EN54-24",PCS,904,893
+,13133077,RCF,BD 5EN,"Bidirectional sound projectors - 5"" 10W (IP65) - EN54-24",PCS,947,936
+,13133074,RCF,BD 2412EN,"Bidirectional sound projector, alu., IP 55, 12W, 70-100V - EN54-24",PCS,958,946
+,13133079,RCF,CS 6520EN,"5"" transducers 2 way sound column, alumin, 20W, 70-100V white, IP 66 - EN54-24",PCS,2045,2020
+,13100005,RCF,CS 6940EN,"8x3"" plus tw 2 way sound column, alumin, 40W, 70-100V white, IP 66 - EN54-24",PCS,3390,3349
+,13133075,RCF,HD 21EN,Paging horn - IP66 - dia 21cm - 30W - EN54-24 - 104 dB,PCS,657,649
+,13133085,RCF,HD 6045EN,"Fiberglass horn 600x450mm. With 4x50 watt drivers, 100V trasf. - EN54-24",PCS,10224,10100
+,13133078,RCF,BS 5EN,"Suspended sound projectors - 5"" 10W (IP65) - EN54-24",PCS,958,946
+,13100010,RCF,MR 52EN W,"2 way bass reflex wall mount cabinet, 30W - white - trasf/low imp",PCS,926,914
+,13100042,RCF,MH 61EN,"2 way plastic horn speaker, 60 W, 70-100 V - EN54-24",PCS,1776,1754
+,13100043,RCF,MF 33EN,Ceiling speaker - EN 54-24,PCS,1130,1116
+,13100046,RCF,WMF 33EN,Wall mount speaker - EN 54-24,PCS,1184,1169
+,12399047,RCF,CJ 428CAT,Cable FTP 4x2x22 AWG CAT 5E FR (PH120) - per meter,PCS,43,43
+,12135085,RCF,ZM 2124,Powered master unit - 240W,PCS,9256,9143
+,17170167,RCF,ZE 2200,6 zone extension,PCS,3875,3827
+,14322021,RCF,BM 2006,Paghing mich - 6 zone,PCS,1614,1595
+,14322022,RCF,BE 2012,BM 2006 12 zone extension,PCS,732,723
+,13360040,RCF,RC 62-G,Remote control (gray anthracite),PCS,366,361
+,14115013,RCF,MD 7800,"Unidirectional dynamic microph. , XLR 3 fem. connector, 5mt cable, holder",PCS,517,510
+,14115025,RCF,MC 4064,"Multipurpose gooseneck microphone, switch 3mt. Cable XLR - electret capsule",PCS,1130,1116
+,14115024,RCF,MC 5054,"Universal gooseneck microphone, high quality electret capsule - cardioid",PCS,893,882
+,14250010,RCF,PX 4116,"UHF multi-ch true diversity wireless Lavalier mic. System, belt clip transm.",PCS,2099,2073
+,14115023,RCF,HE 2006,Headset mic. to be combined with PX2106/4116 transmitters,PCS,194,191
+,17360031,RCF,AR 1620,"Rack accessory to install one or two receivers in 19"" rack cabinet",PCS,431,425
+,14322012,RCF,BM 3003,"3 zones desk-top paging mike console for ES3323, 5mt. Cable with RJ conn",PCS,1453,1435
+,14322008,RCF,BM 3001,"Desk-top paging mike console for ES3160, 5mt.cable with RJ conn.",PCS,883,872
+,14322013,RCF,BM 3022,"Goos. consolle c/w microph., 0 dB output, AC/DC ",PCS,1937,1914
+,14320135,RCF,BM 3014,"Desk-top paging mike console, 5mt.cable with XLR conn.",PCS,861,851
+,14380014,RCF,A 504-N,Slide-on holder for hand-held microphone,PCS,43,43
+,14310008,RCF,A 507,Universal slide on holder,PCS,43,43
+,14380022,RCF,AC AD2405,BM 3022 power supply adapter,PCS,183,181
+,13360247,RCF,AC MIC DK,MC4064 support,PCS,323,319
+,14380011,RCF,AC S50DK,"Microphone desk stand, solid base",PCS,215,213
+,14380035,RCF,AC 501DK,"Microphone desk stand, solid base with XLR",PCS,689,680
+,14380027,RCF,AC S76FL,Mic floor stand,PCS,258,255
+,14380033,RCF,AC 503FS,Adaptor for MC5054 with mic floor stand,PCS,151,149
+,14380034,RCF,AC 502LC,Adaptor for MC5054 - universal desktop table support,PCS,140,138
+,14380029,RCF,A 53,10 x adaptors 3/8 to 5/8 for AC S50DK with MD7600/7800,PCS,129,128
+,12170094,RCF,MP 300,Speak through system,PCS,3875,3827
+,12100053,RCF,ES 2160,"USB, bluetooth, MP3 160W amplifier",PCS,3875,3827
+,12135107,RCF,ES 3080,"USB, SD card, bluetooth -MP3 + 2 IN + 1 AUX IN - 80W amplifier",PCS,3283,3243
+,12135082,RCF,AM 1125,"5 input mixer amp. 120W AC/DC, 3 MIC/LINE. Priority",PCS,2260,2233
+,12135062,RCF,AM 2080,"2+2 input mixer amp. 80W AC, 2 MIC/LINE, Phantom, VOX activ. Priority",PCS,2529,2498
+,12135058,RCF,AM 2160,"4+2 input mixer amplifier 160W AC, 4 MIC/LINE, Phantom, VOX activ. Priority",PCS,3336,3296
+,12135059,RCF,AM 2320,"4+2 input mixer amplifier 320W AC, 4 MIC/LINE, Phantom, VOX activ. Priority",PCS,4843,4784
+,12135061,RCF,UP 2321,1+1 input power amplifier 320W AC,PCS,4197,4146
+,12135065,RCF,UP 2162,2 x 1+1 input power amplifier 2 x 160W AC,PCS,4736,4678
+,12135070,RCF,UP 8501,1+1 input power amplifier 500W AC/DC,PCS,6780,6698
+,12135077,RCF,UP 8502,2 x 1+1 input power amplifier 2 x 250W AC/DC,PCS,7964,7867
+,12135079,RCF,UP 8504,4 x 1+1 input power amplifier 4 x 125W AC/DC,PCS,8502,8399
+,17100003,RCF,PR 4093,Pre-amplifier 9 input 3 output (1 mono + 1 stereo),PCS,1453,1435
+,13360046,RCF,TD 30,"High quality extended range multitap transformer 100V in, 4-8 ohm output, 30 W",PCS,312,308
+,13360047,RCF,TD 60,"High quality extended range multitap transformer 100V in, 4-8 ohm output, 60 W",PCS,334,330
+,13360049,RCF,TD 240,"High quality extended range multitap transformer 100V in, 4-8 ohm output, 240 W",PCS,560,553
+,13133045,RCF,PL 40,"31/2"" flush mnt. ceil. speaker with line transf., 8W, IP 44",PCS,183,181
+,13133060,RCF,PL 50,"6"" twin-cone flush mounting ceiling speaker, white, 6W, 70-100V, plastic grille",PCS,97,96
+,13110214,RCF,PL 60,"6"" twin-cone flush mounting ceiling speaker, white, 6W, 70-100V",PCS,140,138
+,13133042,RCF,PL 6X,"6"" coax flush mnt. ceil. speaker with line transf., 12W, IP 44 ",PCS,248,245
+,13133043,RCF,PL 8X,"8"" coax flush mnt. ceil. speaker with line transf., 20W, IP 44 ",PCS,334,330
+,13100087,RCF,PL 6X B,"6"" coax flush mnt. ceil. speaker with line transf., 12W, IP 44, black",PCS,248,245
+,13100088,RCF,PL 8X B,"8"" coax flush mnt. ceil. speaker with line transf., 20W, IP 44, black",PCS,334,330
+,13000049,RCF,DM 41,"Compact cabinet, 2way with 31/2"" woofer, 15W with line transf, IP55, white",PCS,355,351
+,13000387,RCF,DM 41 B,"Compact cabinet, 2way with 31/2"" woofer, 15W - 8 Ohm, IP55, black",PCS,355,351
+,13000050,RCF,DM 61,"Compact cabinet, 2way with 6"" woofer, 25W with line transf, IP55, white",PCS,753,744
+,13100089,RCF,MQ 50C B,"Two-way ceiling monitor, wide dispersion, light weight, built-in 30W line transf. (Black)",PCS,936,925
+,13000081,RCF,MQ 50C W,"Two-way ceiling monitor, wide dispersion, light weight, built-in 30W line transf. (White)",PCS,936,925
+,13000094,RCF,MQ 80P B,"Hi-efficiency two-way horn loaded sound projector, built-in 30W line transf., IP 55 (Black colour)",PCS,1130,1116
+,13000096,RCF,MQ 80P W,"Hi-efficiency two-way horn loaded sound projector, built-in 30W line transf., IP 55 (White colour)",PCS,1130,1116
+,13000186,RCF,MQ 100L B,3 way mini-column array speaker system - black,PCS,1399,1382
+,13000187,RCF,MQ 100L W,3 way mini-column array speaker system - white,PCS,1399,1382
+,13133054,RCF,BS 8,"Pendent ball spkr., white autoesting.plastic, 20W, 100V, 5 mt.cable",PCS,431,425
+,13133084,RCF,GS 60,Garden speaker - IP56 - coaxial trasducers,PCS,1507,1488
+,13000220,RCF,DU 31AT,"2 way in-wall mounting speaker 6W 100V, with volume control, white",PCS,183,181
+,13000232,RCF,CS 3082,"2way column speaker, 8x2"" woofers + 2 TW, 30W - 100V, white",PCS,1033,1021
+,13360123,RCF,A 1331,Multi purpose mounting adapter for DU31 & DU31AT,PCS,97,96
+,13320107,RCF,A 1360,White adapter to surface mount  PL 60,PCS,118,117
+,13360206,RCF,AC WM CS,Pair of swivel mounting bracket for CS3041 and 3082,PCS,183,181
+,13130001,RCF,HD 310T,"W/tight alumin. Horn 30W, 70/100V - IP 65 ",PCS,753,744
+,13133041,RCF,HD 410T,"70/100V 50W round ALU paging horn, IP 66, INOX acc., ",PCS,1292,1276
+,13330006,RCF,TD 507,"Multitap transf. for D 5076; 50W, 50/100V",PCS,258,255
+,13160032,RCF,AT 10Z,10W / 4 Ohm Constant impedance attenuator (frame not included),PCS,194,191
+,13160033,RCF,AT 20T,20 W / 100V Transformer attenuator (frame not included),PCS,334,330
+,13160035,RCF,AT 40T,40 W / 100V Transformer attenuator (frame not included),PCS,420,415
+,13160036,RCF,CT 61,Volume control for line Transfomer 6 Positions (frame not included),PCS,215,213
+,13360050,RCF,TL 128,"Multitap auto-transformer 100V in, 100V out, 120 W",PCS,215,213
+,13160034,RCF,CP 52,Program selection for line 100 V 5 position (frame not included),PCS,172,170
+,17170179,RCF,CR 2609,"9 U Rack cabinet 19"", wheels + frontal door with glass",PCS,3444,3402
+,17170081,RCF,CR 2628,"28 U Rack cabinet 19"", forced vent. w/thermal switch ",PCS,6780,6698
+,17170082,RCF,CR 2642,"42 U Rack cabinet 19"", forced vent. w/thermal switch ",PCS,8395,8292
+,17170129,RCF,CR 2615FV,"15 U Rack cabinet 19"", forced vent. W/thermal switch",PCS,5812,5741
+,17100008,RCF,AK 2615V,Ventilated rack cabinet door for CR 2615 and CR 2615FV,PCS,1561,1542
+,17100009,RCF,AK 2628V,Ventilated rack cabinet door for CR 2628,PCS,2260,2233
+,17100010,RCF,AK 2642V,Ventilated rack cabinet door for CR 2642,PCS,2798,2764
+,17360038,RCF,RR 2601,Wheels kit for CR 2628 and CR 2642 rack cabinets ,PCS,979,967
+,17360027,RCF,AR 2605,"Multi AC socket on rack rear-support, 16A MAX, DIN BAR for the application of 4 standard DIN modules",PCS,549,542
+,17360039,RCF,AR 1050,Lateral rack support for installation in RCF CR2600 series,PCS,129,128
+,17170146,RCF,PU 2,Two unit blank panel,PCS,118,117
+,17170147,RCF,PU 3,Three unit blank panel,PCS,151,149
+,17170149,RCF,P AER,"Natural ventilation panel, 1 rack unit",PCS,118,117
+,17120056,RCF,OT 3500,"0dB, 1:1 output transformer, metal box, remov. screw terminals",PCS,377,372
+,13360102,RCF,AC XLR 3M3F,3 male + 3 female XLR connectors (3 pins),PCS,75,74
+,12399042,RCF,CA 2/C,Two wire shielded cable 100mt roll. Price per meter,PCS,11,11
+,12399043,RCF,CA 2+2/C,"Two wire shielded cable with additional pair, 100mt roll. Price per meter",PCS,11,11
+,13133037,RCF,HD 3216T,"70/100V 25W square plastic paging horn, IP 66, UL-HB material UV stabil., INOX acc., ",PCS,613,606
+,13133030,RCF,HD 1110,Compact horn 20W - 8 ohm,PCS,420,415
+,17180010,RCF,DMU 6100,Central Unit RCF Forum Discussion system  ,PCS,7103,7017
+,17180011,RCF,DMS 6410,Microphone set for RCF Forum Discussion system,PCS,2099,2073
+,17180013,RCF,DMS 6410X,Microphone console XLR gooseneck RCF Forum Discussion system,PCS,2475,2445
+,17180034,RCF,DEC 6104,Expansion module for DMU6100,PCS,4682,4625
+,17180042,RCF,MMU 3100,"Meeting compact syst. control amplif., 80 console, 80W - 100V",PCS,4305,4253
+,14322019,RCF,MMS 3405P,"President unit  with gooseneck electret mic., light ring, CAT5 FTP",PCS,1453,1435
+,14322020,RCF,MMS 3404D,"Delegate unit  with gooseneck electret mic., light ring, CAT5 FTP",PCS,1292,1276
+,17180014,RCF,DCA 6000,100m cable reel for RCF Forum Discussion system + 12 RJ 10p connectors ,PCS,2099,2073
+,17180029,RCF,DCA 6005,Extension cables 5 m RCF Forum 6000 Discussion system,PCS,301,298
+,17180031,RCF,DCA 6020,Extension cables 20 m RCF Forum 6000 Discussion system,PCS,517,510
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,

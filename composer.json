@@ -1,0 +1,11 @@
+{
+    "name": "joby/avengers_erp",
+    "require": {
+        "dompdf/dompdf": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Joby\\AvengersErp\\": "src/"
+        }
+    }
+}
