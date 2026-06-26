@@ -1000,7 +1000,7 @@ public function list_employee() {
 }
 public function add_employee(){
     $user = $this->session->userdata('user_id');
-		if(!has_access($user,'Company/list_employee','A')){
+		if(!has_access($user,'Company/add_employee','A')){
 			$data['title'] = 'Access Denied';
 			$data['main_content']='errors/access_control.php';
 		}
@@ -1446,7 +1446,7 @@ public function list_designation(){
 }
 public function add_designation(){		
         $user = $this->session->userdata('user_id');
-		if (!has_access($user,'Company/list_designation','A')) {
+		if (!has_access($user,'Company/add_designation','A')) {
 			$data['title'] = 'Access Denied';
 			$data['main_content']='errors/access_control.php';			
 		}else{
