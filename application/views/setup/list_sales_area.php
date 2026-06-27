@@ -1,6 +1,14 @@
 <div class="x_panel">
     <div class="x_title">
         <h2>Sales Area List</h2>
+
+
+                 <div class="pull-right">
+                    <a href="<?= base_url('index.php/Setup/add_sales_area') ?>"
+                       class="btn btn-success btn-sm">
+                        <i class="fa fa-plus"></i>Add Sales Area
+                    </a>
+                </div>
         <div class="clearfix"></div>
     </div>
 

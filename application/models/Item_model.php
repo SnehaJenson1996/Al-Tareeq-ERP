@@ -10,41 +10,8 @@ class Item_model extends CI_Model {
 	
 
 
-    public function insert_unit($data)
-        {
-            $this->db->insert('unit_master', $data);  // Replace 'units' with your actual table name
-            return $this->db->insert_id();
-        }
-
-    public function get_all_units(){
-		$this->db->select('*');
-        $this->db->from('unit_master');
-        $query = $this->db->get()->result();
-        return $query; 
-	}
-    public function get_unit_by_id($unit_id){
-		$this->db->select('*');
-        $this->db->from('unit_master');
-        $this->db->where('unit_id ',$unit_id);
-        $query = $this->db->get()->result();
-        return $query; 
-	}
-    public function update_unit($data,$unit_id){        
-        $this->db->where('unit_id',$unit_id);
-        $res = $this->db->update('unit_master',$data);
-        return $res;
-    }
-    public function delete_unit($unit_id){        
-        $this->db->where('unit_id',$unit_id);
-        $res = $this->db->delete('unit_master');
-        return $res;
-    }
-    //////////Item
-     public function insert_item($data)
-    {
-        $this->db->insert('item_master', $data);  // Replace 'units' with your actual table name
-        return $this->db->insert_id();
-    }
+      //////////Item
+   
     //brand master
     public function add_brand_data(){
         $data=array(
@@ -123,63 +90,7 @@ class Item_model extends CI_Model {
 	// }
 
     //item master
-public function get_all_item_list(){
-        $this->db->select('im.*,um.unit_name, um.unit_id');
-        $this->db->from('item_master im');
-        $this->db->join('unit_master um','im.item_unit=um.unit_id');
-        $query = $this->db->get()->result();
-        return $query; 
-}
 
-public function get_active_item_list()
-{
-       $this->db->select('*');
-       $this->db->from('item_master im');
-       $this->db->join('brand_master bm','im.item_brand=bm.brand_id');
-       $this->db->where('im.active',1);
-       $query = $this->db->get()->result();
-       return $query;      
-}
-
-public  function check_item_code_duplicate(){
-        $item_code = $this->input->post('item_code');
-        $this->db->where('item_code', $item_code);
-        $query = $this->db->get('item_master');
-
-        if ($query->num_rows() > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
-}
-
-public function add_item_data(){
-    $data=array(
-        'item_brand'=>$_POST['item_brand'],
-        'item_code'=>$_POST['item_code'],
-        'item_model'=>$_POST['item_model'],
-        'item_description'=>$_POST['item_description'],
-        'item_unit'=>$_POST['item_unit'],
-        'mrp_qar'=>$_POST['mrp_qar'],
-        'mrp_aed'=>$_POST['mrp_aed'],
-       
-    );
-    $res = $this->db->insert('item_master',$data);
-    return $res;
-}
-public function get_item_by_id($item_id){
-    $this->db->select('im.*, bm.brand_name');
-    $this->db->from('item_master im');
-    $this->db->join('brand_master bm', 'bm.brand_id = im.item_brand', 'left'); // use left join if some items may not have a brand
-    $this->db->where('im.item_id', $item_id);
-    
-    return $this->db->get()->row_array();
-}
-public function update_item($item_id, $data)
-{
-    $this->db->where('item_id', $item_id);
-    return $this->db->update('item_master', $data);
-}
 /*public function get_item_by_id($item_id){
 
     $this->db->select('im.item_id,im.item_code,im.item_brand,im.item_model,im.item_description,im.item_unit,im.c_o_o,im.hs_code,im.mrp_aed,bm.brand_name,bm.discount_limit,um.unit_name,COALESCE(sum(sd.quantity),0) as stock');
@@ -310,35 +221,11 @@ public function update_item($item_id, $data)
         return $count;
     }
 
-    public function search_items($term)
-    {
-        if($term != ''){
-            $this->db->like('item_model', $term);
-        }
-        $this->db->limit(20); // limit results to avoid too much data
-        $query = $this->db->get('item_master');
-        return $query->result_array();
-        
-    }
+
 
    //unit master
    
-   public function get_active_unit_list()
-   {
-       $this->db->select('*');
-       $this->db->from('unit_master');
-       $this->db->where('active',1);
-       $query = $this->db->get()->result();
-       return $query;      
-   }
-
-   public function get_unit_id_by_name($unit_name){
-    $this->db->select('unit_id');
-    $this->db->from('unit_master');
-    $this->db->where('unit_name',$unit_name);
-    $result = $this->db->get()->row('unit_id');
-    return $result;
-}
+  
 
 //brand master
 

@@ -5,6 +5,12 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
+        <div class="pull-right">
+                    <a href="<?= base_url('index.php/Setup/add_item') ?>"
+                       class="btn btn-success btn-sm">
+                        <i class="fa fa-plus"></i>Add Item
+                    </a>
+                </div>
       <div class="x_content">
 <table id="itemTable" class="table table-hover">
           <thead>
@@ -23,35 +29,31 @@
             <?php $i=1; foreach($all_items as $item){ ?>
               <tr>
                 <th scope="row"><?php echo $i; ?></th>
-                <td><?php echo $item->item_code; ?></td>
-                <td><?php echo $item->item_name; ?></td>
+                <td><?php echo $item->product_code; ?></td>
+                <td><?php echo $item->product_name; ?></td>
                 <td><?php echo $item->unit_name; ?></td>
-                <td><?php echo $item->unit_price; ?></td>
-                <td><?php echo $item->item_description; ?></td>
+                <td><?php echo $item->retail_price; ?></td>
+                <td><?php echo $item->description; ?></td>
 
                 <td>
-                  <?php if (!empty($item->item_image) && file_exists('./public/items/' . $item->item_image)) { ?>
-                    <img src="<?php echo base_url('public/items/' . $item->item_image); ?>" alt="Item Image" style="width: 60px; height: auto;"/>
+                  <?php if (!empty($item->product_image) && file_exists('./public/items/' . $item->product_image)) { ?>
+                    <img src="<?php echo base_url('public/items/' . $item->product_image); ?>" alt="Item Image" style="width: 60px; height: auto;"/>
                   <?php } else { ?>
                     <span>No Image</span>
                   <?php } ?>
                 </td>
                 <td>
-                  <?php if(has_access($user, $page_name, 'E')){ ?>
-                    <a href='<?php echo base_url().'index.php/Item/edit_item/'.$item->item_id; ?>' title='Edit'>
-                      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </a>
-                  <?php } ?>
+                    <a href='<?php echo base_url().'index.php/Setup/edit_item/'.$item->product_id; ?>' title='Edit' class="btn btn-primary btn-sm">Edit</a>
+                    
+                    
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <?php if(has_access($user,$page_name,'D')){ ?>
                    
 
-                    <a href='<?php echo base_url().'index.php/Item/delete_item/'.$item->item_id; ?>' 
+                    <a href='<?php echo base_url().'index.php/Setup/delete_item/'.$item->product_id; ?>' 
    title='Delete' 
-   onclick="return confirm('Are you sure you want to delete this item?');">
-   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+   onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm">
+   Delete
 </a>
-                  <?php } ?>
                 </td>
               </tr>
             <?php $i++; } ?>

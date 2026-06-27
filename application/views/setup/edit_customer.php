@@ -4,144 +4,334 @@
         <div class="x_panel">
             <div class="x_content">
                 <br />
-            <form action="<?= base_url('index.php/Company/update_customer') ?>" method="post" enctype="multipart/form-data" autocomplete="off" enctype="multipart/form-data">
-                <input type="hidden" name="customer_id" value="<?= $customer_id ?>">
-
+            <form action="<?= base_url('index.php/Setup/update_customer') ?>" method="post" enctype="multipart/form-data" autocomplete="off" enctype="multipart/form-data">
+<input type="hidden"
+       name="customer_id"
+       value="<?= $customer->customer_id ?>">
                 <div class="row">
-                    <!-- Branch -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Branch <span class="text-danger">*</span></label>
-                            <?= form_error('branch', '<small class="text-danger">', '</small>') ?>
-                            <select name="branch" class="form-control">
-                                <option value="">Select</option>
-                                <?php foreach ($branch_list as $branch): ?>
-                                    <option value="<?= $branch->branch_id ?>" <?= ($branch->branch_id == $customer_data->branch_id) ? 'selected' : '' ?>>
-                                        <?= $branch->branch_name ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
 
                     <!-- Customer Code -->
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Customer Code <span class="text-danger">*</span></label>
                             <?= form_error('customer_code', '<small class="text-danger">', '</small>') ?>
-                            <input type="text" name="customer_code" class="form-control" value="<?= $customer_data->customer_code ?>" readonly>
-                        </div>
+<input type="text"
+       name="customer_code"
+       value="<?= $customer->customer_code ?>"
+       class="form-control"
+       readonly>                        </div>
                     </div>
-                </div>
-
-                <div class="row">
+               
                     <!-- Customer Name -->
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Customer Name <span class="text-danger">*</span></label>
                             <?= form_error('customer_name', '<small class="text-danger">', '</small>') ?>
-                            <input type="text" name="customer_name" class="form-control" value="<?= $customer_data->customer_name ?>">
-                        </div>
+<input type="text"
+       name="customer_name"
+       value="<?= $customer->customer_name ?>"
+       class="form-control">                        </div>
+                    </div>
                     </div>
 
-                    <!-- Email -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <?= form_error('customer_email', '<small class="text-danger">', '</small>') ?>
-                            <input type="email" name="customer_email" class="form-control" value="<?= $customer_data->customer_email ?>" onfocus="this.removeAttribute('readonly');">
-                        </div>
-                    </div>
-                </div>
+                    <div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Location <span class="text-danger">*</span></label>
+							<?= form_error('emirate', '<small class="text-danger">', '</small>') ?>
+							<select name="location" class="form-control">
+    <option value="">Select</option>
 
-                <div class="row">
-                    <!-- Contact Number -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Contact Number</label>
-                            <?= form_error('customer_number', '<small class="text-danger">', '</small>') ?>
-                            <input type="text" name="customer_number" class="form-control" pattern="[0-9]+" value="<?= $customer_data->contact_number ?>">
-                        </div>
-                    </div>
+    <option value="Abu Dhabi"
+        <?= ($customer->location=='Abu Dhabi')?'selected':'' ?>>
+        Abu Dhabi
+    </option>
 
-                    <!-- TRN No -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>TRN No </label>
-                            <!-- <?= form_error('trn_no', '<small class="text-danger">', '</small>') ?> -->
-                            <input type="text" name="trn_no" class="form-control" value="<?= $customer_data->customer_TR_no ?>">
-                        </div>
-                    </div>
-                </div>
+    <option value="Dubai"
+        <?= ($customer->location=='Dubai')?'selected':'' ?>>
+        Dubai
+    </option>
 
-                <div class="row">
-                    <!-- Trade License No -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Trade License No </label>
-                            <!-- <?= form_error('trade_license_no', '<small class="text-danger">', '</small>') ?> -->
-                            <input type="text" name="trade_license_no" class="form-control" value="<?= $customer_data->customer_TL_no ?>">
-                        </div>
-                    </div>
+    <option value="Sharjah"
+        <?= ($customer->location=='Sharjah')?'selected':'' ?>>
+        Sharjah
+    </option>
 
-                    <!-- License Issue Date -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>License Issue Date </label>
-                            <!-- <?= form_error('license_issue_date', '<small class="text-danger">', '</small>') ?> -->
-                            <input type="date" name="license_issue_date" class="form-control" value="<?= $customer_data->licence_issue_date ?>">
-                        </div>
-                    </div>
-                </div>
+    <option value="Ajman"
+        <?= ($customer->location=='Ajman')?'selected':'' ?>>
+        Ajman
+    </option>
 
-                <div class="row">
-                    <!-- License Expiry Date -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>License Expiry Date</label>
-                            <!-- <?= form_error('license_expiry_date', '<small class="text-danger">', '</small>') ?> -->
-                            <input type="date" name="license_expiry_date" class="form-control" value="<?= $customer_data->licence_exp_date ?>">
-                        </div>
-                    </div>
+</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Address <span class="text-danger">*</span></label>
+							<?= form_error('customer_address', '<small class="text-danger">', '</small>') ?>
+<textarea name="customer_address"
+          class="form-control"><?= $customer->customer_address ?></textarea>						</div>
+					</div>
+					
+				
+				</div>	
 
-                    <!-- Upload License -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Upload License</label>
-                            <input type="file" name="trade_license_file" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-                            <?php if (!empty($customer_data->licence_file)): ?>
-                                <small>Current File: <a href="<?= base_url('public/customer/' . $customer_data->licence_file) ?>" target="_blank"><?= $customer_data->licence_file ?></a></small>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                    
-                </div>
+<div class="row">
 
-                <div class="row">
-                    <!-- Location -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Emirate <span class="text-danger">*</span></label>
-                            <?= form_error('emirate', '<small class="text-danger">', '</small>') ?>
-                            <select name="emirate" class="form-control">
-                                <?php
-                                $emirates = ['Abu Dhabi', 'Dubai', 'Sharjah', 'Ajman', 'Umm Al Quwain', 'Ras Al Khaimah', 'Fujairah'];
-                                foreach ($emirates as $emirate): ?>
-                                    <option value="<?= $emirate ?>" <?= ($customer_data->emirate == $emirate) ? 'selected' : '' ?>><?= $emirate ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Address -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="customer_address" class="form-control"><?= $customer_data->customer_address ?></textarea>
-                        </div>
-                    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Office Telephone</label>
+<input type="text"
+       name="office_telephone"
+       value="<?= $customer->office_telephone ?>"
+       class="form-control">
+            </div>
+    </div>
 
-                    
-                </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Office Fax</label>
+<input type="text"
+       name="office_fax"
+       value="<?= $customer->office_fax ?>"
+       class="form-control">        </div>
+    </div>
+
+    <div class="col-md-4">
+			<div class="form-group">
+							<label>Email </label>
+							
+<input type="email"
+       name="customer_email"
+       value="<?= $customer->customer_email ?>"
+       class="form-control">						</div>
+           
+    </div>
+
+</div>
+<div class="row">
+	<div class="col-md-4">
+	 <div class="form-group">
+         <label>Reference Code</label>
+<input type="text"
+       name="reference_code"
+       value="<?= $customer->reference_code ?>"
+       class="form-control">			</div>
+</div>
+
+
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Customer Group</label>
+            <select name="customer_group_id" class="form-control">
+
+<?php foreach($customer_groups as $g){ ?>
+
+<option value="<?= $g->customer_group_id ?>"
+<?= ($customer->customer_group_id==$g->customer_group_id)?'selected':'' ?>>
+
+<?= $g->customer_group_name ?>
+
+</option>
+
+<?php } ?>
+
+</select>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Agent Code</label>
+            <input type="text"
+       name="agent_code"
+       value="<?= $customer->agent_code ?>"
+       class="form-control">
+        </div>
+    </div>
+
+    <div class="col-md-4">
+       
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+
+ <div class="form-group">
+            <label>Sales Rep Code</label>
+           <select name="sales_rep_id" class="form-control">
+
+<?php foreach($sales_rep_list as $r){ ?>
+
+<option value="<?= $r->sales_rep_id ?>"
+<?= ($customer->sales_rep_id==$r->sales_rep_id)?'selected':'' ?>>
+
+<?= $r->sales_rep_name ?>
+
+</option>
+
+<?php } ?>
+
+</select>
+        </div>
+		 </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Sales Area</label>
+           <select name="sales_area_id" class="form-control">
+
+<?php foreach($sales_area_list as $s){ ?>
+
+<option value="<?= $s->sales_area_id ?>"
+<?= ($customer->sales_area_id==$s->sales_area_id)?'selected':'' ?>>
+
+<?= $s->sales_area_name ?>
+
+</option>
+
+<?php } ?>
+
+</select>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Continent</label>
+           <select name="continent" class="form-control">
+
+<option value="Africa"
+<?= ($customer->continent=='Africa')?'selected':'' ?>>
+Africa
+</option>
+
+<option value="Asia"
+<?= ($customer->continent=='Asia')?'selected':'' ?>>
+Asia
+</option>
+
+<option value="Europe"
+<?= ($customer->continent=='Europe')?'selected':'' ?>>
+Europe
+</option>
+
+<option value="North America"
+<?= ($customer->continent=='North America')?'selected':'' ?>>
+North America
+</option>
+
+<option value="South America"
+<?= ($customer->continent=='South America')?'selected':'' ?>>
+South America
+</option>
+
+<option value="Australia"
+<?= ($customer->continent=='Australia')?'selected':'' ?>>
+Australia
+</option>
+
+</select>
+        </div>
+    </div>
+
+
+</div>
+<div class="row">
+
+   <div class="col-md-6">
+    <div class="form-group">
+        <label>Payment Terms</label>
+        <textarea name="payment_terms" class="form-control" rows="3"></textarea>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Credit Limit</label>
+<input type="number"
+       name="credit_limit"
+       value="<?= $customer->credit_limit ?>"
+       class="form-control">        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Credit Days</label>
+<input type="number"
+       name="credit_days"
+       value="<?= $customer->credit_days ?>"
+       class="form-control">        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Max Discount %</label>
+<input type="number"
+       name="max_discount_percent"
+       value="<?= $customer->max_discount_percent ?>"
+       class="form-control">        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h4><b>Tax Information</b></h4>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Tax Registration No</label>
+<input type="text"
+       name="tax_registration_no"
+       value="<?= $customer->tax_registration_no ?>"
+       class="form-control">        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Country</label>
+<input type="text"
+       name="tax_country"
+       value="<?= $customer->tax_country ?>"
+       class="form-control">        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Emirate <small>(Applicable for UAE)</small></label>
+            <select name="tax_emirate" class="form-control">
+                <option value="">Select Emirate</option>
+                <option value="Abu Dhabi">Abu Dhabi</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Sharjah">Sharjah</option>
+                <option value="Ajman">Ajman</option>
+                <option value="Umm Al Quwain">Umm Al Quwain</option>
+                <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                <option value="Fujairah">Fujairah</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Tax Code</label>
+<input type="text"
+       name="tax_code"
+       value="<?= $customer->tax_code ?>"
+       class="form-control">        </div>
+    </div>
+
+</div>
+				
+				
 
                 <!-- Contact Persons -->
                 <div class="form-group">

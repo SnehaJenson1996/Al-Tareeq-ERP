@@ -1,6 +1,14 @@
 <div class="x_panel">
     <div class="x_title">
         <h2>Commission Group List</h2>
+        
+
+                 <div class="pull-right">
+                    <a href="<?= base_url('index.php/Setup/add_commission_group') ?>"
+                       class="btn btn-success btn-sm">
+                        <i class="fa fa-plus"></i> Add Commission Group
+                    </a>
+                </div>
         <div class="clearfix"></div>
     </div>
 
