@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Company extends CI_Controller {
 
-public function __construct() {
+    public function __construct() 
+    {
 		parent::__construct();
 
         if (!$this->session->userdata('is_logged_in')) {
@@ -17,263 +18,277 @@ public function __construct() {
 		$this->output->set_header("Cache-Control: post-check=0, pre-check=0", false);
 		$this->output->set_header("Pragma: no-cache");
 	}
-//Branch
-function list_branch(){   
+
+    //Branch
+    function list_branch()
+    {   
         $data['title'] = 'Branch Management';
         $raw_input = $this->input->post('filter');  
         
         if (!empty($raw_input)) {
-        $filter_type = '';
-        $filter_value = '';
+            $filter_type = '';
+            $filter_value = '';
 
-        if (strpos($raw_input, ':') !== false) {
-            list($filter_type, $filter_value) = explode(':', $raw_input, 2);
-            $filter_type = trim($filter_type);
-            $filter_value = trim($filter_value);
-            $column_map = [
-                            'Branch Name' => 'branch_name',
-                            'Branch Code' => 'branch_code',
-                            'Branch Manager'=>'branch_manager',
-                            'TRN'=>'branch_trn',
-                            'Contact Number'=>'branch_contact'
-                        ];
+            if (strpos($raw_input, ':') !== false) {
+                list($filter_type, $filter_value) = explode(':', $raw_input, 2);
+                $filter_type = trim($filter_type);
+                $filter_value = trim($filter_value);
+                $column_map = [
+                    'Branch Name' => 'branch_name',
+                    'Branch Code' => 'branch_code',
+                    'Branch Manager'=>'branch_manager',
+                    'TRN'=>'branch_trn',
+                    'Contact Number'=>'branch_contact'
+                ];
 
-             $column = isset($column_map[$filter_type]) ? $column_map[$filter_type] : null;
-             $data['AllBranches']=$this->Company_model->get_all_branches($column,$filter_value);
+                $column = isset($column_map[$filter_type]) ? $column_map[$filter_type] : null;
+                $data['AllBranches']=$this->Company_model->get_all_branches($column,$filter_value);
+            }else{
+                $data['AllBranches']=$this->Company_model->get_all_branches();
+            }
         }else{
             $data['AllBranches']=$this->Company_model->get_all_branches();
-        }
-    }else{
-         $data['AllBranches']=$this->Company_model->get_all_branches();
-    }        
-      
+        }        
+    
         $data['main_content']='company/list_branch.php';
         $this->load->view('includes/template',$data);
     }
-function branch(){   
+
+    function branch()
+    {   
         $data['title'] = 'Branch Management';
         //$data['AllBranches']=$this->Company_model->get_all_branches();
-      //  $data['filterdata']=
+        //  $data['filterdata']=
         $data['branch_code'] = $this->Company_model->generate_branch_code();
         $data['main_content']='company/branch_manager.php';
         $this->load->view('includes/template',$data);
     }
-public function add_branch_data() {
-    $user = $this->session->userdata('user_id');
 
-    if (!has_access($user, 'Company/list_branch', 'A')) {
-        $data['title'] = 'Access Denied';
-        $data['main_content'] = 'errors/access_control.php';
-        $this->load->view('includes/template', $data);
-        return;
-    }else{    
-    // if (!$this->validate_branch_data()) {
-    //     $this->session->set_flashdata('error', validation_errors());
-    //     redirect('Company/branch');
-    // }
+    public function add_branch_data() 
+    {
+        $user = $this->session->userdata('user_id');
 
-    $data = [
-        'branch_code'     => $this->Company_model->generate_branch_code(),
-        'branch_name'     => $this->input->post('branch_name'),
-        'branch_manager'  => $this->input->post('branch_manager'),
-        'branch_contact'  => $this->input->post('branch_contact'),
-        'branch_email'    => $this->input->post('branch_email'),
-        'branch_web'    => $this->input->post('branch_website'),
-        'branch_trn'    => $this->input->post('branch_trn'),
-        'branch_location' => $this->input->post('branch_location'),
-        'branch_address'  => $this->input->post('branch_address'),
-        'created_on'      => date('Y-m-d H:i:s')
-    ];
-    $file_fields = ['branch_logo', 'branch_header', 'branch_footer', 'branch_stamp'];
-    foreach ($file_fields as $field) {
-        if (!empty($_FILES[$field]['name'])) {
-            $uploaded_file = $this->upload_branch_file($field, $data['branch_code']);
-            if ($uploaded_file) {
-                $data[$field] = $uploaded_file;
-            } else {
-                $this->session->set_flashdata('error', "Failed to upload $field. Check file format/size.");
-                redirect('Company/branch');
-                return;
+        if (!has_access($user, 'Company/list_branch', 'A')) {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template', $data);
+            return;
+        }else{    
+        // if (!$this->validate_branch_data()) {
+        //     $this->session->set_flashdata('error', validation_errors());
+        //     redirect('Company/branch');
+        // }
+
+        $data = [
+            'branch_code'     => $this->Company_model->generate_branch_code(),
+            'branch_name'     => $this->input->post('branch_name'),
+            'branch_manager'  => $this->input->post('branch_manager'),
+            'branch_contact'  => $this->input->post('branch_contact'),
+            'branch_email'    => $this->input->post('branch_email'),
+            'branch_web'    => $this->input->post('branch_website'),
+            'branch_trn'    => $this->input->post('branch_trn'),
+            'branch_location' => $this->input->post('branch_location'),
+            'branch_address'  => $this->input->post('branch_address'),
+            'created_on'      => date('Y-m-d H:i:s')
+        ];
+        $file_fields = ['branch_logo', 'branch_header', 'branch_footer', 'branch_stamp'];
+        foreach ($file_fields as $field) {
+            if (!empty($_FILES[$field]['name'])) {
+                $uploaded_file = $this->upload_branch_file($field, $data['branch_code']);
+                if ($uploaded_file) {
+                    $data[$field] = $uploaded_file;
+                } else {
+                    $this->session->set_flashdata('error', "Failed to upload $field. Check file format/size.");
+                    redirect('Company/branch');
+                    return;
+                }
             }
+        }
+
+        $branch_id = $this->Company_model->insert_branch_data($data);
+
+        if ($branch_id) {
+            // Collect bank account fields
+            $bank_names     = $this->input->post('bname');
+            $bank_accs      = $this->input->post('bacc');
+            $bank_branches  = $this->input->post('bbranch');
+            $bank_ibans     = $this->input->post('biban');
+            $bank_swifts    = $this->input->post('bswift');
+
+            $bank_data = [];
+
+            // Loop through banks
+            for ($i = 0; $i < count($bank_names); $i++) {
+                if (!empty($bank_names[$i])) {
+                    $bank_data[] = [
+                        'branch_id'    => $branch_id,
+                        'bank_name'    => $bank_names[$i],
+                        'bank_account' => $bank_accs[$i] ?? '',
+                        'bank_branch'  => $bank_branches[$i] ?? '',
+                        'bank_iban'    => $bank_ibans[$i] ?? '',
+                        'bank_swift'   => $bank_swifts[$i] ?? ''
+                    ];
+                }
+            }
+            // Insert bank data if available
+            if (!empty($bank_data)) {
+                $insert_status = $this->Company_model->insert_branch_bank_details($bank_data);
+                if ($insert_status) {
+                    $this->session->set_flashdata('success', 'Branch added successfully.');
+                } else {
+                    $this->session->set_flashdata('error', 'Branch created, but failed to add bank details.');
+                }
+            } else {
+                $this->session->set_flashdata('success', 'Branch added successfully (no bank data).');
+            }
+
+        } else {
+            $this->session->set_flashdata('error', 'Failed to add branch. Try again.');
+        }
+
+        redirect('Company/list_branch');
         }
     }
 
-    $branch_id = $this->Company_model->insert_branch_data($data);
+    function edit_branch($id)
+    {   
+        $user = $this->session->userdata('user_id');
+        if (!has_access($user, 'Company/list_branch', 'E')) {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template', $data);
+            return;
+        }else{  
+            $data['title'] = 'Branch Management';     
+            $data['branch_data']=$this->Company_model->get_branch_by_id($id);
+            $data['branch_bank']=$this->Company_model->get_branch_bank_by_id($id);
+            $data['branch_id']=$id;
+            // print_r($data['branch_bank']);exit();
+            $data['main_content']='company/branch_edit.php';
+            $this->load->view('includes/template',$data);
+        }
+    }
 
-    if ($branch_id) {
-        // Collect bank account fields
-        $bank_names     = $this->input->post('bname');
-        $bank_accs      = $this->input->post('bacc');
-        $bank_branches  = $this->input->post('bbranch');
-        $bank_ibans     = $this->input->post('biban');
-        $bank_swifts    = $this->input->post('bswift');
+    public function update_branch_data() 
+    {
+        $branch_id = $this->input->post('branch_id');
+
+        // Validate form data
+        // if (!$this->validate_branch_data($branch_id)) {
+        //     $this->session->set_flashdata('error', validation_errors());
+        //     redirect('Company/edit_branch/' . $branch_id);
+        // }
+
+        // Upload files if provided
+        $branch_logo = $this->upload_branch_file('branch_logo', 'branch_logo_' . $branch_id);
+        $branch_header = $this->upload_branch_file('branch_header', 'header_' . $branch_id);
+        $branch_footer = $this->upload_branch_file('branch_footer', 'footer_' . $branch_id);
+        $branch_stamp = $this->upload_branch_file('branch_stamp', 'stamp_' . $branch_id);
+
+        // Branch main data
+        $branch_data = [
+            'branch_code'     => $this->input->post('branch_code'),
+            'branch_name'     => $this->input->post('branch_name'),
+            'branch_manager'  => $this->input->post('branch_manager'),
+            'branch_contact'  => $this->input->post('branch_contact'),
+            'branch_email'    => $this->input->post('branch_email'),
+            'branch_web'      => $this->input->post('branch_website'),
+            'branch_trn'      => $this->input->post('branch_trn'),
+            'branch_location' => $this->input->post('branch_location'),
+            'branch_address'  => $this->input->post('branch_address'),
+            'updated_on'      => date('Y-m-d H:i:s')
+        ];
+
+        if ($branch_logo) $branch_data['branch_logo'] = $branch_logo;
+        if ($branch_header) $branch_data['branch_header'] = $branch_header;
+        if ($branch_footer) $branch_data['branch_footer'] = $branch_footer;
+        if ($branch_stamp) $branch_data['branch_stamp'] = $branch_stamp;
+
+        // Update branch table
+        $this->Company_model->update_branch($branch_id, $branch_data);
+
+        // Delete old bank records and insert new ones
+        $this->Company_model->delete_branch_bank($branch_id);
+
+        $bname   = $this->input->post('bname');
+        $bacc    = $this->input->post('bacc');
+        $bbranch = $this->input->post('bbranch');
+        $biban   = $this->input->post('biban');
+        $bswift  = $this->input->post('bswift');
 
         $bank_data = [];
-
-        // Loop through banks
-        for ($i = 0; $i < count($bank_names); $i++) {
-            if (!empty($bank_names[$i])) {
+        for ($i = 0; $i < count($bname); $i++) {
+            if (!empty($bname[$i])) {
                 $bank_data[] = [
                     'branch_id'    => $branch_id,
-                    'bank_name'    => $bank_names[$i],
-                    'bank_account' => $bank_accs[$i] ?? '',
-                    'bank_branch'  => $bank_branches[$i] ?? '',
-                    'bank_iban'    => $bank_ibans[$i] ?? '',
-                    'bank_swift'   => $bank_swifts[$i] ?? ''
+                    'bank_name'    => $bname[$i],
+                    'bank_account' => $bacc[$i],
+                    'bank_branch'  => $bbranch[$i],
+                    'bank_iban'    => $biban[$i],
+                    'bank_swift'   => $bswift[$i]
                 ];
             }
         }
-        // Insert bank data if available
         if (!empty($bank_data)) {
-            $insert_status = $this->Company_model->insert_branch_bank_details($bank_data);
-            if ($insert_status) {
-                $this->session->set_flashdata('success', 'Branch added successfully.');
-            } else {
-                $this->session->set_flashdata('error', 'Branch created, but failed to add bank details.');
-            }
+            $this->Company_model->insert_branch_bank_details($bank_data);
+        }
+
+        $this->session->set_flashdata('success', 'Branch updated successfully.');
+        redirect('Company/list_branch');
+    }
+
+    private function upload_branch_file($field_name, $branch_code) 
+    {
+        $this->load->library('upload');
+        $folder_name = '';
+        if (strpos($field_name, 'branch_header') !== false) {
+            $folder_name = 'header';
+        } elseif (strpos($field_name, 'branch_footer') !== false) {
+            $folder_name = 'footer';
+        } elseif (strpos($field_name, 'branch_stamp') !== false) {
+            $folder_name = 'stamp';
         } else {
-            $this->session->set_flashdata('success', 'Branch added successfully (no bank data).');
+            $folder_name = 'branch_logo'; 
+        }
+        $upload_dir = './public/' . $folder_name . '_' . $branch_code . '/';
+
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0755, true);
         }
 
-    } else {
-        $this->session->set_flashdata('error', 'Failed to add branch. Try again.');
-    }
+        $config = [
+            'upload_path'   => $upload_dir,
+            'allowed_types' => 'jpeg|jpg|png|pdf',
+            'max_size'      => 2048, // 2MB
+            'encrypt_name'  => TRUE,
+            'overwrite'     => FALSE,
+        ];
 
-    redirect('Company/list_branch');
-    }
-}
-function edit_branch($id){   
-     $user = $this->session->userdata('user_id');
-    if (!has_access($user, 'Company/list_branch', 'E')) {
-        $data['title'] = 'Access Denied';
-        $data['main_content'] = 'errors/access_control.php';
-        $this->load->view('includes/template', $data);
-        return;
-    }else{  
-        $data['title'] = 'Branch Management';     
-        $data['branch_data']=$this->Company_model->get_branch_by_id($id);
-        $data['branch_bank']=$this->Company_model->get_branch_bank_by_id($id);
-        $data['branch_id']=$id;
-        // print_r($data['branch_bank']);exit();
-        $data['main_content']='company/branch_edit.php';
-        $this->load->view('includes/template',$data);
-    }
-}
-public function update_branch_data() {
-    $branch_id = $this->input->post('branch_id');
+        $this->upload->initialize($config);
 
-    // Validate form data
-    // if (!$this->validate_branch_data($branch_id)) {
-    //     $this->session->set_flashdata('error', validation_errors());
-    //     redirect('Company/edit_branch/' . $branch_id);
-    // }
-
-    // Upload files if provided
-    $branch_logo = $this->upload_branch_file('branch_logo', 'branch_logo_' . $branch_id);
-    $branch_header = $this->upload_branch_file('branch_header', 'header_' . $branch_id);
-    $branch_footer = $this->upload_branch_file('branch_footer', 'footer_' . $branch_id);
-    $branch_stamp = $this->upload_branch_file('branch_stamp', 'stamp_' . $branch_id);
-
-    // Branch main data
-    $branch_data = [
-        'branch_code'     => $this->input->post('branch_code'),
-        'branch_name'     => $this->input->post('branch_name'),
-        'branch_manager'  => $this->input->post('branch_manager'),
-        'branch_contact'  => $this->input->post('branch_contact'),
-        'branch_email'    => $this->input->post('branch_email'),
-        'branch_web'      => $this->input->post('branch_website'),
-        'branch_trn'      => $this->input->post('branch_trn'),
-        'branch_location' => $this->input->post('branch_location'),
-        'branch_address'  => $this->input->post('branch_address'),
-        'updated_on'      => date('Y-m-d H:i:s')
-    ];
-
-    if ($branch_logo) $branch_data['branch_logo'] = $branch_logo;
-    if ($branch_header) $branch_data['branch_header'] = $branch_header;
-    if ($branch_footer) $branch_data['branch_footer'] = $branch_footer;
-    if ($branch_stamp) $branch_data['branch_stamp'] = $branch_stamp;
-
-    // Update branch table
-    $this->Company_model->update_branch($branch_id, $branch_data);
-
-    // Delete old bank records and insert new ones
-    $this->Company_model->delete_branch_bank($branch_id);
-
-    $bname   = $this->input->post('bname');
-    $bacc    = $this->input->post('bacc');
-    $bbranch = $this->input->post('bbranch');
-    $biban   = $this->input->post('biban');
-    $bswift  = $this->input->post('bswift');
-
-    $bank_data = [];
-    for ($i = 0; $i < count($bname); $i++) {
-        if (!empty($bname[$i])) {
-            $bank_data[] = [
-                'branch_id'    => $branch_id,
-                'bank_name'    => $bname[$i],
-                'bank_account' => $bacc[$i],
-                'bank_branch'  => $bbranch[$i],
-                'bank_iban'    => $biban[$i],
-                'bank_swift'   => $bswift[$i]
-            ];
+        if ($this->upload->do_upload($field_name)) {
+            $file_data = $this->upload->data();
+            return $upload_dir . $file_data['file_name']; // relative path
+        } else {
+            log_message('error', $this->upload->display_errors()); // optional: log for debugging
+            return false;
         }
     }
-    if (!empty($bank_data)) {
-        $this->Company_model->insert_branch_bank_details($bank_data);
-    }
 
-    $this->session->set_flashdata('success', 'Branch updated successfully.');
-    redirect('Company/list_branch');
-}
-private function upload_branch_file($field_name, $branch_code) {
-    $this->load->library('upload');
-    $folder_name = '';
-    if (strpos($field_name, 'branch_header') !== false) {
-        $folder_name = 'header';
-    } elseif (strpos($field_name, 'branch_footer') !== false) {
-        $folder_name = 'footer';
-    } elseif (strpos($field_name, 'branch_stamp') !== false) {
-        $folder_name = 'stamp';
-    } else {
-        $folder_name = 'branch_logo'; 
-    }
-    $upload_dir = './public/' . $folder_name . '_' . $branch_code . '/';
-
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0755, true);
-    }
-
-    $config = [
-        'upload_path'   => $upload_dir,
-        'allowed_types' => 'jpeg|jpg|png|pdf',
-        'max_size'      => 2048, // 2MB
-        'encrypt_name'  => TRUE,
-        'overwrite'     => FALSE,
-    ];
-
-    $this->upload->initialize($config);
-
-    if ($this->upload->do_upload($field_name)) {
-        $file_data = $this->upload->data();
-        return $upload_dir . $file_data['file_name']; // relative path
-    } else {
-        log_message('error', $this->upload->display_errors()); // optional: log for debugging
-        return false;
-    }
-}
-function upload_branch_logo(){
+    function upload_branch_logo()
+    {
         $this->load->library('upload');
         $config['upload_path'] = './public/branch_logo/';
         $config['allowed_types'] = 'jpeg|jpg|pdf|png';
         $config['max_size'] = 2048; // optional, in KB
         $this->upload->initialize($config);
 
-            if ($this->upload->do_upload('branch_logo')) {
-                $file_data = $this->upload->data();
-                return $file_data['file_name']; // Return uploaded filename
-            } else {
-                 return false;
-            }
+        if ($this->upload->do_upload('branch_logo')) {
+            $file_data = $this->upload->data();
+            return $file_data['file_name']; // Return uploaded filename
+        } else {
+                return false;
+        }
     }
 
 public function get_branch_by_id() {
@@ -1402,72 +1417,180 @@ public function delete_user() {
             }
         }
 }
-//Designation
-public function list_designation(){
-		$user = $this->session->userdata('user_id');
-		if (!has_view_access($user,'Company/list_users')) {
-			$data['title'] = 'Access Denied';
-			$data['main_content']='errors/access_control.php';			
-		}
-		else{
-			$data['title']='List Designation';
+
+    //// DEPARTMENT CODE START ////
+
+    public function list_department()
+    {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_view_access($user,'Company/list_department')) {
+
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+
+        } else {
+
+            $data['title'] = 'Department List';
+            $data['department_list'] = $this->Company_model->get_all_departments();
+
+            $data['main_content'] = 'company/department_list.php';
+        }
+
+        $this->load->view('includes/template',$data);
+    }
+
+	public function add_department()
+    {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_access($user,'Company/list_department','A')) {
+
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+
+        } else {
+
+            $data['title'] = 'Add Department';
+            $data['main_content'] = 'company/department_add.php';
+        }
+
+        $this->load->view('includes/template',$data);
+    }
+
+    public function save_department()
+    {
+        $data = array(
+
+            'dept_name'     => $this->input->post('dept_name',TRUE),
+            'remark'        => $this->input->post('remark',TRUE),
+            'status'        => $this->input->post('status',TRUE),
+            'created_by'    => $this->session->userdata('user_id')
+
+        );
+
+        if($this->Company_model->add_department_data($data))
+            $this->session->set_flashdata('success','Department added successfully.');
+        else
+            $this->session->set_flashdata('error','Error while saving.');
+
+        redirect('Company/list_department');
+    }
+
+    public function edit_department()
+    {
+        $user = $this->session->userdata('user_id');
+
+        if(!has_access($user,'Company/list_department','E')){
+
+            $data['title']='Access Denied';
+            $data['main_content']='errors/access_control.php';
+
+        }else{
+
+            $department_id   = $this->uri->segment(3);
+
+            $data['title']   ='Edit Department';
+            $data['records'] =$this->Company_model->get_department_record_by_id($department_id);
+            $data['main_content']='company/department_edit.php';
+
+        }
+
+        $this->load->view('includes/template',$data);
+    }
+
+    public function update_department()
+    {
+        $department_id = $this->input->post('dept_id');
+
+        $data=array(
+            'dept_name'      => $this->input->post('dept_name',TRUE),
+            'remark'         => $this->input->post('remark',TRUE),
+            'status'         => $this->input->post('status',TRUE),
+
+        );
+
+        if($this->Company_model->update_department_data($department_id,$data))
+            $this->session->set_flashdata('success','Department updated successfully.');
+        else
+            $this->session->set_flashdata('error','Update failed.');
+
+        redirect('Company/list_department');
+    }
+    
+    //// DEPARTMENT CODE END ////
+
+    //// DESIGNATION CODE START ////
+
+    public function list_designation()
+    {
+        $user = $this->session->userdata('user_id');
+        if (!has_view_access($user,'Company/list_designation')) {
+            $data['title'] = 'Access Denied';
+            $data['main_content']='errors/access_control.php';			
+        }
+        else{
+            $data['title']='List Designation';
             $raw_input = $this->input->post('filter');  
         
-        if (!empty($raw_input)) {
-        $filter_type = '';
-        $filter_value = '';
+            if (!empty($raw_input)) {
+                $filter_type = '';
+                $filter_value = '';
 
                 if (strpos($raw_input, ':') !== false) {
                     list($filter_type, $filter_value) = explode(':', $raw_input, 2);
                     $filter_type = trim($filter_type);
                     $filter_value = trim($filter_value);
                     $column_map = [
-                                    'Designation Code' => 'designation_code',
-                                    'Designation Name' => 'designation_name',
-                                    'Department'=>'department',
-                                    'Reporting To'=>'reporting_to',
-                                    'Level'=>'level',
-                                    'Type'=>'employment_type',
-                                    'Location'=>'location',
-                                    'Status'=>'status'
-                                ];
-
-                    $column = isset($column_map[$filter_type]) ? $column_map[$filter_type] : null;
-                    $data['designation_list']=$this->Company_model->get_all_designations($column,$filter_value);
+                        'Designation Code' => 'designation_code',
+                        'Designation Name' => 'designation_name',
+                        'Department'=>'department',
+                        'Reporting To'=>'reporting_to',
+                        'Level'=>'level',
+                        'Type'=>'employment_type',
+                        'Location'=>'location',
+                        'Status'=>'status'
+                    ];
+                        $column = isset($column_map[$filter_type]) ? $column_map[$filter_type] : null;
+                        $data['designation_list']=$this->Company_model->get_all_designations($column,$filter_value);
                 }else{
                     $data['designation_list'] = $this->Company_model->get_all_designations();
-            }			
-		}else{
-			$data['designation_list'] = $this->Company_model->get_all_designations();
-         }
-        $data['main_content']='company/list_designation.php';	
-		$this->load->view('includes/template',$data);
+                }			
+            }else{
+                $data['designation_list'] = $this->Company_model->get_all_designations();
+            }
+            $data['main_content']='company/list_designation.php';	
+            $this->load->view('includes/template',$data);
+        }
     }
-}
-public function add_designation(){		
-        $user = $this->session->userdata('user_id');
-		if (!has_access($user,'Company/add_designation','A')) {
-			$data['title'] = 'Access Denied';
-			$data['main_content']='errors/access_control.php';			
-		}else{
-			$data['title']='Add Designation';
-            $data['designation_code']=$this->Company_model->generate_designation_code();
-			$data['main_content']='company/add_designation.php';
-		}
-		$this->load->view('includes/template',$data);
-}
-public function save_designation(){
-    // Load form validation library if not auto-loaded
-   // $this->load->library('form_validation');
 
-    // Set validation rules
-   // $this->form_validation->set_rules('designation_code', 'Designation Code', 'required|trim|is_unique[designation_master.designation_code]');
-   // $this->form_validation->set_rules('designation_name', 'Designation Name', 'required|trim');
+    public function add_designation()
+    {		
+        $user = $this->session->userdata('user_id');
+        if (!has_access($user,'Company/list_designation','A')) {
+            $data['title'] = 'Access Denied';
+            $data['main_content']='errors/access_control.php';			
+        }else{
+            $data['title']='Add Designation';
+            $data['designation_code']=$this->Company_model->generate_designation_code();
+            $data['main_content']='company/add_designation.php';
+        }
+        $this->load->view('includes/template',$data);
+    }
     
-    // If validation fails, reload form with errors
-    //if ($this->form_validation->run() == FALSE) {
-       // $this->load->view('designation/add_designation'); // adjust to your actual view
-    //} else {
+    public function save_designation()
+    {
+        // Load form validation library if not auto-loaded
+        // $this->load->library('form_validation');
+
+        // Set validation rules
+        // $this->form_validation->set_rules('designation_code', 'Designation Code', 'required|trim|is_unique[designation_master.designation_code]');
+        // $this->form_validation->set_rules('designation_name', 'Designation Name', 'required|trim');
+        
+        // If validation fails, reload form with errors
+        //if ($this->form_validation->run() == FALSE) {
+        // $this->load->view('designation/add_designation'); // adjust to your actual view
+        //} else {
         // Collect data
         $data = array(
             'designation_code'    => $this->input->post('designation_code', TRUE),
@@ -1486,57 +1609,62 @@ public function save_designation(){
             'created_on'          => date('Y-m-d H:i:s')
         );
         $insert_status=$this->Company_model->insert_designation($data);
-       if($insert_status){
-             $this->session->set_flashdata('success', 'Designation saved successfully!');
-       }else{
+        if($insert_status){
+            $this->session->set_flashdata('success', 'Designation saved successfully!');
+        }else{
             $this->session->set_flashdata('error', 'error occured while saving designation!');
-       }
-       
-       
+        }
         redirect('Company/list_designation');
-   // }
-}
-public function edit_designation(){
-    $user = $this->session->userdata('user_id');
-		if(!has_access($user,'Company/list_designation','E')){
-			$data['title'] = 'Access Denied';
-			$data['main_content']='errors/access_control.php';
-		}
-		else{
-			$data['title']='Edit Designation';
-			$designation_id = $this->uri->segment('3');
-			$data['designation'] = $this->Company_model->get_designation_by_id($designation_id);
-            $data['designation_id'] =$designation_id;
-			$data['main_content']='company/edit_designation.php';
-		}
-		$this->load->view('includes/template',$data);
-}
-public function update_designation(){
-            $designation_id=$this->input->post('designation_id');
-            $data = array(
-                'designation_name'    => $this->input->post('designation_name', TRUE),
-                'department'          => $this->input->post('department', TRUE),
-                'reporting_to'        => $this->input->post('reporting_to', TRUE),
-                'level'               => $this->input->post('level', TRUE),
-                'employment_type'     => $this->input->post('employment_type', TRUE),
-                'location'            => $this->input->post('location', TRUE),
-                'job_description'     => $this->input->post('job_description', TRUE),
-                'responsibilities'    => $this->input->post('responsibilities', TRUE),
-                'skills'              => $this->input->post('skills', TRUE),
-                'qualification'       => $this->input->post('qualification', TRUE),
-                'experience'          => $this->input->post('experience', TRUE),
-                'status'              => $this->input->post('status', TRUE),
-                'updated_on'          => date('Y-m-d H:i:s')
-            );
+        // }
+    }
 
-            $update_status=$this->Company_model->update_designation($designation_id,$data);
-            if($update_status)
-                $this->session->set_flashdata('success', 'Designation updated successfully.');
-            else
-                $this->session->set_flashdata('error', 'Error occured while updating');
-            
-            redirect('Company/list_designation'); // or redirect to wherever you want
-}
+    public function edit_designation()
+    {
+        $user = $this->session->userdata('user_id');
+        if(!has_access($user,'Company/list_designation','E')){
+            $data['title'] = 'Access Denied';
+            $data['main_content']='errors/access_control.php';
+        }
+        else{
+            $data['title']='Edit Designation';
+            $designation_id = $this->uri->segment('3');
+            $data['designation'] = $this->Company_model->get_designation_by_id($designation_id);
+            $data['designation_id'] =$designation_id;
+            $data['main_content']='company/edit_designation.php';
+        }
+        $this->load->view('includes/template',$data);
+    }
+
+    public function update_designation()
+    {
+        $designation_id=$this->input->post('designation_id');
+        $data = array(
+            'designation_name'    => $this->input->post('designation_name', TRUE),
+            'department'          => $this->input->post('department', TRUE),
+            'reporting_to'        => $this->input->post('reporting_to', TRUE),
+            'level'               => $this->input->post('level', TRUE),
+            'employment_type'     => $this->input->post('employment_type', TRUE),
+            'location'            => $this->input->post('location', TRUE),
+            'job_description'     => $this->input->post('job_description', TRUE),
+            'responsibilities'    => $this->input->post('responsibilities', TRUE),
+            'skills'              => $this->input->post('skills', TRUE),
+            'qualification'       => $this->input->post('qualification', TRUE),
+            'experience'          => $this->input->post('experience', TRUE),
+            'status'              => $this->input->post('status', TRUE),
+            'updated_on'          => date('Y-m-d H:i:s')
+        );
+
+        $update_status=$this->Company_model->update_designation($designation_id,$data);
+        if($update_status)
+            $this->session->set_flashdata('success', 'Designation updated successfully.');
+        else
+            $this->session->set_flashdata('error', 'Error occured while updating');
+        
+        redirect('Company/list_designation'); // or redirect to wherever you want
+    }
+
+    //// DESIGNATION CODE END ////
+
 
 
 //----------validation-------------------//

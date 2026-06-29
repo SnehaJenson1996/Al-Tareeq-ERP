@@ -4,6 +4,85 @@ class Company_model extends CI_Model {
     {
         
     }
+
+    // DEPARTMENT CODE START//
+    public function get_all_departments($column = null, $value = null)
+    {
+        $this->db->from('department_master');
+
+        if (!empty($column) && $value != '') {
+            $this->db->like($column, $value);
+        }
+
+        $this->db->order_by('dept_id', 'DESC');
+
+        return $this->db->get()->result();
+    }
+
+	public function add_department_data() 
+	{
+		$data = array(
+		'dept_name' => $this->input->post('dept_name'),
+		'remark' => $this->input->post('remark'),
+		'created_by' => $this->session->userdata('user_id')
+		);
+		$this->db->insert('department_master', $data);
+		$insert_id = $this->db->insert_id();
+
+		if($insert_id)
+		{
+		$user_se_id=$this->session->userdata('user_id');
+		$page_name=explode('index.php/', $_SERVER['PHP_SELF']);
+		$ci = get_instance();
+		$ci->load->helper('log');
+		$log_msg=add_log_entry($user_se_id,1,$page_name[1],'department_master','dept_id',$insert_id);
+		}
+		return $insert_id;
+	}
+
+	public function update_department_data($dept_id) 
+	{
+		$data = array(
+            'dept_name' => $this->input->post('dept_name'),
+            'remark' => $this->input->post('remark'),
+            'status' => $this->input->post('status'),
+		);
+		$this->db->where('dept_id',$dept_id);
+		$res = $this->db->update('department_master', $data);
+
+		if($res)
+		{
+            $user_se_id=$this->session->userdata('user_id');
+            $page_name=explode('index.php/', $_SERVER['PHP_SELF']);
+            $ci = get_instance();
+            $ci->load->helper('log');
+            $log_msg=add_log_entry($user_se_id,2,$page_name[1],'department_master','dept_id',$dept_id);
+            return true;
+		}else{
+		    return false;
+		}
+	}
+
+	public function get_department_list()
+	{
+		$query=$this->db->query("select * from department_master order by dept_name");
+		return $query->result();
+	}
+
+	public function get_active_department_list()
+	{
+		$query=$this->db->query("select * from department_master where status=0 order by dept_name");
+		return $query->result();
+	}
+
+	public function get_department_record_by_id($dept_id)
+	{
+		$query=$this->db->query("select * from department_master where dept_id='$dept_id' ");
+		return $query->result();
+	}
+
+    // DEPARTMENT CODE END//
+
     public function generate_branch_code() {
         $this->db->select_max('branch_id'); // assuming branch_id is auto-increment primary key
         $query = $this->db->get('branch_master')->row();
