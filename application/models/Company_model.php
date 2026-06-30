@@ -4,13 +4,7 @@ class Company_model extends CI_Model {
     {
         
     }
-    public function generate_branch_code() {
-        $this->db->select_max('branch_id'); // assuming branch_id is auto-increment primary key
-        $query = $this->db->get('branch_master')->row();
-
-        $next_id = $query->branch_id + 1;
-        return str_pad($next_id, 2, '0', STR_PAD_LEFT); // e.g., 1 → 01, 2 → 02
-    }
+   
     public function insert_branch_bank_details($data) {
         if (!empty($data)) {
             return $this->db->insert_batch('branch_bank_details', $data);

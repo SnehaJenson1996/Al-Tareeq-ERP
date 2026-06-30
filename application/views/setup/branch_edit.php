@@ -9,7 +9,7 @@
                       <?php echo $this->session->flashdata('error'); ?>
                     </div>
                   <?php endif; ?>
-                 <form action="<?php echo base_url().'index.php/Company/update_branch_data'; ?>" method="post" autocomplete="off" enctype="multipart/form-data">
+                 <form action="<?php echo base_url().'index.php/Setup/update_branch_data'; ?>" method="post" autocomplete="off" enctype="multipart/form-data">
                       <!-- Flash error -->
                       <?php if ($this->session->flashdata('error')): ?>
                           <div class="alert alert-danger"><?php echo $this->session->flashdata('error'); ?></div>
