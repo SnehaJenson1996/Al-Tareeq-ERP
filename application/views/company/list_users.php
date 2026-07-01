@@ -44,14 +44,14 @@
                     <td><?php echo $user->dob;  ?></td>
                     <td>
                       <?php if(has_access($logged_user,$page_name,'E')){ ?>
-                        <a href='<?php echo base_url().'index.php/Company/edit_user/'.$user->user_id; ?>' title='Edit'><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <a href='<?php echo base_url().'index.php/Company/edit_user/'.$user->user_id; ?>' title='Edit' class="btn btn-primary btn-sm">Edit</a>
                       <?php } ?>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <?php if(has_access($logged_user,$page_name,'D')){ ?>
                         <a href="javascript:void(0)"
    onclick="confirmDeleteUser(<?= $user->user_id ?>)"
-   title="Delete">
-   <span class="glyphicon glyphicon-trash"></span>
+   title="Delete"  class="btn btn-danger btn-sm">Delete
+   
 </a>
 
                         <?php } ?>

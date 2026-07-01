@@ -5,20 +5,21 @@
 			<div class="x_content">
 			<br />
 
-				<form action="<?php echo base_url('index.php/Item/add_unit'); ?>" method="post" autocomplete='off' enctype="multipart/form-data">
+				<form action="<?php echo base_url('index.php/Setup/add_unit'); ?>" method="post" autocomplete='off' enctype="multipart/form-data">
 					
 					<div class="item form-group">
 						<label class="col-form-label col-md-3 col-sm-3 label-align" for="unit_name">Unit Name<span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 ">
 							<input type="text" id="unit_name" name="unit_name" required="required" class="form-control" 
-								value="<?= isset($unit[0]->unit_abbr) ? htmlspecialchars($unit[0]->unit_abbr) : '' ?>">
+															value="<?= isset($unit[0]->unit_name) ? htmlspecialchars($unit[0]->unit_name) : '' ?>">
+
 						</div>
 					</div>
 					<div class="item form-group">
-						<label class="col-form-label col-md-3 col-sm-3 label-align" for="unit_code">Unit Code<span class="required">*</span></label>
+						<label class="col-form-label col-md-3 col-sm-3 label-align" for="unit_code">Unit Abbreviation <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 ">
 							<input type="text" id="unit_code" name="unit_code" required="required" class="form-control" 
-								value="<?= isset($unit[0]->unit_name) ? htmlspecialchars($unit[0]->unit_name) : '' ?>">
+								value="<?= isset($unit[0]->unit_abbr) ? htmlspecialchars($unit[0]->unit_abbr) : '' ?>">
 						</div>
 					</div>
 

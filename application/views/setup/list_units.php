@@ -5,13 +5,20 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
+      
+                <div class="pull-right">
+                    <a href="<?= base_url('index.php/Setup/add_unit') ?>"
+                       class="btn btn-success btn-sm">
+                        <i class="fa fa-plus"></i>  Add Unit
+                    </a>
+                </div>
       <div class="x_content">
 <table id="unitTable" class="table table-hover">
           <thead>
             <tr>
               <th>#</th>
-              <th>unit </th>
-              <th>unit details </th>
+              <th>Unit </th>
+              <th>Unit Abbreviation</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -22,15 +29,11 @@
                     <td><?php echo $unit->unit_name; ?></td>
                     <td><?php echo $unit->unit_abbr; ?></td>
                     <td>
-                      <?php if(has_access($user,$page_name,'E')){ ?>
-                        <a href='<?php echo base_url().'index.php/Item/edit_unit/'.$unit->unit_id ; ?>' title='Edit'><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                      <?php } ?>
+                        <a href='<?php echo base_url().'index.php/Setup/edit_unit/'.$unit->unit_id ; ?>' title='Edit'  class="btn btn-primary btn-sm">Edit</a>
                       &nbsp;&nbsp;&nbsp;&nbsp;
-                      <?php if (has_access($user, $page_name, 'D')): ?>
-                      <a href="javascript:void(0);" onclick="confirmDeleteUnit(<?= $unit->unit_id ?>)" title="Delete">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                      <a href="javascript:void(0);" onclick="confirmDeleteUnit(<?= $unit->unit_id ?>)" title="Delete"  class="btn btn-danger btn-sm">
+                       Delete
                       </a>
-                       <?php endif; ?>
                        </td>
                   </tr>
               <?php $i++;} ?>
@@ -45,9 +48,9 @@
 <script>
 function confirmDeleteUnit(id) {
   if (event) event.preventDefault();
-  if (confirm("Are you sure you want to delete this supplier?")) {
+  if (confirm("Are you sure you want to delete this unit?")) {
     $.ajax({
-      url: "<?= base_url('index.php/Item/delete_unit') ?>",
+      url: "<?= base_url('index.php/Setup/delete_unit') ?>",
       type: "POST",
       data: { id: id },
       dataType: "json",

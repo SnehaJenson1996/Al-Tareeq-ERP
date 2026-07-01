@@ -90,6 +90,7 @@ class Company_model extends CI_Model {
         $next_id = $query->branch_id + 1;
         return str_pad($next_id, 2, '0', STR_PAD_LEFT); // e.g., 1 → 01, 2 → 02
     }
+   
     public function insert_branch_bank_details($data) {
         if (!empty($data)) {
             return $this->db->insert_batch('branch_bank_details', $data);

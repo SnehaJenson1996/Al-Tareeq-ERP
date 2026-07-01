@@ -630,4 +630,532 @@ public function get_all_employees()
 {
     return $this->db->get('employee_master')->result();
 }
+
+public function save_customer()
+{
+    $masterData = array(
+
+        'customer_code'         => $this->input->post('customer_code'),
+        'customer_name'         => $this->input->post('customer_name'),
+        'location'              => $this->input->post('location'),
+        'customer_address'      => $this->input->post('customer_address'),
+
+        'office_telephone'      => $this->input->post('office_telephone'),
+        'office_fax'            => $this->input->post('office_fax'),
+        'customer_email'        => $this->input->post('customer_email'),
+
+        'reference_code'        => $this->input->post('reference_code'),
+        'customer_group_id'     => $this->input->post('customer_group_id'),
+        'agent_code'            => $this->input->post('agent_code'),
+
+        'sales_rep_id'          => $this->input->post('sales_rep_id'),
+        'sales_area_id'         => $this->input->post('sales_area_id'),
+
+        'continent'             => $this->input->post('continent'),
+
+        'payment_terms'         => $this->input->post('payment_terms'),
+
+        'credit_limit'          => $this->input->post('credit_limit'),
+        'credit_days'           => $this->input->post('credit_days'),
+        'max_discount_percent'  => $this->input->post('max_discount_percent'),
+
+        'tax_registration_no'   => $this->input->post('tax_registration_no'),
+        'tax_country'           => $this->input->post('tax_country'),
+        'tax_emirate'           => $this->input->post('tax_emirate'),
+        'tax_code'              => $this->input->post('tax_code'),
+
+        'created_at'            => date('Y-m-d H:i:s')
+    );
+
+    $this->db->insert('customer_master', $masterData);
+
+    $customer_id = $this->db->insert_id();
+
+    $contact_name  = $this->input->post('contact_name');
+    $contact_phone = $this->input->post('contact_phone');
+    $contact_email = $this->input->post('contact_email');
+
+     if ($customer_id) {
+            // === Create Ledger Entry ===
+            $grp_no = 30; // or dynamic if needed
+            $customer_name = $this->input->post('customer_name');
+            $customer_code = $this->input->post('customer_code'); // already generated
+            $ledger_data = [
+                'account_name'     => $customer_name . ' ' . $customer_code,
+                'group_no'         => $grp_no,
+                'customer_id'      => $customer_id,
+                'opening_bal_type' => 'Dr',
+                'branch_id' => $branch_id
+            ];
+
+            $this->db->insert('general_ledger', $ledger_data);
+            $ledger_id = $this->db->insert_id();
+     }
+
+    if (!empty($contact_name)) {
+
+        for ($i = 0; $i < count($contact_name); $i++) {
+
+            if (trim($contact_name[$i]) != '') {
+
+                $contactData = array(
+                    'customer_id'   => $customer_id,
+                    'contact_name'  => $contact_name[$i],
+                    'contact_phone' => $contact_phone[$i],
+                    'contact_email' => $contact_email[$i]
+                );
+
+                $this->db->insert('customer_contact_person', $contactData);
+            }
+        }
+    }
+
+    return true;
+}
+public function get_all_customers()
+{
+    $this->db->select('
+        c.*,
+        cg.customer_group_name,
+        sa.sales_area_name,
+        sr.sales_rep_name
+    ');
+
+    $this->db->from('customer_master c');
+
+    $this->db->join(
+        'customer_group_master cg',
+        'cg.customer_group_id = c.customer_group_id',
+        'left'
+    );
+
+    $this->db->join(
+        'sales_area_master sa',
+        'sa.sales_area_id = c.sales_area_id',
+        'left'
+    );
+
+    $this->db->join(
+        'sales_rep_master sr',
+        'sr.sales_rep_id = c.sales_rep_id',
+        'left'
+    );
+
+    return $this->db->get()->result();
+}
+public function get_customer_by_id($customer_id)
+{
+    return $this->db->where('customer_id', $customer_id)
+                    ->get('customer_master')
+                    ->row();
+}
+public function get_customer_contacts($customer_id)
+{
+    return $this->db->where('customer_id', $customer_id)
+                    ->get('customer_contact_details')
+                    ->result();
+}
+public function update_customer($customer_id)
+{
+    $masterData = array(
+
+        'customer_name'         => $this->input->post('customer_name'),
+        'location'              => $this->input->post('location'),
+        'customer_address'      => $this->input->post('customer_address'),
+
+        'office_telephone'      => $this->input->post('office_telephone'),
+        'office_fax'            => $this->input->post('office_fax'),
+        'customer_email'        => $this->input->post('customer_email'),
+
+        'reference_code'        => $this->input->post('reference_code'),
+        'customer_group_id'     => $this->input->post('customer_group_id'),
+        'agent_code'            => $this->input->post('agent_code'),
+
+        'sales_rep_id'          => $this->input->post('sales_rep_id'),
+        'sales_area_id'         => $this->input->post('sales_area_id'),
+
+        'continent'             => $this->input->post('continent'),
+
+        'payment_terms'         => $this->input->post('payment_terms'),
+
+        'credit_limit'          => $this->input->post('credit_limit'),
+        'credit_days'           => $this->input->post('credit_days'),
+        'max_discount_percent'  => $this->input->post('max_discount_percent'),
+
+        'tax_registration_no'   => $this->input->post('tax_registration_no'),
+        'tax_country'           => $this->input->post('tax_country'),
+        'tax_emirate'           => $this->input->post('tax_emirate'),
+        'tax_code'              => $this->input->post('tax_code'),
+
+        'updated_at'            => date('Y-m-d H:i:s')
+    );
+
+    $this->db->where('customer_id', $customer_id);
+    $this->db->update('customer_master', $masterData);
+
+    // Delete old contacts
+    $this->db->where('customer_id', $customer_id);
+    $this->db->delete('customer_contact_person');
+
+    $contact_name  = $this->input->post('contact_name');
+    $contact_phone = $this->input->post('contact_phone');
+    $contact_email = $this->input->post('contact_email');
+
+    for ($i = 0; $i < count($contact_name); $i++) {
+
+        if (trim($contact_name[$i]) != '') {
+
+            $this->db->insert('customer_contact_person', array(
+                'customer_id'   => $customer_id,
+                'contact_name'  => $contact_name[$i],
+                'contact_phone' => $contact_phone[$i],
+                'contact_email' => $contact_email[$i]
+            ));
+        }
+    }
+
+    return true;
+}
+public function delete_customer($customer_id)
+{
+    $this->db->where('customer_id', $customer_id);
+    $this->db->delete('customer_contact_person');
+
+    $this->db->where('customer_id', $customer_id);
+    return $this->db->delete('customer_master');
+}
+
+public function get_customer_code()
+{
+    $last = $this->db->select('customer_code')
+                     ->order_by('customer_id', 'DESC')
+                     ->get('customer_master')
+                     ->row();
+
+    if (!empty($last->customer_code)) {
+
+        $num = (int) substr($last->customer_code, 3);
+        $num++;
+
+        return 'CUS'.str_pad($num, 5, '0', STR_PAD_LEFT);
+
+    } else {
+
+        return 'CUS00001';
+    }
+}
+
+ public function get_all_units(){
+		$this->db->select('*');
+        $this->db->from('unit_master');
+        $query = $this->db->get()->result();
+        return $query; 
+	}
+
+      public function insert_unit($data)
+        {
+            $this->db->insert('unit_master', $data);  // Replace 'units' with your actual table name
+            return $this->db->insert_id();
+        }
+
+   
+    public function get_unit_by_id($unit_id){
+		$this->db->select('*');
+        $this->db->from('unit_master');
+        $this->db->where('unit_id ',$unit_id);
+        $query = $this->db->get()->result();
+        return $query; 
+	}
+    public function update_unit($data,$unit_id){        
+        $this->db->where('unit_id',$unit_id);
+        $res = $this->db->update('unit_master',$data);
+        return $res;
+    }
+    public function delete_unit($unit_id){        
+        $this->db->where('unit_id',$unit_id);
+        $res = $this->db->delete('unit_master');
+        return $res;
+    }
+
+     public function get_active_unit_list()
+   {
+       $this->db->select('*');
+       $this->db->from('unit_master');
+       $this->db->where('active',1);
+       $query = $this->db->get()->result();
+       return $query;      
+   }
+
+   public function get_unit_id_by_name($unit_name){
+    $this->db->select('unit_id');
+    $this->db->from('unit_master');
+    $this->db->where('unit_name',$unit_name);
+    $result = $this->db->get()->row('unit_id');
+    return $result;
+}
+
+  public function insert_item($data)
+    {
+        $this->db->insert('item_master', $data);  // Replace 'units' with your actual table name
+        return $this->db->insert_id();
+    }
+
+public function get_all_item_list()
+{
+    $this->db->select('im.*, um.unit_name, um.unit_id');
+    $this->db->from('item_master im');
+    $this->db->join('unit_master um', 'im.unit_id = um.unit_id', 'left');
+        $this->db->where('im.is_marked_delete', 0);
+
+
+    return $this->db->get()->result();
+}
+
+public function get_active_item_list()
+{
+       $this->db->select('*');
+       $this->db->from('item_master im');
+       $this->db->join('brand_master bm','im.item_brand=bm.brand_id');
+       $this->db->where('im.active',1);
+       $query = $this->db->get()->result();
+       return $query;      
+}
+
+public  function check_item_code_duplicate(){
+        $item_code = $this->input->post('item_code');
+        $this->db->where('item_code', $item_code);
+        $query = $this->db->get('item_master');
+
+        if ($query->num_rows() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+}
+
+public function add_item_data(){
+    $data=array(
+        'item_brand'=>$_POST['item_brand'],
+        'item_code'=>$_POST['item_code'],
+        'item_model'=>$_POST['item_model'],
+        'item_description'=>$_POST['item_description'],
+        'item_unit'=>$_POST['item_unit'],
+        'mrp_qar'=>$_POST['mrp_qar'],
+        'mrp_aed'=>$_POST['mrp_aed'],
+       
+    );
+    $res = $this->db->insert('item_master',$data);
+    return $res;
+}
+public function get_item_by_id($item_id){
+    $this->db->select('im.*');
+    $this->db->from('item_master im');
+    $this->db->where('im.product_id', $item_id);
+    
+    return $this->db->get()->row_array();
+}
+public function update_item($item_id, $data)
+{
+    $this->db->where('product_id', $item_id);
+    return $this->db->update('item_master', $data);
+}
+    public function search_items($term)
+    {
+        if($term != ''){
+            $this->db->like('item_model', $term);
+        }
+        $this->db->limit(20); // limit results to avoid too much data
+        $query = $this->db->get('item_master');
+        return $query->result_array();
+        
+    }
+
+    public function insert_item_category($data)
+{
+    return $this->db->insert('category_master', $data);
+}
+
+public function update_item_category($id, $data)
+{
+    return $this->db->where('category_id', $id)
+                    ->update('category_master', $data);
+}
+
+public function get_item_category($id)
+{
+    return $this->db->where('category_id', $id)
+                    ->get('category_master')
+                    ->row_array();
+}
+public function get_all_categories()
+{
+    $this->db->select('*');
+    $this->db->from('category_master');
+    $this->db->where('is_marked_delete', 0);
+    $this->db->order_by('category_name', 'ASC');
+
+    return $this->db->get()->result();
+}
+public function get_category_code()
+{
+    $this->db->select('category_code');
+    $this->db->from('category_master');
+    $this->db->order_by('category_id', 'DESC');
+    $this->db->limit(1);
+
+    $row = $this->db->get()->row();
+
+    if ($row) {
+        $num = (int) preg_replace('/[^0-9]/', '', $row->category_code);
+        $num++;
+    } else {
+        $num = 1;
+    }
+
+    return 'CAT' . str_pad($num, 5, '0', STR_PAD_LEFT);
+}
+public function delete_category($id)
+{
+    $this->db->where('category_id', $id);
+    return $this->db->update('category_master', [
+        'is_marked_delete' => 1
+    ]);
+}
+public function get_category($id)
+{
+    return $this->db->where('category_id', $id)
+                    ->get('category_master')
+                    ->row_array();
+}
+public function update_category($id, $data)
+{
+    $this->db->where('category_id', $id);
+    return $this->db->update('category_master', $data);
+}
+
+public function generate_agent_code()
+{
+    $this->db->select('agent_code');
+    $this->db->order_by('agent_id', 'DESC');
+    $this->db->limit(1);
+
+    $row = $this->db->get('agent_master')->row();
+
+    if ($row) {
+        $num = (int) substr($row->agent_code, 3);
+        $num++;
+    } else {
+        $num = 1;
+    }
+
+    return 'AGT'.str_pad($num, 5, '0', STR_PAD_LEFT);
+}
+public function insert_agent($data)
+{
+    $this->db->insert('agent_master', $data);
+    return $this->db->insert_id();
+}
+public function get_all_agents()
+{
+    $this->db->where('is_marked_delete', 0);
+    $this->db->order_by('agent_name', 'ASC');
+
+    return $this->db->get('agent_master')->result();
+}
+public function get_agent_by_id($id)
+{
+    return $this->db->where('agent_id', $id)
+                    ->get('agent_master')
+                    ->row_array();
+}
+public function update_agent($id, $data)
+{
+    $this->db->where('agent_id', $id);
+    return $this->db->update('agent_master', $data);
+}
+public function delete_agent($id)
+{
+    $this->db->where('agent_id', $id);
+
+    return $this->db->update('agent_master', [
+        'is_marked_delete' => 1,
+        'updated_at' => date('Y-m-d H:i:s')
+    ]);
+}
+
+ public function generate_branch_code() {
+        $this->db->select_max('branch_id'); // assuming branch_id is auto-increment primary key
+        $query = $this->db->get('branch_master')->row();
+
+        $next_id = $query->branch_id + 1;
+        return str_pad($next_id, 2, '0', STR_PAD_LEFT); // e.g., 1 → 01, 2 → 02
+    }
+
+     public function get_all_branches($filter_type="",$filter_value=""){
+		$this->db->select('*');
+        $this->db->from('branch_master');
+        if(!empty($filter_type)&&!empty($filter_value)){
+            $this->db->like($filter_type, $filter_value);
+        }
+        $query = $this->db->get()->result();
+        return $query; 
+	}
+
+     public function insert_branch_data($data){    
+        $this->db->insert('branch_master',$data);
+        return $this->db->insert_id();;
+    }
+    public function get_branch_by_id($id){
+        return $this->db->get_where('branch_master', ['branch_id' => $id])->row();  
+    }
+    public function get_branch_bank_by_id($id){
+     return $this->db->get_where('branch_bank_details', ['branch_id' => $id])->result();  
+    }
+    public function  check_branch_name_unique($branch_name,$id){
+        $this->db->where('branch_name', $branch_name);
+        $this->db->where('branch_id !=', $id); // Exclude current record
+        $query = $this->db->get('branch_master');
+
+        if ($query->num_rows() > 0) {
+        $this->form_validation->set_message('check_branch_name_unique', 'This Branch Name already exists.');
+            return TRUE;
+        }
+        return FALSE;
+    }
+    public function update_branch($id, $data) {
+        $this->db->where('branch_id', $id);
+        $this->db->update('branch_master', $data);
+    }
+    public function delete_branch_bank($branch_id) {
+        $this->db->where('branch_id', $branch_id);
+        $this->db->delete('branch_bank_details');
+    }
+    public function delete_branch_record($id){
+        $this->db->where('branch_id', $id);
+        return $this->db->delete('branch_master');
+    }
+    
+    public function is_branch_used_in_supplier($branch_id){
+        $this->db->select('*');
+        $this->db->from('supplier_master');
+        $this->db->where('branch_id',$branch_id);
+        $query = $this->db->get()->result();
+        return $query; 
+    }
+    public function is_branch_used_in_customer($branch_id){
+        $this->db->select('*');
+        $this->db->from('customer_master');
+        $this->db->where('branch_id',$branch_id);
+        $query = $this->db->get()->result();
+        return $query; 
+    }
+     public function get_branch_bank_by_bank_id($id){
+     return $this->db->get_where('branch_bank_details', ['bid' => $id])->result();  
+    }
+     public function insert_branch_bank_details($data) {
+        if (!empty($data)) {
+            return $this->db->insert_batch('branch_bank_details', $data);
+        }
+        return false;
+    }
 }
