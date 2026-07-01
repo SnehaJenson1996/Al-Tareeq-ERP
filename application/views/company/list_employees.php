@@ -1,5 +1,5 @@
 <?php 
-	$page_name=$this->uri->segment(1).'/'.$this->uri->segment(2);
+    $page_name = 'Company/add_employee';
 	$user = $this->session->userdata('user_id');
 ?>
 <style>
@@ -13,6 +13,13 @@
 </style>
 <div class="x_panel">
     <div class="x_title">
+
+        <?php if (has_access($user, $page_name, 'A')) { ?>
+            <a href="<?= base_url('index.php/Company/add_employee') ?>"
+            class="btn btn-primary pull-right">
+                <span class="glyphicon glyphicon-plus"></span> Add New
+            </a>
+        <?php } ?>
         
         <div class="clearfix">
         <form action="<?= base_url()?>index.php/Company/list_employee" method="post">

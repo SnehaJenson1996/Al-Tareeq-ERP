@@ -223,22 +223,39 @@ $data['records'] = $this->Hr_model->get_employee_list();
 			redirect('Hr/view_leave_application_list');
 		}
 	}
+	
 	///////////////////////////////////////Joining Application////////////////////////////////////////////// 
 
 	function add_joining_application()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_joining_application_list','A'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$this->load->model('Hr_model');
 
-
 		$data['user_records'] = $this->Hr_model->get_joining_new_list();
-
-
 		$data['title'] = "Joining Application";
 		$data['main_content'] = 'hr/joining_allocation_add.php';
 		$this->load->view('includes/template', $data);
 	}
+
 	function view_joining_application_list()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Hr/view_joining_application_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Joining Application List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_employee_joining_list();
@@ -248,6 +265,13 @@ $data['records'] = $this->Hr_model->get_employee_list();
 
 	function add_joining_application_data()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_joining_application_list','A'))
+		{
+			show_error('Access Denied');
+			return;
+		}
 		$data['title'] = "Joining Application";
 		$this->load->model('Hr_model');
 		$flag = $this->Hr_model->add_joining_application_data();
@@ -262,6 +286,15 @@ $data['records'] = $this->Hr_model->get_employee_list();
 
 	function edit_joining_application()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_joining_application_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Joining Application Edit";
 		$id = $this->uri->segment('3');
 
@@ -277,6 +310,13 @@ $data['records'] = $this->Hr_model->get_employee_list();
 
 	function update_joining_application()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_joining_application_list','E'))
+		{
+			show_error('Access Denied');
+			return;
+		}
 		$data['title'] = "Joining Application";
 		$id = $this->input->post('id');
 		$this->load->model('Hr_model');
@@ -288,24 +328,31 @@ $data['records'] = $this->Hr_model->get_employee_list();
 	}
 
 	function print_joining_application()
-{
-    $id = $this->uri->segment(3);
+	{
+		$id = $this->uri->segment(3);
 
-    $this->load->model('Hr_model');
-    $data['records'] = $this->Hr_model->get_employee_joining_by_id($id);
+		$this->load->model('Hr_model');
+		$data['records'] = $this->Hr_model->get_employee_joining_by_id($id);
 
-    // ❌ REMOVE THIS (not needed)
-    // $this->load->model('Users_model');
-    // $data['record1'] = $this->Users_model->get_user_record_by_id_pass($id);
+		// ❌ REMOVE THIS (not needed)
+		// $this->load->model('Users_model');
+		// $data['record1'] = $this->Users_model->get_user_record_by_id_pass($id);
 
-    $this->load->model('Setup_model');
-    $data['dept_list'] = $this->Setup_model->get_active_department_list();
+		$this->load->model('Setup_model');
+		$data['dept_list'] = $this->Setup_model->get_active_department_list();
 
-    $this->load->view('hr/print/print_joining_application.php', $data);
-}
+		$this->load->view('hr/print/print_joining_application.php', $data);
+	}
 
 	function delete_joining_application()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_joining_application_list','D'))
+		{
+			show_error('Access Denied');
+			return;
+		}
 		$id = $this->uri->segment('3');
 
 		$this->load->model('Hr_model');
@@ -314,6 +361,7 @@ $data['records'] = $this->Hr_model->get_employee_list();
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_joining_application_list');
 	}
+
 	///////////////////////////////////////salary_structure////////////////////////////////////////////// 
 
 	function add_emp_salary_structure()
