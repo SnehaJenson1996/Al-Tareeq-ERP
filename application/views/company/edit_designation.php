@@ -23,7 +23,17 @@
 					<div class="form-row">
 						<div class="col-md-6 form-group">
 							<label>Department</label>
-							<input type="text" name="department" value="<?= $designation->department ?>" class="form-control">
+							<select name="department" class="form-control select2" required>
+								<option value="">-- Select Department --</option>
+								<?php foreach($departments as $dept){ ?>
+									<option value="<?= $dept->dept_name; ?>"
+										<?= ($designation->department == $dept->dept_name) ? 'selected' : ''; ?>>
+
+										<?= $dept->dept_name; ?>
+
+									</option>
+								<?php } ?>
+							</select>
 						</div>
 						<div class="col-md-6 form-group">
 							<label>Reporting To</label>

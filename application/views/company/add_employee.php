@@ -17,7 +17,9 @@ label,h4 {
 
                         <!-- Basic Details -->
                         <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Employee Name <span class="text-danger">*</label></label>
+                            <label class="col-md-3 col-form-label">
+                                Employee Name <span class="text-danger">*</span>
+                            </label>
                             <div class="col-md-3">
                                 <input type="text" name="employee_name" class="form-control"  required>
                             </div>
@@ -76,6 +78,31 @@ label,h4 {
                         </div>
 
                         <div class="form-group row">
+                            <label class="col-md-3 col-form-label">
+                                Department <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-3">
+                                <select name="department_id" class="form-control" required>
+                                    <option value="">Select</option>
+                                    <?php foreach($department_list as $dept){ ?>
+                                        <option value="<?= $dept->dept_id ?>">
+                                            <?= $dept->dept_name ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <label class="col-md-2 col-form-label">
+                                UID <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-3">
+                                <input type="text" name="uid_number" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label class="col-md-3 col-form-label">Designation <span class="text-danger">*</label></label>
                             <div class="col-md-3">
                                 <select name="designation_id" class="form-control" required>
@@ -87,31 +114,35 @@ label,h4 {
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                             <label class="col-md-2 col-form-label" required>UID <span class="text-danger">*</label></label>
+
+                            <label class="col-md-2 col-form-label">
+                                Employee Code <span class="text-danger">*</span>
+                            </label>
+
                             <div class="col-md-3">
-                                <input type="text" name="uid_number" class="form-control" >
+                                <input type="text"
+                                    name="employee_code"
+                                    id="employee_code"
+                                    class="form-control"
+                                    value="<?= $user_code ?>">
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Employee Code <span class="text-danger">*</label></label>
-                            <div class="col-md-3">
-                                <input type="text" name="employee_code" id="employee_code" class="form-control" value="<?= $user_code?>">
-                            </div>
 
-                    
-    <label class="col-md-2 col-form-label">Digital Signature</label>
-    <div class="col-md-3">
-        <input type="file"
-               name="signature_file"
-               accept=".png,.jpg,.jpeg"
-               class="form-control">
-    </div>
+                            <label class="col-md-3 col-form-label">
+                                Digital Signature
+                            </label>
+
+                            <div class="col-md-3">
+                                <input type="file"
+                                    name="signature_file"
+                                    accept=".png,.jpg,.jpeg"
+                                    class="form-control">
+                            </div>
 
                         </div>
                         
-                        
-                      
-
                         <hr>
                         <h4>Passport Details</h4>
 

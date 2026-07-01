@@ -74,49 +74,90 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Designation <span class="required">*</span></label>
+                        <label class="col-md-3 col-form-label">
+                            Department <span class="text-danger">*</span>
+                        </label>
+
                         <div class="col-md-3">
-                            <select name="designation_id" class="form-control" >
+                            <select name="department_id" class="form-control" required>
                                 <option value="">Select</option>
-                                <?php foreach ($designation_list as $d): ?>
-                                    <option value="<?= $d->id ?>" <?= ($employee->designation_id == $d->id) ? 'selected' : '' ?>>
-                                        <?= $d->designation_name ?>
+                                <?php foreach($department_list as $dept){ ?>
+                                    <option value="<?= $dept->dept_id ?>"
+                                        <?= ($employee->department_id == $dept->dept_id) ? 'selected' : '' ?>>
+                                        <?= $dept->dept_name ?>
                                     </option>
-                                <?php endforeach; ?>
+                                <?php } ?>
                             </select>
                         </div>
-                         <label class="col-md-2 col-form-label" required>UID <span class="text-danger">*</label></label>
-                            <div class="col-md-3">
-                                <input type="text" name="uid_number" value="<?= $employee->uid_number?>" class="form-control" >
-                            </div>
+
+                        <label class="col-md-2 col-form-label">
+                            UID <span class="text-danger">*</span>
+                        </label>
+
+                        <div class="col-md-3">
+                            <input type="text"
+                                name="uid_number"
+                                class="form-control"
+                                value="<?= $employee->uid_number ?>">
+                        </div>
                     </div>
+
                     <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Employee Code <span class="text-danger">*</label></label>
-                            <div class="col-md-3">
-                                <input type="text" name="employee_code" id="employee_code" class="form-control" value="<?= $employee->user_code ?>" readonly>
-                            </div>
-                           
-      <label class="col-md-2 col-form-label">Digital Signature</label>
+                        <label class="col-md-3 col-form-label">
+                            Designation <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-3">
+                            <select name="designation_id" class="form-control" required>
+                                <option value="">Select</option>
 
-    <div class="col-md-3">
+                                <?php foreach($designation_list as $d){ ?>
+                                    <option value="<?= $d->id ?>"
+                                        <?= ($employee->designation_id == $d->id) ? 'selected' : '' ?>>
+                                        <?= $d->designation_name ?>
+                                    </option>
+                                <?php } ?>
 
-        <?php if (!empty($employee->signature_file)) { ?>
-            <div style="margin-bottom:8px;">
-                <img src="<?= base_url('public/employee/' . $employee->signature_file) ?>"
-                     width="120"
-                     style="border:1px solid #ddd; padding:3px;">
-            </div>
+                            </select>
+                        </div>
 
-            <input type="hidden" name="old_signature_file"
-                   value="<?= $employee->signature_file ?>">
-        <?php } ?>
+                        <label class="col-md-2 col-form-label">
+                            Employee Code <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-3">
+                            <input type="text"
+                                name="employee_code"
+                                id="employee_code"
+                                class="form-control"
+                                value="<?= $employee->user_code ?>"
+                                readonly>
+                        </div>
+                    </div>
 
-        <input type="file"
-               name="signature_file"
-               accept=".png,.jpg,.jpeg"
-               class="form-control">
-    </div>
-</div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">
+                            Digital Signature
+                        </label>
+
+                        <div class="col-md-3">
+                            <?php if (!empty($employee->signature_file)) { ?>
+                                <div style="margin-bottom:8px;">
+                                    <img src="<?= base_url('public/employee/' . $employee->signature_file) ?>"
+                                        width="120"
+                                        style="border:1px solid #ddd;padding:3px;">
+                                </div>
+
+                                <input type="hidden"
+                                    name="old_signature_file"
+                                    value="<?= $employee->signature_file ?>">
+                            <?php } ?>
+
+                            <input type="file"
+                                name="signature_file"
+                                accept=".png,.jpg,.jpeg"
+                                class="form-control">
+
+                        </div>
+                    </div>
                         
 
                     <hr>

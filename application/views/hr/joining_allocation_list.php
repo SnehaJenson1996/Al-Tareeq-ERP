@@ -1,3 +1,7 @@
+<?php
+	$page_name = 'Hr/view_joining_application_list';
+	$user = $this->session->userdata('user_id');
+?>
 <div class="card-body">
 	<div class="dt-responsive table-responsive">
 		<table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -28,11 +32,11 @@
 
 							<a href="<?php echo base_url() . 'index.php/Hr/print_joining_application/' . $row->jid; ?>" title="Print" target="_blank"><i class="fa fa-print" style="font-size:18px"></i></a>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/Hr/delete_joining_application/' . $row->jid; ?>" 
-   title="Delete" 
-   onclick="return confirmcancel(<?php echo $row->jid; ?>);">
-   <i class="fa fa-trash" style="color:red;"></i>
-</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/Hr/delete_joining_application/' . $row->jid; ?>"
+								title="Delete"
+								onclick="return confirmcancel(<?php echo $row->jid; ?>);">
+								<i class="fa fa-trash" style="color:red;"></i>
+							</a>
 
 						</td>
 					</tr>
