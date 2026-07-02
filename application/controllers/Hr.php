@@ -23,12 +23,29 @@ class Hr extends CI_Controller
 
 	function add_allowances()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_allowances_list','A'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+			return;
+		}
 		$data['title'] = "Allowances & Deductions Master";
 		$data['main_content'] = 'hr/allowances_deductions_add.php';
 		$this->load->view('includes/template', $data);
 	}
 	function view_allowances_list()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Hr/view_allowances_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Allowances & Deductions Master List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_allowances_list();
@@ -37,38 +54,47 @@ class Hr extends CI_Controller
 	}
 
 	public function add_allowances_data()
-{
-    $data['title'] = "Allowances & Deductions Master";
-    $this->load->model('Hr_model');
+	{
+		$data['title'] = "Allowances & Deductions Master";
+		$this->load->model('Hr_model');
 
-    // Get posted values
-    $atype = $this->input->post('allowance_type');
-    $aname = $this->input->post('allowance_name');
+		// Get posted values
+		$atype = $this->input->post('allowance_type');
+		$aname = $this->input->post('allowance_name');
 
-    // Check for duplicates
-    $this->db->where('allowance_type', $atype);
-    $this->db->where('allowance_name', $aname);
-    $exists = $this->db->get('allowance_master')->num_rows();
+		// Check for duplicates
+		$this->db->where('allowance_type', $atype);
+		$this->db->where('allowance_name', $aname);
+		$exists = $this->db->get('allowance_master')->num_rows();
 
-    if ($exists > 0) {
-        // Duplicate exists
-        $this->session->set_flashdata('warning', 'Allowance Name Already Exists');
-        redirect('Hr/add_allowances'); // reload form
-        exit;
-    }
+		if ($exists > 0) {
+			// Duplicate exists
+			$this->session->set_flashdata('warning', 'Allowance Name Already Exists');
+			redirect('Hr/add_allowances'); // reload form
+			exit;
+		}
 
-    // No duplicate, proceed to save
-    $flag = $this->Hr_model->add_allowances_data();
-    if ($flag) {
-        $this->session->set_flashdata('success', 'Record Successfully Saved');
-        redirect('Hr/view_allowances_list');
-    } else {
-        $this->session->set_flashdata('warning', 'Error Saving Record');
-        redirect('Hr/add_allowances');
-    }
-}
+		// No duplicate, proceed to save
+		$flag = $this->Hr_model->add_allowances_data();
+		if ($flag) {
+			$this->session->set_flashdata('success', 'Record Successfully Saved');
+			redirect('Hr/view_allowances_list');
+		} else {
+			$this->session->set_flashdata('warning', 'Error Saving Record');
+			redirect('Hr/add_allowances');
+		}
+	}
 	function edit_allowances()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_allowances_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Edit Allowances & Deductions Master";
 		$id = $this->uri->segment('3');
 
@@ -91,6 +117,15 @@ class Hr extends CI_Controller
 	}
 	function delete_Allowances()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_allowances_list','D'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$id = $this->uri->segment('3');
 
 		$this->load->model('Hr_model');
@@ -99,6 +134,7 @@ class Hr extends CI_Controller
 		$this->session->set_flashdata('success', 'Record Delete Successfully');
 		redirect('Hr/view_allowances_list');
 	}
+
 	///////////////////////////////////////Leave application ////////////////////////////////////////////// 
 
 	function add_leave_application()
@@ -265,13 +301,6 @@ $data['records'] = $this->Hr_model->get_employee_list();
 
 	function add_joining_application_data()
 	{
-		$user = $this->session->userdata('user_id');
-
-		if (!has_access($user,'Hr/view_joining_application_list','A'))
-		{
-			show_error('Access Denied');
-			return;
-		}
 		$data['title'] = "Joining Application";
 		$this->load->model('Hr_model');
 		$flag = $this->Hr_model->add_joining_application_data();
@@ -310,13 +339,6 @@ $data['records'] = $this->Hr_model->get_employee_list();
 
 	function update_joining_application()
 	{
-		$user = $this->session->userdata('user_id');
-
-		if (!has_access($user,'Hr/view_joining_application_list','E'))
-		{
-			show_error('Access Denied');
-			return;
-		}
 		$data['title'] = "Joining Application";
 		$id = $this->input->post('id');
 		$this->load->model('Hr_model');
@@ -412,7 +434,7 @@ $data['records'] = $this->Hr_model->get_employee_list();
 
 
 		$this->load->model('Hr_model');
-$data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
+		$data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 		$data['record1'] = $this->Hr_model->get_allowances_list();
 		$data['details'] = $this->Hr_model->get_salary_allowance_details($id);
 
@@ -527,10 +549,20 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_emp_attendance_list');
 	}
+
 	///////////////////////////////////////add_emp_overtime////////////////////////////////////////////// 
 
 	function add_emp_overtime()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_emp_overtime_list','A'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Employee Overtime";
 
 		// $this->load->model('Users_model');
@@ -543,8 +575,18 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 		$data['main_content'] = 'hr/employee_overtime_add.php';
 		$this->load->view('includes/template', $data);
 	}
+
 	function view_emp_overtime_list()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Hr/view_emp_overtime_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Employee Overtime List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_emp_overtime_list();
@@ -567,21 +609,30 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 	}
 
 	public function edit_emp_overtime()
-{
-    $data['title'] = "Edit Employee Overtime";
-    $id = $this->uri->segment(3);
+	{
+		$user = $this->session->userdata('user_id');
 
-    $this->load->model('Hr_model');
+		if (!has_access($user,'Hr/view_emp_overtime_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 
-    // Get the single row of overtime to edit
-    $data['row'] = $this->Hr_model->get_emp_overtime_by_id($id);
+		$data['title'] = "Edit Employee Overtime";
+		$id = $this->uri->segment(3);
 
-    // Get list of all employees for dropdown
-    $data['records'] = $this->Hr_model->get_employee_list();
+		$this->load->model('Hr_model');
+		// Get the single row of overtime to edit
+		$data['row'] = $this->Hr_model->get_emp_overtime_by_id($id);
 
-    $data['main_content'] = 'hr/emp_overtime_edit.php';
-    $this->load->view('includes/template', $data);
-}
+		// Get list of all employees for dropdown
+		$data['records'] = $this->Hr_model->get_employee_list();
+
+		$data['main_content'] = 'hr/emp_overtime_edit.php';
+		$this->load->view('includes/template', $data);
+	}
 
 	function update_emp_overtime()
 	{
@@ -594,8 +645,19 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 			redirect('Hr/view_emp_overtime_list');
 		}
 	}
+
 	function delete_overtime_emp()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_allowances_list','D'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
+		
 		$id = $this->uri->segment('3');
 
 		$this->load->model('Hr_model');
@@ -604,6 +666,7 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_emp_overtime_list');
 	}
+
 	///////////////////////////////////////add_resignation////////////////////////////////////////////// 
 
 	function add_resignation()

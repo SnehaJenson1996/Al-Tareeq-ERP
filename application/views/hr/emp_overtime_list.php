@@ -20,9 +20,9 @@
                         <td><?php echo $row->overtime; ?></td>
                         <td><?php echo date('d-M-Y', strtotime($row->date_ot)); ?></td>
                         <td>
-                            <a href="<?php echo base_url() . 'index.php/Hr/edit_emp_overtime/' . $row->emp_oid; ?>" title="Edit">Edit<?php echo $this->session->userdata('edit_icon'); ?></a>
-                            <a href="<?php echo base_url() . 'index.php/Hr/delete_overtime_emp/' . $row->emp_oid; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->emp_oid; ?>);" >Delete<?php echo $this->session->userdata('delete_icon'); ?></a>
-							<!-- <a href="<?php echo base_url() . 'index.php/Hr/delete_leave_application/' . $row->leave_id; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->leave_id; ?>);"><?php echo $this->session->userdata('delete_icon'); ?></a> -->
+                            <a href="<?php echo base_url() . 'index.php/Hr/edit_emp_overtime/' . $row->emp_oid; ?>" title="Edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><?php echo $this->session->userdata('edit_icon'); ?></a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="<?php echo base_url() . 'index.php/Hr/delete_overtime_emp/' . $row->emp_oid; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->emp_oid; ?>);" ><span class="fa fa-trash"></span><?php echo $this->session->userdata('delete_icon'); ?></a>
 
                         </td>
                     </tr>

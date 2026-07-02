@@ -1,3 +1,8 @@
+<?php
+$page_name = $this->uri->segment(1) . '/' . $this->uri->segment(2);
+$logged_user = $this->session->userdata('user_id');
+?>
+
 <div class="card-body">
     <div class="dt-responsive table-responsive">
         <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -25,11 +30,10 @@
                         <td>
                             <a href="<?php echo base_url() . 'index.php/Hr/edit_allowances/' . $row->sno; ?>" title="Edit">Edit<?php echo $this->session->userdata('edit_icon'); ?></a>
                             <!-- <a href="<?php echo base_url() . 'index.php/Hr/delete_Allowances/' . $row->sno; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->sno; ?>);"><?php echo $this->session->userdata('delete_icon'); ?></a> -->
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/Hr/delete_Allowances/' . $row->sno; ?>" 
-   title="Delete" 
-   onclick="return confirmcancel(<?php echo $row->sno; ?>);">
-   <i class="fa fa-trash" style="color:red;"></i>
-</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/Hr/delete_Allowances/' . $row->sno; ?>"
+                                title="Delete">
+                                <i class="fa fa-trash" style="color:red;"></i>
+                            </a>
 
                         </td>
                     </tr>

@@ -66,29 +66,22 @@
                                     <td><?= $des->location ?></td>
                                     <td><?= $des->status ?></td>
                                     <td>
-                                    <?php if (has_access($user, $page_name, 'E')): ?>
-                                        <a href="<?= base_url('index.php/Company/edit_designation/' . $des->id ); ?>" title="Edit">
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                        </a>
-                                    <?php endif; ?>
+                                        <?php if (has_access($user, $page_name, 'E')): ?>
+                                            <a href="<?= base_url('index.php/Company/edit_designation/' . $des->id ); ?>" title="Edit">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                            </a>
+                                        <?php endif; ?>
 
-                                    &nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;
 
-                                    <?php if (has_access($user, $page_name, 'D')): ?>
-<a href="javascript:void(0);" 
-   title="Delete" 
-   onclick="confirmDeleteDesignation(<?= $des->id ?>)">
-   <i class="fa fa-trash"></i>
-</a>
-
-
-                                       
-                                
-                                        
-
-                                        
-                                    <?php endif; ?>
-                                </td>                                   
+                                        <?php if (has_access($user, $page_name, 'D')): ?>
+                                            <a href="javascript:void(0);" 
+                                            title="Delete" 
+                                            onclick="confirmDeleteDesignation(<?= $des->id ?>)">
+                                            <i class="fa fa-trash"></i>
+                                            </a>
+                                        <?php endif; ?>
+                                    </td>                                   
                                 </tr>
                         <?php endforeach; } else { ?>
                             <tr>
