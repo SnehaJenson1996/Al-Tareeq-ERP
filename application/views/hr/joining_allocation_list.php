@@ -2,6 +2,14 @@
 	$page_name = 'Hr/view_joining_application_list';
 	$user = $this->session->userdata('user_id');
 ?>
+<style>
+	.action-icons i {
+		font-size: 18px;
+		margin: 0 5px;
+		vertical-align: middle;
+	}
+</style>
+
 <div class="card-body">
 	<div class="dt-responsive table-responsive">
 		<table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -26,16 +34,13 @@
 						<td><?php echo $row->joining_type; ?></td>
 						<td><?php echo date('d-M-Y', strtotime($row->joining_date)); ?></td>
 
-						<td>
-							<a href="<?php echo base_url() . 'index.php/Hr/edit_joining_application/' . $row->jid; ?>" title="Edit">Edit<?php echo $this->session->userdata('edit_icon'); ?></a>
-							<!-- <a href="<?php echo base_url() . 'index.php/Hr/delete_joining_application/' . $row->jid; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->jid; ?>);"><?php echo $this->session->userdata('delete_icon'); ?></a> -->
+						<td class="action-icons">
+							<a href="<?php echo base_url() . 'index.php/Hr/edit_joining_application/' . $row->jid; ?>"title="Edit"><i class="fa fa-edit"></i><?php echo $this->session->userdata('edit_icon'); ?></a>
 
-							<a href="<?php echo base_url() . 'index.php/Hr/print_joining_application/' . $row->jid; ?>" title="Print" target="_blank"><i class="fa fa-print" style="font-size:18px"></i></a>
+							<a href="<?php echo base_url() . 'index.php/Hr/print_joining_application/' . $row->jid; ?>"title="Print" target="_blank"><i class="fa fa-print" style="font-size:18px"></i></a>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/Hr/delete_joining_application/' . $row->jid; ?>"
-								title="Delete"
-								onclick="return confirmcancel(<?php echo $row->jid; ?>);">
-								<i class="fa fa-trash" style="color:red;"></i>
+							<a href="<?php echo base_url() . 'index.php/Hr/delete_joining_application/' . $row->jid; ?>"title="Delete" onclick="return confirmcancel(<?php echo $row->jid; ?>);">
+								<i class="fa fa-trash"></i>
 							</a>
 
 						</td>

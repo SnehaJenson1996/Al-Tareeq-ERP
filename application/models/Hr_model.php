@@ -739,11 +739,12 @@ function get_employee_leave_by_id($id)
 		$this->db->where('emp_docId', $id);
 		$this->db->delete('employee_document_details');
 	}
+	
 	///////////////////////////////////////////start overtime form model /////////////////////////////////
 
 	function add_emp_overtime_data()
 	{
-		 $data = array(
+		$data = array(
 			'employee_id' => $this->input->post('employee_id'),
 			'date_ot' => date('Y-m-d', strtotime($this->input->post('date_ot'))),
 			'overtime' => $this->input->post('ot'),
@@ -782,14 +783,12 @@ function get_employee_leave_by_id($id)
 	function update_emp_overtime($id)
 	{
 		$data = array(
-'employee_id' => $this->input->post('employee_id'),		
-	'date_ot' => date('Y-m-d', strtotime($this->input->post('date_ot'))),
+			'employee_id' => $this->input->post('employee_id'),		
+			'date_ot' => date('Y-m-d', strtotime($this->input->post('date_ot'))),
 			'overtime' => $this->input->post('overtime'),
 			// 'ot_type' => $this->input->post('ot_type'),     
 			'remark' => $this->input->post('remark'),
 		);
-
-
 
 		$this->db->where('emp_oid', $id);
 		$res = $this->db->update('employee_overtime', $data);
@@ -801,7 +800,6 @@ function get_employee_leave_by_id($id)
 			$ci = get_instance();
 			$ci->load->helper('log');
 			$log_msg = add_log_entry($user_se_id, 2, $page_name[1], 'employee_overtime', 'emp_oid', $id);
-
 			return true;
 		} else {
 			// Handle the case where the update operation fails

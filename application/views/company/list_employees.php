@@ -1,15 +1,20 @@
 <?php 
-    $page_name = 'Company/add_employee';
+    $page_name = 'Company/list_employee';
 	$user = $this->session->userdata('user_id');
 ?>
 <style>
-#filter_list li {
-  padding: 5px;
-  cursor: pointer;
-}
-#filter_list li:hover {
-  background: #f0f0f0;
-}
+    #filter_list li {
+    padding: 5px;
+    cursor: pointer;
+    }
+    #filter_list li:hover {
+    background: #f0f0f0;
+    }
+    .action-icons i {
+		font-size: 18px;
+		margin: 0 5px;
+		vertical-align: middle;
+	}
 </style>
 <div class="x_panel">
     <div class="x_title">
@@ -78,20 +83,18 @@
                         <!-- <td><?= $emp->designation_name ?></td> -->
                         <td><?= $emp->mobile ?></td>
                         <td><?= date('d-M-Y', strtotime($emp->joining_date)) ?></td>
-                        <td>
-                            <?php if (has_access($user, $page_name, 'E')): ?>
+                        <td class="action-icons">
+                            <!-- <?php if (has_access($user, $page_name, 'E')): ?> -->
                                 <a href="<?= base_url('index.php/Company/edit_employee/' . $emp->employee_id ); ?>" title="Edit">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    <i class="fa fa-edit"></i>
                                 </a>
-                            <?php endif; ?>
+                            <!-- <?php endif; ?> -->
 
-                            &nbsp;&nbsp;&nbsp;
-
-                            <?php if (has_access($user, $page_name, 'D')): ?>
+                            <!-- <?php if (has_access($user, $page_name, 'D')): ?> -->
                                 <a href="javascript:void(0);" onclick="confirmDeleteemployee(<?= $emp->employee_id  ?>)" title="Delete">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    <i class="fa fa-trash"></i>
                                 </a>
-                            <?php endif; ?>
+                            <!-- <?php endif; ?> -->
                         </td>
                     </tr>
                 <?php endforeach; ?>

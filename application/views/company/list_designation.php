@@ -2,6 +2,15 @@
 	$page_name=$this->uri->segment(1).'/'.$this->uri->segment(2);
 	$user = $this->session->userdata('user_id');
 ?>
+
+<style>
+	.action-icons i {
+		font-size: 18px;
+		margin: 0 5px;
+		vertical-align: middle;
+	}
+</style>
+
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -65,30 +74,19 @@
                                     <td><?= $des->employment_type ?></td>
                                     <td><?= $des->location ?></td>
                                     <td><?= $des->status ?></td>
-                                    <td>
-                                    <?php if (has_access($user, $page_name, 'E')): ?>
-                                        <a href="<?= base_url('index.php/Company/edit_designation/' . $des->id ); ?>" title="Edit">
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                        </a>
-                                    <?php endif; ?>
+                                    <td class="action-icons">
+                                        <?php if (has_access($user, $page_name, 'E')): ?>
+                                            <a href="<?= base_url('index.php/Company/edit_designation/' . $des->id ); ?>" title="Edit">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        <?php endif; ?>
 
-                                    &nbsp;&nbsp;&nbsp;
-
-                                    <?php if (has_access($user, $page_name, 'D')): ?>
-<a href="javascript:void(0);" 
-   title="Delete" 
-   onclick="confirmDeleteDesignation(<?= $des->id ?>)">
-   <i class="fa fa-trash"></i>
-</a>
-
-
-                                       
-                                
-                                        
-
-                                        
-                                    <?php endif; ?>
-                                </td>                                   
+                                        <?php if (has_access($user, $page_name, 'D')): ?>
+                                            <a href="javascript:void(0);"title="Delete" onclick="confirmDeleteDesignation(<?= $des->id ?>)">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        <?php endif; ?>
+                                    </td>                                   
                                 </tr>
                         <?php endforeach; } else { ?>
                             <tr>
