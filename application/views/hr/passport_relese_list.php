@@ -1,3 +1,11 @@
+<style>
+	.action-icons i {
+		font-size: 18px;
+		margin: 0 5px;
+		vertical-align: middle;
+	}
+</style>
+
 <div class="card-body">
 	<div class="dt-responsive table-responsive">
 		<table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -21,11 +29,13 @@
 						<td><?php echo date('d-M-Y', strtotime($row->indate)); ?></td>
 						
 
-						<td>
+						<td class="action-icons">
 
-							<a href="<?php echo base_url() . 'index.php/Hr/edit_passport_release/' . $row->emp_docId; ?>" title="Edit"><i class=" fa-edit">Edit</i><?php echo $this->session->userdata('edit_icon'); ?></a>
-							<a href="<?php echo base_url() . 'index.php/Hr/delete_passport_release/' . $row->emp_docId; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->emp_docId; ?>);">Delete<?php echo $this->session->userdata('delete_icon'); ?></a>
-							<a href="<?php echo base_url() . 'index.php/Hr/print_passport_release/' . $row->emp_docId; ?>" title="Print" target="_blank"><i class="fa fa-print" style="font-size:18px"></i></a>
+							<a href="<?php echo base_url() . 'index.php/Hr/edit_passport_release/' . $row->emp_docId; ?>" title="Edit"><i class="fa fa-edit"></i><?php echo $this->session->userdata('edit_icon'); ?></a>
+
+							<a href="<?php echo base_url() . 'index.php/Hr/print_passport_release/' . $row->emp_docId; ?>" title="Print" target="_blank"><i class="fa fa-print" style="font-size:18px"></i></i></a>
+
+							<a href="<?php echo base_url() . 'index.php/Hr/delete_passport_release/' . $row->emp_docId; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->emp_docId; ?>);"><i class="fa fa-trash"></i><?php echo $this->session->userdata('delete_icon'); ?></a>
 
 						</td>
 					</tr>

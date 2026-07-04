@@ -1,3 +1,10 @@
+<style>
+    .action-icons i {
+        font-size: 18px;
+        margin: 0 5px;
+        vertical-align: middle;
+    }
+</style>
 <div class="card-body">
     <div class="dt-responsive table-responsive">
         <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -20,10 +27,10 @@
                         <td><?php echo $row->attendence; ?></td>
                         <td><?php echo date('d-M-Y', strtotime($row->Attendance_date)); ?></td>
 
-                        <td>
-                            <a href="<?php echo base_url() . 'index.php/Hr/edit_emp_attendance/' . $row->emp_aId; ?>" title="Edit">Edit<?php echo $this->session->userdata('edit_icon'); ?></a>
-                            <a href="<?php echo base_url() . 'index.php/Hr/delete_attendance_emp/' . $row->emp_aId; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->emp_aId; ?>);">Delete<?php echo $this->session->userdata('delete_icon'); ?></a>
-							<!-- <a href="<?php echo base_url() . 'index.php/Hr/delete_leave_application/' . $row->leave_id; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->leave_id; ?>);"><?php echo $this->session->userdata('delete_icon'); ?></a> -->
+                        <td class="action-icons">
+                            <a href="<?php echo base_url() . 'index.php/Hr/edit_emp_attendance/' . $row->emp_aId; ?>" title="Edit"><i class="fa fa-edit"></i><?php echo $this->session->userdata('edit_icon'); ?></a>
+                            
+                            <a href="<?php echo base_url() . 'index.php/Hr/delete_attendance_emp/' . $row->emp_aId; ?>" title="Delete" onclick="return confirmcancel(<?php echo $row->emp_aId; ?>);"><i class="fa fa-trash"></i><?php echo $this->session->userdata('delete_icon'); ?></a>
 
                         </td>
                     </tr>

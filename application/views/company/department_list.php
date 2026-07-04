@@ -1,15 +1,21 @@
-<style>
-.remarks-wrap {
-    white-space: normal !important;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    max-width: 400px;
-}
-</style>
 <?php 
 	$page_name=$this->uri->segment(1).'/'.$this->uri->segment(2);
 	$logged_user = $this->session->userdata('user_id');
 ?>
+
+<style>
+	.remarks-wrap {
+		white-space: normal !important;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		max-width: 400px;
+	}
+	.action-icons i {
+		font-size: 18px;
+		margin: 0 5px;
+		vertical-align: middle;
+	}
+</style>
 
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
@@ -43,17 +49,15 @@
 									<?= $row->remark; ?>
 								</td>
 
-								<td>
+								<td class="action-icons">
 									<?php if(has_access($logged_user,$page_name,'E')){ ?>
-										<a href="<?= base_url('index.php/Company/edit_department/'.$row->dept_id); ?>"title='Edit'><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-
+										<a href="<?= base_url('index.php/Company/edit_department/'.$row->dept_id); ?>"title='Edit'>
+											<i class="fa fa-edit"></i>
 										</a>
 									<?php } ?>
-									&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="javascript:void(0)"
-										onclick="confirmDeleteDepartment(<?= $row->dept_id ?>)"
-										title="Delete">
-											<span class="glyphicon glyphicon-trash"></span>
+
+										<a href="javascript:void(0)" onclick="confirmDeleteDepartment(<?= $row->dept_id ?>)"title="Delete">
+											<i class="fa fa-trash"></i>
 										</a>
 								</td>
 							</tr>
