@@ -797,8 +797,8 @@ public function list_unit() {
 	public function add_item(){
 		
 			$data['title']='Add Item';
-			    $data['categories'] = $this->Setup_model->get_all_categories();
-
+			$data['categories'] = $this->Setup_model->get_all_categories();
+            $data['rawmat'] = [];
 			$data['active_units'] = $this->Setup_model->get_all_units();	
 			$data['main_content']='setup/add_item.php';
 
@@ -825,6 +825,7 @@ public function list_unit() {
 
         'hs_code'         => $this->input->post('hs_code', true),
         'description'=> $this->input->post('description', true),
+        'total_price'     => $this->input->post('total_amount', true),
 
         // FLAGS
         'tax_applicable'      => $this->input->post('tax_applicable') ? 1 : 0,
@@ -852,6 +853,29 @@ public function list_unit() {
 
     /* INSERT VIA MODEL */
     $insert_id = $this->Setup_model->insert_item($item_data);
+    if (!empty($_POST['mname'])) {
+
+        foreach ($_POST['mname'] as $key => $material) {
+
+            if (trim($material) == '') {
+                continue;
+            }
+
+            $qty    = $_POST['qty'][$key];
+            $uprice = $_POST['uprice'][$key];
+            $unit   = $_POST['unit'][$key];
+            $code = $this->generateUniqueCode();
+                 $material_data = [
+                    'item_id'       => $insert_id,
+                    'material_name' => $material,
+                    'material_code' => $code,
+                    'quantity_required' =>  $qty,
+                    'cost'          => $uprice,
+                    'unit'          => $unit
+                ];
+            $insert_mat = $this->Setup_model->insert_raw($material_data);
+        }
+    }
 
     if ($insert_id) {
         $this->session->set_flashdata('success', 'Item added successfully');
@@ -927,7 +951,8 @@ public function list_unit() {
 		$data['title']='Edit Item';
 		$data['product'] = $this->Setup_model->get_item_by_id($item_id);	
 		$data['active_units'] = $this->Setup_model->get_all_units();
-            $data['categories'] = $this->Setup_model->get_all_categories();
+        $data['categories'] = $this->Setup_model->get_all_categories();
+        $data['rawmat']	 = $this->Setup_model->get_rawmaterials($item_id);
 	
 		$data['main_content']='setup/add_item.php';
 		$this->load->view('includes/template',$data);
@@ -957,6 +982,7 @@ public function list_unit() {
         'reorder_level'   => $this->input->post('reorder_level', true),
 
         'hs_code'         => $this->input->post('hs_code', true),
+        'total_price'     => $this->input->post('total_amount', true),
 
         /* FLAGS */
         'tax_applicable'      => $this->input->post('tax_applicable') ? 1 : 0,
@@ -1009,6 +1035,47 @@ public function list_unit() {
        UPDATE DB
     ==========================*/
     $this->Setup_model->update_item($item_id, $data);
+     //material
+    $this->Setup_model->delete_raw_materials($item_id);
+    // Existing materials
+    if (!empty($_POST['mname_old'])) {
+
+        foreach ($_POST['mname_old'] as $key => $material) {
+
+            if (trim($material) == '') continue;
+
+            $material_data = [
+                'item_id'             => $item_id,
+                'material_name'       => $material,
+                'material_code'       => $this->generateUniqueCode(),
+                'quantity_required'   => $_POST['qty_old'][$key],
+                'cost'                => $_POST['uprice_old'][$key],
+                'unit'                => $_POST['unit_old'][$key]
+            ];
+
+            $this->Setup_model->insert_raw($material_data);
+        }
+    }
+
+    // New materials
+    if (!empty($_POST['mname'])) {
+
+        foreach ($_POST['mname'] as $key => $material) {
+
+            if (trim($material) == '') continue;
+
+            $material_data = [
+                'item_id'             => $item_id,
+                'material_name'       => $material,
+                'material_code'       => $this->generateUniqueCode(),
+                'quantity_required'   => $_POST['qty'][$key],
+                'cost'                => $_POST['uprice'][$key],
+                'unit'                => $_POST['unit'][$key]
+            ];
+
+            $this->Setup_model->insert_raw($material_data);
+        }
+    }
 
     $this->session->set_flashdata('success', 'Item updated successfully');
     redirect('Setup/list_items');
@@ -1051,6 +1118,11 @@ public function delete_item($id)
         'is_marked_delete' => 1,
         'updated_at' => date('Y-m-d H:i:s')
     ]);
+
+    $data = array('is_marked_delete'=>1);
+    $where = array('item_id'=>$id);
+    $this->db->where($where);
+    $this->db->update('amc_product_materials', $data);
 
     $this->session->set_flashdata('success', 'Item moved to trash successfully');
     redirect('Setup/list_items');
@@ -1506,6 +1578,29 @@ public function delete_branch_record() {
                 ]);
             }
         
+}
+
+//randam val
+public function randomString($length = 5)
+{
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $random = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $random .= $characters[random_int(0, strlen($characters) - 1)];
+    }
+
+    return $random;
+}
+
+public function generateUniqueCode()
+{
+    do {
+        $fcode = $this->randomString(5);
+        $code = "AL" .$fcode;
+    } while ($this->Setup_model->code_exists($code));
+
+    return $code;
 }
 
 }

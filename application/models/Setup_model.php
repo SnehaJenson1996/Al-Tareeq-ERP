@@ -1158,4 +1158,46 @@ public function delete_agent($id)
         }
         return false;
     }
+
+     //raw materials
+    public function code_exists($code){
+        $this->db->where('material_code', $code);
+        $query = $this->db->get('amc_product_materials');
+
+        if ($query->num_rows() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+     public function delete_raw_materials($item_id)
+    {
+        $this->db->where('item_id', $item_id);
+        $this->db->delete('amc_product_materials');
+    }
+
+    public function insert_raw($data)
+    {
+        return $this->db->insert('amc_product_materials', $data);
+    }
+
+    public function update_raw($data,$id){
+        if (!empty($data)) {
+            $this->db->query("delete  from amc_product_materials where item_id='$id'");
+            return $this->db->insert('amc_product_materials', $data);
+        }
+        return false;
+    }
+
+    public function get_rawmaterials($id){
+        if($id){
+            $this->db->select('id,material_name,material_code,quantity_required,cost,unit');
+            $this->db->from('amc_product_materials');
+            $this->db->where('item_id',$id);
+            $query = $this->db->get()->result();
+            return $query; 
+        }else
+            return false;
+    }
+ 
 }
