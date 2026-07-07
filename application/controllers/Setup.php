@@ -874,6 +874,24 @@ public function list_unit() {
                     'unit'          => $unit
                 ];
             $insert_mat = $this->Setup_model->insert_raw($material_data);
+            $seo_title = $this->seo_title($material);
+            $raw = $this->Setup_model->title_exists($seo_title);
+            $row_data =  [
+                    'seo_title'     => $seo_title,
+                    'material_name' => $material,
+                    'material_code' => $code,
+                    'cost'          => $uprice,
+                    'unit'          => $unit,
+                ];
+            if($raw){
+                 $row_data['updated_at'] = date('Y-m-d H:i:s');
+                 $this->Setup_model->update_rawmat($row_data, $raw->material_id);            
+            }else{
+               $row_data['created_at'] = date('Y-m-d H:i:s');
+               $this->Setup_model->insert_rawmat($row_data);
+            }
+            
+
         }
     }
 
@@ -1602,5 +1620,31 @@ public function generateUniqueCode()
 
     return $code;
 }
+
+//unique title
+function seo_title($title)
+{
+    // Convert to lowercase
+    $title = strtolower($title);
+
+    // Remove HTML tags
+    $title = strip_tags($title);
+
+    // Replace spaces with underscores
+    $title = preg_replace('/\s+/', '_', $title);
+
+    // Remove special characters except underscore
+    $title = preg_replace('/[^a-z0-9_]/', '', $title);
+
+    // Remove multiple underscores
+    $title = preg_replace('/_+/', '_', $title);
+
+    // Remove leading/trailing underscores
+    $title = trim($title, '_');
+
+    return $title;
+}
+
+
 
 }

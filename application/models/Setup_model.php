@@ -1199,5 +1199,24 @@ public function delete_agent($id)
         }else
             return false;
     }
+  //seo
+  public function title_exists($title){
+       return $this->db
+                ->where('seo_title', $title)
+                ->get('amc_raw_materials')
+                ->row();
+    }
+ 
+    public function update_rawmat($data, $id)
+    {
+       return $this->db->where('material_id', $id)
+                ->update('amc_raw_materials', $data);
+        
+    }
+
+    public function insert_rawmat($data){
+        return $this->db->insert('amc_raw_materials', $data);
+    }
+
  
 }
