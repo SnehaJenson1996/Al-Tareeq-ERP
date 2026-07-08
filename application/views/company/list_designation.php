@@ -16,6 +16,19 @@
     <div class="col-md-12 col-sm-12">
         <div class="x_panel">
             <div class="x_title">
+                
+                <?php if ($this->session->flashdata('error')): ?>
+                    <div class="alert alert-danger">
+                        <?php echo $this->session->flashdata('error'); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($this->session->flashdata('success')): ?>
+                    <div class="alert alert-success">
+                        <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                <?php endif; ?>
+
                 <form action="<?= base_url()?>index.php/Company/list_designation" method="post">
             <div class="col-md-4"  >
                 <input type="text" id="smart_filter" name="filter" class="form-control" placeholder="Type filter..." style="width: 400px;">
