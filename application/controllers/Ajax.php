@@ -893,6 +893,27 @@ function ajax_get_supplier_info(){
 		$this->load->view('ajax/add_supplier_modal', $data);        
 	}    
 
+    ///////////////////////////////////////////COMMISSION SETUP START//////////////////////////////////////////
+
+    public function ajax_get_invoice_details()
+    {
+        $invoice_id=$this->input->post('invoice_id');
+        $this->load->model('Hr_model');
+        $row=$this->Hr_model->get_invoice_details($invoice_id);
+        echo json_encode($row);
+    }
+
+    public function ajax_get_sales_rep_details()
+    {
+        $sales_rep_id=$this->input->post('sales_rep_id');
+        $this->load->model('Hr_model');
+        $row=$this->Hr_model->get_sales_rep_details($sales_rep_id);
+        echo json_encode($row);
+    }
+
+    ///////////////////////////////////////////COMMISSION SETUP ENDS//////////////////////////////////////////
+
+
 
 }
 

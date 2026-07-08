@@ -51,24 +51,37 @@
                                     <a id='delete_row' title="Delete" class="btn btn-sm bg-blue"><span class="fa fa-trash"></span></a>
                                 </td>
                             </tr>
-                           <?php if (!empty($file_records)) {
-    $x = 1;
-    $i = 1;
+                            <?php if (!empty($file_records)) {
+                                $x = 1;
+                                $i = 1;
 
-    foreach ($file_records as $k) { ?>
-        <tr>
-            <td><?php echo $i++; ?></td>
+                                foreach ($file_records as $k) { ?>
+                                    <tr>
+                                        <td><?php echo $i++; ?></td>
 
-            <td>
-                <a href="<?php echo base_url() . 'public/uploaded_documents/' . $k->document_path; ?>" download>
-                    File <?php echo $x++; ?>
-                </a>
-            </td>
+                                        <td>
+                                            <?php
+                                                $file = FCPATH.'public/uploaded_documents/'.$k->document_path;
 
-            <td></td>
-        </tr>
-<?php }
-} ?>
+                                                if(file_exists($file))
+                                                {
+                                                ?>
+                                                    <a href="<?=base_url('public/uploaded_documents/'.$k->document_path)?>" target="_blank">
+                                                        <?= $k->document_path ?>
+                                                    </a>
+                                                <?php
+                                                }
+                                                else
+                                                {
+                                                    echo "<span style='color:red'>File not found : ".$k->document_path."</span>";
+                                                }
+                                            ?>
+                                        </td>
+
+                                        <td></td>
+                                    </tr>
+                            <?php }
+                            } ?>
                             <tr id='addr1'></tr>
                         </tbody>
                     </table>

@@ -59,7 +59,9 @@ class Hr_model extends CI_Model
 		$this->db->where('sno', $id);
 		$this->db->delete('allowance_master');
 	}
+	
 	/////////////////  employee_leave start  ///////////////////
+
 	function add_employee_leave_data()
 	{
 
@@ -102,44 +104,32 @@ class Hr_model extends CI_Model
 
 		/////////////////// file upload ////////////////////
 		if ($insert_id && !empty($_FILES["documents"]["name"][0])) {
+			$allowedExts = array("jpeg", "jpg", "png", "doc", "pdf");
+			for ($i = 0; $i < count($_FILES['documents']["name"]); $i++) {
+				if (!empty($_FILES['documents']["name"][$i])) {
+					$temp = explode(".", $_FILES["documents"]["name"][$i]);
+					$extension = strtolower(end($temp));
+					if ($_FILES["documents"]["size"][$i] < 15728640 && in_array($extension, $allowedExts)) {
+						if ($_FILES["documents"]["error"][$i] == 0) {
+							$file_tmp = $_FILES["documents"]["tmp_name"][$i];
+							$file_name = time() . "_" . preg_replace('/[^a-zA-Z0-9._-]/', '', $_FILES['documents']['name'][$i]);
+							$upload_path = FCPATH . 'public/uploaded_documents/';
+							if (!is_dir($upload_path)) {
+								mkdir($upload_path, 0777, true);
+							}
+							move_uploaded_file($file_tmp, $upload_path . $file_name);
+							$data1 = array(
+								'leave_id' => $insert_id,
+								'employee_id' => $this->session->userdata('user_id'),
+								'document_path' => $file_name,
+							);
+							$this->db->insert('employee_leave_documents', $data1);
+						}
+					}
+				}
+			}
+		}
 
-    $allowedExts = array("jpeg", "jpg", "png", "doc", "pdf");
-
-    for ($i = 0; $i < count($_FILES['documents']["name"]); $i++) {
-
-        if (!empty($_FILES['documents']["name"][$i])) {
-
-            $temp = explode(".", $_FILES["documents"]["name"][$i]);
-            $extension = strtolower(end($temp));
-
-            if ($_FILES["documents"]["size"][$i] < 15728640 && in_array($extension, $allowedExts)) {
-
-                if ($_FILES["documents"]["error"][$i] == 0) {
-
-                    $file_tmp = $_FILES["documents"]["tmp_name"][$i];
-
-                    $file_name = time() . "_" . preg_replace('/[^a-zA-Z0-9._-]/', '', $_FILES['documents']['name'][$i]);
-
-                    $upload_path = FCPATH . 'public/uploaded_documents/';
-
-                    if (!is_dir($upload_path)) {
-                        mkdir($upload_path, 0777, true);
-                    }
-
-                    move_uploaded_file($file_tmp, $upload_path . $file_name);
-
-                    $data1 = array(
-                        'leave_id' => $insert_id,
-                        'employee_id' => $this->session->userdata('user_id'),
-                        'document_path' => $file_name,
-                    );
-
-                    $this->db->insert('employee_leave_documents', $data1);
-                }
-            }
-        }
-    }
-}
 		$user_se_id = $this->session->userdata('user_id');
 		$page_name = explode('index.php/', $_SERVER['PHP_SELF']);
 		$ci = get_instance();
@@ -166,8 +156,6 @@ class Hr_model extends CI_Model
 		$this->db->where('leave_id', $id);
 		$this->db->update('employee_leave', $data_leave);
 
-		
-
 		/////////////////// file upload ////////////////////
 		if ($id) {
 			if ($_FILES["documents"]) {
@@ -187,7 +175,7 @@ class Hr_model extends CI_Model
 								$timestamp1 = time();
 								$file_tmp = $_FILES["documents"]["tmp_name"][$i];
 								$other_file = $timestamp1 . "_" . $_FILES['documents']['name'][$i];
-move_uploaded_file($file_tmp, FCPATH . 'public/uploaded_documents/' . $other_file);
+								move_uploaded_file($file_tmp, FCPATH . 'public/uploaded_documents/' . $other_file);
 								$data1 = array(
 									'leave_id' => $id,
 									'employee_id' => $this->input->post('employee_id'),
@@ -218,27 +206,22 @@ move_uploaded_file($file_tmp, FCPATH . 'public/uploaded_documents/' . $other_fil
 	// 	return $query->result();
 	// }
 
-function get_employee_leave_by_id($id)
-{
-    $this->db->select('
-        j.*,
-        u.employee_name as employee_name,
-        r.employee_name as replacement_name
-    ');
+	function get_employee_leave_by_id($id)
+	{
+		$this->db->select('
+			j.*,
+			u.employee_name as employee_name,
+			r.employee_name as replacement_name
+		');
 
-    $this->db->from('employee_leave j');
-
-    // Main employee
-    $this->db->join('employee_master u', 'u.employee_id = j.employee_id', 'left');
-
-    // Replacement employee
-    $this->db->join('employee_master r', 'r.employee_id = j.replcement', 'left');
-
-    $this->db->where('j.leave_id', $id);
-
-    return $this->db->get()->row();
-}
-
+		$this->db->from('employee_leave j');
+		// Main employee
+		$this->db->join('employee_master u', 'u.employee_id = j.employee_id', 'left');
+		// Replacement employee
+		$this->db->join('employee_master r', 'r.employee_id = j.replcement', 'left');
+		$this->db->where('j.leave_id', $id);
+		return $this->db->get()->row();
+	}
 
 	function get_employee_leave_doc_id($id)
 	{
@@ -254,12 +237,12 @@ function get_employee_leave_by_id($id)
 	function get_employee_leave_list()
 	{
 		$query = $this->db->query("
-        SELECT * 
-        FROM employee_leave AS e 
-        JOIN employee_master AS u ON e.employee_id = u.employee_id 
-        LEFT JOIN leave_approval AS la ON e.leave_id = la.approval_leave_id 
-        ORDER BY e.application_date DESC
-    ");
+			SELECT * 
+			FROM employee_leave AS e 
+			JOIN employee_master AS u ON e.employee_id = u.employee_id 
+			LEFT JOIN leave_approval AS la ON e.leave_id = la.approval_leave_id 
+			ORDER BY e.application_date DESC
+		");
 		return $query->result();
 	}
 
@@ -280,43 +263,50 @@ function get_employee_leave_by_id($id)
 	/////////////////////////approval////////////////////////////////////////////////////
 
 	public function add_approval_leave()
-{
-    $data = array(
-        'approval_leave_id' => $this->input->post('hide_leave_id'),
-        'approved_date' => date('Y-m-d', strtotime($this->input->post('approve_date'))),
-        'leave_status' => $this->input->post('leave_status'),
-        'approve_start_date' => date('Y-m-d', strtotime($this->input->post('approve_start_date'))),
-        'approve_end_date' => date('Y-m-d', strtotime($this->input->post('approve_end_date'))),
-        'remark' => $this->input->post('approve_remark'),
-        'admin_md' => $this->input->post('approve_admin'),
-        'hr' => $this->input->post('approve_hr'),
-    );
+	{
+		$leave_id = $this->input->post('hide_leave_id');
 
-    // 1. INSERT approval history (log)
-    $this->db->insert('leave_approval', $data);
-    $insert_id = $this->db->insert_id();
+		$data = array(
+			'approval_leave_id' => $leave_id,
+			'approved_date'     => date('Y-m-d', strtotime($this->input->post('approve_date'))),
+			'leave_status'      => $this->input->post('leave_status'),
+			'approve_start_date'=> !empty($this->input->post('approve_start_date'))
+									? date('Y-m-d', strtotime($this->input->post('approve_start_date')))
+									: NULL,
+			'approve_end_date'  => !empty($this->input->post('approve_end_date'))
+									? date('Y-m-d', strtotime($this->input->post('approve_end_date')))
+									: NULL,
+			'remark'            => $this->input->post('approve_remark'),
+			'admin_md'          => $this->input->post('approve_admin'),
+			'hr'                => $this->input->post('approve_hr'),
+		);
 
-    // 2. UPDATE main leave record (IMPORTANT FIX)
-    $leave_id = $this->input->post('hide_leave_id');
+		$exists = $this->db->where('approval_leave_id', $leave_id)
+						->get('leave_approval')
+						->row();
 
-    // $update = array(
-    //     'leave_status' => $this->input->post('leave_status')
-    // );
+		if ($exists) {
+			$this->db->where('approval_leave_id', $leave_id);
+			$this->db->update('leave_approval', $data);
 
-    // $this->db->where('leave_id', $leave_id);
-    // $this->db->update('employee_leave', $update);
+			return true;
 
-    // log
-    if ($insert_id) {
-        $user_se_id = $this->session->userdata('user_id');
-        $page_name = explode('index.php/', $_SERVER['PHP_SELF']);
-        $ci = get_instance();
-        $ci->load->helper('log');
-        add_log_entry($user_se_id, 2, $page_name[1], 'leave_approval', 'app_id', $insert_id);
-    }
+		} else {
+			$this->db->insert('leave_approval', $data);
+			$insert_id = $this->db->insert_id();
 
-    return $insert_id;
-}
+			if ($insert_id) {
+				$user_se_id = $this->session->userdata('user_id');
+				$page_name = explode('index.php/', $_SERVER['PHP_SELF']);
+				$ci = get_instance();
+				$ci->load->helper('log');
+				add_log_entry($user_se_id, 2, $page_name[1], 'leave_approval', 'app_id', $insert_id);
+			}
+
+			return $insert_id;
+		}
+	}
+
 	public function leave_approval_list()
 	{
 		$query = $this->db->query("SELECT * FROM leave_approval ORDER BY approved_date DESC ");
@@ -326,16 +316,16 @@ function get_employee_leave_by_id($id)
 	public function leave_hr_admin_list()
 	{
 		$query = $this->db->query("
-        SELECT 
-            a.*,
-            u1.user_name AS hr_user_name, 
-            u1.user_id AS hr_user_id, 
-            u2.user_name AS admin_md_user_name, 
-            u2.user_id AS admin_md_user_id
-        FROM approval_setup a
-        JOIN users u1 ON a.approve_hr = u1.user_id
-        JOIN users u2 ON a.approve_admin_md = u2.user_id and approve_type='Leave'
-    ");
+			SELECT 
+				a.*,
+				u1.user_name AS hr_user_name, 
+				u1.user_id AS hr_user_id, 
+				u2.user_name AS admin_md_user_name, 
+				u2.user_id AS admin_md_user_id
+			FROM approval_setup a
+			JOIN users u1 ON a.approve_hr = u1.user_id
+			JOIN users u2 ON a.approve_admin_md = u2.user_id and approve_type='Leave'
+		");
 		return $query->result();
 	}
 
@@ -1117,52 +1107,52 @@ function get_employee_leave_by_id($id)
 		if ($insert_id) {
 			if (!empty($_FILES["documents"]["name"][0])) {
 
-    $allowedExts = array("jpeg", "jpg", "png", "doc", "pdf");
-    $upload_path = FCPATH . 'public/uploaded_documents/';
+				$allowedExts = array("jpeg", "jpg", "png", "doc", "pdf");
+				$upload_path = FCPATH . 'public/uploaded_documents/';
 
-    if (!is_dir($upload_path)) {
-        mkdir($upload_path, 0777, true);
-    }
+				if (!is_dir($upload_path)) {
+					mkdir($upload_path, 0777, true);
+				}
 
-    for ($i = 0; $i < count($_FILES['documents']["name"]); $i++) {
+				for ($i = 0; $i < count($_FILES['documents']["name"]); $i++) {
 
-        if ($_FILES['documents']["name"][$i] != '') {
+					if ($_FILES['documents']["name"][$i] != '') {
 
-            $temp = explode(".", $_FILES["documents"]["name"][$i]);
-            $extension = strtolower(end($temp));
+						$temp = explode(".", $_FILES["documents"]["name"][$i]);
+						$extension = strtolower(end($temp));
 
-            if (
-                $_FILES["documents"]["size"][$i] < 15728640 &&
-                in_array($extension, $allowedExts)
-            ) {
+						if (
+							$_FILES["documents"]["size"][$i] < 15728640 &&
+							in_array($extension, $allowedExts)
+						) {
 
-                if ($_FILES["documents"]["error"][$i] > 0) {
+							if ($_FILES["documents"]["error"][$i] > 0) {
 
-                    $this->session->set_flashdata(
-                        'error',
-                        'Failed to upload - Please check file size and file format'
-                    );
+								$this->session->set_flashdata(
+									'error',
+									'Failed to upload - Please check file size and file format'
+								);
 
-                } else {
+							} else {
 
-                    $file_tmp = $_FILES["documents"]["tmp_name"][$i];
+								$file_tmp = $_FILES["documents"]["tmp_name"][$i];
 
-                    $other_file = time() . "_" . rand(1000,9999) . "_" . $_FILES['documents']['name'][$i];
+								$other_file = time() . "_" . rand(1000,9999) . "_" . $_FILES['documents']['name'][$i];
 
-                    move_uploaded_file($file_tmp, $upload_path . $other_file);
+								move_uploaded_file($file_tmp, $upload_path . $other_file);
 
-                    $data1 = array(
-                        'cop_id' => $insert_id,
-                        'employee_id' => $this->session->userdata('user_id'),
-                        'document_path' => $other_file,
-                    );
+								$data1 = array(
+									'cop_id' => $insert_id,
+									'employee_id' => $this->session->userdata('user_id'),
+									'document_path' => $other_file,
+								);
 
-                    $this->db->insert('employee_corporate_documents', $data1);
-                }
-            }
-        }
-    }
-}
+								$this->db->insert('employee_corporate_documents', $data1);
+							}
+						}
+					}
+				}
+			}
 		}
 
 		if ($insert_id) {
@@ -1190,55 +1180,53 @@ function get_employee_leave_by_id($id)
 		if ($id) {
 			if (!empty($_FILES["documents"]["name"][0])) {
 
-    $allowedExts = array("jpeg", "jpg", "png", "doc", "pdf");
-    $upload_path = FCPATH . 'public/uploaded_documents/';
+				$allowedExts = array("jpeg", "jpg", "png", "doc", "pdf");
+				$upload_path = FCPATH . 'public/uploaded_documents/';
 
-    if (!is_dir($upload_path)) {
-        mkdir($upload_path, 0777, true);
-    }
+				if (!is_dir($upload_path)) {
+					mkdir($upload_path, 0777, true);
+				}
 
-    for ($i = 0; $i < count($_FILES['documents']["name"]); $i++) {
+				for ($i = 0; $i < count($_FILES['documents']["name"]); $i++) {
 
-        if ($_FILES['documents']["name"][$i] != '') {
+					if ($_FILES['documents']["name"][$i] != '') {
 
-            $temp = explode(".", $_FILES["documents"]["name"][$i]);
-            $extension = strtolower(end($temp));
+						$temp = explode(".", $_FILES["documents"]["name"][$i]);
+						$extension = strtolower(end($temp));
 
-            if (
-                $_FILES["documents"]["size"][$i] < 15728640 &&
-                in_array($extension, $allowedExts)
-            ) {
+						if (
+							$_FILES["documents"]["size"][$i] < 15728640 &&
+							in_array($extension, $allowedExts)
+						) {
 
-                if ($_FILES["documents"]["error"][$i] > 0) {
+							if ($_FILES["documents"]["error"][$i] > 0) {
 
-                    $this->session->set_flashdata(
-                        'error',
-                        'Failed to upload - Please check file size and file format'
-                    );
+								$this->session->set_flashdata(
+									'error',
+									'Failed to upload - Please check file size and file format'
+								);
 
-                } else {
+							} else {
 
-                    $file_tmp = $_FILES["documents"]["tmp_name"][$i];
+								$file_tmp = $_FILES["documents"]["tmp_name"][$i];
 
-                    $other_file = time() . "_" . rand(1000,9999) . "_" . $_FILES['documents']['name'][$i];
+								$other_file = time() . "_" . rand(1000,9999) . "_" . $_FILES['documents']['name'][$i];
 
-                    move_uploaded_file($file_tmp, $upload_path . $other_file);
+								move_uploaded_file($file_tmp, $upload_path . $other_file);
 
-                    $data1 = array(
-                        'cop_id' => $id, // EDIT case ID
-                        'employee_id' => $this->session->userdata('user_id'),
-                        'document_path' => $other_file,
-                    );
+								$data1 = array(
+									'cop_id' => $id, // EDIT case ID
+									'employee_id' => $this->session->userdata('user_id'),
+									'document_path' => $other_file,
+								);
 
-                    $this->db->insert('employee_corporate_documents', $data1);
-                }
-            }
-        }
-    }
-}
+								$this->db->insert('employee_corporate_documents', $data1);
+							}
+						}
+					}
+				}
+			}
 		}
-
-
 
 		if ($res) {
 			// Log the update operation
@@ -1254,6 +1242,7 @@ function get_employee_leave_by_id($id)
 			return false;
 		}
 	}
+
 	function get_corporate_file_list()
 	{
 		$query = $this->db->query("select * from corporate_file order by expiry_date desc");
@@ -1266,7 +1255,6 @@ function get_employee_leave_by_id($id)
 		return $query->result();
 	}
 
-
 	function get_employee_corporate_doc_id($id)
 	{
 		$query = $this->db->query("select  * from employee_corporate_documents  where cop_id='$id' ");
@@ -1275,14 +1263,35 @@ function get_employee_leave_by_id($id)
 
 	function delete_corporate_file_data($id)
 	{
+		$query = $this->db->get_where('employee_corporate_documents', array(
+			'cop_id' => $id
+		));
+
+		foreach ($query->result() as $row)
+		{
+			$file = FCPATH . 'public/uploaded_documents/' . $row->document_path;
+
+			if (!empty($row->document_path) && file_exists($file))
+			{
+				unlink($file);
+			}
+		}
+
+		// Delete uploaded document records
+		$this->db->where('cop_id', $id);
+		$this->db->delete('employee_corporate_documents');
+
+		// Delete corporate file record
 		$this->db->where('cop_id', $id);
 		$this->db->delete('corporate_file');
+
+		return true;
 	}
 
 	//////////////////////salary structure start///////////////////////////////////////////////////////
+	
 	function add_salary_structure()
 	{
-
 		$salary_structure_data = array(
 			'emp_id' => $this->input->post('employee_id'),
 			'effective_date' => date('Y-m-d', strtotime($this->input->post('effctive_date'))),
@@ -1306,6 +1315,13 @@ function get_employee_leave_by_id($id)
 						'amount' => $_POST['a_amount'][$i],
 					);
 					$this->db->insert('salary_structure_details', $allowance_data);
+
+					echo $this->db->last_query()."<br>";
+
+					if($this->db->error()['code'] != 0)
+					{
+						print_r($this->db->error());
+					}
 				}
 			}
 
@@ -1318,6 +1334,13 @@ function get_employee_leave_by_id($id)
 						'amount' => $_POST['d_amount'][$i],
 					);
 					$this->db->insert('salary_structure_details', $deduction_data);
+
+					echo $this->db->last_query()."<br>";
+
+					if($this->db->error()['code'] != 0)
+					{
+						print_r($this->db->error());
+					}
 				}
 			}
 
@@ -1333,7 +1356,7 @@ function get_employee_leave_by_id($id)
 
 		return false; // Return false if insertion fails 
 	}
-	/////update data
+
 	function update_salary_structure($id)
 	{
 		$old_date = date('Y-m-d', strtotime($this->input->post('old_date')));
@@ -1355,41 +1378,35 @@ function get_employee_leave_by_id($id)
 
 			if ($res) {
 
-			// Delete existing allowance/deduction details first
-    $this->db->where('sid', $id)->delete('salary_structure_details');
+				// Delete existing allowance/deduction details first
+				$this->db->where('sid', $id)->delete('salary_structure_details');
 				// Allowance details insertion
 				if (isset($_POST['allowance_type'])) {
-    foreach ($_POST['allowance_type'] as $index => $allowance_type) {
-
-        if (!empty($allowance_type) && !empty($_POST['a_amount'][$index])) {
-
-            $allowance_data = array(
-                'sid' => $id,
-                'allowance_id' => $allowance_type,
-                'amount' => $_POST['a_amount'][$index],
-            );
-
-            $this->db->insert('salary_structure_details', $allowance_data);
-        }
-    }
-}
+    				foreach ($_POST['allowance_type'] as $index => $allowance_type) {
+						if (!empty($allowance_type) && !empty($_POST['a_amount'][$index])) {
+							$allowance_data = array(
+								'sid' => $id,
+								'allowance_id' => $allowance_type,
+								'amount' => $_POST['a_amount'][$index],
+							);
+							$this->db->insert('salary_structure_details', $allowance_data);
+						}
+					}
+				}
 
 				// Deduction details insertion
 				if (isset($_POST['deduction_type'])) {
-    foreach ($_POST['deduction_type'] as $index => $deduction_type) {
-
-        if (!empty($deduction_type) && !empty($_POST['d_amount'][$index])) {
-
-            $deduction_data = array(
-                'sid' => $id,
-                'allowance_id' => $deduction_type,
-                'amount' => $_POST['d_amount'][$index],
-            );
-
-            $this->db->insert('salary_structure_details', $deduction_data);
-        }
-    }
-}
+					foreach ($_POST['deduction_type'] as $index => $deduction_type) {
+						if (!empty($deduction_type) && !empty($_POST['d_amount'][$index])) {
+							$deduction_data = array(
+								'sid' => $id,
+								'allowance_id' => $deduction_type,
+								'amount' => $_POST['d_amount'][$index],
+							);
+							$this->db->insert('salary_structure_details', $deduction_data);
+						}
+					}
+				}
 
 				// Logging
 				$user_se_id = $this->session->userdata('user_id');
@@ -1456,8 +1473,6 @@ function get_employee_leave_by_id($id)
 		}
 	}
 
-
-
 	function get_salary_structure_list()
 	{
 		$query = $this->db->query("select  j.*, u.employee_name as name from salary_structure j, employee_master u where j.emp_id=u.employee_id  order by effective_date desc ");
@@ -1465,34 +1480,41 @@ function get_employee_leave_by_id($id)
 	}
 
 	function get_salary_allowance_details($id)
-{
-    $query = $this->db->query(
-        "SELECT d.*, a.*
-         FROM salary_structure_details d
-         JOIN allowance_master a ON d.allowance_id = a.sno
-         WHERE d.sid = ?",
-        array($id)
-    );
+	{
+		$this->db->select('
+			salary_structure_details.*,
+			allowance_master.allowance_name,
+			allowance_master.allowance_type
+		');
 
-    return $query->result(); // multiple allowances
-}
+		$this->db->from('salary_structure_details');
 
+		$this->db->join(
+			'allowance_master',
+			'allowance_master.sno = salary_structure_details.allowance_id',
+			'left'
+		);
 
+		$this->db->where('salary_structure_details.sid', $id);
+
+		return $this->db->get()->result();
+	}
 
 	function get_active_basic_salary()
-{
-    $query = $this->db->query("
-        SELECT *
-        FROM employee_master
-        WHERE employee_id NOT IN (
-            SELECT emp_id
-            FROM salary_structure
-        )
-        ORDER BY employee_name
-    ");
+	{
+		$query = $this->db->query("
+			SELECT *
+			FROM employee_master
+			WHERE employee_id NOT IN (
+				SELECT emp_id
+				FROM salary_structure
+			)
+			ORDER BY employee_name
+		");
 
-    return $query->result();
-}
+		return $query->result();
+	}
+
 	function get_salary_structure_by_id($id)
 {
     return $this->db->query("
@@ -2046,5 +2068,515 @@ public function get_salary_structure_by_employee($employee_id)
     $this->db->where('emp_id', $employee_id);
     return $this->db->get()->row();
 }
+
+///////////////////////////////////////////COMMISSION SETUP START//////////////////////////////////////////
+
+	public function get_sales_rep_list()
+	{
+		$this->db->select('*');
+		$this->db->from('sales_rep_master');
+		$this->db->where('is_blocked', 0);
+		$this->db->order_by('sales_rep_name', 'ASC');
+
+		return $this->db->get()->result();
+	}
+
+	public function get_invoice_list()
+	{
+		$this->db->select('invoice_id, invoice_code');
+		$this->db->from('invoice_master');
+		$this->db->where('cancelled', 0);
+		$this->db->order_by('invoice_code', 'DESC');
+
+		return $this->db->get()->result();
+	}
+
+	public function get_commission_transactions()
+	{
+		$this->db->select("
+			ct.*,
+			sr.sales_rep_name,
+			im.invoice_code,
+			im.invoice_date,
+			cm.customer_name
+		");
+
+		$this->db->from('commission_transactions ct');
+
+		$this->db->join(
+			'sales_rep_master sr',
+			'sr.sales_rep_id = ct.sales_rep_id',
+			'left'
+		);
+
+		$this->db->join(
+			'invoice_master im',
+			'im.invoice_id = ct.invoice_id',
+			'left'
+		);
+
+		$this->db->join(
+			'customer_master cm',
+			'cm.customer_id = im.invoice_customer',
+			'left'
+		);
+
+		$this->db->order_by('ct.transaction_id','DESC');
+
+		return $this->db->get()->result();
+	}
+
+	public function get_commission_transaction($id)
+	{
+		return $this->db
+				->where('transaction_id',$id)
+				->get('commission_transactions')
+				->row();
+	}
+
+	public function get_invoice_details($invoice_id)
+	{
+		$this->db->select("
+			invoice_id,
+			invoice_code,
+			grand_total,
+			invoice_date
+		");
+
+		$this->db->where('invoice_id',$invoice_id);
+
+		return $this->db->get('invoice_master')->row();
+	}
+
+	public function get_sales_rep_details($sales_rep_id)
+	{
+		$this->db->select("
+			sales_rep_id,
+			sales_rep_name,
+			commission_percent
+		");
+
+		$this->db->where('sales_rep_id',$sales_rep_id);
+
+		return $this->db->get('sales_rep_master')->row();
+	}
+
+	public function delete_commission_transaction($id)
+	{
+		$this->db
+			->where('transaction_id',$id)
+			->delete('commission_transactions');
+	}
+
+	public function save_commission_transaction()
+	{
+		$data=array(
+			'invoice_id'=>$this->input->post('invoice_id'),
+			'sales_rep_id'=>$this->input->post('sales_rep_id'),
+			'invoice_amount'=>$this->input->post('invoice_amount'),
+			'commission_percent'=>$this->input->post('commission_percent'),
+			'commission_amount'=>$this->input->post('commission_amount'),
+			'eligible_date'=>date(
+				'Y-m-d',
+				strtotime($this->input->post('eligible_date'))
+			),
+
+			'status'=>$this->input->post('status'),
+			'remarks'=>$this->input->post('remarks'),
+			'created_by'=>$this->session->userdata('user_id'),
+		);
+
+		// Prevent duplicate invoice commission
+		$this->db->where('invoice_id',$data['invoice_id']);
+		if($this->db->get('commission_transactions')->num_rows()>0)
+		{
+			return false;
+		}
+
+		$this->db->insert('commission_transactions',$data);
+		$insert_id=$this->db->insert_id();
+
+		if($insert_id)
+		{
+			$user=$this->session->userdata('user_id');
+			$page_name=explode('index.php/',$_SERVER['PHP_SELF']);
+			$ci=get_instance();
+			$ci->load->helper('log');
+			add_log_entry(
+				$user,
+				1,
+				$page_name[1],
+				'commission_transactions',
+				'transaction_id',
+				$insert_id
+			);
+		}
+		return $insert_id;
+	}
+
+	public function update_commission_transaction($id)
+	{
+		$data=array(
+			'invoice_id'         => $this->input->post('invoice_id'),
+			'sales_rep_id'       => $this->input->post('sales_rep_id'),
+			'invoice_amount'     => $this->input->post('invoice_amount'),
+			'commission_percent' => $this->input->post('commission_percent'),
+			'commission_amount'  => $this->input->post('commission_amount'),
+			'eligible_date'=>date(
+				'Y-m-d',
+				strtotime($this->input->post('eligible_date'))
+			),
+			'status'       => $this->input->post('status'),
+			'remarks'      => $this->input->post('remarks'),
+			'updated_by'   => $this->session->userdata('user_id'),
+			'updated_date' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->where('invoice_id', $this->input->post('invoice_id'));
+		$this->db->where('transaction_id !=', $id);
+
+		$exists = $this->db->get('commission_transactions')->num_rows();
+
+		if($exists > 0)
+		{
+			return false;
+		}
+
+		$this->db->where('transaction_id', $id);
+		$this->db->where_in('status', array('Pending', 'Eligible'));
+		$this->db->update('commission_transactions', $data);
+
+		if ($this->db->affected_rows() == 0) {
+			return false;
+		}
+
+		if($id)
+		{
+			$user=$this->session->userdata('user_id');
+			$page_name=explode('index.php/',$_SERVER['PHP_SELF']);
+			$ci=get_instance();
+			$ci->load->helper('log');
+			add_log_entry(
+				$user,
+				2,
+				$page_name[1],
+				'commission_transactions',
+				'transaction_id',
+				$id
+			);
+		}
+		return true;
+	}
+
+	public function get_pending_commissions()
+	{
+		$this->db->select("
+			ct.*,
+			sr.sales_rep_name,
+			im.invoice_code,
+			im.invoice_date,
+			cm.customer_name
+		");
+
+		$this->db->from('commission_transactions ct');
+
+		$this->db->join(
+			'sales_rep_master sr',
+			'sr.sales_rep_id=ct.sales_rep_id',
+			'left'
+		);
+
+		$this->db->join(
+			'invoice_master im',
+			'im.invoice_id=ct.invoice_id',
+			'left'
+		);
+
+		$this->db->join(
+			'customer_master cm',
+			'cm.customer_id=im.invoice_customer',
+			'left'
+		);
+
+		$this->db->where_in(
+			'ct.status',
+			array('Pending','Eligible')
+		);
+
+		$this->db->order_by('ct.transaction_id','DESC');
+
+		return $this->db->get()->result();
+	}
+
+	////// Commission Approval Starts /////////
+
+	public function approve_commission_transaction($id)
+	{
+		$user = $this->session->userdata('user_id');
+		if(!has_access($user,'Hr/view_commission_approval_list','E'))
+		{
+			show_error('Access Denied');
+		}
+
+		$data = array(
+			'status'        => 'Approved',
+			'approved_by'   => $user,
+			'approved_date' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->where('transaction_id', $id);
+		$this->db->where_in('status', array('Pending','Eligible'));
+
+		$flag = $this->db->update('commission_transactions', $data);
+
+		if($flag)
+		{
+			$page_name = explode('index.php/', $_SERVER['PHP_SELF']);
+			$ci = get_instance();
+			$ci->load->helper('log');
+			add_log_entry(
+				$user,
+				2, // Update
+				$page_name[1],
+				'commission_transactions',
+				'transaction_id',
+				$id
+			);
+		}
+		return $flag;
+	}
+
+	public function reject_commission_transaction($id)
+	{
+		$user = $this->session->userdata('user_id');
+		if(!has_access($user,'Hr/view_commission_approval_list','E'))
+		{
+			show_error('Access Denied');
+		}
+
+		$data = array(
+			'status'        => 'Rejected',
+			'approved_by'   => $user,
+			'approved_date' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->where('transaction_id', $id);
+		$this->db->where_in('status', array('Pending','Eligible'));
+
+		$flag = $this->db->update('commission_transactions', $data);
+		if($flag)
+		{
+			$page_name = explode('index.php/', $_SERVER['PHP_SELF']);
+			$ci = get_instance();
+			$ci->load->helper('log');
+			add_log_entry(
+				$user,
+				2, // Update
+				$page_name[1],
+				'commission_transactions',
+				'transaction_id',
+				$id
+			);
+		}
+		return $flag;
+	}
+
+	////// Commission Approval Ends /////////
+
+	////// Commission Payment Starts /////////
+
+	public function get_approved_commissions()
+	{
+		$this->db->select("
+			ct.*,
+			sr.sales_rep_name,
+			im.invoice_code,
+			im.invoice_date,
+			cm.customer_name
+		");
+
+		$this->db->from('commission_transactions ct');
+
+		$this->db->join(
+			'sales_rep_master sr',
+			'sr.sales_rep_id = ct.sales_rep_id',
+			'left'
+		);
+
+		$this->db->join(
+			'invoice_master im',
+			'im.invoice_id = ct.invoice_id',
+			'left'
+		);
+
+		$this->db->join(
+			'customer_master cm',
+			'cm.customer_id = im.invoice_customer',
+			'left'
+		);
+
+		$this->db->where('ct.status','Approved');
+
+		$this->db->order_by('ct.transaction_id','DESC');
+
+		return $this->db->get()->result();
+	}
+
+	public function get_commission_payment($id)
+	{
+		$this->db->select("
+			ct.*,
+			sr.sales_rep_name,
+			im.invoice_code,
+			im.invoice_date,
+			cm.customer_name
+		");
+
+		$this->db->from('commission_transactions ct');
+
+		$this->db->join(
+			'sales_rep_master sr',
+			'sr.sales_rep_id = ct.sales_rep_id',
+			'left'
+		);
+
+		$this->db->join(
+			'invoice_master im',
+			'im.invoice_id = ct.invoice_id',
+			'left'
+		);
+
+		$this->db->join(
+			'customer_master cm',
+			'cm.customer_id = im.invoice_customer',
+			'left'
+		);
+
+		$this->db->where('ct.transaction_id',$id);
+
+		return $this->db->get()->row();
+	}
+
+	public function save_commission_payment()
+	{
+		$id = $this->input->post('transaction_id');
+		$user = $this->session->userdata('user_id');
+		if(!has_access($user,'Hr/view_commission_payment_list','E'))
+		{
+			show_error('Access Denied');
+		}
+
+		$data=array(
+			'status'=>'Paid',
+			'payment_date'=>$this->input->post('payment_date'),
+			'payment_mode'=>$this->input->post('payment_mode'),
+			'payment_reference'=>$this->input->post('payment_reference'),
+			'paid_by'=>$this->session->userdata('user_id'),
+			'remarks'=>$this->input->post('remarks'),
+			'updated_by'=>$this->session->userdata('user_id'),
+			'updated_date'=>date('Y-m-d H:i:s')
+		);
+
+		$this->db->where('transaction_id',$id);
+		$this->db->where('status','Approved');
+		$flag = $this->db->update('commission_transactions',$data);
+		if($flag)
+		{
+			$page_name = explode('index.php/', $_SERVER['PHP_SELF']);
+			$ci = get_instance();
+			$ci->load->helper('log');
+			add_log_entry(
+				$user,
+				2,
+				$page_name[1],
+				'commission_transactions',
+				'transaction_id',
+				$id
+			);
+		}
+		return $flag;
+	}
+
+	////// Commission Payment Ends /////////
+
+	////// Commission Reports Starts /////////
+
+	public function commission_report($filter=array())
+	{
+		$this->db->select("
+			ct.*,
+			sr.sales_rep_name,
+			im.invoice_code,
+			im.invoice_date,
+			cm.customer_name
+		");
+
+		$this->db->from('commission_transactions ct');
+
+		$this->db->join(
+			'sales_rep_master sr',
+			'sr.sales_rep_id = ct.sales_rep_id',
+			'left'
+		);
+
+		$this->db->join(
+			'invoice_master im',
+			'im.invoice_id = ct.invoice_id',
+			'left'
+		);
+
+		$this->db->join(
+			'customer_master cm',
+			'cm.customer_id = im.invoice_customer',
+			'left'
+		);
+
+		// From Date
+		if(!empty($filter['from_date']))
+		{
+			$this->db->where(
+				'ct.eligible_date >=',
+				$filter['from_date']
+			);
+		}
+
+		// To Date
+		if(!empty($filter['to_date']))
+		{
+			$this->db->where(
+				'ct.eligible_date <=',
+				$filter['to_date']
+			);
+		}
+
+		// Sales Representative
+		if(!empty($filter['sales_rep_id']))
+		{
+			$this->db->where(
+				'ct.sales_rep_id',
+				$filter['sales_rep_id']
+			);
+		}
+
+		// Status
+		if(!empty($filter['status']))
+		{
+			$this->db->where(
+				'ct.status',
+				$filter['status']
+			);
+		}
+
+		$this->db->order_by(
+			'ct.transaction_id',
+			'DESC'
+		);
+
+		return $this->db->get()->result();
+	}
+
+	////// Commission Reports Ends /////////
+
+///////////////////////////////////////////COMMISSION SETUP ENDS//////////////////////////////////////////
 
 }
