@@ -914,6 +914,48 @@ function ajax_get_supplier_info(){
     ///////////////////////////////////////////COMMISSION SETUP ENDS//////////////////////////////////////////
 
 
+function popup_materials(){
+    $this->load->model('Setup_model');
+    $id = $_POST['id'];
+    $rows = $this->Setup_model->get_rawmaterials($id);
+
+    // build HTML content
+   $html = '<table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                    <th>Unit</th>
+                </tr>
+            </thead>
+            <tbody>';
+    if(!empty($rows)){
+        foreach ($rows as $row) {
+            $html.= '<tr>
+                        <td>'.$row->material_code.'</td>
+                        <td>'.$row->material_name.'</td>
+                        <td>'.$row->quantity_required.'</td>
+                        <td>'.$row->cost.'</td>
+                        <td>'.$row->unit.'</td>
+                    </tr>';
+        }
+    }else{
+         $html.= '<tr>
+                    <td colspan="5">No data</td>
+                   </tr>';
+    }
+
+    $html.= '</tbody></table>';
+
+    echo json_encode([
+        "title" => "Raw Materials",
+        "html"  => $html
+    ]);
+    exit;
+
+}
 
 }
 
