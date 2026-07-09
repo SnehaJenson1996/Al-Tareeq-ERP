@@ -73,13 +73,23 @@
 						<td><input type="text" tabindex="11" name="qty_old[]"  tabindex='3' class="form-control qty " placeholder="" value="<?php echo $r->quantity_required;?>" ></td>
 						<td><input type="text" tabindex="11" name="uprice_old[]"  tabindex='3' class="form-control uprice" placeholder="" value="<?php echo $r->cost;?>" ></td>
 						<td>
-                            <select name="unit_old[]"  tabindex='2' class="form-control">
+                            <!--<select name="unit_old[]"  tabindex='2' class="form-control">
                                 <option value="Kg"<?php if($r->unit=='Kg'):?> selected="selected"<?php endif;?>>Kg</option>
                                 <option value="Gram"<?php if($r->unit=='Gram'):?> selected="selected"<?php endif;?>>Gram</option>
                                 <option value="Ltr"<?php if($r->unit=='Ltr'):?> selected="selected"<?php endif;?>>Ltr</option>
                                 <option value="Piece"<?php if($r->unit=='Piece'):?> selected="selected"<?php endif;?>>Piece</option>
                                 <option value="Meter"<?php if($r->unit=='Meter'):?> selected="selected"<?php endif;?>>Meter</option>
+                            </select>-->
+                            <select name="unit_old[]"  tabindex='2' class="form-control">
+                                <option value="">-- Select Unit --</option>
+                                <?php foreach ($active_units as $unit): ?>
+                                    <option value="<?= $unit->unit_id ?>"
+                                        <?= isset($r->unit) && $r->unit == $unit->unit_id ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($unit->unit_name) ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
+                             
                             
 						<td width='30px'>
 						<input type="hidden"  name="m_id[]" value="<?php echo $r->id;?>" >
@@ -91,12 +101,21 @@
 						<td><input type="text" tabindex="11" name="mname[]" tabindex='2' class="form-control" placeholder=""  ></td>
 						<td><input type='number' step='1' tabindex="11" name="qty[]"  tabindex='3' class="form-control qty" placeholder=""  ></td>
 						<td><input type='number' step='any' tabindex="11" name="uprice[]"  tabindex='3' class="form-control uprice" placeholder=""  ></td>
-						<td><select name="unit[]" tabindex='2' class="form-control">
+						<td><!--<select name="unit[]" tabindex='2' class="form-control">
                                 <option value="Kg">Kg</option>
                                 <option value="Gram">Gram</option>
                                 <option value="Ltr">Ltr</option>
                                 <option value="Piece">Piece</option>
                                 <option value="Meter">Meter</option>
+                            </select>-->
+                            <select name="unit[]"  tabindex='2' class="form-control">
+                                <option value="">-- Select Unit --</option>
+                                <?php foreach ($active_units as $unit): ?>
+                                    <option value="<?= $unit->unit_id ?>"
+                                        <?= isset($r->unit) && $r->unit == $unit->unit_id ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($unit->unit_name) ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </td>
 						<td width='30px'><a id='delete_row' title="Delete" onclick='remove_row(0)' class="btn btn-xs bg-orange remove1"><span class="fa fa-trash"></span></a></td>
@@ -248,7 +267,14 @@
 </div>
 </div>
 </div>
-
+<script>
+var unitOptions = `<?php
+echo '<option value="">Select</option>';
+foreach($active_units as $unit){
+    echo '<option value="'.$unit->unit_id.'">'.htmlspecialchars($unit->unit_name).'</option>';
+}
+?>`;
+</script>
 <script>
 document.getElementById("product").addEventListener("submit", function (e) {
     var btn = document.getElementById("saveBtn");
@@ -266,11 +292,12 @@ $(document).on("keyup change", "#retail_price, .qty, .uprice", function () {
 });
 
 
+
 $(document).ready(function(){
 	var i=1;
 	$("#add_row").click(function()
 	{
-	     $('#addr'+i).html("<td><input type='text' tabindex='11' name='mname[]'  tabindex='2' class='form-control' placeholder='' required ></td><td><input tabindex='11' name='qty[]' tabindex='3' class='form-control qty' placeholder='' type='number' step='1' required></td><td><input tabindex='11' name='uprice[]' tabindex='3' class='form-control uprice' placeholder='' type='number' step='any'></td><td><select name='unit[]' tabindex='2' class='form-control'><option value=''>Select</option><option value='Kg'>Kg</option><option value='Gram'>Gram</option><option value='Ltr'>Ltr</option><option value='Piece'>Piece</option><option value='Meter'>Meter</option></select></td><td><a onclick='remove_row("+i+");calculateTotal();' id='delete_row' title='Delete' class='btn btn-xs bg-orange remove1'><span class='fa fa-trash'></span></a></td>");
+	     $('#addr'+i).html("<td><input type='text' tabindex='11' name='mname[]'  tabindex='2' class='form-control' placeholder='' required ></td><td><input tabindex='11' name='qty[]' tabindex='3' class='form-control qty' placeholder='' type='number' step='1' required></td><td><input tabindex='11' name='uprice[]' tabindex='3' class='form-control uprice' placeholder='' type='number' step='any'></td><td><select name='unit[]' tabindex='2' class='form-control'>"+unitOptions +"</select></td><td><a onclick='remove_row("+i+");calculateTotal();' id='delete_row' title='Delete' class='btn btn-xs bg-orange remove1'><span class='fa fa-trash'></span></a></td>");
 	    $('#mytbbody tr:last').after('<tr id="addr'+(i+1)+'"></tr>');
 	      i++; 	 
           calculateTotal();    	
