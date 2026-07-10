@@ -15,7 +15,7 @@
     </div>
 
     <div class="x_content">
-        <form id="main" method="post" action="<?php echo base_url().'index.php/'; ?>Hr/add_corporate_file_data" autocomplete="off" enctype="multipart/form-data">
+        <form id="main" method="post" action="<?php echo base_url() . 'index.php/'; ?>Hr/add_corporate_file_data" autocomplete="off" enctype="multipart/form-data">
 
             <div class="form-group row">
                 <label class="col-md-3 col-form-label">Document Name <span class="text-danger">*</span></label>
@@ -81,9 +81,9 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         var i = 1;
-        $("#add_row").click(function () {
+        $("#add_row").click(function() {
             $('#addr' + i).html(
                 "<td>" + (i + 1) + "</td>" +
                 "<td><input type='file' name='documents[]' class='form-control form-control-sm'></td>" +
@@ -93,11 +93,11 @@
             i++;
         });
 
-        $(document).on('click', '.remove_row', function () {
+        $(document).on('click', '.remove_row', function() {
             $(this).closest('tr').remove();
         });
 
-        $("#delete_row").click(function () {
+        $("#delete_row").click(function() {
             if (i > 1) {
                 $("#addr" + (i - 1)).remove();
                 i--;

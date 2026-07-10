@@ -38,7 +38,14 @@ label,h4 {
 							<div class="form-group">
 								<label>Department</label>
 								<?= form_error('department', '<small class="text-danger">', '</small>') ?>
-								<input type="text" name="department" class="form-control">
+								<select name="department" class="form-control select2" required>
+									<option value="">-- Select Department --</option>
+									<?php foreach($departments as $dept){ ?>
+										<option value="<?= $dept->dept_name; ?>">
+											<?= $dept->dept_name; ?>
+										</option>
+									<?php } ?>
+								</select>
 							</div>
 						</div>
 

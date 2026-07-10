@@ -23,12 +23,29 @@ class Hr extends CI_Controller
 
 	function add_allowances()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_allowances_list','A'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+			return;
+		}
 		$data['title'] = "Allowances & Deductions Master";
 		$data['main_content'] = 'hr/allowances_deductions_add.php';
 		$this->load->view('includes/template', $data);
 	}
 	function view_allowances_list()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Hr/view_allowances_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Allowances & Deductions Master List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_allowances_list();
@@ -37,38 +54,47 @@ class Hr extends CI_Controller
 	}
 
 	public function add_allowances_data()
-{
-    $data['title'] = "Allowances & Deductions Master";
-    $this->load->model('Hr_model');
+	{
+		$data['title'] = "Allowances & Deductions Master";
+		$this->load->model('Hr_model');
 
-    // Get posted values
-    $atype = $this->input->post('allowance_type');
-    $aname = $this->input->post('allowance_name');
+		// Get posted values
+		$atype = $this->input->post('allowance_type');
+		$aname = $this->input->post('allowance_name');
 
-    // Check for duplicates
-    $this->db->where('allowance_type', $atype);
-    $this->db->where('allowance_name', $aname);
-    $exists = $this->db->get('allowance_master')->num_rows();
+		// Check for duplicates
+		$this->db->where('allowance_type', $atype);
+		$this->db->where('allowance_name', $aname);
+		$exists = $this->db->get('allowance_master')->num_rows();
 
-    if ($exists > 0) {
-        // Duplicate exists
-        $this->session->set_flashdata('warning', 'Allowance Name Already Exists');
-        redirect('Hr/add_allowances'); // reload form
-        exit;
-    }
+		if ($exists > 0) {
+			// Duplicate exists
+			$this->session->set_flashdata('warning', 'Allowance Name Already Exists');
+			redirect('Hr/add_allowances'); // reload form
+			exit;
+		}
 
-    // No duplicate, proceed to save
-    $flag = $this->Hr_model->add_allowances_data();
-    if ($flag) {
-        $this->session->set_flashdata('success', 'Record Successfully Saved');
-        redirect('Hr/view_allowances_list');
-    } else {
-        $this->session->set_flashdata('warning', 'Error Saving Record');
-        redirect('Hr/add_allowances');
-    }
-}
+		// No duplicate, proceed to save
+		$flag = $this->Hr_model->add_allowances_data();
+		if ($flag) {
+			$this->session->set_flashdata('success', 'Record Successfully Saved');
+			redirect('Hr/view_allowances_list');
+		} else {
+			$this->session->set_flashdata('warning', 'Error Saving Record');
+			redirect('Hr/add_allowances');
+		}
+	}
 	function edit_allowances()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_allowances_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Edit Allowances & Deductions Master";
 		$id = $this->uri->segment('3');
 
@@ -91,6 +117,15 @@ class Hr extends CI_Controller
 	}
 	function delete_Allowances()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_allowances_list','D'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$id = $this->uri->segment('3');
 
 		$this->load->model('Hr_model');
@@ -99,6 +134,7 @@ class Hr extends CI_Controller
 		$this->session->set_flashdata('success', 'Record Delete Successfully');
 		redirect('Hr/view_allowances_list');
 	}
+
 	///////////////////////////////////////Leave application ////////////////////////////////////////////// 
 
 	function add_leave_application()
@@ -113,10 +149,10 @@ class Hr extends CI_Controller
 		$data['main_content'] = 'hr/leave_allocation_add.php';
 		$this->load->view('includes/template', $data);
 	}
+	
 	function view_leave_application_list()
 	{
 		$data['title'] = "Leave application";
-
 
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_employee_leave_list();
@@ -143,30 +179,23 @@ class Hr extends CI_Controller
 	}
 
 	function edit_leave_application()
-{
-    $data['title'] = "Edit Leave application";
-    $id = $this->uri->segment('3');
-
-    $this->load->model('Hr_model');
-
-    // Employee list
-    $data['records'] = $this->Hr_model->get_employee_list();
-
-    // Leave record
-    $data['leave'] = $this->Hr_model->get_employee_leave_by_id($id);
-
-    // Files
-    $data['file_records'] = $this->Hr_model->get_employee_leave_doc_id($id);
-
-    // HR list
-    $data['admin_hr'] = $this->Hr_model->leave_hr_admin_list();
-
-    // 🔥 ADD THIS (IMPORTANT FIX)
-    $data['leave_status'] = $this->Hr_model->get_leave_latest_status($id);
-
-    $data['main_content'] = 'hr/leave_allocation_edit';
-    $this->load->view('includes/template', $data);
-}
+	{
+		$data['title'] = "Edit Leave application";
+		$id = $this->uri->segment('3');
+		$this->load->model('Hr_model');
+		// Employee list
+		$data['records'] = $this->Hr_model->get_employee_list();
+		// Leave record
+		$data['leave'] = $this->Hr_model->get_employee_leave_by_id($id);
+		// Files
+		$data['file_records'] = $this->Hr_model->get_employee_leave_doc_id($id);
+		// HR list
+		$data['admin_hr'] = $this->Hr_model->leave_hr_admin_list();
+		// 🔥 ADD THIS (IMPORTANT FIX)
+		$data['leave_status'] = $this->Hr_model->get_leave_latest_status($id);
+		$data['main_content'] = 'hr/leave_allocation_edit';
+		$this->load->view('includes/template', $data);
+	}
 
 	function update_leave_application()
 	{
@@ -181,25 +210,25 @@ class Hr extends CI_Controller
 	}
 
 	function print_leave_application()
-{
-    $id = $this->uri->segment('3');
+	{
+		$id = $this->uri->segment('3');
 
-    $this->load->model('Hr_model');
-    $this->load->model('Setup_model');
-$data['records'] = $this->Hr_model->get_employee_list();
+		$this->load->model('Hr_model');
+		$this->load->model('Setup_model');
+		$data['records'] = $this->Hr_model->get_employee_list();
 
-    // Single leave record
-    $data['leave'] = $this->Hr_model->get_employee_leave_by_id($id);
+		// Single leave record
+		$data['leave'] = $this->Hr_model->get_employee_leave_by_id($id);
 
-    // Documents
-    $data['file_records'] = $this->Hr_model->get_employee_leave_doc_id($id);
+		// Documents
+		$data['file_records'] = $this->Hr_model->get_employee_leave_doc_id($id);
 
-    // Dropdown helpers (optional)
-    $data['dept_list'] = $this->Setup_model->get_active_department_list();
-    $data['desig_list'] = $this->Setup_model->get_designation_list();
+		// Dropdown helpers (optional)
+		$data['dept_list'] = $this->Setup_model->get_active_department_list();
+		$data['desig_list'] = $this->Setup_model->get_designation_list();
 
-    $this->load->view('hr/print/print_leave_application.php', $data);
-}
+		$this->load->view('hr/print/print_leave_application.php', $data);
+	}
 
 	function delete_leave_application()
 	{
@@ -223,22 +252,39 @@ $data['records'] = $this->Hr_model->get_employee_list();
 			redirect('Hr/view_leave_application_list');
 		}
 	}
+	
 	///////////////////////////////////////Joining Application////////////////////////////////////////////// 
 
 	function add_joining_application()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_joining_application_list','A'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$this->load->model('Hr_model');
 
-
 		$data['user_records'] = $this->Hr_model->get_joining_new_list();
-
-
 		$data['title'] = "Joining Application";
 		$data['main_content'] = 'hr/joining_allocation_add.php';
 		$this->load->view('includes/template', $data);
 	}
+
 	function view_joining_application_list()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Hr/view_joining_application_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Joining Application List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_employee_joining_list();
@@ -262,6 +308,15 @@ $data['records'] = $this->Hr_model->get_employee_list();
 
 	function edit_joining_application()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_joining_application_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Joining Application Edit";
 		$id = $this->uri->segment('3');
 
@@ -288,24 +343,31 @@ $data['records'] = $this->Hr_model->get_employee_list();
 	}
 
 	function print_joining_application()
-{
-    $id = $this->uri->segment(3);
+	{
+		$id = $this->uri->segment(3);
 
-    $this->load->model('Hr_model');
-    $data['records'] = $this->Hr_model->get_employee_joining_by_id($id);
+		$this->load->model('Hr_model');
+		$data['records'] = $this->Hr_model->get_employee_joining_by_id($id);
 
-    // ❌ REMOVE THIS (not needed)
-    // $this->load->model('Users_model');
-    // $data['record1'] = $this->Users_model->get_user_record_by_id_pass($id);
+		// ❌ REMOVE THIS (not needed)
+		// $this->load->model('Users_model');
+		// $data['record1'] = $this->Users_model->get_user_record_by_id_pass($id);
 
-    $this->load->model('Setup_model');
-    $data['dept_list'] = $this->Setup_model->get_active_department_list();
+		$this->load->model('Setup_model');
+		$data['dept_list'] = $this->Setup_model->get_active_department_list();
 
-    $this->load->view('hr/print/print_joining_application.php', $data);
-}
+		$this->load->view('hr/print/print_joining_application.php', $data);
+	}
 
 	function delete_joining_application()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_joining_application_list','D'))
+		{
+			show_error('Access Denied');
+			return;
+		}
 		$id = $this->uri->segment('3');
 
 		$this->load->model('Hr_model');
@@ -314,6 +376,7 @@ $data['records'] = $this->Hr_model->get_employee_list();
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_joining_application_list');
 	}
+
 	///////////////////////////////////////salary_structure////////////////////////////////////////////// 
 
 	function add_emp_salary_structure()
@@ -322,13 +385,12 @@ $data['records'] = $this->Hr_model->get_employee_list();
 
 		$this->load->model('Hr_model');
 		$data['record1'] = $this->Hr_model->get_allowances_list();
-				$data['records'] = $this->Hr_model->get_active_basic_salary();
-
+		$data['records'] = $this->Hr_model->get_active_basic_salary();
 		// $data['user_records'] = $this->Hr_model->get_active_basic_salary();
-
 		$data['main_content'] = 'hr/basic_salary_add.php';
 		$this->load->view('includes/template', $data);
 	}
+
 	function view_salary_structure_list()
 	{
 		$data['title'] = "Employee Salary List";
@@ -362,14 +424,10 @@ $data['records'] = $this->Hr_model->get_employee_list();
 		// $data['user_records'] = $this->Users_model->get_user_list();
 		$data['user_records'] = $this->Hr_model->get_employee_list();
 
-
 		$this->load->model('Hr_model');
-$data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
+		$data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 		$data['record1'] = $this->Hr_model->get_allowances_list();
 		$data['details'] = $this->Hr_model->get_salary_allowance_details($id);
-
-		// print_r($data['details']);
-		// die;
 		$data['main_content'] = 'hr/basic_salary_edit.php';
 		$this->load->view('includes/template', $data);
 	}
@@ -398,6 +456,7 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_salary_structure_list');
 	}
+	
 	///////////////////////////////////////emp_attendance////////////////////////////////////////////// 
 
 	function add_emp_attendance()
@@ -442,18 +501,16 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 
 		// $this->load->model('Users_model');
 		// $data['records'] = $this->Users_model->get_user_list(); // Employee list for dropdown
-    $this->load->model('Hr_model');
-    $data['records'] = $this->Hr_model->get_employee_list();
+		$this->load->model('Hr_model');
+		$data['records'] = $this->Hr_model->get_employee_list();
 
 		$this->load->model('Hr_model');
 		$data['record1'] = $this->Hr_model->get_emp_attendance_by_id($id);
 
-		  // Employee master details for pre-filling passport info
-    if (!empty($data['record1']->employee_id)) {
-        $data['record'] = $this->Hr_model->get_employee_by_id($data['record1']->employee_id);
-    }
-
-
+		// Employee master details for pre-filling passport info
+		if (!empty($data['record1']->employee_id)) {
+			$data['record'] = $this->Hr_model->get_employee_by_id($data['record1']->employee_id);
+		}
 		$data['main_content'] = 'hr/employee_attendance_edit.php';
 		$this->load->view('includes/template', $data);
 	}
@@ -479,10 +536,20 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_emp_attendance_list');
 	}
+
 	///////////////////////////////////////add_emp_overtime////////////////////////////////////////////// 
 
 	function add_emp_overtime()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_emp_overtime_list','A'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Employee Overtime";
 
 		// $this->load->model('Users_model');
@@ -495,8 +562,18 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 		$data['main_content'] = 'hr/employee_overtime_add.php';
 		$this->load->view('includes/template', $data);
 	}
+
 	function view_emp_overtime_list()
 	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Hr/view_emp_overtime_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Employee Overtime List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_emp_overtime_list();
@@ -519,21 +596,29 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 	}
 
 	public function edit_emp_overtime()
-{
-    $data['title'] = "Edit Employee Overtime";
-    $id = $this->uri->segment(3);
+	{
+		$user = $this->session->userdata('user_id');
 
-    $this->load->model('Hr_model');
+		if (!has_access($user,'Hr/view_emp_overtime_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 
-    // Get the single row of overtime to edit
-    $data['row'] = $this->Hr_model->get_emp_overtime_by_id($id);
+		$data['title'] = "Edit Employee Overtime";
+		$id = $this->uri->segment(3);
 
-    // Get list of all employees for dropdown
-    $data['records'] = $this->Hr_model->get_employee_list();
+		$this->load->model('Hr_model');
+		// Get the single row of overtime to edit
+		$data['row'] = $this->Hr_model->get_emp_overtime_by_id($id);
 
-    $data['main_content'] = 'hr/emp_overtime_edit.php';
-    $this->load->view('includes/template', $data);
-}
+		// Get list of all employees for dropdown
+		$data['records'] = $this->Hr_model->get_employee_list();
+		$data['main_content'] = 'hr/emp_overtime_edit.php';
+		$this->load->view('includes/template', $data);
+	}
 
 	function update_emp_overtime()
 	{
@@ -546,36 +631,56 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 			redirect('Hr/view_emp_overtime_list');
 		}
 	}
+
 	function delete_overtime_emp()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_allowances_list','D'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$id = $this->uri->segment('3');
-
 		$this->load->model('Hr_model');
 		$data['user_records'] = $this->Hr_model->delete_emp_overtime($id);
-
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_emp_overtime_list');
 	}
+
 	///////////////////////////////////////add_resignation////////////////////////////////////////////// 
 
 	function add_resignation()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_emp_resignation_list','A'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Add Resignation";
-
 		$this->load->model('Hr_model');
-
 		$data['records'] = $this->Hr_model->get_employee_list();
-
 		// $this->load->model('Users_model');
 		// 		$data['user_records'] = $this->Users_model->get_user_list();
-
 		// $data['user_records'] = $this->Hr_model->get_resignation_active_list();
-
 		$data['main_content'] = 'hr/resignation_emp_add.php';
 		$this->load->view('includes/template', $data);
 	}
+
 	function view_emp_resignation_list()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_view_access($user,'Hr/view_emp_resignation_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Resignation List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_employee_resignation_list();
@@ -584,57 +689,61 @@ $data['records'] = $this->Hr_model->get_salary_structure_by_id($id);
 	}
 
 	function add_emp_resignation_data()
-{
-    $this->load->model('Hr_model');
+	{
+		$this->load->model('Hr_model');
+		$employee_id = $this->input->post('employee_id');
+		$resignation_date = $this->input->post('resignation_date');
+		$last_working_date = $this->input->post('last_working_date');
 
-    $employee_id = $this->input->post('employee_id');
-    $resignation_date = $this->input->post('resignation_date');
-    $last_working_date = $this->input->post('last_working_date');
+		// Convert to comparable format (Y-m-d)
+		$resignation_date = date('Y-m-d', strtotime($resignation_date));
+		$last_working_date = date('Y-m-d', strtotime($last_working_date));
 
-    // Convert to comparable format (Y-m-d)
-    $resignation_date = date('Y-m-d', strtotime($resignation_date));
-    $last_working_date = date('Y-m-d', strtotime($last_working_date));
+		// ✅ VALIDATION CHECK
+		if (strtotime($last_working_date) < strtotime($resignation_date)) {
+			$this->session->set_flashdata(
+				'warning',
+				'Effective Last Working Date cannot be earlier than the Resignation Date.'
+			);
+			redirect('Hr/add_resignation');
+			return;
+		}
 
-    // ✅ VALIDATION CHECK
-    if (strtotime($last_working_date) < strtotime($resignation_date)) {
-        $this->session->set_flashdata(
-            'warning',
-            'Effective Last Working Date cannot be earlier than the Resignation Date.'
-        );
-        redirect('Hr/add_resignation');
-        return;
-    }
-
-    // Save data
-    $flag = $this->Hr_model->add_resignation();
-
-    if ($flag) {
-        $this->session->set_flashdata('success', 'Record Successfully Saved');
-        redirect('Hr/view_emp_resignation_list');
-    } else {
-        $this->session->set_flashdata('warning', 'Record Already Exists or Error Occurred');
-        redirect('Hr/add_resignation');
-    }
-}
+		// Save data
+		$flag = $this->Hr_model->add_resignation();
+		if ($flag) {
+			$this->session->set_flashdata('success', 'Record Successfully Saved');
+			redirect('Hr/view_emp_resignation_list');
+		} else {
+			$this->session->set_flashdata('warning', 'Record Already Exists or Error Occurred');
+			redirect('Hr/add_resignation');
+		}
+	}
 
 	function edit_emp_resignation()
-{
-    $data['title'] = "Edit Resignation";
-    $id = $this->uri->segment(3);
+	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_emp_resignation_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 
-    $this->load->model('Users_model');
-    // $data['user_records'] = $this->Users_model->get_user_list();
+		$data['title'] = "Edit Resignation";
+		$id = $this->uri->segment(3);
+		$this->load->model('Users_model');
+		// $data['user_records'] = $this->Users_model->get_user_list();
+		$this->load->model('Hr_model');
+		// Employee list (dropdown)
+		$data['user_records'] = $this->Hr_model->get_employee_list();
+		$data['record'] = $this->Hr_model->get_employee_resigning_by_id($id); // single row
+		$data['file_records'] = $this->Hr_model->get_employee_document_doc_id($id);
+		$data['main_content'] = 'hr/resignation_emp_edit';
+		$this->load->view('includes/template', $data);
+	}
 
-    $this->load->model('Hr_model');
-	  // Employee list (dropdown)
-$data['user_records'] = $this->Hr_model->get_employee_list();
-
-    $data['record'] = $this->Hr_model->get_employee_resigning_by_id($id); // single row
-    $data['file_records'] = $this->Hr_model->get_employee_document_doc_id($id);
-
-    $data['main_content'] = 'hr/resignation_emp_edit';
-    $this->load->view('includes/template', $data);
-}
 	function update_emp_resignation()
 	{
 		$data['title'] = "Update Resignation";
@@ -647,54 +756,68 @@ $data['user_records'] = $this->Hr_model->get_employee_list();
 		}
 	}
 
-
 	function print_resignation_application()
 	{
 		$id = $this->uri->segment('3');
-
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_employee_list();
-
 		$data['resignation'] = $this->Hr_model->get_employee_resigning_by_id($id);
-
 		$this->load->model('Users_model');
 		$data['record1'] = $this->Users_model->get_user_record_by_id_pass($id);
-
 		$this->load->model('Setup_model');
 		$data['dept_list'] = $this->Setup_model->get_active_department_list();
-
 		$this->load->view('hr/print/print_resigning_application.php', $data);
 	}
 
 	function delete_resignation_application()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_emp_resignation_list','D'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$id = $this->uri->segment('3');
-
 		$this->load->model('Hr_model');
 		$data['user_records'] = $this->Hr_model->delete_resignation_application($id);
-
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_emp_resignation_list');
 	}
+
 	///////////////////////////////////////add_passport_release////////////////////////////////////////////// 
 
 	function add_passport_release()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_passport_release_list','A'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Passport Release";
-
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_employee_list();
-
-
 		$data['main_content'] = 'hr/passport_relese_add.php';
 		$this->load->view('includes/template', $data);
 	}
+
 	function view_passport_release_list()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_view_access($user,'Hr/view_passport_release_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Passport Release List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_passport_release_list();
-
 		$data['main_content'] = 'hr/passport_relese_list.php';
 		$this->load->view('includes/template', $data);
 	}
@@ -712,27 +835,37 @@ $data['user_records'] = $this->Hr_model->get_employee_list();
 			redirect('Hr/view_passport_release_list');
 		}
 	}
-function edit_passport_release()
-{
-    $data['title'] = "Edit Release Passport";
-    $id = $this->uri->segment(3);
 
-    // Employee list for dropdown
-    $this->load->model('Hr_model');
-    $data['records'] = $this->Hr_model->get_employee_list();
+	function edit_passport_release()
+	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_passport_release_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 
-    // Passport release record
-    $this->load->model('Hr_model');
-    $data['record1'] = $this->Hr_model->get_passport_release_list_by_id($id);
+		$data['title'] = "Edit Release Passport";
+		$id = $this->uri->segment(3);
 
-    // Employee master details for pre-filling passport info
-    if (!empty($data['record1']->employee_id)) {
-        $data['record'] = $this->Hr_model->get_employee_by_id($data['record1']->employee_id);
-    }
+		// Employee list for dropdown
+		$this->load->model('Hr_model');
+		$data['records'] = $this->Hr_model->get_employee_list();
 
-    $data['main_content'] = 'hr/passport_release_edit.php';
-    $this->load->view('includes/template', $data);
-}
+		// Passport release record
+		$this->load->model('Hr_model');
+		$data['record1'] = $this->Hr_model->get_passport_release_list_by_id($id);
+
+		// Employee master details for pre-filling passport info
+		if (!empty($data['record1']->employee_id)) {
+			$data['record'] = $this->Hr_model->get_employee_by_id($data['record1']->employee_id);
+		}
+
+		$data['main_content'] = 'hr/passport_release_edit.php';
+		$this->load->view('includes/template', $data);
+	}
 
 	function update_passport_release()
 	{
@@ -762,6 +895,14 @@ function edit_passport_release()
 
 	function delete_passport_release()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_emp_resignation_list','D'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$id = $this->uri->segment('3');
 
 		$this->load->model('Hr_model');
@@ -769,16 +910,33 @@ function edit_passport_release()
 		$this->session->set_flashdata('success', 'Delete Record Successfully');
 		redirect('Hr/view_passport_release_list');
 	}
+
 	///////////////////////////////////////add_corporate_file////////////////////////////////////////////// 
 
 	function add_corporate_file()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_corporate_file_list','A'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Corporate File";
 		$data['main_content'] = 'hr/corporate_file_add.php';
 		$this->load->view('includes/template', $data);
 	}
 	function view_corporate_file_list()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_view_access($user,'Hr/view_corporate_file_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Corporate File List";
 		$this->load->model('Hr_model');
 		$data['records'] = $this->Hr_model->get_corporate_file_list();
@@ -796,12 +954,20 @@ function edit_passport_release()
 			redirect('Hr/view_corporate_file_list');
 		} else {
 			$this->session->set_flashdata('warning', 'Name Already Exist');
-			redirect('Hr/add_corporate_file');
+			redirect('Hr/view_corporate_file_list');
 		}
 	}
 
 	function edit_corporate_file()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_corporate_file_list','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$data['title'] = "Corporate File Edit";
 		$id = $this->uri->segment('3');
 
@@ -826,6 +992,14 @@ function edit_passport_release()
 
 	function delete_corporate_file()
 	{
+		$user = $this->session->userdata('user_id');
+		if (!has_access($user,'Hr/view_corporate_file_list','D'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
 		$id = $this->uri->segment('3');
 
 		$this->load->model('Hr_model');
@@ -1654,6 +1828,325 @@ public function add_monthly_salary_data()
     redirect('Hr/view_emp_monthly_salary_list');
 }
 	///////////////////////////////////////////End advance salary//////////////////////////////////////////
+
+
+	///////////////////////////////////////////COMMISSION SETUP START//////////////////////////////////////////
+	
+	////// Commission Transaction Start /////////
+	public function view_commission_transaction_list()
+	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Hr/view_commission_transaction_list'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
+
+		$this->load->model('Hr_model');
+		$data['title']="Commission Transactions";
+		$data['records']=$this->Hr_model->get_commission_transactions();
+		$data['main_content']="hr/commission/commission_transaction_list.php";
+		$this->load->view('includes/template',$data);
+	}
+
+	function add_commission_transaction()
+	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Hr/view_commission_transaction_list','A'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
+
+		$this->load->model('Hr_model');
+		$data['sales_rep']=$this->Hr_model->get_sales_rep_list();
+		$data['invoice_list']=$this->Hr_model->get_invoice_list();
+		$data['title']="Commission Transaction";
+		$data['main_content']="hr/commission/commission_transaction_add.php";
+		$this->load->view('includes/template',$data);
+	}
+
+	function save_commission_transaction()
+	{
+		$this->load->model('Hr_model');
+		$flag=$this->Hr_model->save_commission_transaction();
+		if($flag)
+		{
+			$this->session->set_flashdata(
+				'success',
+				'Commission Saved Successfully'
+			);
+		}
+		else
+		{
+			$this->session->set_flashdata(
+				'warning',
+				'Commission already created for this Invoice.'
+			);
+		}
+		redirect('Hr/view_commission_transaction_list');
+	}
+
+	function edit_commission_transaction()
+	{
+		$id = $this->uri->segment(3);
+		$this->load->model('Hr_model');
+		$record = $this->Hr_model->get_commission_transaction($id);
+
+		if (empty($record)) {
+			$this->session->set_flashdata(
+				'error',
+				'Commission Transaction not found.'
+			);
+			redirect('Hr/view_commission_transaction_list');
+			return;
+		}
+
+		if (in_array($record->status, array('Approved', 'Paid', 'Rejected'))) {
+			$this->session->set_flashdata(
+				'error',
+				'This Commission Transaction is locked and cannot be edited.'
+			);
+			redirect('Hr/view_commission_transaction_list');
+			return;
+		}
+
+		$data['record'] = $record;
+		$data['sales_rep'] = $this->Hr_model->get_sales_rep_list();
+		$data['invoice_list'] = $this->Hr_model->get_invoice_list();
+		$data['title'] = "Edit Commission";
+		$data['main_content'] = "hr/commission/commission_transaction_edit.php";
+
+		$this->load->view('includes/template', $data);
+	}
+
+	function update_commission_transaction()
+	{
+		$id = $this->input->post('transaction_id');
+		$this->load->model('Hr_model');
+		$record = $this->Hr_model->get_commission_transaction($id);
+
+		if (empty($record)) {
+			$this->session->set_flashdata(
+				'error',
+				'Commission Transaction not found.'
+			);
+			redirect('Hr/view_commission_transaction_list');
+			return;
+		}
+
+		if (in_array($record->status, array('Approved', 'Paid', 'Rejected'))) {
+			$this->session->set_flashdata(
+				'error',
+				'This Commission Transaction is locked and cannot be updated.'
+			);
+			redirect('Hr/view_commission_transaction_list');
+			return;
+		}
+
+		$result = $this->Hr_model->update_commission_transaction($id);
+		if($result)
+		{
+			$this->session->set_flashdata(
+				'success',
+				'Commission Transaction Updated Successfully.'
+			);
+		}else {
+			$this->session->set_flashdata(
+				'warning',
+				'Commission already exists for the selected Invoice.'
+			);
+		}
+
+		redirect('Hr/view_commission_transaction_list');
+
+	}
+
+	function delete_commission_transaction()
+	{
+		$id=$this->uri->segment(3);
+		$this->load->model('Hr_model');
+		$this->Hr_model->delete_commission_transaction($id);
+		$this->session->set_flashdata('success','Deleted Successfully');
+		redirect('Hr/view_commission_transaction_list');
+	}
+
+	////// Commission Transaction Ends /////////
+
+	////// Commission Approval Starts /////////
+
+	public function view_commission_approval_list()
+	{
+		$user = $this->session->userdata('user_id');
+		if (!has_view_access($user,'Hr/view_commission_approval_list'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
+		$this->load->model('Hr_model');
+		$data['title']="Commission Approval";
+		$data['records']=$this->Hr_model->get_pending_commissions();
+		$data['main_content']="hr/commission/commission_approval_list.php";
+		$this->load->view('includes/template',$data);
+	}
+
+	public function reject_commission_transaction()
+	{
+		$id=$this->uri->segment(3);
+		$this->load->model('Hr_model');
+		$this->Hr_model->reject_commission_transaction($id);
+		$this->session->set_flashdata(
+			'success',
+			'Commission Rejected Successfully'
+		);
+		redirect('Hr/view_commission_approval_list');
+	}
+
+	public function approve_commission_transaction()
+	{
+		$id=$this->uri->segment(3);
+		$this->load->model('Hr_model');
+		$this->Hr_model->approve_commission_transaction($id);
+		$this->session->set_flashdata(
+			'success',
+			'Commission Approved Successfully'
+		);
+
+		redirect('Hr/view_commission_approval_list');
+	}
+
+	////// Commission Approval Ends /////////
+
+	////// Commission Payments Starts /////////
+
+	public function view_commission_payment_list()
+	{
+		$user = $this->session->userdata('user_id');
+		if (!has_view_access($user,'Hr/view_commission_payment_list'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
+		$this->load->model('Hr_model');
+		$data['title']="Commission Payment";
+		$data['records']=$this->Hr_model->get_approved_commissions();
+		$data['main_content']="hr/commission/commission_payment_list.php";
+		$this->load->view('includes/template',$data);
+	}
+
+	public function commission_payment()
+	{
+		$user = $this->session->userdata('user_id');
+		if(!has_access($user,'Hr/view_commission_payment_list','E'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
+
+		$id = $this->uri->segment(3);
+		$this->load->model('Hr_model');
+		$data['record'] = $this->Hr_model->get_commission_payment($id);
+		$data['title'] = "Commission Payment";
+		$data['main_content'] = "hr/commission/commission_payment.php";
+		$this->load->view('includes/template',$data);
+	}
+
+	public function save_commission_payment()
+	{
+		$this->load->model('Hr_model');
+		$this->Hr_model->save_commission_payment();
+		$this->session->set_flashdata(
+			'success',
+			'Commission Paid Successfully'
+		);
+
+		redirect('Hr/view_commission_payment_list');
+	}
+
+	////// Commission Payments Ends /////////
+
+	////// Commission Reports Starts /////////
+
+	public function view_commission_report()
+	{
+		$user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Hr/view_commission_report'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
+
+		$this->load->model('Hr_model');
+
+		$data['sales_rep'] = $this->Hr_model->get_sales_rep_list();
+
+		$filter = array(
+			'from_date'   => $this->input->post('from_date'),
+			'to_date'     => $this->input->post('to_date'),
+			'sales_rep_id'=> $this->input->post('sales_rep_id'),
+			'status'      => $this->input->post('status')
+		);
+
+		$data['records'] = $this->Hr_model->commission_report($filter);
+
+		$data['title'] = "Commission Report";
+		$data['main_content'] = "hr/commission/commission_report.php";
+
+		$this->load->view('includes/template',$data);
+	}
+
+	public function print_commission_report()
+	{
+		$this->load->model('Hr_model');
+
+		$filter=array(
+			'from_date'=>$this->input->get('from_date'),
+			'to_date'=>$this->input->get('to_date'),
+			'sales_rep_id'=>$this->input->get('sales_rep_id'),
+			'status'=>$this->input->get('status')
+		);
+
+		$data['records']=$this->Hr_model->commission_report($filter);
+
+		$this->load->view(
+			'hr/print/print_commission_report',
+			$data
+		);
+	}
+
+	public function export_commission_report()
+	{
+		$this->load->model('Hr_model');
+
+		$filter = array(
+			'from_date'    => $this->input->get('from_date'),
+			'to_date'      => $this->input->get('to_date'),
+			'sales_rep_id' => $this->input->get('sales_rep_id'),
+			'status'       => $this->input->get('status')
+		);
+
+		$data['records'] = $this->Hr_model->commission_report($filter);
+		$this->load->view('excel_reports/export_commission_report', $data);
+	}
+
+	////// Commission Reports Starts /////////
+
+	///////////////////////////////////////////COMMISSION SETUP ENDS//////////////////////////////////////////
 
 
 }

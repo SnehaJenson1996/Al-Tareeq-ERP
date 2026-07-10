@@ -1,5 +1,26 @@
+<style>
+    .action-icons i {
+        font-size: 18px;
+        margin: 0 5px;
+        vertical-align: middle;
+    }
+</style>
+
 <div class="card-body">
 	<div class="dt-responsive table-responsive">
+
+		<?php if ($this->session->flashdata('error')): ?>
+			<div class="alert alert-danger">
+				<?php echo $this->session->flashdata('error'); ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if ($this->session->flashdata('success')): ?>
+			<div class="alert alert-success">
+				<?php echo $this->session->flashdata('success'); ?>
+			</div>
+		<?php endif; ?>
+
 		<table id="datatable" class="table table-striped" data-toggle="data-table">
 			<thead>
 				<tr>
@@ -23,56 +44,77 @@
 						<td><?php echo $row->leave_code; ?></td>
 						<td><?php echo $row->employee_name; ?></td>
 						<td><?php echo $row->leave_type; ?></td>
-						<td><?php 
+						<td><?php
 							// Check if start_date and end_date are not null before applying strtotime()
 							$start_date = isset($row->start_date) ? strtotime($row->start_date) : false;
 							$end_date = isset($row->end_date) ? strtotime($row->end_date) : false;
 
 							// If the dates are valid, format them; otherwise, display empty or a default message
 							echo ($start_date !== false ? date('d-M-Y', $start_date) : '') . ' <br> ' . ($end_date !== false ? date('d-M-Y', $end_date) : '');
-						?>
-						</td>
-						<td><?php echo date('d-M-Y', strtotime($row->application_date)); ?></td>
-						<td>
-							<?php
-							$latest_status = 'Pending'; // Default value
-							foreach ($record1 as $app) {
-								if ($row->leave_id == $app->approval_leave_id) {
-									if ($app->leave_status == 0) {
-										$latest_status = 'Pending';
-									} else if ($app->leave_status == 1) {
-										$latest_status = 'Approved';
-									} else if ($app->leave_status == 2) {
-										$latest_status = 'Rejected';
-									}
-								}
-							}
-							$status_color = ($latest_status == 'Pending') ? 'yellow' : (($latest_status == 'Approved') ? 'green' : 'red');
-							echo '<span style="color:' . $status_color . ';">' . $latest_status . '</span>';
 							?>
 						</td>
-						<!-- <?php
-						$admin_md_name = '';
-						$hr_name = '';
+						<td><?php echo date('d-M-Y', strtotime($row->application_date)); ?></td>
 
-						foreach ($record2 as $a) {
-							if ($row->admin_md == $a->user_id) {
-								$admin_md_name = $a->user_name;
+						<td>
+							<?php
+							$badge = '<span class="badge badge-warning">
+										<i class="fa fa-clock-o"></i> Pending
+									</span>';
+
+							foreach ($record1 as $app) {
+								if ($row->leave_id == $app->approval_leave_id) {
+
+									if ($app->leave_status == 1) {
+										$badge = '<span class="badge badge-success">
+													<i class="fa fa-check"></i> Approved
+												</span>';
+									}
+									elseif ($app->leave_status == 2) {
+										$badge = '<span class="badge badge-danger">
+													<i class="fa fa-times"></i> Rejected
+												</span>';
+									}
+									else {
+										$badge = '<span class="badge badge-warning">
+													<i class="fa fa-clock-o"></i> Pending
+												</span>';
+									}
+
+									break;
+								}
 							}
-							if ($row->hr == $a->user_id) {
-								$hr_name = $a->user_name;
-							}
-						}
-						?>
+
+							echo $badge;
+							?>
+						</td>
+
+						<!-- <?php
+								$admin_md_name = '';
+								$hr_name = '';
+
+								foreach ($record2 as $a) {
+									if ($row->admin_md == $a->user_id) {
+										$admin_md_name = $a->user_name;
+									}
+									if ($row->hr == $a->user_id) {
+										$hr_name = $a->user_name;
+									}
+								}
+								?>
 						<td><?php echo $admin_md_name; ?></td>
 						<td><?php echo $hr_name; ?></td> -->
-						<td>
-							<a href="<?php echo base_url() . 'index.php/Hr/edit_leave_application/' . $row->leave_id; ?>" title="Edit">Edit</a> &nbsp;&nbsp;
-<a href="<?php echo base_url() . 'index.php/Hr/delete_leave_application/' . $row->leave_id; ?>" 
-   title="Delete" 
-   onclick="return confirmcancel(<?php echo $row->leave_id; ?>);">
-   <i class="fa fa-trash text-danger"></i>
-</a>		&nbsp;&nbsp;					<a href="<?php echo base_url() . 'index.php/Hr/print_leave_application/' . $row->leave_id; ?>" title="Print" target="_blank"><i class="fa fa-print" style="font-size:18px"></i></a>
+
+						<td class="action-icons">
+							<a href="<?php echo base_url() . 'index.php/Hr/edit_leave_application/' . $row->leave_id; ?>" title="Edit"><i class="fa fa-edit"></i>
+							</a> 
+
+							<a href="<?php echo base_url() . 'index.php/Hr/delete_leave_application/' . $row->leave_id; ?>"
+								title="Delete" onclick="return confirmcancel(<?php echo $row->leave_id; ?>);">
+								<i class="fa fa-trash"></i>
+							</a>
+
+							<a href="<?php echo base_url() . 'index.php/Hr/print_leave_application/' . $row->leave_id; ?>" title="Print" target="_blank"><i class="fa fa-print" style="font-size:18px"></i>
+							</a>
 						</td>
 					</tr>
 				<?php } ?>

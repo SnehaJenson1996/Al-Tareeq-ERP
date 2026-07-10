@@ -893,6 +893,69 @@ function ajax_get_supplier_info(){
 		$this->load->view('ajax/add_supplier_modal', $data);        
 	}    
 
+    ///////////////////////////////////////////COMMISSION SETUP START//////////////////////////////////////////
+
+    public function ajax_get_invoice_details()
+    {
+        $invoice_id=$this->input->post('invoice_id');
+        $this->load->model('Hr_model');
+        $row=$this->Hr_model->get_invoice_details($invoice_id);
+        echo json_encode($row);
+    }
+
+    public function ajax_get_sales_rep_details()
+    {
+        $sales_rep_id=$this->input->post('sales_rep_id');
+        $this->load->model('Hr_model');
+        $row=$this->Hr_model->get_sales_rep_details($sales_rep_id);
+        echo json_encode($row);
+    }
+
+    ///////////////////////////////////////////COMMISSION SETUP ENDS//////////////////////////////////////////
+
+
+function popup_materials(){
+    $this->load->model('Setup_model');
+    $id = $_POST['id'];
+    $rows = $this->Setup_model->get_rawmaterials($id);
+
+    // build HTML content
+   $html = '<table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                    <th>Unit</th>
+                </tr>
+            </thead>
+            <tbody>';
+    if(!empty($rows)){
+        foreach ($rows as $row) {
+            $html.= '<tr>
+                        <td>'.$row->material_code.'</td>
+                        <td>'.$row->material_name.'</td>
+                        <td>'.$row->quantity_required.'</td>
+                        <td>'.$row->cost.'</td>
+                        <td>'.$row->unit.'</td>
+                    </tr>';
+        }
+    }else{
+         $html.= '<tr>
+                    <td colspan="5">No data</td>
+                   </tr>';
+    }
+
+    $html.= '</tbody></table>';
+
+    echo json_encode([
+        "title" => "Raw Materials",
+        "html"  => $html
+    ]);
+    exit;
+
+}
 
 }
 

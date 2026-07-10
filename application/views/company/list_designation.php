@@ -2,11 +2,33 @@
 	$page_name=$this->uri->segment(1).'/'.$this->uri->segment(2);
 	$user = $this->session->userdata('user_id');
 ?>
+
+<style>
+	.action-icons i {
+		font-size: 18px;
+		margin: 0 5px;
+		vertical-align: middle;
+	}
+</style>
+
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="x_panel">
             <div class="x_title">
+                
+                <?php if ($this->session->flashdata('error')): ?>
+                    <div class="alert alert-danger">
+                        <?php echo $this->session->flashdata('error'); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($this->session->flashdata('success')): ?>
+                    <div class="alert alert-success">
+                        <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                <?php endif; ?>
+
                 <form action="<?= base_url()?>index.php/Company/list_designation" method="post">
             <div class="col-md-4"  >
                 <input type="text" id="smart_filter" name="filter" class="form-control" placeholder="Type filter..." style="width: 400px;">
@@ -65,30 +87,19 @@
                                     <td><?= $des->employment_type ?></td>
                                     <td><?= $des->location ?></td>
                                     <td><?= $des->status ?></td>
-                                    <td>
-                                    <?php if (has_access($user, $page_name, 'E')): ?>
-                                        <a href="<?= base_url('index.php/Company/edit_designation/' . $des->id ); ?>" title="Edit">
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                        </a>
-                                    <?php endif; ?>
+                                    <td class="action-icons">
+                                        <?php if (has_access($user, $page_name, 'E')): ?>
+                                            <a href="<?= base_url('index.php/Company/edit_designation/' . $des->id ); ?>" title="Edit">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        <?php endif; ?>
 
-                                    &nbsp;&nbsp;&nbsp;
-
-                                    <?php if (has_access($user, $page_name, 'D')): ?>
-<a href="javascript:void(0);" 
-   title="Delete" 
-   onclick="confirmDeleteDesignation(<?= $des->id ?>)">
-   <i class="fa fa-trash"></i>
-</a>
-
-
-                                       
-                                
-                                        
-
-                                        
-                                    <?php endif; ?>
-                                </td>                                   
+                                        <?php if (has_access($user, $page_name, 'D')): ?>
+                                            <a href="javascript:void(0);"title="Delete" onclick="confirmDeleteDesignation(<?= $des->id ?>)">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        <?php endif; ?>
+                                    </td>                                   
                                 </tr>
                         <?php endforeach; } else { ?>
                             <tr>
