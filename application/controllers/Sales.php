@@ -34,6 +34,132 @@ class Sales extends CI_Controller
 		//$this->load->helper('menu_helper');
 	}
 
+/***New code for Al Tareeq */
+
+public function list_enquiries()
+	{
+		$user				 		 = $this->session->userdata('user_id');
+		
+			$data['title']			= 'Enquiry List';
+
+			$data['all_enquiries']  = $this->Sales_model->get_all_enquiry_list();
+
+			$data['main_content']   = 'sales/list_enquiries.php';
+	
+		$this->load->view('includes/template', $data);
+	}
+
+
+public function add_enquiry()
+{
+    $data['title'] = 'Add Enquiry';
+	$prefix                 = 'AL' . date("y") . '-ENQ';
+    $num                    = $this->Setup_model->get_next_code($prefix, 'enquiry_code', 'enquiry_master', 11) + 1;
+	$digit                  = sprintf("%1$05d", $num);
+	$data['enquiry_code']   = $prefix . $digit;
+	$data['customer_list']  = $this->Setup_model->get_all_customer_list();
+	$data['branch_list']    = $this->Setup_model->get_all_branches();
+	$data['active_users']   = $this->Setup_model->get_active_user_list();
+
+	$data['all_products']   = $this->Setup_model->get_all_item_list();
+	$data['active_units']   = $this->Setup_model->get_all_units();
+    $data['main_content'] = 'sales/add_enquiry';
+
+    $this->load->view('includes/template', $data);
+}
+
+
+
+	public function add_enquiry_data()
+{
+    $this->load->model('Sales_model');
+
+    $data = array(
+        'branch_id'          => $this->input->post('branch'),
+        'project_name'       => $this->input->post('project_name'),
+        'project_subject'    => $this->input->post('project_subject'),
+        'project_location'   => $this->input->post('project_location'),
+        'enquiry_category'   => $this->input->post('enquiry_category'),
+        'enquiry_code'       => $this->input->post('enquiry_code'),
+        'enquiry_date'       => $this->input->post('enquiry_date'),
+        'enquiry_source'     => $this->input->post('enquiry_source'),
+        'enquiry_customer'   => $this->input->post('customer_id'),
+        'client_ref_no'      => $this->input->post('client_ref_no'),
+        'comments'           => $this->input->post('comments'),
+
+        // Optional fields
+        'created_by'         => $this->session->userdata('user_id'),
+        'created_at'       => date('Y-m-d H:i:s')
+    );
+
+    $result = $this->Sales_model->add_enquiry_data($data);
+
+    if($result)
+    {
+        $this->session->set_flashdata('success','Enquiry Added Successfully.');
+    }
+    else
+    {
+        $this->session->set_flashdata('error','Something went wrong.');
+    }
+
+    redirect('Sales/list_enquiries');
+}
+
+
+public function edit_enquiry($id)
+{
+	 $data['title'] = 'Edit Enquiry';
+    $this->load->model('Sales_model');
+
+   $data['customer_list']  = $this->Setup_model->get_all_customer_list();
+	$data['branch_list']    = $this->Setup_model->get_all_branches();
+	$data['active_users']   = $this->Setup_model->get_active_user_list();
+
+	$data['all_products']   = $this->Setup_model->get_all_item_list();
+	$data['active_units']   = $this->Setup_model->get_all_units();
+   
+    $data['enquiry_data']  = $this->Sales_model->get_enquiry_details($id);
+
+    if (!$data['enquiry_data']) {
+        show_404();
+    }
+	 $data['main_content'] = 'sales/edit_enquiry';
+
+    $this->load->view('includes/template', $data);
+}
+
+
+public function update_enquiry_data()
+{
+    $this->load->model('Sales_model');
+
+    $id = $this->input->post('enquiry_id');
+
+    $data = array(
+        'branch_id'         => $this->input->post('branch'),
+        'enquiry_category'  => $this->input->post('enquiry_category'),
+        'enquiry_date'      => $this->input->post('enquiry_date'),
+        'enquiry_source'    => $this->input->post('enquiry_source'),
+        'enquiry_customer'  => $this->input->post('customer_id'),
+        'client_ref_no'     => $this->input->post('client_ref_no'),
+        'project_name'      => $this->input->post('project_name'),
+        'project_subject'   => $this->input->post('project_subject'),
+        'project_location'  => $this->input->post('project_location'),
+        'comments'          => $this->input->post('comments')
+    );
+
+        $data['updated_by'] = $this->session->userdata('user_id');
+        $data['updated_on'] = date('Y-m-d H:i:s');
+
+        $this->Sales_model->update_enquiry($id, $data);
+
+        $this->session->set_flashdata('success', 'Enquiry Updated Successfully.');
+    
+
+    redirect('Sales/list_enquiries');
+}
+
 
 	public function view_enquiry()
 	{

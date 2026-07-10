@@ -103,7 +103,7 @@ class Sales_model extends CI_Model
     $this->db->join('customer_master cm', 'em.enquiry_customer = cm.customer_id', 'left');
 
     // Exclude enquiries that already have approved quotations
-    $this->db->where("em.enquiry_id NOT IN (SELECT enquiry_id FROM quotation_master WHERE aproval != 0)", NULL, FALSE);
+    // $this->db->where("em.enquiry_id NOT IN (SELECT enquiry_id FROM quotation_master WHERE aproval != 0)", NULL, FALSE);
 
     $this->db->order_by('em.enquiry_code', 'DESC');
     $result = $this->db->get()->result();
@@ -1698,4 +1698,27 @@ public function get_warranty_by_id($warranty_id)
 
     return $this->db->get()->row();
 }
+
+public function add_enquiry_data($data)
+{
+    $this->db->insert('enquiry_master',$data);
+
+    return $this->db->insert_id();
+}
+
+public function get_enquiry_details($id)
+{
+    return $this->db
+        ->where('enquiry_id', $id)
+        ->get('enquiry_master')
+        ->row_array();
+}
+
+public function update_enquiry($id, $data)
+{
+    $this->db->where('enquiry_id', $id);
+    return $this->db->update('enquiry_master', $data);
+}
+
+
 }
