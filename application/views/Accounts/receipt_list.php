@@ -1,84 +1,108 @@
+<style>
+	.action-icons i {
+		font-size: 18px;
+		margin: 0 5px;
+		vertical-align: middle;
+	}
+</style>
+
 <div class="card-body">
-		<div class="dt-responsive table-responsive">
-			<table id="datatable" class="table table-striped" data-toggle="data-table">
-                                        <thead>
-                                            <tr>
-						<th>Sr.no</th>
-						<th>Trans Code</th>
-						<th>Date</th>
-						<th>Amount</th>
-						<th>Narration</th>
-						<th>Action</th>
-					   </tr>
-					</thead>
+	<div class="dt-responsive table-responsive">
 
-					<tbody>
-					<?php $i=1; foreach($receipt as $row) :?>
-						<tr <?php if($row->cancel==1){ echo "class='bg-soft-danger'"; } ?> >
-							<td><?php echo $i;$i++;?></td>
-							<td>
-								<a target='_blank' href="<?php echo base_url().'index.php/Accounts/view_account_transaction_details/'.$row->voucher_id;?>" title="details">
-								<?php echo $row->voucher_code;?>
-								</a>
-							</td>
-							<td>
-								<?php echo date('d-M-Y',strtotime($row->voucher_date));?><br>
-								
-							</td>
-							<td>
-								<?php echo $row->amount;?>
-							</td>
-							<td>
-								<?php echo $row->narration;?>
-							</td>
-							<td>
-							<a target='_blank' href="<?php echo base_url().'index.php/Accounts/print_receipt/'.$row->voucher_code;?>">Print</a>
-							<?php if($row->cancel==0){?>
-							<a href="javascript:confirmcancel('<?php echo $row->voucher_code;?>')" title="Delete" class='delete' id='delete'><i class="fa fa-trash" style="color:red; cursor:pointer;" title="Delete"></i></a>
-							<?php } else echo 'Cancelled'; ?>
-							</td>
-						</tr>
-					<?php endforeach; ?>
-					</tbody>
-
-				</table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+		<?php if ($this->session->flashdata('error')): ?>
+            <div class="alert alert-danger">
+                <?php echo $this->session->flashdata('error'); ?>
             </div>
-        </div>
-        <!-- Static Table End -->
-        
-        
-        
-<script>
+        <?php endif; ?>
 
-function confirmcancel(voucher_code)
-{   
-	var r= confirm("Are you sure you want to Cancel Record?");
-	if(r == true) 
-        {
-      		$.ajax({
-     		url: "<?php echo base_url()?>index.php/Accounts/delete_trans_entry",
-     		type: "POST",
-     		data: {voucher_code:voucher_code} ,
-     		success: function(msg) {
-     			if(msg==1) 
-     			{     	
-			         alert("Record Cancelled"); 				
-        			 window.location.href="<?php echo $_SERVER['PHP_SELF']?>";   		                    		  
-			}
-		        else {
-			      	alert("Can't Cancel record. Data already exist!!!");
-		       }
-		    },
-		});
-      		return true;
-      	}
-        else
-        	return false;
-	    	
-}
+        <?php if ($this->session->flashdata('success')): ?>
+            <div class="alert alert-success">
+                <?php echo $this->session->flashdata('success'); ?>
+            </div>
+        <?php endif; ?>
+
+		<table id="datatable" class="table table-striped" data-toggle="data-table">
+			<thead>
+				<tr>
+					<th>Sr.no</th>
+					<th>Trans Code</th>
+					<th>Date</th>
+					<th>Amount</th>
+					<th>Narration</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<?php $i = 1;
+				foreach ($receipt as $row) : ?>
+					<tr <?php if ($row->cancel == 1) {
+							echo "class='bg-soft-danger'";
+						} ?>>
+						<td><?php echo $i;
+							$i++; ?></td>
+						<td>
+							<a target='_blank' href="<?php echo base_url() . 'index.php/Accounts/view_account_transaction_details/' . $row->voucher_id; ?>" title="details">
+								<?php echo $row->voucher_code; ?>
+							</a>
+						</td>
+						<td>
+							<?php echo date('d-M-Y', strtotime($row->voucher_date)); ?><br>
+
+						</td>
+						<td>
+							<?php echo $row->amount; ?>
+						</td>
+						<td>
+							<?php echo $row->narration; ?>
+						</td>
+						<td class="action-icons">
+							<a target='_blank' href="<?php echo base_url() . 'index.php/Accounts/print_receipt/' . $row->voucher_code; ?>">
+								<i class="fa fa-print" style="font-size:18px"></i>
+							</a>
+
+							<?php if ($row->cancel == 0) { ?>
+								<a href="javascript:confirmcancel('<?php echo $row->voucher_code; ?>')" title="Delete" class='delete' id='delete'><i class="fa fa-trash" style="color:red; cursor:pointer;" title="Delete"></i></a>
+							<?php } else { ?>
+								<span class="text-danger" title="Cancelled">
+									<i class="fa fa-ban"></i>
+								</span>
+							<?php } ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+
+		</table>
+	</div>
+</div>
+
+<!-- Static Table End -->
+
+
+
+<script>
+	function confirmcancel(voucher_code) {
+		var r = confirm("Are you sure you want to Cancel Record?");
+		if (r == true) {
+			$.ajax({
+				url: "<?php echo base_url() ?>index.php/Accounts/delete_trans_entry",
+				type: "POST",
+				data: {
+					voucher_code: voucher_code
+				},
+				success: function(msg) {
+					if (msg == 1) {
+						alert("Record Cancelled");
+						window.location.href = "<?php echo $_SERVER['PHP_SELF'] ?>";
+					} else {
+						alert("Can't Cancel record. Data already exist!!!");
+					}
+				},
+			});
+			return true;
+		} else
+			return false;
+
+	}
 </script>

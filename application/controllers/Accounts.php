@@ -37,6 +37,15 @@ class Accounts extends CI_Controller
 
   function view_account_group_form()
   {
+    $user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'Accounts/account_group_list','A'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+      $this->load->view('includes/template',$data);
+			return;
+		}
     $data['title'] = 'Account Group';
     $this->load->model('Accounts_model');
     $data['parent_records'] = $this->Accounts_model->get_account_group_parent();
@@ -47,6 +56,15 @@ class Accounts extends CI_Controller
 
   function account_group_list()
   {
+    $user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'Accounts/account_group_list'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
     $this->load->model('Accounts_model');
     $data['title']            = 'Account Group';
     $data['account_records']  = $this->Accounts_model->get_account_group_list();
@@ -108,13 +126,22 @@ class Accounts extends CI_Controller
 
   function view_general_ledger_account_form()
   {
+    $user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'accounts/list_general_ledger_account_form','A'))
+		{
+			$data['title']='Access Denied';
+			$data['main_content']='errors/access_control.php';
+      $this->load->view('includes/template',$data);
+			return;
+		}
     $data['title'] = 'General Ledger Account';
     $this->load->model('Accounts_model');
     $data['account_records']   = $this->Accounts_model->get_account_group();
     $data['customer_records'] = $this->Accounts_model->get_customer_record();
     $data['supplier_records'] = $this->Accounts_model->get_supplier_record();
     $this->load->model('Company_model');
-$data['branch_list']    = $this->Company_model->get_all_branches();
+    $data['branch_list']    = $this->Company_model->get_all_branches();
     //echo $this->db->last_query();exit();
     $data['main_content'] = 'Accounts/general_ledger_account.php';
     $this->load->view('includes/template', $data);
@@ -122,6 +149,15 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
 
   function edit_general_ledger_account_form()
   {
+    $user = $this->session->userdata('user_id');
+
+		if (!has_access($user,'accounts/list_general_ledger_account_form','E'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
     $this->load->model('Accounts_model');
     //	$data['opening_balance'] = $this->Accounts_model->get_opening_balance_by_id();
     $data['title']              = 'General Ledger Account';
@@ -133,6 +169,15 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
 
   function list_general_ledger_account_form()
   {
+    $user = $this->session->userdata('user_id');
+
+		if (!has_view_access($user,'accounts/list_general_ledger_account_form'))
+		{
+			$data['title'] = 'Access Denied';
+			$data['main_content'] = 'errors/access_control.php';
+			$this->load->view('includes/template',$data);
+			return;
+		}
     $this->load->model('Accounts_model');
     $data['title']          = 'General Ledger Account';
     $data['ledger_records'] = $this->Accounts_model->get_general_ledger_list();
@@ -201,7 +246,9 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
     $data['ledger_records'] = $this->Accounts_model->get_general_ledger_by_group_id($account_id);
     $this->load->view('ajax/select_account_ledger', $data);
   }
+
   /////////////////////// contra_entry_add start  //////////////////////
+  
   function add_contra_entry()
   { //in use
     $data['title'] = "Add Contra Entry";
@@ -352,8 +399,8 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
     $this->load->model('Accounts_model');
     $data['sundry_detors_records'] = $this->Accounts_model->get_general_ledger_accounts('', 'Income');
     $data['credit_records'] = $this->Accounts_model->get_general_ledger_accounts('Assets', '');
-$this->load->model('Company_model');
-$data['branch_list']    = $this->Company_model->get_all_branches();
+    $this->load->model('Company_model');
+    $data['branch_list']    = $this->Company_model->get_all_branches();
     $data['main_content'] = 'Accounts/credit_note';
     $this->load->view('includes/template', $data);
   }

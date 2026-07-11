@@ -19,6 +19,7 @@
 		<table id="datatable" class="table table-striped" data-toggle="data-table">
       <thead>
         <tr>
+					<th>Sr.no</th>
           <th>Account Code</th>
           <th>Group Name</th>
           <th>Account Type</th>
@@ -28,8 +29,9 @@
       </thead>
 
       <tbody>
-        <?php foreach ($account_records as $row): ?>
+        <?php $i=1; foreach ($account_records as $row): ?>
           <tr>
+						<td><?php echo $i;$i++;?></td>
             <td><?php echo $row->group_code; ?></td>
             <td><?php echo $row->group_name; ?></td>
             <td><?php echo ($row->pandl == 0) ? 'Balance Sheet' : 'Profit and Loss'; ?></td>
