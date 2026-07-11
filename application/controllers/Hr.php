@@ -29,6 +29,7 @@ class Hr extends CI_Controller
 		{
 			$data['title']='Access Denied';
 			$data['main_content']='errors/access_control.php';
+      		$this->load->view('includes/template',$data);
 			return;
 		}
 		$data['title'] = "Allowances & Deductions Master";

@@ -1,48 +1,54 @@
+<style>
+	.action-icons i {
+		font-size: 18px;
+		margin: 0 5px;
+		vertical-align: middle;
+	}
+</style>
+
 <div class="card-body">
-		<div class="dt-responsive table-responsive">
-		<table id="datatable" class="table table-striped" data-toggle="data-table">
-                                        <thead>
-                                            <tr>
-							<th>Sr.no</th>
-                            <th>Instrument Number</th>
-							<!-- <th>Instrument Date</th> -->
-							<th>Amount Number</th>
-							<th>Type</th>
-							<th>Action</th>
-						</tr>
-					</thead>
+    <div class="dt-responsive table-responsive">
+        <table id="datatable" class="table table-striped" data-toggle="data-table">
+            <thead>
+                <tr>
+                    <th>Sr.no</th>
+                    <th>Instrument Number</th>
+                    <!-- <th>Instrument Date</th> -->
+                    <th>Amount Number</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-					<tbody>
-					<?php $i=1; foreach($records as $row) :?>
-						<tr>
-							<td><?php echo $i;$i++;?></td>
-                            <td><?php echo $row->instrument_no; ?></td>
+            <tbody>
+                <?php $i = 1;
+                foreach ($records as $row) : ?>
+                    <tr>
+                        <td><?php echo $i;
+                            $i++; ?></td>
+                        <td><?php echo $row->instrument_no; ?></td>
 
-							<!-- <td><?php echo date('d-M-Y',strtotime($row->instrument_date));?></td> -->
-							<td><?php echo $row->amount_no; ?></td>
-							<td><?php echo $row->instrument_type; ?></td>							
-							<td>
+                        <!-- <td><?php echo date('d-M-Y', strtotime($row->instrument_date)); ?></td> -->
+                        <td><?php echo $row->amount_no; ?></td>
+                        <td><?php echo $row->instrument_type; ?></td>
+                        <td class="action-icons">
                             <!-- <a href="<?php echo base_url() . 'index.php/Accounts/edit_bank_reconciliation/' . $row->reconciliation_id; ?>" title="Edit">Edit</a> -->
-							<a href="javascript:confirmcancel(<?php echo $row->reconciliation_id;?>)" title="Delete" class='delete' id='delete'>Delete</a>
+                            <a href="javascript:confirmcancel(<?php echo $row->reconciliation_id; ?>)" title="Delete" class='delete' id='delete'><i class="fa fa-trash" style="color:red; cursor:pointer;" title="Delete"></i></a>
 
                         </td>
-						</tr>
-					<?php endforeach; ?>
-					</tbody>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
 
-				</table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Static Table End -->
-        
-        
-        
-		<script>
+        </table>
+    </div>
+</div>
+
+<!-- Static Table End -->
+
+
+
+<script>
     function confirmcancel(tid) {
         var r = confirm("Are you sure you want to Delete Record?");
         if (r == true) {
