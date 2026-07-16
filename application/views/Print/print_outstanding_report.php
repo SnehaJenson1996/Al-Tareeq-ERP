@@ -126,16 +126,6 @@
                 width: 100%;
             }
 
-            header,
-            footer {
-                position: fixed;
-                width: 100%;
-            }
-
-            header {
-                top: 0;
-            }
-
             footer {
                 bottom: 0;
             }
@@ -156,21 +146,30 @@
             align-items: center;
             margin-bottom: 10px;
         } */
+
+        .report-header{
+            width:100%;
+            text-align:center;
+            margin:0;
+            padding:10px 0 15px;
+        }
+
+        .company-logo{
+            width:180px;      /* Standard width */
+            height:auto;
+            display:block;
+            margin:0 auto;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Header -->
-    <header style="padding: 20px 0;  margin-bottom: 20px;">
-        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <img src="<?= base_url('public/header/2.png'); ?> " width="100%" />
-              
-            </div>
-        </div>
-    </header>
-<br><br><br><br>
+<header class="report-header">
+    <img src="<?= base_url('public/assets/images/altariq_logo.jpeg'); ?>" class="company-logo">
+</header>
+
     <main>
         <!-- Report Title -->
         <div class="report-title-bar">

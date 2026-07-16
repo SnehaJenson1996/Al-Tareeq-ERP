@@ -815,23 +815,85 @@ class Accounts extends CI_Controller
     $this->load->view('includes/template', $data);
   }
 
+  // function print_individual_ledger_account_details()
+  // {
+  //   $data['title'] = "Report-Individual Ledger Details";
+
+  //   $data['from_date'] = date('d-m-Y', strtotime($this->input->post('from_date')));;
+  //   $data['to_date'] = date('d-m-Y', strtotime($this->input->post('to_date')));
+  //   $data['account_id'] = $this->input->post('account_id');
+
+  //   $this->load->model('Setup_model');
+  //   $data['comapny_records'] = $this->Setup_model->get_company_master_list();
+
+  //   $this->load->model('Accounts_model');
+  //   $data['account_ledgers'] = $this->Accounts_model->get_all_general_ledger_accounts();
+
+  //   $data['ledger_transaction_records'] = $this->Accounts_model->get_ledger_report($data['account_id'], $data['from_date'], $data['to_date']);
+
+  //   $this->load->view('Print/print_individual_ledger_account_details', $data);
+  // }
+
   function print_individual_ledger_account_details()
   {
     $data['title'] = "Report-Individual Ledger Details";
 
-    $data['from_date'] = date('d-m-Y', strtotime($this->input->post('from_date')));;
-    $data['to_date'] = date('d-m-Y', strtotime($this->input->post('to_date')));
-    $data['account_id'] = $this->input->post('account_id');
+    $from_date = $this->input->post('from_date');
+    $to_date   = $this->input->post('to_date');
+
+    $from_date_db = date('Y-m-d', strtotime($from_date));
+    $to_date_db   = date('Y-m-d', strtotime($to_date));
+
+    $data['from_date'] = $from_date;
+    $data['to_date']   = $to_date;
+
+    $data['account_id'] =
+        $this->input->post('account_id');
+
+    $data['parent_customer_id'] =
+        $this->input->post('parent_customer_id');
 
     $this->load->model('Setup_model');
-    $data['comapny_records'] = $this->Setup_model->get_company_master_list();
+    $data['company_records'] =
+        $this->Setup_model->get_company_master_list();
 
     $this->load->model('Accounts_model');
+
     $data['account_ledgers'] = $this->Accounts_model->get_all_general_ledger_accounts();
 
-    $data['ledger_transaction_records'] = $this->Accounts_model->get_ledger_report($data['account_id'], $data['from_date'], $data['to_date']);
+    if(!empty($data['account_id']))
+    {
+      $data['ledger_transaction_records'] =
+          $this->Accounts_model->get_ledger_report_new(
+            $data['account_id'],
+            $from_date_db,
+            $to_date_db
+          );
+    } elseif(!empty($data['parent_customer_id']))
+    {
+      $data['ledger_transaction_records'] =
+        $this->Accounts_model->get_parent_group_ledger_report(
+          $data['parent_customer_id'],
+          $from_date_db,
+          $to_date_db
+        );
+    } else {
+      $data['ledger_transaction_records'] = array();
+    }
+    if(!empty($data['parent_customer_id']))
+    {
+        $data['parent_group_name'] =
+            $this->Accounts_model->get_parent_group_name_by_id(
+                $data['parent_customer_id']
+            );
+    } else {
+      $data['parent_group_name'] = '';
+    }
 
-    $this->load->view('Print/print_individual_ledger_account_details', $data);
+      $this->load->view(
+          'Print/print_individual_ledger_account_details',
+          $data
+      );
   }
 
 

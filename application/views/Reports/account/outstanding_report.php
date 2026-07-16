@@ -13,18 +13,18 @@
     </div>
 
     <div class="x_content">
-        <form class="form-horizontal form-label-left" 
-              action="<?php echo base_url('index.php/accounts/search_outstanding_report'); ?>" 
-              method="post" id="receipt" name="receipt" autocomplete="off">
+        <form class="form-horizontal form-label-left"
+            action="<?php echo base_url('index.php/accounts/search_outstanding_report'); ?>"
+            method="post" id="receipt" name="receipt" autocomplete="off">
 
             <div class="form-group row">
                 <!-- From Date -->
                 <label class="control-label col-md-1 col-sm-2 col-xs-12">From <span class="required">*</span></label>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="input-group">
-                        <input type="text" class="form-control datepicker1" 
-                               name="from" id="from"
-                               value="<?php echo isset($from) ? $from : date('d-M-Y'); ?>" required>
+                        <input type="text" class="form-control datepicker1"
+                            name="from" id="from"
+                            value="<?php echo isset($from) ? $from : date('d-M-Y'); ?>" required>
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     </div>
                 </div>
@@ -33,9 +33,9 @@
                 <label class="control-label col-md-1 col-sm-2 col-xs-12">To <span class="required">*</span></label>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="input-group">
-                        <input type="text" class="form-control datepicker1" 
-                               name="to" id="to"
-                               value="<?php echo isset($to) ? $to : date('d-M-Y'); ?>" required>
+                        <input type="text" class="form-control datepicker1"
+                            name="to" id="to"
+                            value="<?php echo isset($to) ? $to : date('d-M-Y'); ?>" required>
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     </div>
                 </div>
@@ -49,18 +49,18 @@
                         <option value="Sundry Debtors" <?= ($request_type == 'Sundry Debtors') ? 'selected' : '' ?>>Sundry Debtors</option>
                     </select>
                 </div>
-                 <label class="control-label col-md-1">Branch</label>
-    <div class="col-md-2">
-        <select class="form-control select2" name="branch_id" id="branch_id" onchange="submitForm()">
-            <option value="">All Branches</option>
-            <?php foreach ($branch_list as $branch) { ?>
-                <option value="<?php echo $branch->branch_id; ?>"
-                    <?= (isset($branch_id) && $branch_id == $branch->branch_id) ? 'selected' : '' ?>>
-                    <?php echo $branch->branch_name; ?>
-                </option>
-            <?php } ?>
-        </select>
-    </div>
+                <label class="control-label col-md-1">Branch</label>
+                <div class="col-md-2">
+                    <select class="form-control select2" name="branch_id" id="branch_id" onchange="submitForm()">
+                        <option value="">All Branches</option>
+                        <?php foreach ($branch_list as $branch) { ?>
+                            <option value="<?php echo $branch->branch_id; ?>"
+                                <?= (isset($branch_id) && $branch_id == $branch->branch_id) ? 'selected' : '' ?>>
+                                <?php echo $branch->branch_name; ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
 
             </div>
 
@@ -81,11 +81,29 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <div class="col-md-12 col-sm-12 col-xs-12 text-right">
-                    <button type="submit" class="btn btn-primary btn-sm">Go</button>
-                    <button type="button" class="btn btn-warning btn-sm" onclick="submitPrint()">Print</button>
-                    <button type="button" class="btn btn-success btn-sm" onclick="submitExport()">Export to Excel</button>
+            <div class="form-group row" style="margin-top:15px;">
+                <div class="col-md-12">
+                    <button type="submit"
+                        class="btn btn-primary btn-sm"
+                        style="margin-right:10px;">
+                        <i class="fa fa-search" style="margin-right:5px;"></i>
+                        Go
+                    </button>
+
+                    <button type="button"
+                        class="btn btn-warning btn-sm"
+                        onclick="submitPrint()"
+                        style="margin-right:10px;">
+                        <i class="fa fa-print" style="color:#000;margin-right:5px;"></i>
+                        <span style="color:#000;">Print</span>
+                    </button>
+
+                    <button type="button"
+                        class="btn btn-success btn-sm"
+                        onclick="submitExport()">
+                        <i class="fa fa-file-excel-o" style="margin-right:5px;"></i>
+                        Export to Excel
+                    </button>
                 </div>
             </div>
         </form>
@@ -115,9 +133,9 @@
                                 <td><?php echo $i++; ?></td>
                                 <td><?php echo date('d-M-Y', strtotime($row->voucher_date)); ?></td>
                                 <td>
-                                    <?php 
-                                    echo ($request_type == 'Sundry Creditors') 
-                                        ? (!empty($row->account_name) ? $row->account_name : 'N/A') 
+                                    <?php
+                                    echo ($request_type == 'Sundry Creditors')
+                                        ? (!empty($row->account_name) ? $row->account_name : 'N/A')
                                         : (!empty($row->cust_name) ? $row->cust_name : 'N/A');
                                     ?>
                                 </td>
@@ -127,7 +145,7 @@
                                 <td class="text-right"><?php echo number_format($row->sum_due_amt, 2); ?></td>
                                 <td><?php echo date('d-M-Y', strtotime('+3 months', strtotime($row->voucher_date))); ?></td>
                                 <td>
-                                    <?php 
+                                    <?php
                                     $due_date = strtotime('+3 months', strtotime($row->voucher_date));
                                     $today = strtotime(date('Y-m-d'));
                                     echo ($today > $due_date) ? floor(($today - $due_date) / 86400) : '-';
@@ -148,64 +166,102 @@
 
 <!-- Scripts -->
 <script>
-$(document).ready(function () {
-    // Bootstrap Daterangepicker Single Date
-    $('.datepicker1').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        locale: { format: 'DD-MMM-YYYY' },
-        autoApply: true
+    $(document).ready(function() {
+        // Bootstrap Daterangepicker Single Date
+        $('.datepicker1').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'DD-MMM-YYYY'
+            },
+            autoApply: true
+        });
+
+        $('.select2').select2({
+            width: '100%'
+        });
     });
 
-    $('.select2').select2({
-        width: '100%'
-    });
-});
-
-function handleRequestTypeChange() {
-    var requestType = $('#request_type').val();
-    if (requestType === 'Sundry Creditors' || requestType === 'Sundry Debtors') {
-        $('#ledgerDropdownContainer').show();
-    } else {
-        $('#ledgerDropdownContainer').hide();
-        $('#ledger_id').val('');
+    function handleRequestTypeChange() {
+        var requestType = $('#request_type').val();
+        if (requestType === 'Sundry Creditors' || requestType === 'Sundry Debtors') {
+            $('#ledgerDropdownContainer').show();
+        } else {
+            $('#ledgerDropdownContainer').hide();
+            $('#ledger_id').val('');
+        }
+        submitForm();
     }
-    submitForm();
-}
 
-function submitForm() {
-    $('#receipt').submit();
-}
+    function submitForm() {
+        $('#receipt').submit();
+    }
 
-function submitPrint() {
-    const form = $('<form>', {
-        method: 'post',
-        action: "<?php echo base_url('index.php/Accounts/print_outstanding_report'); ?>",
-        target: '_blank'
-    }).append(
-        $('<input>', { type: 'hidden', name: 'from', value: '<?php echo isset($from) ? $from : ''; ?>' }),
-        $('<input>', { type: 'hidden', name: 'to', value: '<?php echo isset($to) ? $to : ''; ?>' }),
-        $('<input>', { type: 'hidden', name: 'ledger_id', value: '<?php echo isset($ledger_id) ? $ledger_id : ''; ?>' }),
-        $('<input>', { type: 'hidden', name: 'request_type', value: '<?php echo isset($request_type) ? $request_type : ''; ?>' }),
-       $('<input>', { type: 'hidden', name: 'branch_id', value: '<?php echo isset($branch_id) ? $branch_id : ''; ?>' })
+    function submitPrint() {
+        const form = $('<form>', {
+            method: 'post',
+            action: "<?php echo base_url('index.php/Accounts/print_outstanding_report'); ?>",
+            target: '_blank'
+        }).append(
+            $('<input>', {
+                type: 'hidden',
+                name: 'from',
+                value: '<?php echo isset($from) ? $from : ''; ?>'
+            }),
+            $('<input>', {
+                type: 'hidden',
+                name: 'to',
+                value: '<?php echo isset($to) ? $to : ''; ?>'
+            }),
+            $('<input>', {
+                type: 'hidden',
+                name: 'ledger_id',
+                value: '<?php echo isset($ledger_id) ? $ledger_id : ''; ?>'
+            }),
+            $('<input>', {
+                type: 'hidden',
+                name: 'request_type',
+                value: '<?php echo isset($request_type) ? $request_type : ''; ?>'
+            }),
+            $('<input>', {
+                type: 'hidden',
+                name: 'branch_id',
+                value: '<?php echo isset($branch_id) ? $branch_id : ''; ?>'
+            })
 
-    );
-    $('body').append(form);
-    form.submit();
-}
+        );
+        $('body').append(form);
+        form.submit();
+    }
 
-function submitExport() {
-    const form = $('<form>', {
-        method: 'post',
-        action: "<?php echo base_url('index.php/Accounts/export_outstanding_report_details'); ?>"
-    }).append(
-        $('<input>', { type: 'hidden', name: 'from', value: '<?php echo isset($from) ? $from : ''; ?>' }),
-        $('<input>', { type: 'hidden', name: 'to', value: '<?php echo isset($to) ? $to : ''; ?>' }),
-        $('<input>', { type: 'hidden', name: 'request_type', value: '<?php echo isset($request_type) ? $request_type : ''; ?>' }),
-        $('<input>', { type: 'hidden', name: 'branch_id', value: '<?php echo isset($branch_id) ? $branch_id : ''; ?>' })
+    function submitExport() {
+        const form = $('<form>', {
+            method: 'post',
+            action: "<?php echo base_url('index.php/Accounts/export_outstanding_report_details'); ?>"
+        }).append(
+            $('<input>', {
+                type: 'hidden',
+                name: 'from',
+                value: '<?php echo isset($from) ? $from : ''; ?>'
+            }),
+            $('<input>', {
+                type: 'hidden',
+                name: 'to',
+                value: '<?php echo isset($to) ? $to : ''; ?>'
+            }),
+            $('<input>', {
+                type: 'hidden',
+                name: 'request_type',
+                value: '<?php echo isset($request_type) ? $request_type : ''; ?>'
+            }),
+            $('<input>', {
+                type: 'hidden',
+                name: 'branch_id',
+                value: '<?php echo isset($branch_id) ? $branch_id : ''; ?>'
+            })
 
-    );
-    $('body').append(form);
-    form.submit();
-}
+        );
+        $('body').append(form);
+        form.submit();
+    }
 </script>
