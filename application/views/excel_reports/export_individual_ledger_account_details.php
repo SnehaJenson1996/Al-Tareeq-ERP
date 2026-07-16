@@ -27,7 +27,7 @@ $this->load->helper('myopeningbalance');
     <tr>
       
       <td align="center"> </td>
-      <td valign="top" align="right"><img src="<?php echo base_url().'public/logo/Logo-fzc.jpg'?>" alt='logo.png' width='60px'></td>
+      <td valign="top" align="right"><img src="<?php echo base_url().'public/assets/images/altariq_logo.jpeg'?>" alt='logo.png' width='10px'></td>
     </tr>
     <tr>
       <td align="center">

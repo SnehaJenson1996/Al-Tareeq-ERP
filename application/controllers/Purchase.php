@@ -32,8 +32,8 @@ class Purchase extends CI_Controller
         $data['branch_records']     = $this->Company_model->get_all_branches();		
         $data['supplier_records']   = $this->Setup_model->get_active_supplier_list();
 		
-        $data['active_items']       = $this->Item_model->get_active_item_list();       
-        $data['active_units']       = $this->Item_model->get_active_unit_list();	
+        $data['active_items']       = $this->Setup_model->get_active_item_list();       
+        $data['active_units']       = $this->Setup_model->get_active_unit_list();	
 		$data['main_content']       ='purchase/rfq_direct_add.php';
 		$this->load->view('includes/template.php',$data);
         
@@ -95,8 +95,8 @@ class Purchase extends CI_Controller
             $data['title']='View RFQ';
         }
     $data['branch_records']     = $this->Company_model->get_all_branches();	
-    $data['active_items']       = $this->Item_model->get_active_item_list();
-    $data['active_units']       = $this->Item_model->get_active_unit_list();	
+    $data['active_items']       = $this->Setup_model->get_active_item_list();
+    $data['active_units']       = $this->Setup_model->get_active_unit_list();	
     $data['supplier_records']   = $this->Setup_model->get_all_supplier_list();
     $data['records1']           = $this->Purchase_Model->get_purchase_rfq_by_id($rfq_id);
     $data['records2']           = $this->Purchase_Model->get_purchase_rfq_tr($rfq_id);
@@ -503,8 +503,8 @@ function edit_po(){
             $data['records1'] = $this->Purchase_Model->get_po_direct_master_by_id($po_id);
     }
     //echo $this->db->last_query();exit();
-     $data['active_items']       = $this->Item_model->get_active_item_list();
-	$data['active_units']       = $this->Item_model->get_active_unit_list();  
+     $data['active_items']       = $this->Setup_model->get_active_item_list();
+	$data['active_units']       = $this->Setup_model->get_active_unit_list();  
     $data['branch_records']     = $this->Company_model->get_all_branches();	
     $data['records2'] = $this->Purchase_Model->get_po_tr_by_id($po_id);
     $data['po_doc']   = $this->Purchase_Model->get_quote_doc($po_id,"PO File");
@@ -559,8 +559,8 @@ function add_PO_direct_from_reorder()
     $data['Code']               = $prifix . date("y") . '/' . $digit;
     $data['branch_records']     = $this->Company_model->get_all_branches();	
 	$data['records']            = $this->Purchase_Model->get_RFQ_list('direct');	
-    $data['active_items']       = $this->Item_model->get_active_item_list();
-	$data['active_units']       = $this->Item_model->get_active_unit_list();  
+    $data['active_items']       = $this->Setup_model->get_active_item_list();
+	$data['active_units']       = $this->Setup_model->get_active_unit_list();  
     
     $data['supplier_records']   = $this->Setup_model->get_active_supplier_list();
     $data['reorder_list']       = $this->Stock_model->get_reorder_stock_for_PO();
@@ -687,8 +687,8 @@ function add_grn($po_id = null)
 	$data['records']=$this->Purchase_Model->get_quotation_list();
 	$this->load->model('Setup_model');
     $this->load->model('Item_model');
-    $data['active_items'] = $this->Item_model->get_active_item_list();
-	$data['active_units'] = $this->Item_model->get_active_unit_list();  
+    $data['active_items'] = $this->Setup_model->get_active_item_list();
+	$data['active_units'] = $this->Setup_model->get_active_unit_list();  
     	
 
     $data['supplier_records'] = $this->Setup_model->get_active_supplier_list();
@@ -706,8 +706,8 @@ function add_grn($po_id = null)
     	
 	$this->load->model('Setup_model');
     $this->load->model('Item_model');
-    $data['active_items'] = $this->Item_model->get_active_item_list();
-	$data['active_units'] = $this->Item_model->get_active_unit_list();  
+    $data['active_items'] = $this->Setup_model->get_active_item_list();
+	$data['active_units'] = $this->Setup_model->get_active_unit_list();  
     	
     $data['supplier_records'] = $this->Setup_model->get_active_supplier_list();
     $data['main_content'] = 'purchase/quote_direct_add.php';
@@ -731,7 +731,7 @@ function add_grn($po_id = null)
 //     $data['branch_records']   = $this->Company_model->get_all_branches();
 //     $data['supplier_records'] = $this->Setup_model->get_active_supplier_list();
 
-//     $data['active_units'] = $this->Item_model->get_active_unit_list();
+//     $data['active_units'] = $this->Setup_model->get_active_unit_list();
 
 //     $data['material_issues'] = $this->db->select('mi_id, mi_code')
 //                                         ->from('material_issue')
@@ -758,7 +758,7 @@ function add_grn($po_id = null)
     $data['branch_records']   = $this->Company_model->get_all_branches();
     $data['supplier_records'] = $this->Setup_model->get_active_supplier_list();
 
-    $data['active_units'] = $this->Item_model->get_active_unit_list();
+    $data['active_units'] = $this->Setup_model->get_active_unit_list();
 
     // $data['material_issues'] = $this->db->select('mi_id, mi_code')
     //                                     ->from('material_issue')
@@ -806,7 +806,7 @@ public function edit_pr_from_mi($pr_id)
 
     $data['branch_records']   = $this->Company_model->get_all_branches();
     $data['supplier_records'] = $this->Setup_model->get_active_supplier_list();
-    $data['active_units']     = $this->Item_model->get_active_unit_list();
+    $data['active_units']     = $this->Setup_model->get_active_unit_list();
     $data['material_issues']  = $this->Purchase_Model->get_issued_mi_with_pending_qty();
 
     $data['main_content'] = 'purchase/pr_from_mi_edit.php';

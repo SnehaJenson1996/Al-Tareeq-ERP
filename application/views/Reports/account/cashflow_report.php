@@ -39,34 +39,41 @@
                     </div>
                 </div>
 
-           
-
-            <!-- Branch -->
-<label class="col-sm-1 col-form-label">Branch</label>
-<div class="col-sm-3">
-    <select name="branch_id" id="branch_id" class="form-control form-control-sm">
-        <option value="">All Branches</option>
-        <?php foreach ($branch_list as $branch) { ?>
-            <option value="<?= $branch->branch_id ?>"
-                <?= (isset($branch_id) && $branch_id == $branch->branch_id) ? 'selected' : '' ?>>
-                <?= $branch->branch_name ?>
-            </option>
-        <?php } ?>
-    </select>
-</div>
- </div>
+                <!-- Branch -->
+                <label class="col-sm-1 col-form-label">Branch</label>
+                <div class="col-sm-3">
+                    <select name="branch_id" id="branch_id" class="form-control form-control-sm">
+                        <option value="">All Branches</option>
+                        <?php foreach ($branch_list as $branch) { ?>
+                            <option value="<?= $branch->branch_id ?>"
+                                <?= (isset($branch_id) && $branch_id == $branch->branch_id) ? 'selected' : '' ?>>
+                                <?= $branch->branch_name ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
             <!-- Submit and Print Buttons -->
             <div class="form-group row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10">
-                    <button type="submit" id="view" class="btn btn-primary btn-sm">Go</button>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-12">
+                    <button type="submit"
+                        id="view"
+                        class="btn btn-primary btn-sm"
+                        style="margin-right:10px;">
+                        <i class="fa fa-search" style="margin-right:5px;"></i>Go
+                    </button>
                     <?php
-                   $print_url = base_url('index.php/Accounts/print_cashflow_report') .
-             '?from_date=' . urlencode($from_date) .
-             '&to_date=' . urlencode($to_date) .
-             '&branch_id=' . urlencode($branch_id ?? '');
-?>
-                    <a href="<?= $print_url ?>" target="_blank" class="btn btn-warning btn-sm">Print</a>
+                    $print_url = base_url('index.php/Accounts/print_cashflow_report') .
+                        '?from_date=' . urlencode($from_date) .
+                        '&to_date=' . urlencode($to_date) .
+                        '&branch_id=' . urlencode($branch_id ?? '');
+                    ?>
+                    <a href="<?= $print_url ?>"
+                        target="_blank"
+                        class="btn btn-warning btn-sm">
+                        <i class="fa fa-print" style="margin-right:5px; color:#000;"></i><span style="color:#000;">Print</span>
+                    </a>
                 </div>
             </div>
         </form>
@@ -88,30 +95,30 @@
                     <tbody>
                         <?php foreach ($cashflow_summary as $row): ?>
                             <tr>
-    <td>
-        <?= !empty($row->trx_date) ? date('d-m-Y', strtotime($row->trx_date)) : '' ?>
-    </td>
+                                <td>
+                                    <?= !empty($row->trx_date) ? date('d-m-Y', strtotime($row->trx_date)) : '' ?>
+                                </td>
 
-    <td>
-        <?= htmlspecialchars($row->account_group ?? '') ?>
-    </td>
+                                <td>
+                                    <?= htmlspecialchars($row->account_group ?? '') ?>
+                                </td>
 
-    <td>
-        <?= htmlspecialchars($row->account_name ?? '') ?>
-    </td>
+                                <td>
+                                    <?= htmlspecialchars($row->account_name ?? '') ?>
+                                </td>
 
-    <td class="text-success">
-        <?= number_format((float)($row->cash_inflows ?? 0), 2) ?>
-    </td>
+                                <td class="text-success">
+                                    <?= number_format((float)($row->cash_inflows ?? 0), 2) ?>
+                                </td>
 
-    <td class="text-danger">
-        <?= number_format((float)($row->cash_outflows ?? 0), 2) ?>
-    </td>
+                                <td class="text-danger">
+                                    <?= number_format((float)($row->cash_outflows ?? 0), 2) ?>
+                                </td>
 
-    <td>
-        <?= number_format((float)($row->net_cashflow ?? 0), 2) ?>
-    </td>
-</tr>
+                                <td>
+                                    <?= number_format((float)($row->net_cashflow ?? 0), 2) ?>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                         <tr class="font-weight-bold bg-light">
                             <td colspan="3">Total</td>
@@ -140,9 +147,9 @@
 
 
 <script>
-$('.datepicker1').datepicker({
-  format: 'dd-mm-yyyy',
-  autoclose: true,
-  todayHighlight: true
-});
+    $('.datepicker1').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
+        todayHighlight: true
+    });
 </script>
