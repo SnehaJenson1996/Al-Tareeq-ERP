@@ -112,17 +112,16 @@ class Sales_model extends CI_Model
 
     
 
-    public function get_enquiry_by_id($enquiry_id)
-    {
-        $this->db->select('em.*,em.enquiry_customer AS customer_id,cm.customer_name,cm.customer_TR_no,br.branch_name,br.branch_header,br.branch_footer,br.branch_contact,br.branch_email,br.branch_location,br.branch_address,br.branch_web,cm.customer_email,cm.contact_number,cm.emirate,cm.customer_address,u.user_name, br.branch_trn');
-        $this->db->from('enquiry_master em');
-        $this->db->join('customer_master cm', 'em.enquiry_customer=cm.customer_id');
-        $this->db->join('branch_master br', 'em.branch_id=br.branch_id');
-        $this->db->join('users u', 'u.user_id=em.created_by');
-        $this->db->where('enquiry_id', $enquiry_id);
-        $result = $this->db->get()->row_array();
-        return $result;
-    }
+public function get_enquiry_by_id($id)
+{
+    $this->db->select('e.*, b.branch_name, c.customer_name');
+    $this->db->from('enquiry_master e');
+    $this->db->join('branch_master b', 'b.branch_id = e.branch_id', 'left');
+    $this->db->join('customer_master c', 'c.customer_id = e.enquiry_customer', 'left');
+    $this->db->where('e.enquiry_id', $id);
+
+    return $this->db->get()->row_array();
+}
     public function get_survey_by_enquiry_id($enquiry_id)
     {
         $this->db->select('sm.*,u.user_name');
@@ -1720,5 +1719,163 @@ public function update_enquiry($id, $data)
     return $this->db->update('enquiry_master', $data);
 }
 
+public function add_enquiry_cart($data)
+{
+    
+    return $this->db->insert('enquiry_cart',$data);
+    
+}
 
+public function get_enquiry_cart($enquiry_id)
+{
+    $this->db->select('c.*, i.product_name');
+    $this->db->from('enquiry_cart c');
+    $this->db->join('item_master i','i.product_id=c.product_id','left');
+    $this->db->where('c.enquiry_id',$enquiry_id);
+
+    return $this->db->get()->result();
+}
+
+public function get_quotation_code()
+{
+    $this->db->select('quotation_code');
+    $this->db->order_by('qtn_id', 'DESC');
+    $this->db->limit(1);
+
+    $query = $this->db->get('quotation_master');
+
+    if ($query->num_rows() > 0)
+    {
+        $last = $query->row()->quotation_code;
+
+        $number = (int)substr($last, -4);
+        $number++;
+
+        return 'QTN-' . date('ym') . '-' . str_pad($number, 4, '0', STR_PAD_LEFT);
+    }
+    else
+    {
+        return 'QTN-' . date('ym') . '-0001';
+    }
+}
+
+public function save_quotation_master($data)
+{
+    $this->db->insert(
+        'quotation_master',
+        $data
+    );
+
+    return $this->db->insert_id();
+}
+
+
+
+public function save_quotation_item($data)
+{
+    return $this->db->insert(
+        'sales_quotation_items',
+        $data
+    );
+}
+
+public function get_quotation_list()
+{
+    $this->db->select('
+        qm.*,
+        e.enquiry_code,
+        e.project_name,
+        b.branch_name,
+        c.customer_name
+    ');
+
+    $this->db->from('quotation_master qm');
+
+    $this->db->join(
+        'enquiry_master e',
+        'e.enquiry_id = qm.enquiry_id',
+        'left'
+    );
+
+    $this->db->join(
+        'branch_master b',
+        'b.branch_id = qm.quotation_branch_id',
+        'left'
+    );
+
+    $this->db->join(
+        'customer_master c',
+        'c.customer_id = qm.quotation_customer',
+        'left'
+    );
+
+    $this->db->where('qm.active',1);
+
+    $this->db->order_by('qm.qtn_id','DESC');
+
+    return $this->db->get()->result_array();
+}
+
+public function get_quotation_by_id($id)
+{
+    $this->db->select('
+        quotation_master.*,
+        customer_master.customer_name,
+        customer_master.customer_code,
+        customer_master.customer_address,
+        customer_master.location,
+        customer_master.office_telephone,
+        customer_master.office_fax,
+        customer_master.customer_email,
+        customer_master.tax_registration_no,
+        customer_master.tax_emirate,
+        customer_master.tax_country,
+        enquiry_master.enquiry_code,
+        branch_master.branch_name
+    ');
+
+    $this->db->from('quotation_master');
+
+    $this->db->join(
+        'customer_master',
+        'customer_master.customer_id = quotation_master.quotation_customer',
+        'left'
+    );
+
+    $this->db->join(
+        'branch_master',
+        'branch_master.branch_id = quotation_master.quotation_branch_id',
+        'left'
+    );
+
+    $this->db->join(
+        'enquiry_master',
+        'enquiry_master.enquiry_id = quotation_master.enquiry_id',
+        'left'
+    );
+
+    $this->db->where('quotation_master.qtn_id', $id);
+
+    return $this->db->get()->row(); // Returns an Object
+}
+public function get_quotation_cart($quotation_id)
+{
+    $this->db->select('
+        sales_quotation_items.*,
+        item_master.product_name,
+        item_master.product_code
+    ');
+
+    $this->db->from('sales_quotation_items');
+
+    $this->db->join(
+        'item_master',
+        'item_master.product_id = sales_quotation_items.item_id',
+        'left'
+    );
+
+    $this->db->where('quotation_id', $quotation_id);
+
+    return $this->db->get()->result();
+}
 }

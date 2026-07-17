@@ -157,13 +157,14 @@
 
         <table class="table table-bordered">
             <thead>
-                <tr>
-                    <th>Item</th>
-                    <th width="100">Qty</th>
-                    <th width="150">Price</th>
-                    <th width="150">Amount</th>
-                </tr>
-            </thead>
+<tr>
+    <th>Item</th>
+    <th width="100">Qty</th>
+    <th width="150">Price</th>
+    <th width="150">Amount</th>
+    <th width="80">Action</th>
+</tr>
+</thead>
 
             <tbody id="selectedCartItems">
 
@@ -180,102 +181,43 @@
                           <button type="submit" id="saveBtn" class="btn btn-success">Submit</button>
                       </div>
          <div class="modal fade" id="itemCartModal">
-
 <div class="modal-dialog modal-lg">
-
 <div class="modal-content">
 
-
 <div class="modal-header">
-<h5 class="modal-title">
-Select Items
-</h5>
-
-<button type="button" class="close" data-dismiss="modal">
-×
-</button>
-
+<h5 class="modal-title">Select Items</h5>
+<button type="button" class="close" data-dismiss="modal">×</button>
 </div>
 
 
 <div class="modal-body">
 
+<div class="row mb-3">
+
+    <div class="col-md-12">
+        <label>Search Item</label>
+        <input type="text" 
+               id="item_search" 
+               class="form-control"
+               placeholder="Search item name or code">
+    </div>
+
+</div>
+
 
 <table class="table table-bordered">
 
 <thead>
-
 <tr>
 <th>Item</th>
 <th>Price</th>
 <th width="200">Quantity</th>
 </tr>
-
 </thead>
 
-
-<tbody>
-
-<?php foreach($all_products as $item): ?>
-
-<tr>
-
-<td>
-<?= $item->product_name ?>
-
-<input type="hidden"
-class="item_name"
-value="<?= $item->product_name ?>">
-
-<input type="hidden"
-class="item_id"
-value="<?= $item->product_code ?>">
-
-</td>
-
-
-<td>
-
-<?= $item->retail_price ?>
-
-<input type="hidden"
-class="item_price"
-value="<?= $item->retail_price ?>">
-
-</td>
-
-
-<td>
-
-<button type="button"
-class="btn btn-danger btn-sm minus">
--
-</button>
-
-
-<input type="text"
-class="form-control d-inline qty"
-style="width:60px"
-value="0">
-
-
-<button type="button"
-class="btn btn-success btn-sm plus">
-+
-</button>
-
-
-</td>
-
-
-</tr>
-
-
-<?php endforeach; ?>
-
+<tbody id="item_search_result">
 
 </tbody>
-
 
 </table>
 
@@ -286,17 +228,16 @@ class="btn btn-success btn-sm plus">
 <div class="modal-footer">
 
 <button type="button"
-class="btn btn-success"
-id="addCart">
+        class="btn btn-success"
+        id="addCart">
 Add To Cart
 </button>
 
-
 </div>
 
 
 </div>
-
+</div>
 </div>
 
 </div>             
@@ -326,59 +267,113 @@ $(document).on('click','.minus',function(){
 });
 $('#addCart').click(function(){
 
-    $('#selectedCartItems').html('');
+    $('#item_search_result .qty').each(function(){
 
-    $('.qty').each(function(){
+        let qty = parseInt($(this).val());
 
-        let qty=parseInt($(this).val());
-
-        if(qty>0)
+        if(qty > 0)
         {
+            let row = $(this).closest('tr');
 
-            let row=$(this).closest('tr');
+            let name  = row.find('.item_name').val();
+            let id    = row.find('.item_id').val();
+            console.log("ID:", id);
+            let price = row.find('.item_price').val();
 
-            let name=row.find('.item_name').val();
-            let id=row.find('.item_id').val();
-            let price=row.find('.item_price').val();
-
-
-            $('#selectedCartItems').append(`
-
-            <tr>
-
-            <td>
-            ${name}
-
-            <input type="hidden"
-            name="item_id[]"
-            value="${id}">
-            
-            </td>
+            // Check item already exists in cart
+            let existingRow = $('#selectedCartItems')
+                .find('input[name="item_id[]"][value="'+id+'"]')
+                .closest('tr');
 
 
-            <td>
-            ${qty}
+            if(existingRow.length > 0)
+            {
+                // Existing item - update quantity
 
-            <input type="hidden"
-            name="qty[]"
-            value="${qty}">
-            
-            </td>
+                let oldQty = parseInt(existingRow.find('.cart_qty').val());
+
+                let newQty = oldQty + qty;
+
+                existingRow.find('.cart_qty').val(newQty);
+                existingRow.find('.qty_display').text(newQty);
+
+                existingRow.find('.amount_display')
+                    .text((newQty * price).toFixed(2));
+
+                existingRow.find('.amount_input')
+                    .val((newQty * price).toFixed(2));
+
+            }
+            else
+            {
+                // New item add row
+
+               $('#selectedCartItems').append(`
+
+<tr>
+
+<td>
+    ${name}
+
+    <input type="hidden"
+    name="item_id[]"
+    value="${id}">
+</td>
 
 
-            <td>
-            ${price}
-            </td>
+<td>
+
+<input type="number"
+class="form-control form-control-sm cart_qty"
+name="qty[]"
+value="${qty}"
+style="width:70px">
+
+</td>
 
 
-            <td>
-            ${(qty*price).toFixed(2)}
-            </td>
+<td>
+    ${price}
+
+    <input type="hidden"
+    name="price[]"
+    value="${price}">
+
+</td>
 
 
-            </tr>
+<td>
 
-            `);
+<span class="amount_display">
+${(qty*price).toFixed(2)}
+</span>
+
+<input type="hidden"
+class="amount_input"
+name="amount[]"
+value="${(qty*price).toFixed(2)}">
+
+</td>
+
+
+<td>
+
+<button type="button"
+class="btn btn-danger btn-sm removeCartItem">
+<i class="fa fa-trash"></i>
+</button>
+
+</td>
+
+
+</tr>
+
+`);
+            }
+
+
+            // reset search quantity
+            $(this).val(0);
 
         }
 
@@ -386,6 +381,150 @@ $('#addCart').click(function(){
 
 
     $('#itemCartModal').modal('hide');
+
+});
+
+$('#item_search').keyup(function(){
+
+    let keyword=$(this).val();
+
+
+    if(keyword.length < 2)
+    {
+        $('#item_search_result').html('');
+        return;
+    }
+
+
+    $.ajax({
+
+        url:"<?= base_url('index.php/Sales/search_items') ?>",
+
+        type:"POST",
+
+        data:{
+            keyword:keyword
+        },
+
+        dataType:"json",
+
+
+        success:function(data){
+        console.log(data);
+
+
+            let html='';
+
+
+            $.each(data,function(i,item){
+
+
+                html += `
+
+                <tr>
+
+                <td>
+
+                ${item.product_name}
+
+                <input type="hidden"
+                       class="item_name"
+                       value="${item.product_name}">
+
+                <input type="hidden"
+                       class="item_id"
+                       value="${item.product_id}">
+
+                </td>
+
+
+                <td>
+
+                ${item.total_price}
+
+                <input type="hidden"
+                       class="item_price"
+                       value="${item.total_price}">
+
+                </td>
+
+
+                <td>
+
+                <button type="button"
+                class="btn btn-danger btn-sm minus">
+                -
+                </button>
+
+
+                <input type="text"
+                class="qty"
+                value="0"
+                style="width:50px;text-align:center;">
+
+
+                <button type="button"
+                class="btn btn-success btn-sm plus">
+                +
+                </button>
+
+
+                </td>
+
+
+                </tr>
+
+                `;
+
+
+            });
+
+
+            $('#item_search_result').html(html);
+
+
+        }
+
+
+    });
+
+
+});
+$('#itemCartModal').on('shown.bs.modal', function () {
+    $('#item_search').focus();
+});
+$(document).on('click','.removeCartItem',function(){
+
+    let row = $(this).closest('tr');
+
+    let itemName = row.find('td:first').text().trim();
+
+    if(confirm("Are you sure you want to remove this item?\n\n" + itemName))
+    {
+        row.remove();
+    }
+
+});
+$(document).on('keyup change','.cart_qty',function(){
+
+    let row = $(this).closest('tr');
+
+    let qty = parseFloat($(this).val()) || 0;
+
+    let price = parseFloat(
+        row.find('input[name="price[]"]').val()
+    ) || 0;
+
+
+    let amount = qty * price;
+
+
+    row.find('.amount_display')
+       .text(amount.toFixed(2));
+
+
+    row.find('.amount_input')
+       .val(amount.toFixed(2));
 
 });
 </script>
