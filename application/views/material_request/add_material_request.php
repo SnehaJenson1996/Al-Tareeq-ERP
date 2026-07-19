@@ -1,8 +1,9 @@
 
+<link href="<?php echo base_url()."public/build/css/popup.css"; ?>" rel="stylesheet">
 <form id="mr_form" action="<?= base_url('index.php/Project/save_material_request') ?>" method="post">
 
 <!-- Select Approved Project -->
-<div class="mb-3">
+<div class="col-md-6">
     <label for="project_id" class="form-label">Select Approved Project</label>
     <select name="project_id" id="project_id" class="form-control" required>
     <option value="">-- Select Project --</option>
@@ -17,7 +18,7 @@
 </div>
 
 <!-- Initiated By -->
-<div class="mb-3">
+<div class="col-md-6">
     <label for="initiated_by" class="form-label">Initiated By</label>
     <select name="initiated_by" id="initiated_by" class="form-control" required>
         <option value="">-- Select User --</option>
@@ -29,63 +30,125 @@
         <?php endforeach; ?>
     </select>
 </div>
-
-<!-- Auto-filled Project Info -->
-<table class="table table-bordered">
-<tr>
-    <th>Project</th>
-    <td id="project_name">-</td>
-</tr>
-<tr>
-    <th>Customer</th>
-    <td id="customer_name">-</td>
-</tr>
-<tr>
-    <th>Branch</th>
-    <td id="branch_name">-</td>
-</tr>
-<tr>
-    <th>Requested Date</th>
-    <td>
-        <input type="date" name="requested_date" class="form-control" 
-               value="<?= date('Y-m-d') ?>" required>
-    </td>
-</tr>
-<tr>
-    <th>Required Date</th>
-    <td>
-        <input type="date" name="required_date" class="form-control" required>
-    </td>
-</tr>
-</table>
-
-<h5>Items</h5>
-<table class="table table-bordered" id="items_table">
-<thead>
-<tr>
-    <th>#</th>
-    <th>Item</th>
-    <th>Unit</th>
-    <th>Required Quantity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-    <td colspan="3">Select a project to load items</td>
-</tr>
-</tbody>
-</table>
+<div class="col-md-12 clear topp">
+    <!-- Auto-filled Project Info -->
+    <table class="table table-bordered">
+    <tr>
+        <th>Project</th>
+        <td id="project_name">-</td>
+    </tr>
+    <tr>
+        <th>Customer</th>
+        <td id="customer_name">-</td>
+    </tr>
+    <tr>
+        <th>Branch</th>
+        <td id="branch_name">-</td>
+    </tr>
+    <tr>
+        <th>Requested Date</th>
+        <td>
+            <input type="date" name="requested_date" class="form-control" 
+                value="<?= date('Y-m-d') ?>" required>
+        </td>
+    </tr>
+    <tr>
+        <th>Required Date</th>
+        <td>
+            <input type="date" name="required_date" class="form-control" required>
+        </td>
+    </tr>
+    </table>
+</div>
+<div class="col-md-12 mt-2">
+        <label>Items</label>
+     </div>
+     <div class="col-md-12 mt-6">
+       
+		  	<table class="table table-bordered table-hover" id="tab_logic">
+				   <thead>
+				    <tr>
+				    	    <th title="Item">Item Name</th>
+                            <th title="Item">Quantity</th>
+                            <th title="Item">Description</th>
+                            <th title="Item">Remarks</th>    
+				    	    <th width='30px'><a id="add_row" title="Add" class="btn btn-xs bg-orange" ><span class="fa fa-plus"></span></a></th>
+					</tr>
+				    </thead>		 
+				    <tbody id="mytbbody">
+	     				<?php foreach($mitems as $r){?>
+				    	<tr id='addr0' style='font-size: 13px;'>
+						<td> <select name="product[]"  tabindex='2' class="form-control">
+                                <option value="">-- Select product --</option>
+                                <?php foreach ($pitems as $itm): ?>
+                                    <option value="<?= $itm['product_id'] ?>"
+                                        >
+                                        <?= htmlspecialchars($itm['product_name']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        
+						<td><input type="number" name="pdt_qty[]" tabindex="14" class="form-control form-control-sm" placeholder=""></td>
+						<td><textarea rows="3" cols="20" name="desc[]" id="desc0" style="font-size:11px; font-weight:bold;" class="form-control form-control-sm" tabindex="13" placeholder="Description"></textarea>
+                        </td>
+                        <td><textarea name="item_remark[]" rows="3" id="item_remark0" tabindex="16" class="form-control form-control-sm" placeholder="remark"></textarea></td>
+						<td width='30px'><a id='delete_row' title="Delete" onclick='remove_row(0)' class="btn btn-xs bg-orange remove1"><span class="fa fa-trash"></span></a></td>
+					    </tr>
+						<td width='30px'>
+						<input type="hidden"  name="m_id[]" value="<?php echo $r->pjt_material_id;?>" >
+						<a  href="javascript:confirmcancel(<?php echo $r->pjt_material_id;?>)" title="Delete" class="btn btn-xs bg-orange"><span class="fa fa-trash"></span></a></td>
+					</tr>
+	     				<?php } ?>
+                        <?php if(empty($mitems)) { ?>
+					<tr id='addr0' style='font-size: 13px;'>
+						<td> <select name="product[]"  tabindex='2' class="form-control">
+                                <option value="">-- Select product --</option>
+                                <?php foreach ($pitems as $itm): ?>
+                                    <option value="<?= $itm['product_id'] ?>"
+                                        >
+                                        <?= htmlspecialchars($itm['product_name']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            </td>
+                            <td><input type="number" name="pdt_qty[]" tabindex="14" class="form-control form-control-sm" placeholder=""></td>
+						<td><textarea rows="4" cols="20" name="desc[]" id="desc0" style="font-size:11px; font-weight:bold;" class="form-control form-control-sm" tabindex="13" placeholder="Description"></textarea>
+                            </td>
+                        <td><textarea name="item_remark[]" rows="4" id="item_remark0" tabindex="16" class="form-control form-control-sm" placeholder="remark"></textarea></td>
+						<td width='30px'><a id='delete_row' title="Delete" onclick='remove_row(0)' class="btn btn-xs bg-orange remove1"><span class="fa fa-trash"></span></a></td>
+					</tr>
+                    <?php } ?>
+					<tr id='addr1'></tr>
+					</tbody>
+				</table>
+		</div>
 
 <input type="hidden" name="project_code" id="project_code">
 <input type="hidden" name="customer_name" id="hidden_customer_name">
 <input type="hidden" name="branch_name" id="hidden_branch_name">
-
+<div class="col-md-12">
 <div class="text-end mt-3">
     <button type="submit"  id="saveBtn" class="btn btn-success">Create MR</button>
     <a href="<?= base_url('index.php/Project/list_material_request') ?>" class="btn btn-secondary">Cancel</a>
-</div>
+</div></div>
 
 </form>
+<?php
+$productOptions="";
+$productOptions .= '<option value="">-- Select Product --</option>';
+
+foreach ($pitems as $itm) {
+    $id = $itm['product_id'];
+    $name = $itm['product_name'];
+    $productOptions .= '<option value="' . $id . '">' .
+                        htmlspecialchars($name) .
+                       '</option>';
+}
+?>
+<script>
+var productOptions = `<?= $productOptions ?>`;
+</script>
 <script>
 $(document).ready(function(){
     $('#project_id').change(function(){
@@ -177,4 +240,57 @@ document.getElementById("mr_form").addEventListener("submit", function (e) {
     btn.disabled = true;
     btn.innerHTML = "Processing...";
 });
+
+
+$(document).ready(function(){
+	var i=1;
+	var i = 1;
+
+    $("#add_row").click(function () {
+
+        var html = "";
+
+        html += "<td>";
+        html += "<select name='product[]' class='form-control' tabindex='2'>";
+        html += productOptions;
+        html += "</select>";
+        html += "</td>";
+
+        html += "<td>";
+        html += "<input type='number' name='pdt_qty[]' class='form-control form-control-sm' tabindex='14'>";
+        html += "</td>";
+        html += "<td>";
+        html += "<textarea rows='4' cols='20' name='desc[]' id='desc" + i + "' ";
+        html += "class='form-control form-control-sm' ";
+        html += "style='font-size:11px;font-weight:bold;' ";
+        html += "placeholder='Description'></textarea>";
+        html += "</td>";
+        html += "<td>";
+        html += "<textarea name='item_remark[]' rows='4' id='item_remark" + i + "' ";
+        html += "class='form-control form-control-sm' ";
+        html += "placeholder='Remark'></textarea>";
+        html += "</td>";
+
+        html += "<td width='30px'>";
+        html += "<a onclick='remove_row(" + i + ");' class='btn btn-xs bg-orange remove1'>";
+        html += "<span class='fa fa-trash'></span>";
+        html += "</a>";
+        html += "</td>";
+
+        $("#addr" + i).html(html);
+
+        $("#mytbbody tr:last").after('<tr id="addr' + (i + 1) + '"></tr>');
+
+        i++;
+    });
+	   
+});
+var j=1;
+function remove_row(append_id){    	 
+    $('#addr'+append_id).attr("id","addr"+append_id+"x");
+    $('#addr'+append_id+"x").remove();
+    calculateTotal();
+}  
+
+
 </script>

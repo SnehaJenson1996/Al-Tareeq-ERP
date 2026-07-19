@@ -13,20 +13,52 @@ table th, table td {
 <div class="x_panel">
 <div class="x_content">
 
-<form id="project_form" action="<?= base_url('index.php/Project/update_project') ?>" method="post">
+<form id="project_form" action="<?= base_url('index.php/Project/update_task') ?>" method="post">
 
-<input type="hidden" name="project_id" value="<?= $project['project_id'] ?>">
-
+<input type="hidden" name="project_id" value="<?= $project['project_id']; ?>">
+<input type="hidden" name="project_task_id" value="<?= !empty($project_task) ? $project_task['id'] : ''; ?>">
 <!-- ================= PROJECT BASIC INFO ================= -->
-
 <h5>Project Details</h5>
+<div class="row">
+
+    <!-- Enquiry -->
+        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Enquiry</label>
+                                <select name="e_id" id="se_select" class="form-control" required>
+                                    <option value="">-- Select Enquiry --</option>
+                                    <?php foreach ($enquires as $eq): ?>
+                                        <option value="<?= $eq['enquiry_id']; ?>" <?php if($eq['enquiry_id']==$project['fk_enq_id']):?> selected="selected"<?php endif;?>>
+                                            <?= $eq['enquiry_code']; ?> - <?= $eq['customer_name']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Quotation -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Quotation</label>
+                                <select name="quotation_id" id="quotation_select" class="form-control" required>
+                                    <option value="">-- Select Quotation --</option>
+                                    <?php foreach ($quotation as $qo): ?>
+                                        <option value="<?= $qo['qtn_id']; ?>" <?php if($qo['qtn_id']==$project['fk_quot_id']):?> selected="selected"<?php endif;?>>
+                                            <?= $qo['quotation_code']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
 <table class="table table-bordered">
 <tr>
-    <th width="20%">Sales Order</th>
+    <!--<th width="20%">Sales Order</th>
     <td width="30%">
         <input type="text" class="form-control" value="<?= $project['so_code'] ?? '' ?>" readonly>
         <input type="hidden" name="so_id" value="<?= $project['so_id'] ?>">
-    </td>
+    </td>-->
     <!-- <th width="20%">Customer</th>
     <td width="30%">
        <input type="text" class="form-control" value="<?= $project['customer_name'] ?>" readonly>
@@ -81,18 +113,52 @@ table th, table td {
     </td>
 </tr>
 </table>
+<div class="row">
+                        <!-- Enquiry -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <input type="text" name="subject" value="<?= $project['subject'] ?? '' ?>" class="form-control qty_input text-end">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Client Po Number</label>
+                                <input type="text" name="po_number" id="po_number" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Enquiry -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>LOA Received</label>
+                                <select name="loa_received" id="loa_received" class="form-control" >
+                                    <option value="">-- Select --</option>
+                                    <?php $project['loa_received'] = $project['loa_received']??'';?>
+                                    <option value="Yes"<?php if($project['loa_received']=='Yes'):?> selected="selected"<?php endif;?>>Yes</option>
+                                    <option value="No"<?php if($project['loa_received']=='No'):?> selected="selected"<?php endif;?>>No</option>>
+                                </select>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>LOA Received Date</label>
+                                <input type="date" name="loa_date" id="loa_date" value="<?= $project['loa_date'] ?? '' ?>" class="form-control">
+                            </div>
+                        </div>
+                        
+                    </div>
 
 <!-- ================= PROJECT ITEMS ================= -->
 
 <h5>Project Items</h5>
-<table class="table table-bordered" id="project_items_table">
+<table class="table table-bordered col-md-6" id="project_items_table">
 <thead>
 <tr>
     <th>#</th>
     <th>Item</th>
     <th class="text-end">Qty</th>
-    <th class="text-end">Unit Price</th>
-    <th class="text-end">Total</th>
+    <!--<th class="text-end">Unit Price</th>
+    <th class="text-end">Total</th>-->
 </tr>
 </thead>
 <tbody>
@@ -108,11 +174,11 @@ table th, table td {
         <input type="number" name="quantity[]" class="form-control qty_input text-end"
                value="<?= $item['quantity'] ?>" readonly>
     </td>
-    <td>
+    <!--<td>
         <input type="number" name="unit_price[]" class="form-control price_input text-end"
                value="<?= $item['unit_price'] ?>" readonly>
     </td>
-    <td class="text-end total"><?= number_format($item['total'],2) ?></td>
+    <td class="text-end total"><?= number_format($item['total'],2) ?></td>-->
 </tr>
 <?php endforeach; ?>
 
@@ -120,7 +186,7 @@ table th, table td {
 </table>
 
 <!-- ================= FINANCIAL SUMMARY ================= -->
-
+<!--
 <h5>Financial Summary</h5>
 <table class="table table-bordered" style="width:50%">
 <tr>
@@ -151,11 +217,11 @@ table th, table td {
                value="<?= $project['grand_total'] ?>" readonly>
     </td>
 </tr>
-</table>
+</table> -->
 
 <!-- ================= TECHNICIAN ASSIGNMENT ================= -->
 
-<h5>Technician & Resource Assignment</h5>
+<h5 style="clear:both;">Technician & Resource Assignment</h5>
 
 <table class="table table-bordered" id="technician_table">
 <thead>
@@ -219,21 +285,20 @@ table th, table td {
 
 <div class="form-group mt-3">
 <label>Remarks</label>
-<textarea name="remarks" class="form-control"><?= $project['remarks'] ?></textarea>
+<textarea name="remarks" class="form-control"><?= $project['remarks']; ?></textarea>
 </div>
 
 <tr>
     <th>Approver</th>
     <td colspan="3">
-        <select name="approver_id" class="form-control" required>
-            <option value="">-- Select Approver --</option>
-            <?php foreach ($users as $user): ?>
-                <option value="<?= $user['user_id'] ?>"
-                    <?= ($project['approver_id'] == $user['user_id']) ? 'selected' : '' ?>>
-                    <?= $user['user_name'] ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+       <select name="approver" class="form-control">
+        <?php foreach($users as $user){ ?>
+            <option value="<?= $user['user_id']; ?>"
+                <?= ($project['approver_id']==$user['user_id'])?'selected':''; ?>>
+                <?= $user['user_name']; ?>
+            </option>
+        <?php } ?>
+</select>
     </td>
 </tr>
 
@@ -436,5 +501,212 @@ $('#reject_project').click(function(){
     }
 });
 
+</script>
+<script>
+$(document).ready(function(){
+
+    $('#se_select').change(function(){
+        var enquiry_id = $(this).val();
+
+        if(enquiry_id != ''){
+
+            $.ajax({
+                url: "<?php echo base_url()?>index.php/Project/getQuotationByEnquiry",
+                type: "POST",
+                data: {enquiry_id: enquiry_id},
+                dataType: "json",
+                success: function(response){
+
+                    $('#quotation_select').html('<option value="">-- Select Quotation --</option>');
+
+                    $.each(response, function(index, row){
+
+                        $('#quotation_select').append(
+                            '<option value="'+row.qtn_id+'">'+row.quotation_code+'</option>'
+                        );
+
+                    });
+
+                }
+            });
+
+        }else{
+
+            $('#quotation_select').html('<option value="">-- Select Quotation --</option>');
+
+        }
+
+    });
+
+});
+$(document).ready(function () {
+
+    $('#se_select').change(function () {
+        var enquiry_id = $(this).val();
+        if (enquiry_id != '') {
+
+            $.ajax({
+                url: "<?php echo base_url()?>index.php/Project/getProjectDetailsByEnquiry",
+                type: "POST",
+                data: { enquiry_id: enquiry_id },
+                dataType: "json",
+                success: function (response) {
+
+                    // Auto fill project details
+                    $('#project_name').val(response.project_name);
+                    $('#project_location').val(response.project_location);
+
+                }
+            });
+
+        } else {
+
+            $('#project_name').val('');
+            $('#project_location').val('');
+            $('#quotation_select').html('<option value="">-- Select Quotation --</option>');
+
+        }
+
+    });
+
+});
+
+$(document).ready(function () {
+
+    $('#quotation_select').change(function () {
+
+        var quotation_id = $(this).val();
+
+        if (quotation_id != '') {
+
+            $.ajax({
+                url: "<?php echo base_url()?>index.php/Project/getcustomerDetails",
+                type: "POST",
+                data: {
+                    quotation_id: quotation_id
+                },
+                dataType: "json",
+                success: function (response) {
+
+                    $('#customer_name').val(response.customer);
+                    $('#branch_name').val(response.branch);
+
+                }
+            });
+
+        } else {
+
+            $('#customer_name').val('');
+            $('#branch_name').val('');
+
+        }
+
+    });
+
+});
+
+
+function fetchQuotation(q_id){
+        if(!q_id) return;
+        $.ajax({
+            url: '<?= base_url("index.php/Project/fetch_quotation_details") ?>',
+            type: 'POST',
+            data: {q_id: q_id},
+            dataType: 'json',
+            success: function(data){
+                var html = '';
+                $.each(data.q_products, function(i, prod){
+                    html += '<tr>'+
+                        '<td>'+(i+1)+'</td>'+
+                        '<td><input type="hidden" name="product_id[]" value="'+prod.prd_id+'">'+prod.product_name+'</td>'+
+                        '<td class="text-end"><input type="text" name="quantity[]" value="'+prod.qty+'" class="form-control qty_input text-end" readonly></td>'+
+                        //'<td class="text-end"><input type="text" name="unit_price[]" value="'+prod.unit_price+'" class="form-control price_input text-end" readonly></td>'+
+                        //'<td class="text-end total">'+(prod.qty * prod.unit_price).toFixed(2)+'</td>'+
+                    '</tr>';
+                });
+                $('#project_items_table tbody').html(html);
+
+                calculateTotals();
+            }
+        });
+    }
+
+    // Trigger when user manually selects quotation
+    $('#quotation_select').change(function(){
+        var q_id = $(this).val();
+        fetchQuotation(q_id);
+    });
+
+    // ✅ Auto-fetch if SO is preselected via URL
+    var preselected_so_id = '<?= $selected_so_id ?? '' ?>';
+    if(preselected_so_id){
+        fetchSO(preselected_so_id);
+    }
+
+    // Recalculate totals on quantity or price change
+    $(document).on('keyup change', '.qty_input, .price_input', function(){
+        calculateTotals();
+    });
+
+    function calculateTotals(){
+        var subtotal = 0;
+        $('#project_items_table tbody tr').each(function(){
+            var qty = parseFloat($(this).find('.qty_input').val()) || 0;
+            var price = parseFloat($(this).find('.price_input').val()) || 0;
+            var total = qty * price;
+            $(this).find('.total').text(total.toFixed(2));
+            subtotal += total;
+        });
+        $('#subtotal').val(subtotal.toFixed(2));
+
+        var vat_percentage = parseFloat($('#vat_percentage').val()) || 0;
+        var vat_amount = subtotal * vat_percentage / 100;
+        $('#vat_amount').val(vat_amount.toFixed(2));
+
+        $('#grand_total').val((subtotal + vat_amount).toFixed(2));
+    }
+
+    // Recalculate VAT & grand total if VAT percentage changes
+    $('#vat_percentage').on('keyup change', function(){
+        calculateTotals();
+    });
+
+    // Initial calculation
+    calculateTotals();
+
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const startDate = document.getElementById("start_date");
+    const endDate = document.getElementById("end_date");
+    const duration = document.getElementById("duration");
+
+    function calculateDuration() {
+        if (startDate.value && endDate.value) {
+            const start = new Date(startDate.value);
+            const end = new Date(endDate.value);
+
+            // Difference in milliseconds
+            const diff = end - start;
+
+            if (diff >= 0) {
+                // +1 to include both start and end dates
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+                duration.value = days;
+            } else {
+                duration.value = "";
+                alert("End Date cannot be earlier than Start Date.");
+            }
+        }
+    }
+
+    // Calculate on page load (for existing values)
+    calculateDuration();
+
+    // Recalculate when dates change
+    startDate.addEventListener("change", calculateDuration);
+    endDate.addEventListener("change", calculateDuration);
+});
 </script>
 
