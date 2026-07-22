@@ -39,13 +39,12 @@ class Accounts extends CI_Controller
   {
     $user = $this->session->userdata('user_id');
 
-		if (!has_access($user,'Accounts/account_group_list','A'))
-		{
-			$data['title']='Access Denied';
-			$data['main_content']='errors/access_control.php';
-      $this->load->view('includes/template',$data);
-			return;
-		}
+    if (!has_access($user, 'Accounts/account_group_list', 'A')) {
+      $data['title'] = 'Access Denied';
+      $data['main_content'] = 'errors/access_control.php';
+      $this->load->view('includes/template', $data);
+      return;
+    }
     $data['title'] = 'Account Group';
     $this->load->model('Accounts_model');
     $data['parent_records'] = $this->Accounts_model->get_account_group_parent();
@@ -58,13 +57,12 @@ class Accounts extends CI_Controller
   {
     $user = $this->session->userdata('user_id');
 
-		if (!has_view_access($user,'Accounts/account_group_list'))
-		{
-			$data['title'] = 'Access Denied';
-			$data['main_content'] = 'errors/access_control.php';
-			$this->load->view('includes/template',$data);
-			return;
-		}
+    if (!has_view_access($user, 'Accounts/account_group_list')) {
+      $data['title'] = 'Access Denied';
+      $data['main_content'] = 'errors/access_control.php';
+      $this->load->view('includes/template', $data);
+      return;
+    }
     $this->load->model('Accounts_model');
     $data['title']            = 'Account Group';
     $data['account_records']  = $this->Accounts_model->get_account_group_list();
@@ -128,13 +126,12 @@ class Accounts extends CI_Controller
   {
     $user = $this->session->userdata('user_id');
 
-		if (!has_access($user,'accounts/list_general_ledger_account_form','A'))
-		{
-			$data['title']='Access Denied';
-			$data['main_content']='errors/access_control.php';
-      $this->load->view('includes/template',$data);
-			return;
-		}
+    if (!has_access($user, 'accounts/list_general_ledger_account_form', 'A')) {
+      $data['title'] = 'Access Denied';
+      $data['main_content'] = 'errors/access_control.php';
+      $this->load->view('includes/template', $data);
+      return;
+    }
     $data['title'] = 'General Ledger Account';
     $this->load->model('Accounts_model');
     $data['account_records']   = $this->Accounts_model->get_account_group();
@@ -151,13 +148,12 @@ class Accounts extends CI_Controller
   {
     $user = $this->session->userdata('user_id');
 
-		if (!has_access($user,'accounts/list_general_ledger_account_form','E'))
-		{
-			$data['title'] = 'Access Denied';
-			$data['main_content'] = 'errors/access_control.php';
-			$this->load->view('includes/template',$data);
-			return;
-		}
+    if (!has_access($user, 'accounts/list_general_ledger_account_form', 'E')) {
+      $data['title'] = 'Access Denied';
+      $data['main_content'] = 'errors/access_control.php';
+      $this->load->view('includes/template', $data);
+      return;
+    }
     $this->load->model('Accounts_model');
     //	$data['opening_balance'] = $this->Accounts_model->get_opening_balance_by_id();
     $data['title']              = 'General Ledger Account';
@@ -171,13 +167,12 @@ class Accounts extends CI_Controller
   {
     $user = $this->session->userdata('user_id');
 
-		if (!has_view_access($user,'accounts/list_general_ledger_account_form'))
-		{
-			$data['title'] = 'Access Denied';
-			$data['main_content'] = 'errors/access_control.php';
-			$this->load->view('includes/template',$data);
-			return;
-		}
+    if (!has_view_access($user, 'accounts/list_general_ledger_account_form')) {
+      $data['title'] = 'Access Denied';
+      $data['main_content'] = 'errors/access_control.php';
+      $this->load->view('includes/template', $data);
+      return;
+    }
     $this->load->model('Accounts_model');
     $data['title']          = 'General Ledger Account';
     $data['ledger_records'] = $this->Accounts_model->get_general_ledger_list();
@@ -248,7 +243,7 @@ class Accounts extends CI_Controller
   }
 
   /////////////////////// contra_entry_add start  //////////////////////
-  
+
   function add_contra_entry()
   { //in use
     $data['title'] = "Add Contra Entry";
@@ -295,9 +290,9 @@ class Accounts extends CI_Controller
     $this->load->model('Accounts_model');
     $data['sundry_detors_records'] = $this->Accounts_model->get_general_ledger_accounts('Expense', '');
     $data['credit_records'] = $this->Accounts_model->get_general_ledger_accounts('Liabilities', '');
-   $this->load->model('Company_model');
-   $data['branch_list']    = $this->Company_model->get_all_branches();
-   
+    $this->load->model('Company_model');
+    $data['branch_list']    = $this->Company_model->get_all_branches();
+
     $data['main_content'] = 'Accounts/journal_add.php';
     $this->load->view('includes/template', $data);
   }
@@ -496,9 +491,9 @@ class Accounts extends CI_Controller
     //echo $this->db->last_query();exit();
     //$data['customer_records'] = $this->Accounts_model->get_customer_record();
     //echo '<pre>';print_r($data);exit;
-    	$this->load->model('Hr_model');
-		$data['employees'] = $this->Hr_model->get_employee_list();    
-    					$data['branch_list']    = $this->Company_model->get_all_branches();
+    $this->load->model('Hr_model');
+    $data['employees'] = $this->Hr_model->get_employee_list();
+    $data['branch_list']    = $this->Company_model->get_all_branches();
 
     $data['main_content'] = 'Accounts/receipt_add.php';
     $this->load->view('includes/template', $data);
@@ -644,7 +639,7 @@ class Accounts extends CI_Controller
     //  print_r(    $data['header']); exit;
     $data['details'] = $this->Accounts_model->get_receipt_details($voucher_code);
 
-      $this->load->model('Company_model');
+    $this->load->model('Company_model');
     $prepared_by_id = $data['header']->prepared_by ?? null;
     $approved_by_id = $data['header']->approved_by ?? null;
 
@@ -654,27 +649,25 @@ class Accounts extends CI_Controller
     $approved_signature = '';
 
     if (!empty($prepared_by_id)) {
-        $prepared_emp = $this->Company_model->get_employee_by_id($prepared_by_id);
-        $prepared_by_name = $prepared_emp->employee_name ?? '';
-        $prepared_signature = $prepared_emp->signature_file ?? '';
-
+      $prepared_emp = $this->Company_model->get_employee_by_id($prepared_by_id);
+      $prepared_by_name = $prepared_emp->employee_name ?? '';
+      $prepared_signature = $prepared_emp->signature_file ?? '';
     }
     if (!empty($approved_by_id)) {
-        $approved_emp = $this->Company_model->get_employee_by_id($approved_by_id);
-        $approved_by_name = $approved_emp->employee_name ?? '';
-        $approved_signature = $approved_emp->signature_file ?? '';
-
+      $approved_emp = $this->Company_model->get_employee_by_id($approved_by_id);
+      $approved_by_name = $approved_emp->employee_name ?? '';
+      $approved_signature = $approved_emp->signature_file ?? '';
     }
     $this->load->model('Company_model');
     $branch_details = $this->Company_model->get_branch_by_id(1);
     $data['branch_header']   = $branch_details->branch_header;
     $data['branch_footer']   = $branch_details->branch_footer;
-     $data['branch_stamp']   = $branch_details->branch_stamp;
+    $data['branch_stamp']   = $branch_details->branch_stamp;
     $data['headerPath'] = base_url(ltrim($data['branch_header'], '/'));
     $data['footerPath'] = base_url(ltrim($data['branch_footer'], '/'));
     $data['prepared_by_name'] = $prepared_by_name;
     $data['approved_by_name'] = $approved_by_name;
-     $data['prepared_signature'] = $prepared_signature ?? '';
+    $data['prepared_signature'] = $prepared_signature ?? '';
     $data['approved_signature'] = $approved_signature ?? '';
     if (!$data['header']) {
       show_error("Receipt not found!");
@@ -721,14 +714,14 @@ class Accounts extends CI_Controller
     $data['sundry_detors_records'] = $this->Accounts_model->get_general_ledger_accounts('2', '4');
     $data['sundry_detors_records'] = $this->Accounts_model->get_all_general_ledger_accounts();
     $data['receipt_Creditors']      = $this->Accounts_model->get_all_general_ledger_accounts();
-   $this->load->model('Hr_model');
-		$data['employees'] = $this->Hr_model->get_employee_list(); 
+    $this->load->model('Hr_model');
+    $data['employees'] = $this->Hr_model->get_employee_list();
     $this->load->model('Company_model');
-   
+
     $data['branch_list']    = $this->Company_model->get_all_branches();
-     $this->load->model('Currency_model');
-            $data['currency_list']      = $this->Currency_model->get_all_currency_list();
-    
+    $this->load->model('Currency_model');
+    $data['currency_list']      = $this->Currency_model->get_all_currency_list();
+
     $data['main_content']          = 'Accounts/payment_add.php';
     $this->load->view('includes/template', $data);
   }
@@ -883,10 +876,10 @@ class Accounts extends CI_Controller
     //    
 
     $data['account_id'] = "";
-    $data['branch_id']  = "";  
+    $data['branch_id']  = "";
 
     $this->load->model('Accounts_model');
-        $this->load->model('Company_model');
+    $this->load->model('Company_model');
 
     $data['account_ledgers'] = $this->Accounts_model->get_all_general_ledger_accounts();
     $data['branch_list']    = $this->Company_model->get_all_branches();
@@ -898,9 +891,9 @@ class Accounts extends CI_Controller
     $this->load->view('includes/template', $data);
   }
   public function search_individual_ledger_details()
-{
+  {
     $this->load->model('Accounts_model');
-     $this->load->model('Company_model');
+    $this->load->model('Company_model');
 
 
     $data['title'] = "Report - Individual Ledger Details";
@@ -916,39 +909,39 @@ class Accounts extends CI_Controller
     $data['to_date']    = $to_date;
 
     $data['account_ledgers'] =
-        $this->Accounts_model->get_all_general_ledger_accounts();
+      $this->Accounts_model->get_all_general_ledger_accounts();
 
     $data['branch_list']    = $this->Company_model->get_all_branches();
 
     $data['ledger_transaction_records'] =
-        $this->Accounts_model->get_ledger_report($account_id, $from_date, $to_date, $branch_id);
+      $this->Accounts_model->get_ledger_report($account_id, $from_date, $to_date, $branch_id);
 
     $data['main_content'] = 'Reports/account/view_individual_ledger_details';
     $this->load->view('includes/template', $data);
-}
+  }
   function print_individual_ledger_account_details()
-{
+  {
     $data['title'] = "Report-Individual Ledger Details";
 
     $data['from_date'] = date('d-m-Y', strtotime($this->input->post('from_date')));
     $data['to_date']   = date('d-m-Y', strtotime($this->input->post('to_date')));
-    $data['account_id']= $this->input->post('account_id');
+    $data['account_id'] = $this->input->post('account_id');
 
-     $data['branch_id'] = $this->input->post('branch_id');
+    $data['branch_id'] = $this->input->post('branch_id');
 
     $this->load->model('Accounts_model');
     $data['account_ledgers'] = $this->Accounts_model->get_all_general_ledger_accounts();
 
     $data['ledger_transaction_records'] =
-        $this->Accounts_model->get_ledger_report(
-            $data['account_id'],
-            $data['from_date'],
-            $data['to_date'],
-            $data['branch_id']
-        );
+      $this->Accounts_model->get_ledger_report(
+        $data['account_id'],
+        $data['from_date'],
+        $data['to_date'],
+        $data['branch_id']
+      );
 
     $this->load->view('Print/print_individual_ledger_account_details', $data);
-}
+  }
 
   function export_individual_ledger_account_details()
   {
@@ -957,7 +950,7 @@ class Accounts extends CI_Controller
     $data['from_date'] = date('d-m-Y', strtotime($this->input->post('from_date')));;
     $data['to_date'] = date('d-m-Y', strtotime($this->input->post('to_date')));
     $data['account_id'] = $this->input->post('account_id');
-   $data['branch_id'] = $this->input->post('branch_id');
+    $data['branch_id'] = $this->input->post('branch_id');
 
 
     // $this->load->model('Setup_model');
@@ -966,13 +959,13 @@ class Accounts extends CI_Controller
     $this->load->model('Accounts_model');
     $data['account_ledgers'] = $this->Accounts_model->get_all_general_ledger_accounts();
 
-$data['ledger_transaction_records'] =
-        $this->Accounts_model->get_ledger_report(
-            $data['account_id'],
-            $data['from_date'],
-            $data['to_date'],
-            $data['branch_id']
-        );
+    $data['ledger_transaction_records'] =
+      $this->Accounts_model->get_ledger_report(
+        $data['account_id'],
+        $data['from_date'],
+        $data['to_date'],
+        $data['branch_id']
+      );
 
     $this->load->view('excel_reports/export_individual_ledger_account_details', $data);
   }
@@ -1007,54 +1000,54 @@ $data['ledger_transaction_records'] =
   //   //log_message("debug", "hai123");
   //   $this->load->view('includes/template', $data);
   // }
-function view_balance_sheet()
-	{
-		$data['title'] = "Balance Sheet";
+  function view_balance_sheet()
+  {
+    $data['title'] = "Balance Sheet";
 
-		$from = $this->input->post('from') ?: date('Y-01-01');
-		$to   = $this->input->post('to') ?: date('Y-m-d');
+    $from = $this->input->post('from') ?: date('Y-01-01');
+    $to   = $this->input->post('to') ?: date('Y-m-d');
 
-		$data['from'] = date('Y-m-d', strtotime($from));
-		$data['to']   = date('Y-m-d', strtotime($to));
+    $data['from'] = date('Y-m-d', strtotime($from));
+    $data['to']   = date('Y-m-d', strtotime($to));
 
     $branch_id = $this->input->post('branch_id');
-$data['branch_id'] = $branch_id;
+    $data['branch_id'] = $branch_id;
 
-		$this->load->model('Accounts_model');
+    $this->load->model('Accounts_model');
 
-$tree = $this->Accounts_model->prepare_balance_sheet($to, $branch_id);
+    $tree = $this->Accounts_model->prepare_balance_sheet($to, $branch_id);
 
     $this->load->model('Company_model');
-$data['branch_list']    = $this->Company_model->get_all_branches();
+    $data['branch_list']    = $this->Company_model->get_all_branches();
 
-		$assets = [];
-		$liabilities = [];
+    $assets = [];
+    $liabilities = [];
 
-		foreach ($tree as $group) {
+    foreach ($tree as $group) {
 
-			if (strtolower(trim($group->group_name)) == 'assets') {
-				$assets[] = $group; // ✅ FIX
-			}
+      if (strtolower(trim($group->group_name)) == 'assets') {
+        $assets[] = $group; // ✅ FIX
+      }
 
-			if (strtolower(trim($group->group_name)) == 'liabilities') {
-				$liabilities[] = $group; // ✅ FIX
-			}
-		}
+      if (strtolower(trim($group->group_name)) == 'liabilities') {
+        $liabilities[] = $group; // ✅ FIX
+      }
+    }
 
-		$profit = $this->Accounts_model->get_profit_loss($from, $to);
+    $profit = $this->Accounts_model->get_profit_loss($from, $to);
 
-		foreach ($liabilities as &$group) {
-			if (strtolower(trim($group->group_name)) == 'capital account') {
-				$group->balance += $profit;
-			}
-		}
+    foreach ($liabilities as &$group) {
+      if (strtolower(trim($group->group_name)) == 'capital account') {
+        $group->balance += $profit;
+      }
+    }
 
-		$data['assets'] = $assets;
-		$data['liabilities'] = $liabilities;
+    $data['assets'] = $assets;
+    $data['liabilities'] = $liabilities;
 
-		$data['main_content'] = 'Reports/account/balance_sheet_list';
-		$this->load->view('includes/template', $data);
-	}
+    $data['main_content'] = 'Reports/account/balance_sheet_list';
+    $this->load->view('includes/template', $data);
+  }
 
 
   function get_balance_sheet()
@@ -1078,31 +1071,35 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
   // }
 
   public function view_profit_and_loss()
-{
+  {
     $data['title'] = "Report-Profit and Loss";
 
     if (!$this->input->post()) {
-        $from = date('Y-m-01');
-        $to   = date('Y-m-d');
+      $from = date('Y-m-01');
+      $to   = date('Y-m-d');
     } else {
-        $from = $this->input->post('from');
-        $to   = $this->input->post('to');
+      $from = $this->input->post('from');
+      $to   = $this->input->post('to');
     }
 
-    if (empty($from)) { $from = date('Y-m-01'); }
-    if (empty($to)) { $to = date('Y-m-d'); }
+    if (empty($from)) {
+      $from = date('Y-m-01');
+    }
+    if (empty($to)) {
+      $to = date('Y-m-d');
+    }
 
     $data['from'] = $from;
     $data['to']   = $to;
     $branch_id = $this->input->post('branch_id');
-$data['branch_id'] = $branch_id;
+    $data['branch_id'] = $branch_id;
 
-        $this->load->model('Accounts_model');
-        $this->load->model('Company_model');
-$data['branch_list']    = $this->Company_model->get_all_branches();
+    $this->load->model('Accounts_model');
+    $this->load->model('Company_model');
+    $data['branch_list']    = $this->Company_model->get_all_branches();
 
     // Fetch all 6 specific segments
-    $data['sales_accounts']    = $this->Accounts_model->get_sales_accounts($from, $to,$branch_id);
+    $data['sales_accounts']    = $this->Accounts_model->get_sales_accounts($from, $to, $branch_id);
     $data['purchase_accounts'] = $this->Accounts_model->get_purchase_accounts($from, $to, $branch_id);
     $data['direct_income']     = $this->Accounts_model->get_direct_income($from, $to, $branch_id);
     $data['direct_expense']    = $this->Accounts_model->get_direct_expense($from, $to, $branch_id);
@@ -1113,15 +1110,21 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
     $data['total_sales']           = array_sum(array_column($data['sales_accounts'], 'total'));
     $data['total_direct_income']   = array_sum(array_column($data['direct_income'], 'total'));
     $data['total_indirect_income'] = array_sum(array_column($data['indirect_income'], 'total'));
-    
-    $data['total_purchase'] = array_sum(array_map(function($row){ return abs($row->total); }, $data['purchase_accounts']));
-    $data['total_direct_expense'] = array_sum(array_map(function($row){ return abs($row->total); }, $data['direct_expense']));
-    $data['total_indirect_expense'] = array_sum(array_map(function($row){ return abs($row->total); }, $data['indirect_expense']));
+
+    $data['total_purchase'] = array_sum(array_map(function ($row) {
+      return abs($row->total);
+    }, $data['purchase_accounts']));
+    $data['total_direct_expense'] = array_sum(array_map(function ($row) {
+      return abs($row->total);
+    }, $data['direct_expense']));
+    $data['total_indirect_expense'] = array_sum(array_map(function ($row) {
+      return abs($row->total);
+    }, $data['indirect_expense']));
 
     // Load view layout
     $data['main_content'] = 'Reports/account/view_profit_loss.php';
     $this->load->view('includes/template', $data);
-}
+  }
 
   function get_profit_and_loss()
   {
@@ -1233,16 +1236,14 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
     $approved_signature = '';
 
     if (!empty($prepared_by_id)) {
-        $prepared_emp = $this->Company_model->get_employee_by_id($prepared_by_id);
-        $prepared_by_name = $prepared_emp->employee_name ?? '';
-        $prepared_signature = $prepared_emp->signature_file ?? '';
-
+      $prepared_emp = $this->Company_model->get_employee_by_id($prepared_by_id);
+      $prepared_by_name = $prepared_emp->employee_name ?? '';
+      $prepared_signature = $prepared_emp->signature_file ?? '';
     }
     if (!empty($approved_by_id)) {
-        $approved_emp = $this->Company_model->get_employee_by_id($approved_by_id);
-        $approved_by_name = $approved_emp->employee_name ?? '';
-        $approved_signature = $approved_emp->signature_file ?? '';
-
+      $approved_emp = $this->Company_model->get_employee_by_id($approved_by_id);
+      $approved_by_name = $approved_emp->employee_name ?? '';
+      $approved_signature = $approved_emp->signature_file ?? '';
     }
     $data['prepared_by_name'] = $prepared_by_name;
     $data['approved_by_name'] = $approved_by_name;
@@ -1265,10 +1266,10 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
 
     $data['from'] = $this->input->post('from') ?? date("d-m-Y", strtotime(date("Y-m-01")));
     $data['to'] = $this->input->post('to') ?? date("d-m-Y", strtotime(date("Y-m-d")));
-        $data['branch_id'] = $this->input->post('branch_id'); // ✅ ADD THIS
+    $data['branch_id'] = $this->input->post('branch_id'); // ✅ ADD THIS
 
     $this->load->model('Company_model');
-$data['branch_list']    = $this->Company_model->get_all_branches();
+    $data['branch_list']    = $this->Company_model->get_all_branches();
 
     $data['request_type'] = "";
     $data['records'] = "";
@@ -1288,11 +1289,11 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
     $from_date = $from_ts ? date("Y-m-d", $from_ts) : date("Y-m-d");
     $to_date   = $to_ts ? date("Y-m-d", $to_ts) : date("Y-m-d");
     $branch_id = $this->input->post('branch_id') ?? '';
-$data['branch_id'] = $branch_id;
+    $data['branch_id'] = $branch_id;
 
     $this->load->model('Accounts_model');
     $this->load->model('Company_model');
-$data['branch_list']    = $this->Company_model->get_all_branches();
+    $data['branch_list']    = $this->Company_model->get_all_branches();
 
     // ✅ FIXED THIS LINE
     $request_type = $this->input->post('request_type') ?? '';
@@ -1301,7 +1302,7 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
 
     if ($request_type && $ledger_id) {
       if ($request_type == 'Sundry Debtors') {
-       $data['records'] = $this->Accounts_model->get_outstanding_report($from_date, $to_date, $ledger_id, $branch_id);
+        $data['records'] = $this->Accounts_model->get_outstanding_report($from_date, $to_date, $ledger_id, $branch_id);
         $data['group_no'] = 30;
       } elseif ($request_type == 'Sundry Creditors') {
         $data['records'] = $this->Accounts_model->get_sundry_creditors_outstanding($from_date, $to_date, $ledger_id, $branch_id);
@@ -1311,7 +1312,7 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
       }
     } elseif ($request_type) {
       if ($request_type == 'Sundry Debtors') {
-       $data['records'] = $this->Accounts_model->get_outstanding_report($from_date, $to_date, '', $branch_id);
+        $data['records'] = $this->Accounts_model->get_outstanding_report($from_date, $to_date, '', $branch_id);
         $data['group_no'] = 30;
       } elseif ($request_type == 'Sundry Creditors') {
         $data['records'] = $this->Accounts_model->get_sundry_creditors_outstanding($from_date, $to_date, '', $branch_id);
@@ -1396,7 +1397,7 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
     $from_date = ($ts = strtotime(str_replace(['/', '.'], '-', $this->input->post('from') ?: $this->input->get('from') ?: date('d-m-Y')))) ? date('Y-m-d', $ts) : date('Y-m-d');
     $to_date   = ($ts = strtotime(str_replace(['/', '.'], '-', $this->input->post('to')   ?: $this->input->get('to')   ?: date('d-m-Y')))) ? date('Y-m-d', $ts) : date('Y-m-d');
     $data['request_type']  = $this->input->post('request_type');
-     $data['branch_id']  = $this->input->post('branch_id');
+    $data['branch_id']  = $this->input->post('branch_id');
 
 
 
@@ -1409,7 +1410,7 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
 
     $request_type = $this->input->post('request_type') ?? '';
     $ledger_id = $this->input->post('ledger_id') ?? '';
-        $branch_id    = $this->input->post('branch_id') ?? '';
+    $branch_id    = $this->input->post('branch_id') ?? '';
 
     log_message('debug', 'Selected Ledger ID: ' . $ledger_id);
 
@@ -1468,7 +1469,7 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
     $from_date = ($ts = strtotime(str_replace(['/', '.'], '-', $this->input->post('from') ?: $this->input->get('from') ?: date('d-m-Y')))) ? date('Y-m-d', $ts) : date('Y-m-d');
     $to_date   = ($ts = strtotime(str_replace(['/', '.'], '-', $this->input->post('to')   ?: $this->input->get('to')   ?: date('d-m-Y')))) ? date('Y-m-d', $ts) : date('Y-m-d');
     $data['request_type']  = $this->input->post('request_type');
-     $data['branch_id']  = $this->input->post('branch_id');
+    $data['branch_id']  = $this->input->post('branch_id');
 
 
     // $this->load->model('Setup_model');
@@ -1535,13 +1536,13 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
   function view_bank_reconciliation()
   {
 
- 
+
     $data['title'] = 'Bank Reconciliation';
     $this->load->model('Accounts_model');
     $flag = $this->Accounts_model->add_bank_reconciliation_details();
-//      echo '<pre>';
-// print_r($_POST);
-// exit;
+    //      echo '<pre>';
+    // print_r($_POST);
+    // exit;
     if ($flag) {
       $this->session->set_flashdata('success', 'Record Successfully Saved');
       redirect('Accounts/list_bank_reconciliation');
@@ -1761,8 +1762,8 @@ $data['branch_list']    = $this->Company_model->get_all_branches();
   {
     return preg_match('/^\d{4}-\d{2}-\d{2}$/', $date);
   }
-public function trial_balance($from_date = null, $to_date = null)
-{
+  public function trial_balance($from_date = null, $to_date = null)
+  {
     $this->load->model('Accounts_model');
 
     // Accept via POST or URL
@@ -1777,7 +1778,7 @@ public function trial_balance($from_date = null, $to_date = null)
     $to   = DateTime::createFromFormat('Y-m-d', $to_date);
 
     if (!$from || !$to) {
-        show_error("Invalid date format.");
+      show_error("Invalid date format.");
     }
 
     $from_sql = $from->format('Y-m-d');
@@ -1797,7 +1798,7 @@ public function trial_balance($from_date = null, $to_date = null)
     $data['main_content'] = 'Accounts/trial_balance_view';
 
     $this->load->view('includes/template', $data);
-}
+  }
 
 
   public function trial_balance_export()
@@ -1880,8 +1881,8 @@ public function trial_balance($from_date = null, $to_date = null)
   }
 
 
- public function trial_balance_print()
-{
+  public function trial_balance_print()
+  {
     $this->load->model('Accounts_model');
     $this->load->model('Setup_model');
 
@@ -1892,11 +1893,11 @@ public function trial_balance($from_date = null, $to_date = null)
 
     // Default today
     if (empty($from_date)) {
-        $from_date = date('Y-m-d');
+      $from_date = date('Y-m-d');
     }
 
     if (empty($to_date)) {
-        $to_date = date('Y-m-d');
+      $to_date = date('Y-m-d');
     }
 
     // Validate dates
@@ -1904,7 +1905,7 @@ public function trial_balance($from_date = null, $to_date = null)
     $to   = DateTime::createFromFormat('Y-m-d', $to_date);
 
     if (!$from || !$to) {
-        show_error('Invalid date format');
+      show_error('Invalid date format');
     }
 
     // DB format
@@ -1913,15 +1914,15 @@ public function trial_balance($from_date = null, $to_date = null)
 
     // Fetch report data with branch filter
     $data['accounts'] = $this->Accounts_model->get_account_trial_balance(
-        $from_for_db,
-        $to_for_db,
-        $branch_id
+      $from_for_db,
+      $to_for_db,
+      $branch_id
     );
 
     $data['group_totals'] = $this->Accounts_model->get_group_totals(
-        $from_for_db,
-        $to_for_db,
-        $branch_id
+      $from_for_db,
+      $to_for_db,
+      $branch_id
     );
 
     // Pass values to view
@@ -1932,7 +1933,7 @@ public function trial_balance($from_date = null, $to_date = null)
     // $data['company_records'] = $this->Setup_model->get_company_master_list();
 
     $this->load->view('Print/trial_balance_print_view', $data);
-}
+  }
   function add_expense()
   {
     // in use
@@ -2049,19 +2050,19 @@ public function trial_balance($from_date = null, $to_date = null)
     }
   }
 
-public function view_cash_flow()
-{
+  public function view_cash_flow()
+  {
     $from_date_input = $this->input->post('from_date');
     $to_date_input   = $this->input->post('to_date');
     $branch_id       = $this->input->post('branch_id');
 
     $from_date = $from_date_input
-        ? DateTime::createFromFormat('d-m-Y', $from_date_input)->format('Y-m-d')
-        : date('Y-m-01');
+      ? DateTime::createFromFormat('d-m-Y', $from_date_input)->format('Y-m-d')
+      : date('Y-m-01');
 
     $to_date = $to_date_input
-        ? DateTime::createFromFormat('d-m-Y', $to_date_input)->format('Y-m-d')
-        : date('Y-m-t');
+      ? DateTime::createFromFormat('d-m-Y', $to_date_input)->format('Y-m-d')
+      : date('Y-m-t');
 
     $this->load->model('Accounts_model');
     $this->load->model('Company_model');
@@ -2071,13 +2072,13 @@ public function view_cash_flow()
 
     // ✅ PASS branch_id here
     $data['cashflow_summary'] =
-        $this->Accounts_model->get_cashflow_summary($from_date, $to_date, $branch_id);
+      $this->Accounts_model->get_cashflow_summary($from_date, $to_date, $branch_id);
 
     $totals = ['inflows' => 0, 'outflows' => 0, 'net' => 0];
     foreach ($data['cashflow_summary'] as $row) {
-        $totals['inflows'] += $row->cash_inflows;
-        $totals['outflows'] += $row->cash_outflows;
-        $totals['net'] += $row->net_cashflow;
+      $totals['inflows'] += $row->cash_inflows;
+      $totals['outflows'] += $row->cash_outflows;
+      $totals['net'] += $row->net_cashflow;
     }
 
     $data['totals'] = $totals;
@@ -2088,7 +2089,7 @@ public function view_cash_flow()
 
     $data['main_content'] = 'Reports/account/cashflow_report';
     $this->load->view('includes/template', $data);
-}
+  }
 
 
   public function print_cashflow_report()
@@ -2104,7 +2105,7 @@ public function view_cash_flow()
 
     $from_date_db = DateTime::createFromFormat('d-m-Y', $from_date)->format('Y-m-d');
     $to_date_db = DateTime::createFromFormat('d-m-Y', $to_date)->format('Y-m-d');
-$branch_id = $this->input->post('branch_id') ?? $this->input->get('branch_id');
+    $branch_id = $this->input->post('branch_id') ?? $this->input->get('branch_id');
 
     $cashflow_summary = $this->Accounts_model->get_cashflow_summary($from_date_db, $to_date_db, $branch_id);
 
@@ -2144,41 +2145,41 @@ $branch_id = $this->input->post('branch_id') ?? $this->input->get('branch_id');
   }
 
   public function delete_account_group($id)
-{
+  {
     $this->load->model('Accounts_model');
 
     $this->Accounts_model->delete_account_group($id);
 
     $this->session->set_flashdata('msg', 'Deleted successfully');
     redirect('Accounts/account_group_list');
-}
-public function drilldown_balance_sheet()
-	{
-		$data['title'] = "";
+  }
+  public function drilldown_balance_sheet()
+  {
+    $data['title'] = "";
 
-		$account_id = $this->input->get('account_id');
-		$from       = $this->input->get('from');
-		$to         = $this->input->get('to');
-    
-
-		// Safety defaults
-		if (empty($from)) $from = date('Y-01-01');
-		if (empty($to))   $to   = date('Y-m-d');
-
-		$data['from'] = $from;
-		$data['to']   = $to;
-
-    
-    
-		$this->load->model('Accounts_model');
-
-		$data['ledgers'] = $this->Accounts_model->get_ledger_transactions($account_id, $from, $to);
+    $account_id = $this->input->get('account_id');
+    $from       = $this->input->get('from');
+    $to         = $this->input->get('to');
 
 
-		$this->load->view('Reports/account/drilldown_table', $data);
-	}
- public function drilldown()
-{
+    // Safety defaults
+    if (empty($from)) $from = date('Y-01-01');
+    if (empty($to))   $to   = date('Y-m-d');
+
+    $data['from'] = $from;
+    $data['to']   = $to;
+
+
+
+    $this->load->model('Accounts_model');
+
+    $data['ledgers'] = $this->Accounts_model->get_ledger_transactions($account_id, $from, $to);
+
+
+    $this->load->view('Reports/account/drilldown_table', $data);
+  }
+  public function drilldown()
+  {
     $data['title'] = "";
 
     $account_id = $this->input->get('account_id');
@@ -2186,8 +2187,8 @@ public function drilldown_balance_sheet()
     $to         = $this->input->get('to');
 
     // Safety defaults
-    if(empty($from)) $from = date('Y-m-01');
-    if(empty($to))   $to   = date('Y-m-d');
+    if (empty($from)) $from = date('Y-m-01');
+    if (empty($to))   $to   = date('Y-m-d');
 
     $data['from'] = $from;
     $data['to']   = $to;
@@ -2196,10 +2197,10 @@ public function drilldown_balance_sheet()
 
     $data['main_content'] = 'Reports/account/drilldown';
     $this->load->view('includes/template', $data);
-}
+  }
 
-public function daily_transaction_report()
-{
+  public function daily_transaction_report()
+  {
     $data['title'] = "Daily Transaction Report (Day Book)";
 
     $from_date_input = $this->input->post('from_date');
@@ -2207,15 +2208,15 @@ public function daily_transaction_report()
     $branch_id       = $this->input->post('branch_id');
 
     if (!empty($from_date_input)) {
-        $from_date = date('Y-m-d', strtotime($from_date_input));
+      $from_date = date('Y-m-d', strtotime($from_date_input));
     } else {
-        $from_date = date('Y-m-01');
+      $from_date = date('Y-m-01');
     }
 
     if (!empty($to_date_input)) {
-        $to_date = date('Y-m-d', strtotime($to_date_input));
+      $to_date = date('Y-m-d', strtotime($to_date_input));
     } else {
-        $to_date = date('Y-m-t');
+      $to_date = date('Y-m-t');
     }
 
     $this->load->model('Accounts_model');
@@ -2226,27 +2227,27 @@ public function daily_transaction_report()
 
     // ✅ pass branch_id
     $data['daybook_records'] =
-        $this->Accounts_model->get_daybook($from_date, $to_date, $branch_id);
+      $this->Accounts_model->get_daybook($from_date, $to_date, $branch_id);
 
     // TOTALS
     $total_dr = 0;
     $total_cr = 0;
 
     if (!empty($data['daybook_records'])) {
-        foreach ($data['daybook_records'] as $row) {
+      foreach ($data['daybook_records'] as $row) {
 
-            $dr = (in_array(strtolower($row->drcr_type), ['dr','debit'])) ? $row->amount : 0;
-            $cr = (in_array(strtolower($row->drcr_type), ['cr','credit'])) ? $row->amount : 0;
+        $dr = (in_array(strtolower($row->drcr_type), ['dr', 'debit'])) ? $row->amount : 0;
+        $cr = (in_array(strtolower($row->drcr_type), ['cr', 'credit'])) ? $row->amount : 0;
 
-            $total_dr += $dr;
-            $total_cr += $cr;
-        }
+        $total_dr += $dr;
+        $total_cr += $cr;
+      }
     }
 
     $data['totals'] = [
-        'debit' => $total_dr,
-        'credit' => $total_cr,
-        'net' => $total_dr - $total_cr
+      'debit' => $total_dr,
+      'credit' => $total_cr,
+      'net' => $total_dr - $total_cr
     ];
 
     $data['from_date'] = $from_date;
@@ -2254,9 +2255,9 @@ public function daily_transaction_report()
 
     $data['main_content'] = 'Reports/account/day_book_report';
     $this->load->view('includes/template', $data);
-}
+  }
 
-function add_expense_entry()
+  function add_expense_entry()
   { //in use
     $data['title'] = "Add Expense Entry";
     $this->load->model('Accounts_model');
@@ -2266,7 +2267,7 @@ function add_expense_entry()
     $data['branch_list']    = $this->Company_model->get_all_branches();
 
     $this->load->model('Currency_model');
-  $data['currency_list']      = $this->Currency_model->get_all_currency_list();
+    $data['currency_list']      = $this->Currency_model->get_all_currency_list();
     $data['main_content'] = 'Accounts/expense_entry.php';
     $this->load->view('includes/template', $data);
   }
@@ -2297,7 +2298,7 @@ function add_expense_entry()
     $this->load->view('includes/template', $data);
   }
 
-  
+
 
 
   /***********************************    End CI Controller*************************************/

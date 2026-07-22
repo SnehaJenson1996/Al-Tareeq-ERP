@@ -175,14 +175,20 @@
             </div>
 
             <!-- Button -->
-            <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <button type="submit"
                         id="view"
                         name="go"
                         class="btn btn-primary btn-sm"
-                        style="margin-top:25px;margin-right:10px;">
-                    <i class="fa fa-search" style="margin-right:5px;"></i>
-                    Go
+                        style="margin-top:25px;margin-right:8px;">
+                    <i class="fa fa-search"></i> Go
+                </button>
+
+                <button type="button"
+                        class="btn btn-warning btn-sm"
+                        onclick="printProfitLoss()"
+                        style="margin-top:25px;color:#000;">
+                    <i class="fa fa-print"></i> Print
                 </button>
             </div>
 
@@ -211,7 +217,7 @@
     $income_right_total = $p_and_l_credits + $net_loss;
     ?>
 
-    <div class="pnl-container">
+    <div class="pnl-container" id="printArea">
 
         <div class="pnl-header">
             <h4>PROFIT & LOSS ACCOUNT</h4>
@@ -421,3 +427,160 @@
 
     </div>
 </div>
+
+<script>
+function printProfitLoss()
+{
+    var printContents = document.getElementById("printArea").innerHTML;
+
+    var from = document.getElementById("from").value;
+    var to   = document.getElementById("to").value;
+
+    var printWindow = window.open('', '', 'width=1200,height=800');
+
+    printWindow.document.write(`
+        <html>
+        <head>
+
+            <title>Profit & Loss Report</title>
+
+            <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css');?>">
+
+            <style>
+
+                body{
+                    font-family:Arial,sans-serif;
+                    margin:20px;
+                    font-size:12px;
+                }
+
+                table{
+                    width:100%;
+                    border-collapse:collapse;
+                }
+
+                th,
+                td{
+                    border:1px solid #ccc;
+                    padding:6px;
+                    font-size:12px;
+                }
+
+                th{
+                    background:#f3f3f3;
+                    text-align:center;
+                }
+
+                .amount{
+                    text-align:right;
+                }
+
+                a{
+                    color:#000;
+                    text-decoration:none;
+                }
+
+                /* ---------- HEADER ---------- */
+
+                .print-header{
+                    text-align:center;
+                    margin-bottom:15px;
+                }
+
+                .print-header img{
+                    width:220px;
+                    height:auto;
+                    display:block;
+                    margin:0 auto;
+                }
+
+                .pnl-header{
+                    text-align:center;
+                    margin-bottom:20px;
+                }
+
+                .pnl-header h2{
+                    margin:5px 0;
+                }
+
+                /* ---------- PAGE ---------- */
+
+                @page{
+
+                    size:A4 landscape;
+
+                    margin:15mm 10mm 25mm 10mm;
+
+                    @top-center{
+                        content:element(pageHeader);
+                    }
+
+                    @bottom-left{
+                        content:"©<?= date('Y'); ?> For Al Tareeq Kitchen Equipment Industry LLC, Designed and developed by Concepts 360 Plus";
+                        font-size:10px;
+                    }
+
+                    @bottom-right{
+                        content:"Page " counter(page) " of " counter(pages);
+                        font-size:10px;
+                    }
+
+                }
+
+                @media print{
+
+                    body{
+                        margin:0;
+                    }
+
+                    .print-header{
+                        position:running(pageHeader);
+                    }
+
+                    thead{
+                        display:table-header-group;
+                    }
+
+                    tfoot{
+                        display:table-footer-group;
+                    }
+
+                    tr{
+                        page-break-inside:avoid;
+                    }
+
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <!-- Company Logo -->
+            <div class="print-header">
+                <img src="<?php echo base_url('public/assets/images/altariq_logo.jpeg'); ?>" alt="Company Logo">
+            </div>
+
+            <!-- Report Title -->
+            <div class="pnl-header">
+                <h2>PROFIT & LOSS ACCOUNT</h2>
+                <strong>Period :</strong> ${from} To ${to}
+            </div>
+
+            ${printContents}
+
+        </body>
+
+        </html>
+    `);
+
+    printWindow.document.close();
+
+    printWindow.onload = function () {
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    };
+}
+</script>

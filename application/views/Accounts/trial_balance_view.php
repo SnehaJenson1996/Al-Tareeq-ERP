@@ -70,7 +70,7 @@ error_reporting(E_ALL); ?>
 
                     <input type="hidden" name="from_date" value="<?= htmlspecialchars($from_date) ?>">
                     <input type="hidden" name="to_date" value="<?= htmlspecialchars($to_date) ?>">
-                    <input type="hidden" name="branch_id" value="<?= htmlspecialchars($branch_id) ?>">
+                    <input type="hidden" name="branch_id" value="<?= htmlspecialchars($branch_id ?? '') ?>">
 
                     <button type="submit" class="btn btn-success btn-sm">
                         <i class="fa fa-file-excel-o" style="margin-right:5px;"></i>Export to Excel
@@ -86,7 +86,7 @@ error_reporting(E_ALL); ?>
 
                     <input type="hidden" name="from_date" value="<?= htmlspecialchars($from_date) ?>">
                     <input type="hidden" name="to_date" value="<?= htmlspecialchars($to_date) ?>">
-                    <input type="hidden" name="branch_id" value="<?= htmlspecialchars($branch_id) ?>">
+                    <input type="hidden" name="branch_id" value="<?= htmlspecialchars($branch_id ?? '') ?>">
 
                     <button type="submit" class="btn btn-warning btn-sm">
                         <i class="fa fa-print" style="margin-right:5px;"></i>Print

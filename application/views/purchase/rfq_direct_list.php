@@ -227,15 +227,15 @@
      }
 
      $(document).ready(function() {
-    // Confirmation before delete
-    $(document).on('click', '.delete', function(e) {
-        e.preventDefault(); // prevent default navigation
+       // Confirmation before delete
+       $(document).on('click', '.delete', function(e) {
+         e.preventDefault(); // prevent default navigation
 
-        var url = $(this).attr('href'); // get delete URL
+         var url = $(this).attr('href'); // get delete URL
 
-        if (confirm("Are you sure you want to delete this RFQ?")) {
-            window.location.href = url; // go to delete URL if confirmed
-        }
-    });
-});
+         if (confirm("Are you sure you want to delete this RFQ?")) {
+           window.location.href = url; // go to delete URL if confirmed
+         }
+       });
+     });
    </script>

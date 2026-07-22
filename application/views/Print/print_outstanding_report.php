@@ -281,7 +281,7 @@
         <div class="footer">
 
             <div class="bottom">
-                <div>&copy;<?php echo date('Y'); ?> For Bangalore Elect Switchgear, Designed and developed by Concepts 360 Plus</div>
+                <div>&copy;<?php echo date('Y'); ?> For Al Tareeq Kitchen Equipment Industry LLC, Designed and developed by Concepts 360 Plus</div>
                 <div id="page-number"></div>
 
             </div>

@@ -202,7 +202,8 @@
 
 <!-- ================= PRINT SCRIPT ================= -->
 <script>
-    function printDayBook() {
+    function printDayBook() 
+    {
 
         let content = document.getElementById('printArea').innerHTML;
 
@@ -215,20 +216,36 @@
         <html>
         <head>
             <title>Day Book</title>
+
             <style>
+
                 body{
-                    font-family: Arial;
-                    font-size: 12px;
+                    font-family:Arial,sans-serif;
+                    font-size:12px;
                     margin:20px;
+                }
+
+                .print-header{
+                    text-align:center;
+                    margin-bottom:15px;
+                }
+
+                .print-header img{
+                    width:220px;
+                    height:auto;
+                    display:block;
+                    margin:0 auto;
                 }
 
                 h2{
                     text-align:center;
+                    margin:5px 0;
                 }
 
                 .date{
                     text-align:center;
-                    margin-bottom:10px;
+                    margin-bottom:15px;
+                    font-weight:bold;
                 }
 
                 table{
@@ -236,13 +253,15 @@
                     border-collapse:collapse;
                 }
 
-                th, td{
+                th,
+                td{
                     border:1px solid #000;
                     padding:6px;
+                    font-size:12px;
                 }
 
                 th{
-                    background:#eee;
+                    background:#eeeeee;
                 }
 
                 .amount{
@@ -254,26 +273,74 @@
                     background:#f5f5f5;
                 }
 
+                /* PRINT SETTINGS */
                 @page{
                     size:A4 landscape;
-                    margin:10mm;
+                    margin:15mm 10mm 25mm 10mm;
+
+                    @top-center{
+                        content:element(pageHeader);
+                    }
+
+                    @bottom-right{
+                        content:"Page " counter(page) " of " counter(pages);
+                    }
+
+                    @bottom-left{
+                        content:"©<?= date('Y'); ?> For Al Tareeq Kitchen Equipment Industry LLC, Designed and developed by Concepts 360 Plus";
+                    }
                 }
+
+                @media print{
+
+                    body{
+                        margin:0;
+                    }
+
+                    .print-header{
+                        position:running(pageHeader);
+                    }
+
+                    thead{
+                        display:table-header-group;
+                    }
+
+                    tfoot{
+                        display:table-footer-group;
+                    }
+
+                    tr{
+                        page-break-inside:avoid;
+                    }
+                }
+
             </style>
+
         </head>
+
         <body>
 
+            <div class="print-header">
+                <img src="<?= base_url('public/assets/images/altariq_logo.jpeg'); ?>" alt="Header">
+            </div>
+
             <h2>DAY BOOK</h2>
-            <div class="date">${from} TO ${to}</div>
+
+            <div class="date">
+                ${from} TO ${to}
+            </div>
 
             ${content}
 
         </body>
+
         </html>
-    `);
+        `);
 
         win.document.close();
 
-        win.onload = function() {
+        win.onload = function () {
+            win.focus();
             win.print();
             win.close();
         };

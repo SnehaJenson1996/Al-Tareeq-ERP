@@ -118,7 +118,7 @@
             <input type="hidden" name="item_id[]" value="<?= $item->product_id ?>">
             <?= $item->item_name ?? '' ?>
         </td>
-        <td><?= $item->brand_name ?? '' ?></td>
+        <td><?= isset($item->brand_name) ? $item->brand_name : '-' ?></td>
 <td><?= $item->item_description ?? '' ?></td>
         <td>
             <select name="unit[]" class="form-control" required>
