@@ -373,91 +373,9 @@ public function get_pr_items_for_quote() {
 		$this->load->view('ajax/add_customer_modal', $data);
 
 	}
-// 	public function save_customer_ajax() {
-//     $this->load->model('Company_model');
 
-//    $file_type = '';
-//     $licence_file_name = '';
-
-//     if (!empty($_FILES['trade_license_file']['name'])) {
-//         $config['upload_path']   = './public/customer/';
-//         $config['allowed_types'] = 'pdf|jpg|jpeg|png';
-//         $config['max_size']      = 2048;
-//         $config['encrypt_name']  = TRUE;
-
-//         $this->load->library('upload', $config);
-//         if (!$this->upload->do_upload('trade_license_file')) {
-//             $response = [
-//                 'status' => 'error',
-//                 'message' => strip_tags($this->upload->display_errors())
-//             ];
-//             echo json_encode($response);
-//             return;
-//         } else {
-//             $upload_data = $this->upload->data();
-//             $licence_file_name = $upload_data['file_name'];
-//             $ext = strtolower($upload_data['file_ext']);
-//             $file_type = ($ext == '.pdf') ? 'pdf' : 'image';
-//         }
-//     }
-
-//     // Main Customer Data
-//     $data = [
-//         'branch_id'          => $this->input->post('branch'),
-//         'customer_name'      => $this->input->post('customer_name'),
-//         'customer_code'      => $this->input->post('customer_code'),
-//         'customer_email'     => $this->input->post('customer_email'),
-//         'contact_number'     => $this->input->post('customer_number'),
-//         'emirate'            => $this->input->post('emirate'),
-//         'customer_address'   => $this->input->post('customer_address'),
-//         'customer_TR_no'     => $this->input->post('trn_no'),
-//         'customer_TL_no'     => $this->input->post('trade_license_no'),
-//         'licence_issue_date' => $this->input->post('license_issue_date'),
-//         'licence_exp_date'   => $this->input->post('license_expiry_date'),
-//         'file_type'          => $file_type,
-//         'licence_file'       => $licence_file_name
-//     ];
-//     $customer_id = $this->Company_model->insert_customer($data);
-
-//     if ($customer_id) {
-//         // Optional: Handle contacts
-//         $contact_names  = $this->input->post('contact_name');
-//         $contact_phones = $this->input->post('contact_phone');
-//         $contact_emails = $this->input->post('contact_email');
-
-//         $contacts = [];
-//         for ($i = 0; $i < count($contact_names); $i++) {
-//             if (!empty($contact_names[$i])) {
-//                 $contacts[] = [
-//                     'customer_id'   => $customer_id,
-//                     'contact_name'  => $contact_names[$i],
-//                     'contact_phone' => $contact_phones[$i] ?? '',
-//                     'contact_email' => $contact_emails[$i] ?? ''
-//                 ];
-//             }
-//         }
-
-//         if (!empty($contacts)) {
-//             $this->Company_model->insert_customer_contacts($contacts);
-//         }
-
-//         // Respond success with customer data
-//         echo json_encode([
-//             'success' => true,
-//             'customer_id' => $customer_id,
-//             'customer_name' => $this->input->post('customer_name'),
-//             'customer_code' => $this->input->post('customer_code'),
-//             'contact_number' => $this->input->post('customer_number')
-//         ]);
-//     } else {
-//         echo json_encode([
-//             'success' => false,
-//             'errors' => ['general' => 'Failed to save customer.']
-//         ]);
-//     }
-// }
-
-public function save_customer_ajax() {
+    public function save_customer_ajax() 
+    {
         // Validate required fields
         $this->load->library('form_validation');
         $this->form_validation->set_rules('supplier_name', 'Supplier Name', 'required');
@@ -504,99 +422,114 @@ public function save_customer_ajax() {
 
         // Build main supplier data array
         $data = array(
-        'branch_id'             => $this->input->post('branch'),
-        'supplier_code'         => $this->input->post('supplier_code'),
-        'supplier_name'         => $this->input->post('supplier_name'),
-        'supplier_type'         => $this->input->post('supplier_type'),
-        'trn_no'                => $this->input->post('trn_no'),
-        'remarks'               => "Remarks",
-        'website'               => $this->input->post('company_website'),
-        'supplier_email'        => $this->input->post('supplier_email'),
-        'contact_number'        => $this->input->post('supplier_contact'),
-        'billing_address'       => $this->input->post('billing_address'),
-        'billing_city'          => $this->input->post('billing_city'),
-        'billing_state'         => $this->input->post('billing_state'),
-        'billing_country'       => $this->input->post('billing_country'),
-        'billing_po_box'        => $this->input->post('billing_pobox'),
-        'shipping_address'      => $this->input->post('shipping_address'),
-        'shipping_city'         => $this->input->post('shipping_city'),
-        'shipping_state'        => $this->input->post('shipping_state'),
-        'shipping_country'      => $this->input->post('shipping_country'),
-        'shipping_po_box'       => $this->input->post('shipping_pobox'),
-        'active'                => 1,
-        'created_by'            => $this->session->userdata('user_id'),
-        'created_date'          => date('Y-m-d H:i:s'),
-        'bank_name'             => $this->input->post('bank_name'),
-        'bank_account'          => $this->input->post('account_no'),
-        'bank_branch'           => $this->input->post('branch_name'),
-        'bank_IBAN'             => $this->input->post('iban'),
-        'bank_swift'            => $this->input->post('swift'),
-        'intermidiate_Bname'    => $this->input->post('inter_bank_name'),
-        'intermidiate_Bacc'     => $this->input->post('inter_account_no'),
-        'intermidiate_Bbranch'  => $this->input->post('inter_branch'),
-        'intermidiate_IBAN'     => $this->input->post('inter_iban'),
-        'intermidiate_swift'    => $this->input->post('inter_swift'),
-        'trade_licence_no'      => $this->input->post('trade_license_no'),
-        'trl_issued_date'       => $this->input->post('issued_date'),
-        'trl_expire_date'       => $this->input->post('expiry_date'),
-        'tr_file'               => $trade_license_file,
-        'tr_file_type'          => $trade_license_type,
-		'currency_id'           => $this->input->post('currency'),
-        'created_on'            => date('Y-m-d H:i:s')
-    );
-
-    $supplier_id = $this->Company_model->insert_supplier($data);
-
-    // ✅ Create General Ledger Entry for Supplier
-    if ($supplier_id) {
-        $grp_no = 29; // Supplier group number
-        $supplier_name = $this->input->post('supplier_name');
-        $supplier_code = $this->input->post('supplier_code');
-
-        $ledger_data = array(
-            'account_name'     => $supplier_name . ' ' . $supplier_code,
-            'group_no'         => $grp_no,
-            'supplier_id'      => $supplier_id,
-            'opening_bal_type' => 'Dr',
+            'branch_id'             => $this->input->post('branch'),
+            'supplier_code'         => $this->input->post('supplier_code'),
+            'supplier_name'         => $this->input->post('supplier_name'),
+            'supplier_type'         => $this->input->post('supplier_type'),
+            'trn_no'                => $this->input->post('trn_no'),
+            'remarks'               => "Remarks",
+            'website'               => $this->input->post('company_website'),
+            'supplier_email'        => $this->input->post('supplier_email'),
+            'contact_number'        => $this->input->post('supplier_contact'),
+            'billing_address'       => $this->input->post('billing_address'),
+            'billing_city'          => $this->input->post('billing_city'),
+            'billing_state'         => $this->input->post('billing_state'),
+            'billing_country'       => $this->input->post('billing_country'),
+            'billing_po_box'        => $this->input->post('billing_pobox'),
+            'shipping_address'      => $this->input->post('shipping_address'),
+            'shipping_city'         => $this->input->post('shipping_city'),
+            'shipping_state'        => $this->input->post('shipping_state'),
+            'shipping_country'      => $this->input->post('shipping_country'),
+            'shipping_po_box'       => $this->input->post('shipping_pobox'),
+            'active'                => 1,
+            'created_by'            => $this->session->userdata('user_id'),
+            'created_date'          => date('Y-m-d H:i:s'),
+            'bank_name'             => $this->input->post('bank_name'),
+            'bank_account'          => $this->input->post('account_no'),
+            'bank_branch'           => $this->input->post('branch_name'),
+            'bank_IBAN'             => $this->input->post('iban'),
+            'bank_swift'            => $this->input->post('swift'),
+            'intermidiate_Bname'    => $this->input->post('inter_bank_name'),
+            'intermidiate_Bacc'     => $this->input->post('inter_account_no'),
+            'intermidiate_Bbranch'  => $this->input->post('inter_branch'),
+            'intermidiate_IBAN'     => $this->input->post('inter_iban'),
+            'intermidiate_swift'    => $this->input->post('inter_swift'),
+            'trade_licence_no'      => $this->input->post('trade_license_no'),
+            'trl_issued_date'       => $this->input->post('issued_date'),
+            'trl_expire_date'       => $this->input->post('expiry_date'),
+            'tr_file'               => $trade_license_file,
+            'tr_file_type'          => $trade_license_type,
+            'currency_id'           => $this->input->post('currency'),
+            'created_on'            => date('Y-m-d H:i:s')
         );
 
-        $this->db->insert('general_ledger', $ledger_data);
-        $ledger_id = $this->db->insert_id();
+        $exists = $this->db
+                ->where('supplier_code',$data['supplier_code'])
+                ->count_all_results('supplier_master');
 
-        // 🔄 Optional: update supplier with ledger_id if needed
-        // $this->db->update('suppliers', ['ledger_id' => $ledger_id], ['id' => $supplier_id]);
-    }
+        if($exists>0){
 
-    // ✅ Insert contact persons if any
-    $contact_names  = $this->input->post('contact_person');
-    $contact_phones = $this->input->post('contact_mobile');
-    $contact_emails = $this->input->post('contact_email');
+            echo json_encode([
+                'success'=>false,
+                'message'=>'Supplier code already exists'
+            ]);
 
-    if (!empty($contact_names)) {
-        $contacts_data = [];
-        for ($i = 0; $i < count($contact_names); $i++) {
-            if (!empty($contact_names[$i])) {
-                $contacts_data[] = [
-                    'supplier_id'   => $supplier_id,
-                    'contact_name'  => $contact_names[$i],
-                    'contact_phone' => $contact_phones[$i] ?? '',
-                    'contact_email' => $contact_emails[$i] ?? '',
-                ];
+            return;
+        }
+
+        $supplier_id = $this->Company_model->insert_supplier($data);
+
+        // ✅ Create General Ledger Entry for Supplier
+        if ($supplier_id) {
+            $grp_no = 29; // Supplier group number
+            $supplier_name = $this->input->post('supplier_name');
+            $supplier_code = $this->input->post('supplier_code');
+
+            $ledger_data = array(
+                'account_name'     => $supplier_name . ' ' . $supplier_code,
+                'group_no'         => $grp_no,
+                'supplier_id'      => $supplier_id,
+                'opening_bal_type' => 'Dr',
+            );
+
+            $this->db->insert('general_ledger', $ledger_data);
+            $ledger_id = $this->db->insert_id();
+
+            // 🔄 Optional: update supplier with ledger_id if needed
+            // $this->db->update('suppliers', ['ledger_id' => $ledger_id], ['id' => $supplier_id]);
+        }
+
+        // ✅ Insert contact persons if any
+        $contact_names  = $this->input->post('contact_person');
+        $contact_phones = $this->input->post('contact_mobile');
+        $contact_emails = $this->input->post('contact_email');
+
+        if (!empty($contact_names)) {
+            $contacts_data = [];
+            for ($i = 0; $i < count($contact_names); $i++) {
+                if (!empty($contact_names[$i])) {
+                    $contacts_data[] = [
+                        'supplier_id'   => $supplier_id,
+                        'contact_name'  => $contact_names[$i],
+                        'contact_phone' => $contact_phones[$i] ?? '',
+                        'contact_email' => $contact_emails[$i] ?? '',
+                    ];
+                }
+            }
+
+            if (!empty($contacts_data)) {
+                $this->Company_model->insert_supplier_contacts($contacts_data);
             }
         }
 
-        if (!empty($contacts_data)) {
-            $this->Company_model->insert_supplier_contacts($contacts_data);
+        $this->session->set_flashdata('success', 'Supplier and ledger saved successfully.');
+        if ($this->input->is_ajax_request()) {
+            echo json_encode(['success' => true, 'supplier_id' => $supplier_id]);
+            return;
         }
+        redirect('Company/list_supplier');
     }
 
-    $this->session->set_flashdata('success', 'Supplier and ledger saved successfully.');
-    if ($this->input->is_ajax_request()) {
-        echo json_encode(['success' => true, 'supplier_id' => $supplier_id]);
-        return;
-    }
-    redirect('Company/list_supplier');
-}
 public function load_customer_dropdown_html() {
     $this->load->model('Company_model');
     $customer_list = $this->Company_model->get_all_customer_list();

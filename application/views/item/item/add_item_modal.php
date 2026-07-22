@@ -1,5 +1,5 @@
 <form id="addItemForm" action="<?= base_url('index.php/Item/add_item_data_purchase') ?>" method="post" enctype="multipart/form-data">
-    <div class="item form-group">
+    <!-- <div class="item form-group">
       <label class="col-form-label col-md-3 col-sm-3 label-align" for="unit">Brand<span class="required">*</span></label>
       <div class="col-md-6 col-sm-6">
         <select id="brand" name="brand" required class="form-control">
@@ -12,7 +12,7 @@
           <?php endforeach; ?>
         </select>
       </div>
-    </div>
+    </div> -->
     <div class="item form-group">
       <label class="col-form-label col-md-3 col-sm-3 label-align" for="item_name">Item Name<span class="required">*</span></label>
       <div class="col-md-6 col-sm-6">

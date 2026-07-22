@@ -913,40 +913,47 @@ public function get_all_item_list()
 
 public function get_active_item_list()
 {
-       $this->db->select('*');
-       $this->db->from('item_master im');
-       $this->db->join('brand_master bm','im.item_brand=bm.brand_id');
-       $this->db->where('im.active',1);
-       $query = $this->db->get()->result();
-       return $query;      
+    $this->db->select('*');
+    $this->db->from('item_master');
+    $this->db->where('is_inactive', 0);
+    $this->db->where('is_marked_delete', 0);
+    $this->db->order_by('product_name', 'ASC');
+
+    return $this->db->get()->result();
 }
 
-public  function check_item_code_duplicate(){
-        $item_code = $this->input->post('item_code');
-        $this->db->where('item_code', $item_code);
-        $query = $this->db->get('item_master');
+public function check_item_code_duplicate()
+{
+    $product_code = $this->input->post('product_code');
+    $this->db->where('product_code', $product_code);
 
-        if ($query->num_rows() > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
+    return $this->db->get('item_master')->num_rows() > 0 ? 1 : 0;
 }
 
-public function add_item_data(){
-    $data=array(
-        'item_brand'=>$_POST['item_brand'],
-        'item_code'=>$_POST['item_code'],
-        'item_model'=>$_POST['item_model'],
-        'item_description'=>$_POST['item_description'],
-        'item_unit'=>$_POST['item_unit'],
-        'mrp_qar'=>$_POST['mrp_qar'],
-        'mrp_aed'=>$_POST['mrp_aed'],
-       
+public function add_item_data()
+{
+    $data = array(
+        'product_code'      => $this->input->post('product_code'),
+        'product_name'      => $this->input->post('product_name'),
+        'description'       => $this->input->post('description'),
+        'unit_id'           => $this->input->post('unit_id'),
+        'category_id'       => $this->input->post('category_id'),
+        'retail_price'      => $this->input->post('retail_price'),
+        'min_level'         => $this->input->post('min_level'),
+        'max_level'         => $this->input->post('max_level'),
+        'reorder_level'     => $this->input->post('reorder_level'),
+        'hs_code'           => $this->input->post('hs_code'),
+        'tax_applicable'    => $this->input->post('tax_applicable'),
+        'is_finished_product' => $this->input->post('is_finished_product'),
+        'is_custom_made'      => $this->input->post('is_custom_made'),
+        'is_non_standard'     => $this->input->post('is_non_standard'),
+        'is_inactive'         => 0,
+        'is_marked_delete'    => 0
     );
-    $res = $this->db->insert('item_master',$data);
-    return $res;
+
+    return $this->db->insert('item_master', $data);
 }
+
 public function get_item_by_id($item_id){
     $this->db->select('im.*');
     $this->db->from('item_master im');
@@ -959,16 +966,20 @@ public function update_item($item_id, $data)
     $this->db->where('product_id', $item_id);
     return $this->db->update('item_master', $data);
 }
-    public function search_items($term)
-    {
-        if($term != ''){
-            $this->db->like('item_model', $term);
-        }
-        $this->db->limit(20); // limit results to avoid too much data
-        $query = $this->db->get('item_master');
-        return $query->result_array();
-        
+public function search_items($term)
+{
+    if ($term != '') {
+        $this->db->group_start();
+        $this->db->like('product_name', $term);
+        $this->db->or_like('product_code', $term);
+        $this->db->group_end();
     }
+
+    $this->db->where('is_marked_delete', 0);
+    $this->db->limit(20);
+
+    return $this->db->get('item_master')->result_array();
+}
 
     public function insert_item_category($data)
 {

@@ -406,32 +406,32 @@ $printed_by = $this->session->userdata('user_name') ?? $this->session->userdata(
 	</table>
 
 	<footer>
-		<div style="width: 100%; font-size: 10px; color: #000;">
-			<table
-				style="width: 100%; border-top: 1px solid #ccc; padding-top: 5px; font-family: Arial; border-collapse: collapse;">
+		<div style="width:100%; font-size:10px; border-top:1px solid #ccc; padding-top:8px;">
+
+			<table style="width:100%; border-collapse:collapse;">
+
 				<tr>
-					<td style="width: 33%; border: none;">
-						<img src="<?php echo base_url() . 'public/assets/images/altariq_logo.jpeg' ?>" alt='logo.png'
-							width='100px' style="float:left">
+
+					<!-- Empty Left -->
+					<td style="width:30%; border:none;"></td>
+
+					<!-- Center -->
+					<td style="width:40%; text-align:center; border:none;">
+						©<?php echo date('Y'); ?><br>
+						For Al Tareeq Kitchen Equipment Industry LLC<br>
+						Designed and developed by Concepts 360 Plus
 					</td>
-					<td style="width: 34%; text-align: center; border: none;">
+
+					<!-- Right -->
+					<td style="width:30%; text-align:right; border:none;">
 						Printed by: <?php echo $printed_by; ?><br>
 						Page <span class="pagenum"></span>
 					</td>
-					<td style="width: 33%; text-align: right; border: none;">
-						<div style="font-size: 9px; line-height: 1.4;">
-							Industrial Area 11 - Industrial Area - Sharjah,
-							UAE<br>
-							P.O. Box 39599 | Landline: 050 545 8602 | <a href="https://www.altareeqkitchen.com/"
-								style="color:#000;">www.altareeqkitchen.com</a>
-						</div>
-						<div style="margin-top: 5px;">
-							<span
-								style="background-color: #8AB645; color: white; padding: 3px 12px; font-size: 10px;">www.altareeqkitchen.com</span>
-						</div>
-					</td>
+
 				</tr>
+
 			</table>
+
 		</div>
 	</footer>
 

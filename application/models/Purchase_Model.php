@@ -89,7 +89,6 @@ class Purchase_Model extends CI_Model
 				'rfq_version' => 1,
 				'product_id'  => $_POST['item'][$i],
 				'prod_desc'   => $_POST['description'][$i],
-				'brand'		  => $_POST['brand'][$i],
 				'unit' 		  => $_POST['unit'][$i],
 				'quantity'    => $_POST['quantity'][$i],
 
@@ -131,9 +130,26 @@ class Purchase_Model extends CI_Model
 }
 	function get_purchase_rfq_tr($rfq_id)
 	{
-		$query = $this->db->query("SELECT one.*, two.unit_name, three.brand_name FROM ( SELECT r.*,m.item_id,m.item_name,m.item_description, m.item_unit, m.item_code, m.item_model, m.item_brand,m.mrp_aed FROM purchase_RFQ_transaction r JOIN item_master m ON r.product_id = m.item_id WHERE r.rfq_master_id = $rfq_id ORDER BY CAST(r.srno AS INTEGER), r.srno ASC ) AS one LEFT JOIN unit_master two ON one.item_unit = two.unit_id LEFT JOIN brand_master three ON one.item_brand = three.brand_id;");
-		return $query->result();
+		$this->db->select("
+			r.*,
+			im.product_id,
+			im.product_code,
+			im.product_name,
+			im.description AS item_description,
+			im.unit_id,
+			um.unit_name
+		");
+
+		$this->db->from('purchase_RFQ_transaction r');
+		$this->db->join('item_master im', 'im.product_id = r.product_id', 'left');
+		$this->db->join('unit_master um', 'um.unit_id = im.unit_id', 'left');
+
+		$this->db->where('r.rfq_master_id', $rfq_id);
+		$this->db->order_by('CAST(r.srno AS UNSIGNED)', 'ASC');
+
+		return $this->db->get()->result();
 	}
+
 	function get_purchase_rfq_by_id($id)
 	{
 		$this->db->select('r.*, 
@@ -1560,22 +1576,39 @@ $query=$this->db->query("update purchase_order_master set grn_status=$status whe
 	{
 		return $this->db->get_where('purchase_requests', ['pr_id' => $pr_id])->row();
 	}
+
 	public function get_pr_items_by_pr_id($pr_id)
 	{
-		$this->db->select('
-        pri.*, 
-        im.item_name, 
-        im.item_description, 
-        bm.brand_name,
-        u.unit_name
-    ');
+		$this->db->select("
+			pri.*,
+			im.product_name AS item_name,
+			im.description AS item_description,
+			u.unit_name
+		");
+
 		$this->db->from('purchase_request_items pri');
-		$this->db->join('item_master im', 'im.item_id = pri.product_id', 'left');
+		$this->db->join('item_master im', 'im.product_id = pri.product_id', 'left');
 		$this->db->join('unit_master u', 'u.unit_id = pri.unit_id', 'left');
-		$this->db->join('brand_master bm', 'bm.brand_id = im.item_brand', 'left');
 		$this->db->where('pri.pr_id', $pr_id);
+
 		return $this->db->get()->result();
 	}
+	// public function get_pr_items_by_pr_id($pr_id)
+	// {
+	// 	$this->db->select('
+    //     pri.*, 
+    //     im.item_name, 
+    //     im.item_description, 
+    //     bm.brand_name,
+    //     u.unit_name
+    // ');
+	// 	$this->db->from('purchase_request_items pri');
+	// 	$this->db->join('item_master im', 'im.item_id = pri.product_id', 'left');
+	// 	$this->db->join('unit_master u', 'u.unit_id = pri.unit_id', 'left');
+	// 	$this->db->join('brand_master bm', 'bm.brand_id = im.item_brand', 'left');
+	// 	$this->db->where('pri.pr_id', $pr_id);
+	// 	return $this->db->get()->result();
+	// }
 
 	public function delete_po($po_id)
     {

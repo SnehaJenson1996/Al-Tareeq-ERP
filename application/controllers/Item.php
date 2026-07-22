@@ -194,58 +194,71 @@ class Item extends CI_Controller {
 				}
 			//}
 		}
-// public function add_item_data_purchase()
-// {
-//     // Load Item_model if not already loaded
-//     $this->load->model('Item_model');
 
-//     // Collect POST data
-//     $data = [
-//         'item_name'        => $this->input->post('item_name', true),
-//         'item_code'        => $this->input->post('item_code', true),
-//         'item_unit'        => $this->input->post('unit', true),
-//         'item_brand'       => $this->input->post('brand', true),
-//         'unit_price'       => $this->input->post('unit_price', true),
-//         'item_description' => $this->input->post('item_description', true)
-//     ];
+		public function add_item_form()
+		{
+			$this->load->model('Item_model');
+			$this->load->model('Setup_model');
 
-//     // Handle file upload (optional)
-//     if (!empty($_FILES['item_image']['name'])) {
-//         $config['upload_path']   = './public/items/';
-//         $config['allowed_types'] = 'jpg|jpeg|png|gif';
-//         $config['file_name']     = time().'_'.$_FILES['item_image']['name'];
-//         $config['overwrite']     = true;
+			$data['active_brand'] = $this->Item_model->get_active_brand_list();
+			$data['active_units'] = $this->Setup_model->get_active_unit_list();
 
-//         $this->load->library('upload', $config);
+			$this->load->view('item/item/add_item_modal', $data);
+		}
 
-//         if ($this->upload->do_upload('item_image')) {
-//             $uploadData = $this->upload->data();
-//             $data['item_image'] = $uploadData['file_name'];
-//         } else {
-//             echo json_encode([
-//                 'status' => 'error',
-//                 'message' => $this->upload->display_errors()
-//             ]);
-//             return;
-//         }
-//     }
+	public function add_item_data_purchase()
+	{
+		// Load Setup_model if not already loaded
+		$this->load->model('Setup_model');
 
-//     // Insert item
-//     $item_id = $this->Item_model->insert_item($data);
+		// Collect POST data
+		$data = [
+			'product_name' => $this->input->post('item_name'),
+			'product_code' => $this->input->post('item_code'),
+			'unit_id'      => $this->input->post('unit'),
+			'retail_price' => $this->input->post('unit_price'),
+			'description'  => $this->input->post('item_description'),
+			'created_at'   => date('Y-m-d H:i:s'),
+    		'updated_at'   => date('Y-m-d H:i:s')
+		];
 
-//     if ($item_id) {
-//         echo json_encode([
-//             'status'    => 'success',
-//             'item_id'   => $item_id,
-//             'item_name' => $data['item_name']
-//         ]);
-//     } else {
-//         echo json_encode([
-//             'status'  => 'error',
-//             'message' => 'Unable to save item'
-//         ]);
-//     }
-// }
+		// Handle file upload (optional)
+		if (!empty($_FILES['item_image']['name'])) {
+			$config['upload_path']   = './public/items/';
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';
+			$config['file_name']     = time().'_'.$_FILES['item_image']['name'];
+			$config['overwrite']     = true;
+
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('item_image')) {
+				$uploadData = $this->upload->data();
+				$data['product_image'] = $uploadData['file_name'];
+			} else {
+				echo json_encode([
+					'status' => 'error',
+					'message' => $this->upload->display_errors()
+				]);
+				return;
+			}
+		}
+
+		// Insert item
+		$item_id = $this->Setup_model->insert_item($data);
+
+		if ($item_id) {
+			echo json_encode([
+				'status'       => 'success',
+				'product_id'   => $item_id,
+				'product_name' => $data['product_name']
+			]);
+		} else {
+			echo json_encode([
+				'status'  => 'error',
+				'message' => 'Unable to save item'
+			]);
+		}
+	}
 
 
 	

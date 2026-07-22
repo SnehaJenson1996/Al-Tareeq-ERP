@@ -20,9 +20,9 @@ class Stock extends CI_Controller
    {
         $data['title']='Stock Adjustment';		
 		
-		$this->load->model('Item_model');
-        $data['products'] = $this->Item_model->get_active_item_list();
-        $data['active_units'] = $this->Item_model->get_active_unit_list();	
+		$this->load->model('Setup_model');
+        $data['products'] = $this->Setup_model->get_active_item_list();
+        $data['active_units'] = $this->Setup_model->get_active_unit_list();	
         $data['store_records'] = $this->Setup_model->get_warehouse_list();
 		$data['main_content']='stock/stock_adjustment_add.php';
 		$this->load->view('includes/template.php',$data);
@@ -77,9 +77,9 @@ function update_stock_adjustment_records()
    {
         $data['title']='Minimum Stock';		
 		
-		$this->load->model('Item_model');
-        $data['active_items'] = $this->Item_model->get_active_item_list();
-        $data['active_units'] = $this->Item_model->get_active_unit_list();	
+		$this->load->model('Setup_model');
+        $data['active_items'] = $this->Setup_model->get_active_item_list();
+        $data['active_units'] = $this->Setup_model->get_active_unit_list();	
 		$data['main_content']='stock/min_stock_add.php';
 		$this->load->view('includes/template.php',$data);
         

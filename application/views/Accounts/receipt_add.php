@@ -116,8 +116,8 @@
       <table class="table table-bordered table-hover" id="cr_table">
         <thead class="thead-light">
           <tr>
-            <th>Credit Account (Cr)</th>
-            <th>Credit Amount</th>
+            <th>Debit Account (Dr)</th>
+            <th>Debit Amount</th>
             <th width="10%">
               <a id="cr_add_row" title="Add" class="btn btn-sm btn-success" style="cursor:pointer;">
                 <span class="fa fa-plus"></span>

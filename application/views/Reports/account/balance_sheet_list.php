@@ -498,69 +498,128 @@ function render_tree_rows($groups, &$row_id = 1, $parent_id = 0, $level = 0)
         <head>
             <title>Balance Sheet</title>
             <style>
-                body { 
-                    font-family: Arial; 
-                    font-size: 13px; 
-                    margin: 20px; 
-                    color: #000;
+                body{
+                font-family:Arial;
+                font-size:13px;
+                margin:20px;
+                color:#000;
+            }
+
+            h2{
+                text-align:center;
+                margin-bottom:5px;
+            }
+
+            table{
+                width:100%;
+                border-collapse:collapse;
+            }
+
+            th{
+                background:#e9ecef;
+                border:1px solid #000;
+                padding:8px;
+                text-align:center;
+                font-weight:bold;
+            }
+
+            td{
+                border:1px solid #000;
+                padding:6px 8px;
+            }
+
+            td:nth-child(2),
+            td:nth-child(4){
+                text-align:right;
+            }
+
+            .section-title{
+                background:#f5f5f5;
+                font-weight:bold;
+            }
+
+            .total{
+                border-top:2px solid #000;
+                font-weight:bold;
+            }
+
+            .grand-total{
+                background:#e9ecef;
+                font-weight:bold;
+            }
+
+            /* Header */
+
+            .print-header{
+                text-align:center;
+                margin-bottom:15px;
+            }
+
+            .print-header img{
+                width:220px;
+                height:auto;
+                display:block;
+                margin:0 auto;
+            }
+
+            /* Page */
+
+            @page{
+                size:A4 landscape;
+                margin:15mm 10mm 25mm 10mm;
+
+                @top-center{
+                    content:element(pageHeader);
                 }
 
-                h2 {
-                    text-align: center;
-                    margin-bottom: 5px;
+                @bottom-left{
+                    content:"©<?= date('Y'); ?> For Al Tareeq Kitchen Equipment Industry LLC, Designed and developed by Concepts 360 Plus";
+                    font-size:10px;
                 }
 
-                .date-range {
-                    text-align: center;
-                    margin-bottom: 15px;
-                    font-size: 12px;
+                @bottom-right{
+                    content:"Page " counter(page) " of " counter(pages);
+                    font-size:10px;
+                }
+            }
+
+            @media print{
+
+                body{
+                    margin:0;
                 }
 
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
+                .print-header{
+                    position:running(pageHeader);
                 }
 
-                th {
-                    background: #e9ecef;
-                    font-weight: bold;
-                    text-align: left;
-                    padding: 8px;
-                    border: 1px solid #000;
+                thead{
+                    display:table-header-group;
                 }
 
-                td {
-                    padding: 6px 8px;
-                    border: 1px solid #000;
+                tfoot{
+                    display:table-footer-group;
                 }
 
-                .text-right {
-                    text-align: right;
+                tr{
+                    page-break-inside:avoid;
                 }
-
-                .section-title {
-                    font-weight: bold;
-                    background: #f5f5f5;
-                }
-
-                .sub {
-                    padding-left: 20px;
-                }
-
-                .total {
-                    font-weight: bold;
-                    border-top: 2px solid #000;
-                }
-
-                .grand-total {
-                    font-weight: bold;
-                    background: #e9ecef;
-                }
+            }
             </style>
         </head>
         <body>
+            <div class="print-header">
+                <img src="<?php echo base_url('public/assets/images/altariq_logo.jpeg'); ?>" alt="Company Logo">
+            </div>
 
-            <h2>Balance Sheet</h2>
+            <div style="text-align:center;margin-bottom:20px;">
+                <h2 style="margin:5px 0;">BALANCE SHEET</h2>
+
+                <strong>Period :</strong>
+                ${document.getElementById('from').value}
+                To
+                ${document.getElementById('to').value}
+            </div>
 
             <table>
                 <thead>
