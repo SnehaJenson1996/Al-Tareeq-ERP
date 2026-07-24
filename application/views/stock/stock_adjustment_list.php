@@ -18,7 +18,7 @@
         <table class="table table-bordered table-hover" id="tab_logic">
             <thead>
             <tr>
-                  <th title="Item">Sr </th> 
+                  <th title="Item">Sl. No </th> 
                   <th title="Item">Stock Code</th>
                   <th title="Item">Item Details</th>      
                   <th title="Item">Stock Date</th>      
@@ -33,7 +33,7 @@
               <tr>
                       <td><?php echo $i;$i++;?></td>
                       <td><?php echo $row->stock_code;?></td>
-                      <td><?php echo $row->item_code;?><br/><?php echo $row->item_model;?></td>
+                      <td><?php echo $row->product_code;?><br/><?php echo $row->product_name;?></td>
                       <td><?php echo $row->stock_date;?></td>
                       <td><?php echo $row->stock_type;?></td>
                       <td><?php echo $row->remark;?></td>

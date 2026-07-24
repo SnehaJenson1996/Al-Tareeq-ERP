@@ -354,11 +354,11 @@ public function get_pr_items_for_quote() {
 
         $this->load->model('Purchase_Model');
 		$this->load->model('Sales_model');
-		$this->load->model('Item_model');
+		$this->load->model('Setup_model');
 
 		$po_id                          = $this->input->post('po_id');
 		
-		$data['active_units']           = $this->Item_model->get_active_unit_list();	
+		$data['active_units']           = $this->Setup_model->get_active_unit_list();	
 		//$data['approved_quotations']    = $this->Sales_model->get_approved_quotation_list();
        // $received_data = $this->Purchase_Model->get_received_qty_by_poid($po_id);
         

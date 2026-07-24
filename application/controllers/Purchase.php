@@ -21,6 +21,15 @@ class Purchase extends CI_Controller
     /////////////////////Direct RFQ Start  ////////////////////////
     function add_direct_rfq()
     {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_access($user,'Purchase/list_direct_rfq','A'))
+        {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template',$data);
+            return;
+        }
         $this->load->model('Item_model');
         $this->load->model('Company_model');
         $data['title'] = 'Request For Quotation(RFQ)-Direct';
@@ -63,6 +72,15 @@ class Purchase extends CI_Controller
 
     function list_direct_rfq()
     {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_view_access($user,'Purchase/list_direct_rfq'))
+        {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template',$data);
+            return;
+        }
         $data['title'] = 'Request For Quotation(RFQ)';
         $this->load->model('Purchase_Model');
         $data['records'] = $this->Purchase_Model->get_RFQ_list();
@@ -72,6 +90,15 @@ class Purchase extends CI_Controller
 
     function delete_rfq()
     {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_access($user,'Purchase/list_direct_rfq','D'))
+        {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template',$data);
+            return;
+        }
         $rfq_id = $this->uri->segment('3');
 
         $this->load->model('Purchase_Model');
@@ -81,12 +108,16 @@ class Purchase extends CI_Controller
 
     function edit_rfq()
     {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_access($user,'Purchase/list_direct_rfq','E'))
+        {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template',$data);
+            return;
+        }
         $this->load->model('Company_model');
-        // if(!has_access($user,'Purchase/list_rfq','E')){
-        //     $data['title'] = 'Access Denied';
-        //     $data['main_content']='errors/access_control.php';
-        // }
-        // else{
         $this->load->model('Setup_model');
         $rfq_id = $this->uri->segment('3');
         $data['view_only'] = $this->uri->segment('4');
@@ -117,6 +148,15 @@ class Purchase extends CI_Controller
     ///////////// Supplier Quotation////////////////////
     public function add_quote_from_supplier($rfq_id = null)
     {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_access($user,'Purchase/purchase_quotation_list','A'))
+        {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template',$data);
+            return;
+        }
         $this->load->model('Setup_model');
         $this->load->model('Purchase_Model');
 
@@ -161,6 +201,15 @@ class Purchase extends CI_Controller
 
     function purchase_quotation_list()
     {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_view_access($user,'Purchase/purchase_quotation_list'))
+        {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template',$data);
+            return;
+        }
         $data['title'] = 'Purchase Quotation';
         $this->load->model('Purchase_Model');
         $data['records'] = $this->Purchase_Model->get_quotation_list();
@@ -171,7 +220,15 @@ class Purchase extends CI_Controller
 
     function edit_quotation()
     {
+        $user = $this->session->userdata('user_id');
 
+        if (!has_access($user,'Purchase/purchase_quotation_list','E'))
+        {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template',$data);
+            return;
+        }
         $this->load->model('Setup_model');
         $this->load->model('Company_model');
         $quotation_id           = $this->uri->segment('3');
@@ -248,6 +305,15 @@ class Purchase extends CI_Controller
     }
     function delete_quote($quote_id)
     {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_access($user,'Purchase/purchase_quotation_list','D'))
+        {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template',$data);
+            return;
+        }
         // $quote_id = $this->uri->segment('3');	
         $this->load->model('Purchase_Model');
         $res = $this->Purchase_Model->delete_quote($quote_id);

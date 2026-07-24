@@ -488,10 +488,11 @@ $(document).ready(function() {
             // alert(vat_amt);
             // Calculate values safely
             var grand_converted = (grand_total * crate).toFixed(2);
-            $("#inv_cr_amount0").val(grand_converted);
-            $("#inv_dr_amount0").val((sub_total * crate).toFixed(2));
-            $("#inv_dr_amount1").val((discount_amt * crate).toFixed(2));
-            $("#inv_dr_amount2").val((vat_amt * crate).toFixed(2));
+            updateDrCr(sub_total, discount_amt, vat_amt, crate);
+            // $("#inv_cr_amount0").val(grand_converted);
+            // $("#inv_dr_amount0").val((sub_total * crate).toFixed(2));
+            // $("#inv_dr_amount1").val((discount_amt * crate).toFixed(2));
+            // $("#inv_dr_amount2").val((vat_amt * crate).toFixed(2));
           },
           error: function () {
             console.error("Error fetching supplier account ID.");
