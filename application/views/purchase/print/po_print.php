@@ -281,8 +281,8 @@
             ?>
             <tr>
                 <td><?= $sl++ ?></td>
-                <td><?= $item->item_name ?></td>
-                <td><?= $item->item_description ?></td>
+                <td><?= $item->product_name ?></td>
+                <td><?= $item->description ?></td>
                 <td><?= $item->quantity ?></td>
                 <td><?= $item->unit_name ?></td>
                 <td><?= number_format($item->price, 2) ?></td>

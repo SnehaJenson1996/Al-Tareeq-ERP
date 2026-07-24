@@ -116,8 +116,8 @@
                    </td>
                    <td><input class="form-control" type="number" name="quantity[]" id="quantity0"></td>
                    <td>
-                     <button class="addRow"><i class="fa fa-plus"></i></button>
-                     <button class="deleteRow"><i class="fa fa-search-minus"></i></button>
+                      <button type="button" class="btn btn-success addRow"><i class="fa fa-plus"></i></button>
+                      <button type="button" class="btn btn-danger deleteRow"><i class="fa fa-minus"></i></button>
                    </td>
                  </tr>
                </tbody>
@@ -240,8 +240,8 @@
                 </td>
                 <td><input class="form-control" type="number" name="quantity[]" id="quantity${rowIndex}"></td>
                 <td>
-                    <button class="addRow"><i class="fa fa-plus"></i></button>
-                    <button class="deleteRow"><i class="fa fa-search-minus"></i></button>                        
+                    <button type="button" class="btn btn-success addRow"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-danger deleteRow"><i class="fa fa-minus"></i></button>                        
                 </td>
             </tr>`;
 

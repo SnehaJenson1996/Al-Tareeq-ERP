@@ -4,7 +4,7 @@
                class="table table-striped table-bordered dt-responsive nowrap">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Sl. No</th>
                     <th>PR Code</th>
                     <th>PR Date</th>
                     <th>Material Issue</th>
@@ -25,7 +25,7 @@
                         <td><?= $pr->mi_code ?></td>
                         <td><?= $pr->branch_name ?></td>
                         <td><?= $pr->supplier_name ?></td>
-                        <td>
+                        <td class="action-icons">
                             <!-- View Button -->
                             <!-- <a href="<?= base_url('index.php/Purchase/view_pr/'.$pr->pr_id) ?>"
                                class="btn btn-info btn-xs" title="View">
@@ -33,17 +33,12 @@
                             </a> -->
 
                             <!-- Edit Button -->
-                            <a href="<?= base_url('index.php/Purchase/edit_pr_from_mi/'.$pr->pr_id) ?>"
-                               class="btn btn-warning btn-xs" title="Edit">
-                                <i class="fa fa-edit"></i>
-                            </a>
+                            <a href="<?= base_url('index.php/Purchase/edit_pr_from_mi/'.$pr->pr_id) ?>" title="Edit" style="margin-right:10px;">
+                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 
                             <!-- Delete Button -->
-                            <a href="<?= base_url('index.php/Purchase/delete_pr/'.$pr->pr_id) ?>"
-                               class="btn btn-danger btn-xs"
-                               title="Delete"
-                               onclick="return confirm('Are you sure you want to delete this PR?');">
-                                <i class="fa fa-trash"></i>
+                            <a href="<?= base_url('index.php/Purchase/delete_pr/'.$pr->pr_id) ?>" title="Delete" onclick="return confirm('Are you sure you want to delete this PR?');">
+                                <i class="glyphicon glyphicon-trash"></i>
                             </a>
                         </td>
                     </tr>

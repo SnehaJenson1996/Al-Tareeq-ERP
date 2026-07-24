@@ -18,12 +18,12 @@
                 <?php foreach ($stock as $row): ?>
                     <tr>
                         <td>
-                            <a href="<?= base_url('index.php/Inventory/item_reservation_detail/' . $row['item_id']); ?>">
-                                <?= $row['item_code']; ?>
+                            <a href="<?= base_url('index.php/Inventory/item_reservation_detail/' . $row['product_id']); ?>">
+                                <?= $row['product_code']; ?>
                             </a>
                         </td>
 
-                        <td><?= $row['item_name']; ?></td>
+                        <td><?= $row['product_name']; ?></td>
                         <td class="text-right"><?= number_format($row['total_stock'], 2); ?></td>
                         <td class="text-right text-warning"><?= number_format($row['total_reserved'], 2); ?></td>
                         <td class="text-right text-danger"><?= number_format($row['total_pending'], 2); ?></td>

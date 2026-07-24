@@ -2,7 +2,7 @@
     <thead>
         <tr>
         <th>Product Code</th>
-        <th>Brand</th>
+        <!-- <th>Brand</th> -->
         <th>Description</th>
         <th>Quantity</th>
         <th>Unit</th>
@@ -20,11 +20,11 @@
     $i=5000;$up=0;$itot=0;$subtot=0;$ivat=0; foreach($records2 as $r) { ?>
         <tr>
         <td>
-            <input type="text" class="form-control" name="item_model[]" value="<?php echo $r->item_name; ?>"/>
-            <input type="hidden" class="form-control" name="item_id[]" value="<?php echo $r->item_id; ?>"/>
+            <input type="text" class="form-control" name="item_model[]" value="<?php echo $r->product_name; ?>"/>
+            <input type="hidden" class="form-control" name="item_id[]" value="<?php echo $r->product_id; ?>"/>
         </td>
-        <td><input type="text" class="form-control" name="item_brand[]" value="<?php echo $r->brand_name; ?>"/></td>
-        <td><input type="text" class="form-control" name="item_description[]" value="<?php echo $r->item_description; ?>"/></td>
+        <!-- <td><input type="text" class="form-control" name="item_brand[]" value="<?php echo $r->brand_name; ?>"/></td> -->
+        <td><input type="text" class="form-control" name="item_description[]" value="<?php echo $r->description; ?>"/></td>
         <td><input type="number" class="form-control qty" name="item_quantity[]" id="item_quantity<?php echo $i; ?>" value="<?php echo $r->quantity; ?>"/></td>
         <td>
             <select class="form-control" name="item_unit[]">

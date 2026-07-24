@@ -40,7 +40,7 @@ class Purchase_Model extends CI_Model
 				'srno'		  => $i + 1,
 				'product_id'  => $_POST['item'][$i],
 				'prod_desc'   => $_POST['description'][$i],
-				'brand'		  => $_POST['brand'][$i],
+				'brand'       => $_POST['item_brand'][$i] ?? '',
 				'unit' 		  => $_POST['unit'][$i],
 				'quantity'    => $_POST['quantity'][$i],
 
@@ -58,6 +58,7 @@ class Purchase_Model extends CI_Model
 		// }
 		return $insert_id;
 	}
+
 	function update_rfq_records()
 	{
 
@@ -98,6 +99,7 @@ class Purchase_Model extends CI_Model
 
 		return $insert_id;
 	}
+
 	function delete_rfq($rfq_id)
 	{
 		$this->db->query("delete from purchase_RFQ_transaction where rfq_master_id='$rfq_id'");
@@ -110,15 +112,17 @@ class Purchase_Model extends CI_Model
 		// $log_msg=add_log_entry($user_se_id,3,$page_name[1],'grn_master','grn_id',$grn_id);
 		// return 1;
 	}
+
 	function get_RFQ_list()
 	{
 		$query = $this->db->query("SELECT r.*, em.user_name AS rfq_created_by, sp.supplier_name FROM purchase_rfq r JOIN users em ON r.created_by = em.user_id  JOIN supplier_master sp ON r.supplier_id = sp.supplier_id WHERE r.status = 0    ORDER BY rfq_date DESC;");
 		//    echo $this->db->last_query();exit;
 		return $query->result();
 	}
+
 	function get_quotation_list()
-{
-    $query = $this->db->query("
+	{
+		$query = $this->db->query("
         SELECT p.*, s.supplier_name
         FROM purchase_quotation_master p
         LEFT JOIN supplier_master s 
@@ -126,8 +130,9 @@ class Purchase_Model extends CI_Model
         ORDER BY p.quotation_id DESC
     ");
 
-    return $query->result();
-}
+		return $query->result();
+	}
+
 	function get_purchase_rfq_tr($rfq_id)
 	{
 		$this->db->select("
@@ -135,6 +140,7 @@ class Purchase_Model extends CI_Model
 			im.product_id,
 			im.product_code,
 			im.product_name,
+			im.retail_price,
 			im.description AS item_description,
 			im.unit_id,
 			um.unit_name
@@ -153,14 +159,14 @@ class Purchase_Model extends CI_Model
 	function get_purchase_rfq_by_id($id)
 	{
 		$this->db->select('r.*, 
-                   em.user_name AS rfq_created_by, 
-                   s.supplier_name, s.supplier_code, 
-                   s.billing_address, s.billing_city, s.billing_state, 
-                   s.billing_po_box, s.billing_country,
-                   s.supplier_email, s.contact_number,
-                   bm.branch_id, bm.branch_name,
-                   two.enquiry_id, 
-                   three.user_name AS sales_person_name');
+			em.user_name AS rfq_created_by, 
+			s.supplier_name, s.supplier_code, 
+			s.billing_address, s.billing_city, s.billing_state, 
+			s.billing_po_box, s.billing_country,
+			s.supplier_email, s.contact_number,
+			bm.branch_id, bm.branch_name,
+			two.enquiry_id, 
+			three.user_name AS sales_person_name');
 		$this->db->from('purchase_rfq r');
 		$this->db->join('users em', 'r.created_by = em.user_id');
 		$this->db->join('supplier_master s', 'r.supplier_id = s.supplier_id');
@@ -176,6 +182,7 @@ class Purchase_Model extends CI_Model
 
 		return $query->result();
 	}
+
 	function add_purchase_quotation()
 	{
 
@@ -188,32 +195,31 @@ class Purchase_Model extends CI_Model
 
 
 		/* =========================
-       FILE UPLOAD (NEW)
-    ========================== */
- $doc_name = null;
+		FILE UPLOAD (NEW)
+		========================== */
+		$doc_name = null;
 
-$upload_path = '/var/www/html/c3pprojects/aladel_erp/public/uploaded_documents/';
+		$upload_path = FCPATH . 'public/uploaded_documents/';
 
-if (!empty($_FILES['quote_doc']['name'])) {
+		if (!empty($_FILES['quote_doc']['name'])) {
 
-    $ext = pathinfo($_FILES['quote_doc']['name'], PATHINFO_EXTENSION);
-    $doc_name = time().'_'.rand(1000,9999).'.'.$ext;
+			$ext = pathinfo($_FILES['quote_doc']['name'], PATHINFO_EXTENSION);
+			$doc_name = time() . '_' . rand(1000, 9999) . '.' . $ext;
 
-    if (!is_dir($upload_path)) {
-        mkdir($upload_path, 0775, true);
-    }
+			if (!is_dir($upload_path)) {
+				mkdir($upload_path, 0775, true);
+			}
 
-    if (is_writable($upload_path)) {
+			if (is_writable($upload_path)) {
 
-        if (!move_uploaded_file($_FILES['quote_doc']['tmp_name'], $upload_path.$doc_name)) {
-            $doc_name = null; // prevent wrong DB entry
-        }
-
-    } else {
-        log_message('error', 'Upload folder not writable: '.$upload_path);
-        $doc_name = null;
-    }
-}
+				if (!move_uploaded_file($_FILES['quote_doc']['tmp_name'], $upload_path . $doc_name)) {
+					$doc_name = null; // prevent wrong DB entry
+				}
+			} else {
+				log_message('error', 'Upload folder not writable: ' . $upload_path);
+				$doc_name = null;
+			}
+		}
 
 		$data 	= array(
 			'quotation_date' 	 => date('Y-m-d', strtotime($this->input->post('quotation_date'))),
@@ -237,7 +243,7 @@ if (!empty($_FILES['quote_doc']['name'])) {
 			'delivery_term' 	=> $this->input->post('delivery_terms'),
 			'general_term' 		=> $this->input->post('general_terms'),
 			'validity' 			=> $this->input->post('validity'),
-			 'quote_doc'        => $doc_name,
+			'quote_doc'        => $doc_name,
 			'created_by' 		=> $this->session->userdata('user_id'),
 			'created_date' 		=> date('Y-m-d H:i:s')
 		);
@@ -254,7 +260,7 @@ if (!empty($_FILES['quote_doc']['name'])) {
 					'qtn_master_id' 	=> $insert_id,
 					'product_id' 		=> $_POST['item_id'][$i],
 					'desc' 				=> $_POST['item_description'][$i],
-					'brand' 			=> $_POST['item_brand'][$i],
+					'brand'             => isset($_POST['item_brand'][$i]) ? $_POST['item_brand'][$i] : '',
 					'unit_id' 			=> $_POST['item_unit'][$i],
 					// 'packing_id' =>$_POST['item_packing'][$i],
 					'quantity'  		=> $_POST['item_quantity'][$i],
@@ -267,11 +273,17 @@ if (!empty($_FILES['quote_doc']['name'])) {
 					'unit_price' 		=> $_POST['final_unit_price'][$i],
 				);
 				$this->db->insert('purchase_qtn_transaction', $data);
+				if (!$this->db->affected_rows()) {
+					echo "<pre>";
+					print_r($this->db->error());
+					exit;
+				}
 				$this->update_supplier_prices($s_id, $_POST['item_id'][$i], $_POST['item_unit'][$i], $_POST['final_unit_price'][$i]);
 			}
 		}
 		return $insert_id;
 	}
+
 	function update_supplier_prices($sid, $pcode, $unit, $unit_price)
 	{
 
@@ -299,9 +311,9 @@ if (!empty($_FILES['quote_doc']['name'])) {
 		}
 		//updating item master
 		$price_data = array(
-			'mrp_aed' => $unit_price,
+			'retail_price' => $unit_price,
 		);
-		$this->db->where('item_id', $pcode);
+		$this->db->where('product_id', $pcode);
 		$this->db->update('item_master', $price_data);
 	}
 
@@ -309,81 +321,79 @@ if (!empty($_FILES['quote_doc']['name'])) {
 	// 	$query=$this->db->query("select one.* from (select p.*,s.supplier_name from purchase_quotation_master p, supplier_master s where p.supplier_id=s.supplier_id )as one order by quotation_date desc, quotation_id desc; ");
 	// 	return $query->result();
 	//   }
+
 	function get_pur_qtn_master_by_id($id)
 	{
 		//$query=$this->db->query("SELECT qtn.*, rfq.rfq_id, rfq.rfq_code, rfq.created_by AS rfq_created_by_id, u1.user_name AS sales_person,  u2.user_name AS rfq_created_by_name, sm.supplier_code, sm.supplier_name,sm.contact_number,sm.billing_address, sm.supplier_email, sm.contact_number FROM purchase_quotation_master qtn LEFT JOIN purchase_rfq rfq ON qtn.rfq_master_id = rfq.rfq_id LEFT JOIN supplier_master sm ON qtn.supplier_id = sm.supplier_id LEFT JOIN users u1 ON u1.user_id = qtn.created_by  LEFT JOIN users u2 ON u2.user_id = rfq.created_by  WHERE quotation_id = '$id';;");
 		$query = $this->db->query("
-								SELECT 
-									qtn.*, 
-									rfq.rfq_id, 
-									rfq.rfq_code, 
-									rfq.created_by AS rfq_created_by_id, 
-									u1.user_name AS sales_person,  
-									u2.user_name AS rfq_created_by_name, 
-									sm.supplier_code, 
-									sm.supplier_name,
-									sm.contact_number,
-									sm.billing_address, 
-									sm.supplier_email, 
-									sm.contact_number,
-									bm.branch_name,
-									c.currency_abbr
-								FROM purchase_quotation_master qtn
-								LEFT JOIN purchase_rfq rfq ON qtn.rfq_master_id = rfq.rfq_id
-								LEFT JOIN supplier_master sm ON qtn.supplier_id = sm.supplier_id
-								LEFT JOIN users u1 ON u1.user_id = qtn.created_by
-								LEFT JOIN users u2 ON u2.user_id = rfq.created_by
-								LEFT JOIN branch_master bm ON qtn.branch_id = bm.branch_id
-								LEFT JOIN currency_master c ON sm.currency_id = c.currency_id								
+			SELECT 
+				qtn.*, 
+				rfq.rfq_id, 
+				rfq.rfq_code, 
+				rfq.created_by AS rfq_created_by_id, 
+				u1.user_name AS sales_person,  
+				u2.user_name AS rfq_created_by_name, 
+				sm.supplier_code, 
+				sm.supplier_name,
+				sm.contact_number,
+				sm.billing_address, 
+				sm.supplier_email, 
+				sm.contact_number,
+				bm.branch_name,
+				c.currency_abbr
+			FROM purchase_quotation_master qtn
+			LEFT JOIN purchase_rfq rfq ON qtn.rfq_master_id = rfq.rfq_id
+			LEFT JOIN supplier_master sm ON qtn.supplier_id = sm.supplier_id
+			LEFT JOIN users u1 ON u1.user_id = qtn.created_by
+			LEFT JOIN users u2 ON u2.user_id = rfq.created_by
+			LEFT JOIN branch_master bm ON qtn.branch_id = bm.branch_id
+			LEFT JOIN currency_master c ON sm.currency_id = c.currency_id								
 
-								WHERE qtn.quotation_id = '$id'
-							");
+			WHERE qtn.quotation_id = '$id'
+		");
 
 		return $query->result();
 	}
+
 	function get_pur_qtn_tr_by_id($id)
 	{
-		//$query=$this->db->query("select pqt.*,p.*,u.unit_name from purchase_qtn_transaction pqt left join item_master p ON pqt.product_id = p.item_id left join unit_master u ON pqt.unit_id = u.unit_id where qtn_master_id='$id' ");
 		$query = $this->db->query("
-								SELECT 
-									pqt.*, 
-									p.*, 
-									u.unit_name, 
-									b.brand_name
-								FROM purchase_qtn_transaction pqt
-								LEFT JOIN item_master p 
-									ON pqt.product_id = p.item_id
-								LEFT JOIN unit_master u 
-									ON pqt.unit_id = u.unit_id
-								LEFT JOIN brand_master b
-									ON p.item_brand = b.brand_id
-								WHERE qtn_master_id = '$id'
-							");
+			SELECT
+				pqt.*,
+				p.*,
+				u.unit_name
+			FROM purchase_qtn_transaction pqt
+			LEFT JOIN item_master p
+				ON pqt.product_id = p.product_id
+			LEFT JOIN unit_master u
+				ON pqt.unit_id = u.unit_id
+			WHERE pqt.qtn_master_id = '$id'
+		");
 
-		$res =  $query->result();
-		return $res;
+		return $query->result();
 	}
+
 	function update_purchase_quotation()
 	{
 		$quotation_id = $this->input->post("quotation_id");
 		$doc_name = $this->input->post('existing_quote_doc'); // hidden field
 		if (!empty($_FILES['quote_doc']['name'])) {
 
-    $upload_path = '/var/www/html/c3pprojects/aladel_erp/public/uploaded_documents/';
+			$upload_path = FCPATH . 'public/uploaded_documents/';
 
-    $ext = pathinfo($_FILES['quote_doc']['name'], PATHINFO_EXTENSION);
-    $new_file = time().'_'.rand(1000,9999).'.'.$ext;
+			$ext = pathinfo($_FILES['quote_doc']['name'], PATHINFO_EXTENSION);
+			$new_file = time() . '_' . rand(1000, 9999) . '.' . $ext;
 
-    if (move_uploaded_file($_FILES['quote_doc']['tmp_name'], $upload_path.$new_file)) {
+			if (move_uploaded_file($_FILES['quote_doc']['tmp_name'], $upload_path . $new_file)) {
 
-        // delete old file (optional but recommended)
-        if (!empty($doc_name) && file_exists($upload_path.$doc_name)) {
-            unlink($upload_path.$doc_name);
-        }
+				// delete old file (optional but recommended)
+				if (!empty($doc_name) && file_exists($upload_path . $doc_name)) {
+					unlink($upload_path . $doc_name);
+				}
 
-        $doc_name = $new_file;
-    }
-}
+				$doc_name = $new_file;
+			}
+		}
 		$data = array(
 			'quotation_date' => date('Y-m-d', strtotime($this->input->post('quotation_date'))),
 			'project' 		 => $this->input->post('project'),
@@ -418,14 +428,14 @@ if (!empty($_FILES['quote_doc']['name'])) {
 			$data = array(
 				'qtn_master_id' 	=> $quotation_id,
 				'product_id' 		=> $_POST['item_id'][$i],
-				'desc' 			=> $_POST['item_description'][$i],
-				'brand' 			=> $_POST['item_brand'][$i],
-				'unit_id' 		=> $_POST['item_unit'][$i],
+				'desc' 			    => $_POST['item_description'][$i],
+				'brand'             => $_POST['item_brand'][$i] ?? '',
+				'unit_id'           => $_POST['item_unit'][$i],
 				'quantity'  		=> $_POST['item_quantity'][$i],
 				'price' 	 		=> $_POST['unit_price'][$i],
 				'total'  			=> $_POST['total_price'][$i],
-				'dis_per'  		=> $_POST['dis_per'][$i],
-				'dis_amt'  		=> $_POST['dis_amt'][$i],
+				'dis_per'  		    => $_POST['dis_per'][$i],
+				'dis_amt'  		    => $_POST['dis_amt'][$i],
 				//'dis_per2'  		=> $_POST['dis_per2'][$i],
 				//'dis_amt2'  		=> $_POST['dis_amt2'][$i],
 				'unit_price' 		=> $_POST['final_unit_price'][$i]
@@ -433,6 +443,7 @@ if (!empty($_FILES['quote_doc']['name'])) {
 			$this->db->insert('purchase_qtn_transaction', $data);
 		}
 	}
+
 	public function create_revision_purchase_quotation()
 	{
 		$original_id = $this->input->post('quotation_id');
@@ -467,7 +478,7 @@ if (!empty($_FILES['quote_doc']['name'])) {
 				'qtn_master_id' 	=> $new_quotation_id,
 				'product_id' 		=> $_POST['item_id'][$i],
 				'desc' 				=> $_POST['item_description'][$i],
-				'brand' 			=> $_POST['item_brand'][$i],
+				'brand' 			=> $_POST['item_brand'][$i] ?? '',
 				'unit_id' 			=> $_POST['item_unit'][$i],
 				'quantity' 			=> $_POST['item_quantity'][$i],
 				'price'  			=> $_POST['unit_price'][$i],
@@ -519,6 +530,7 @@ if (!empty($_FILES['quote_doc']['name'])) {
 		// $log_msg=add_log_entry($user_se_id,3,$page_name[1],'grn_master','grn_id',$grn_id);
 		// 
 	}
+
 	function add_purchase_order()
 	{
 		$prifix = 'AVE/POD/';
@@ -597,7 +609,7 @@ if (!empty($_FILES['quote_doc']['name'])) {
 					'po_master_id' => $insert_id,
 					'product_id' => $_POST['item_id'][$i],
 					'desc' => $_POST['item_description'][$i],
-					'brand' => $_POST['item_brand'][$i],
+					'brand' => $_POST['item_brand'][$i] ?? '',
 					'unit_id' => $_POST['item_unit'][$i],
 					// 'packing_id' =>$_POST['item_packing'][$i],
 					'quantity'  => $_POST['item_quantity'][$i],
@@ -668,14 +680,14 @@ if (!empty($_FILES['quote_doc']['name'])) {
 			'created_date' 		=> date('Y-m-d H:i:s'),
 			// 'prepared_by' => $this->session->userdata('user_name')
 
-		//    'approved_by'  => $this->input->post('approved_by')
+			//    'approved_by'  => $this->input->post('approved_by')
 
 
 			//   'currency_id' => $this->input->post('cid'),
 			//   'currency_rate' => $this->input->post('crate'),
 		);
 
-		
+
 		$this->db->insert('purchase_order_master', $data);
 		$insert_id = $this->db->insert_id();
 
@@ -708,7 +720,7 @@ if (!empty($_FILES['quote_doc']['name'])) {
 					'po_master_id' 	 => $insert_id,
 					'product_id'	 => $_POST['item_id'][$i],
 					'desc' 			 => $_POST['item_description'][$i],
-					'brand' 		 => $_POST['item_brand'][$i],
+					'brand'          => $_POST['item_brand'][$i] ?? '',
 					'unit_id'        => $_POST['item_unit'][$i],
 					// 'packing_id' =>$_POST['item_packing'][$i],
 					'quantity'  	 => $_POST['item_quantity'][$i],
@@ -731,14 +743,16 @@ if (!empty($_FILES['quote_doc']['name'])) {
 
 		return $insert_id;
 	}
+
 	function get_po_list()
 	{
 		$query = $this->db->query("select r.*, s.supplier_name,d.doc_path from purchase_order_master r left join purchase_documents d on r.po_id = d.doc_master_id left join supplier_master s on r.supplier_id=s.supplier_id order by r.po_id desc;");
 		return $query->result();
 	}
+
 	function get_approved_po_list()
-{
-    $query = $this->db->query("
+	{
+		$query = $this->db->query("
         SELECT r.*, s.supplier_name
         FROM purchase_order_master r
         JOIN supplier_master s 
@@ -748,8 +762,8 @@ if (!empty($_FILES['quote_doc']['name'])) {
         ORDER BY r.po_id DESC
     ");
 
-    return $query->result();
-}
+		return $query->result();
+	}
 	// function get_approved_po_list()
 	// {
 	// 	$query=$this->db->query("select r.*, s.supplier_name from purchase_order_master r, supplier_master s where r.supplier_id=s.supplier_id and grn_status=0 and r.po_status=1 order by po_id desc");
@@ -905,48 +919,45 @@ if (!empty($_FILES['quote_doc']['name'])) {
 	{
 		//$query=$this->db->query("select * from purchase_order_transaction tr left join item_master pm on tr.product_id = pm.item_id left join unit_master um on pm.item_unit = um.unit_id  where  tr.po_master_id='$po_id'");
 		$query = $this->db->query("
-							SELECT 
-								tr.*, 
-								pm.*, 
-								um.unit_name, 
-								bm.brand_name
-							FROM purchase_order_transaction tr
-							LEFT JOIN item_master pm ON tr.product_id = pm.item_id
-							LEFT JOIN unit_master um ON pm.item_unit = um.unit_id
-							LEFT JOIN brand_master bm ON pm.item_brand = bm.brand_id
-							WHERE tr.po_master_id = '$po_id'
-						");
+			SELECT 
+				tr.*, 
+				pm.*, 
+				um.unit_name, 
+				bm.brand_name
+			FROM purchase_order_transaction tr
+			LEFT JOIN item_master pm ON tr.product_id = pm.item_id
+			LEFT JOIN unit_master um ON pm.item_unit = um.unit_id
+			LEFT JOIN brand_master bm ON pm.item_brand = bm.brand_id
+			WHERE tr.po_master_id = '$po_id'
+		");
 
 		return $query->result();
 	}
 	public function get_received_qty_by_poid($po_id)
-{
-    $this->db->select('gt.product_id, SUM(gt.quantity) AS received_qty');
-    $this->db->from('grn_master gm');
-    $this->db->join('grn_transaction gt', 'gm.grn_id = gt.grn_master_id');
-    $this->db->where('gm.po_id', $po_id);
-    $this->db->group_by('gt.product_id');
+	{
+		$this->db->select('gt.product_id, SUM(gt.quantity) AS received_qty');
+		$this->db->from('grn_master gm');
+		$this->db->join('grn_transaction gt', 'gm.grn_id = gt.grn_master_id');
+		$this->db->where('gm.po_id', $po_id);
+		$this->db->group_by('gt.product_id');
 
-    $query = $this->db->get();
-    return $query->result_array();
-}*/
+		$query = $this->db->get();
+		return $query->result_array();
+	}*/
 
-public function get_po_tr_by_id($po_id)
-{
-	$query = $this->db->query("
+	public function get_po_tr_by_id($po_id)
+	{
+		$query = $this->db->query("
 		SELECT 
 			tr.*, 
 			pm.*, 
 			um.unit_name, 
-			bm.brand_name,
 			IFNULL(SUM(gt.rec_quantity), 0) AS received_qty
 		FROM purchase_order_transaction tr
 		LEFT JOIN item_master pm 
-			ON tr.product_id = pm.item_id
+			ON tr.product_id = pm.product_id
 		LEFT JOIN unit_master um 
-			ON pm.item_unit = um.unit_id
-		LEFT JOIN brand_master bm 
-			ON pm.item_brand = bm.brand_id
+			ON pm.unit_id = um.unit_id
 		LEFT JOIN purchase_grn_master gm 
 			ON gm.po_id = tr.po_master_id
 		LEFT JOIN purchase_grn_transaction gt 
@@ -956,8 +967,8 @@ public function get_po_tr_by_id($po_id)
 		GROUP BY tr.product_id
 		ORDER BY tr.product_id ASC
 		");
-	return $query->result();
-}
+		return $query->result();
+	}
 
 
 
@@ -968,17 +979,18 @@ public function get_po_tr_by_id($po_id)
 	// 	return ($this->db->affected_rows() > 0);
 	// }
 
-	
-function approve_purchase_order($po_id, $approved_by)
-{
-    $this->db->where('po_id', $po_id);
-    $this->db->update('purchase_order_master', [
-        'po_status' => 1,
-        'approved_person' => $approved_by
-    ]);
 
-    return true;
-}
+	function approve_purchase_order($po_id, $approved_by)
+	{
+		$this->db->where('po_id', $po_id);
+		$this->db->update('purchase_order_master', [
+			'po_status' => 1,
+			'approved_person' => $approved_by
+		]);
+
+		return true;
+	}
+
 	function update_purchase_order()
 	{
 
@@ -1058,7 +1070,7 @@ function approve_purchase_order($po_id, $approved_by)
 				'po_master_id'  => $po_id,
 				'product_id' 	=> $_POST['item_id'][$i],
 				'desc' 			=> $_POST['item_description'][$i],
-				'brand' 		=> $_POST['item_brand'][$i],
+				'brand'         => $_POST['item_brand'][$i] ?? '',
 				'unit_id' 		=> $_POST['item_unit'][$i],
 				// 'packing_id' 	=> $_POST['item_packing'][$i],
 				'quantity'  	=> $_POST['item_quantity'][$i],
@@ -1073,11 +1085,13 @@ function approve_purchase_order($po_id, $approved_by)
 		}
 		return $res;
 	}
+
 	function get_quote_doc($doc_id, $doc_type)
 	{
 		$query = $this->db->query("select * from purchase_documents where doc_master_id=$doc_id and doc_type='$doc_type'");
 		return $query->result();
 	}
+
 	// GRN and stock entry 
 	function add_grn_records()
 	{
@@ -1186,9 +1200,9 @@ function approve_purchase_order($po_id, $approved_by)
 		}
 
 		/* ================= UPDATE PO ================= */
-				$status=$this->input->post('po_status');
-$query=$this->db->query("update purchase_order_master set grn_status=$status where po_id=$po_id;");
-		
+		$status = $this->input->post('po_status');
+		$query = $this->db->query("update purchase_order_master set grn_status=$status where po_id=$po_id;");
+
 		// $this->db->where('po_id', $po_id)
 		// 	->update('purchase_order_master', [
 		// 		'grn_status' => 1, 
@@ -1415,7 +1429,7 @@ $query=$this->db->query("update purchase_order_master set grn_status=$status whe
 	}
 	function get_grn_tr_by_id($grn_id)
 	{
-		$query = $this->db->query("select * from purchase_grn_transaction tr left join item_master pm on tr.product_id = pm.item_id left join unit_master um on pm.item_unit = um.unit_id  where  grn_master_id=$grn_id ");
+		$query = $this->db->query("select * from purchase_grn_transaction tr left join item_master pm on tr.product_id = pm.product_id left join unit_master um on pm.unit_id = um.unit_id  where  grn_master_id=$grn_id ");
 		return $query->result();
 	}
 	function delete_grn($grn_id)
@@ -1520,17 +1534,31 @@ $query=$this->db->query("update purchase_order_master set grn_status=$status whe
 	public function get_pr_items($pr_id)
 	{
 		$this->db->select('
-        pri.*, 
-        im.item_name as product_name, 
-        im.item_description, 
-        bm.brand_name, 
-        u.unit_name
-    ');
+			pri.*,
+			im.product_name,
+			im.product_code,
+			im.description,
+			im.retail_price,
+			im.unit_id,
+			u.unit_name
+		');
+
 		$this->db->from('purchase_request_items pri');
-		$this->db->join('item_master im', 'im.item_id = pri.product_id', 'left');
-		$this->db->join('unit_master u', 'u.unit_id = pri.unit_id', 'left');
-		$this->db->join('brand_master bm', 'bm.brand_id = im.item_brand', 'left');
+
+		$this->db->join(
+			'item_master im',
+			'im.product_id = pri.product_id',
+			'left'
+		);
+
+		$this->db->join(
+			'unit_master u',
+			'u.unit_id = im.unit_id',
+			'left'
+		);
+
 		$this->db->where('pri.pr_id', $pr_id);
+
 		return $this->db->get()->result();
 	}
 
@@ -1596,12 +1624,12 @@ $query=$this->db->query("update purchase_order_master set grn_status=$status whe
 	// public function get_pr_items_by_pr_id($pr_id)
 	// {
 	// 	$this->db->select('
-    //     pri.*, 
-    //     im.item_name, 
-    //     im.item_description, 
-    //     bm.brand_name,
-    //     u.unit_name
-    // ');
+	//     pri.*, 
+	//     im.item_name, 
+	//     im.item_description, 
+	//     bm.brand_name,
+	//     u.unit_name
+	// ');
 	// 	$this->db->from('purchase_request_items pri');
 	// 	$this->db->join('item_master im', 'im.item_id = pri.product_id', 'left');
 	// 	$this->db->join('unit_master u', 'u.unit_id = pri.unit_id', 'left');
@@ -1611,25 +1639,25 @@ $query=$this->db->query("update purchase_order_master set grn_status=$status whe
 	// }
 
 	public function delete_po($po_id)
-    {
-        if (!$po_id) return false;
+	{
+		if (!$po_id) return false;
 
-        // Begin transaction
-        $this->db->trans_start();
+		// Begin transaction
+		$this->db->trans_start();
 
-        // Delete child transactions first
-        $this->db->delete('purchase_order_transaction', ['po_master_id' => $po_id]);
+		// Delete child transactions first
+		$this->db->delete('purchase_order_transaction', ['po_master_id' => $po_id]);
 
-        // Delete master record
-        $this->db->delete('purchase_order_master', ['po_id' => $po_id]);
+		// Delete master record
+		$this->db->delete('purchase_order_master', ['po_id' => $po_id]);
 
-        // Complete transaction
-        $this->db->trans_complete();
+		// Complete transaction
+		$this->db->trans_complete();
 
-        return $this->db->trans_status(); // returns true if all queries succeeded
-    }
+		return $this->db->trans_status(); // returns true if all queries succeeded
+	}
 
-function get_po_supplier_details($po_id)
+	function get_po_supplier_details($po_id)
 	{
 		$query = $this->db->query("
 			SELECT
@@ -1672,6 +1700,4 @@ function get_po_supplier_details($po_id)
 
 		return $query->row();
 	}
-
-
 }
