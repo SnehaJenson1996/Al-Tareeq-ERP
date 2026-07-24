@@ -111,7 +111,7 @@
 
                         <th>Status</th>
 
-                        <th>Created On</th>
+                        <!-- <th>Created On</th> -->
 
                         <th>Actions</th>
 
@@ -245,13 +245,17 @@
 
 
 
-                        <td>
+                     <!-- <td>
+<?php
+$created_on = $qtn['created_on'];
 
-                            <?= date("d-m-Y H:i:s",
-                            strtotime($qtn['created_on'])); ?>
-
-                        </td>
-
+if (!empty($created_on) && strtotime($created_on) !== false) {
+    echo date("d-m-Y H:i:s", strtotime($created_on));
+} else {
+    echo '-';
+}
+?>
+</td> -->
 
 
 

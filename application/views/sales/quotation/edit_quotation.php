@@ -1,948 +1,1363 @@
-<?php
-// Assumptions:
-// - $qtn_master (quotation master row) available
-// - $qtn_details (array of main headings each with sub_headings and products) available
-// - $all_products (list of product objects with item_id, item_name, item_unit, unit_price) available
-// - $active_units (list of units) available
-// - Controller update_quotation expects same input names as in add page
-$initialMain = isset($qtn_details) ? count($qtn_details) : 0;
 
-// Build JS subIndex object for existing subheading counts
-$subCounts = [];
-if (!empty($qtn_details)) {
-    $mi = 0;
-    foreach ($qtn_details as $main) {
-        $subCounts[$mi] = isset($main['sub_headings']) ? count($main['sub_headings']) : 0;
-        $mi++;
-    }
-}
-?>
-<!DOCTYPE html>
-<html>
+<form method="post"
+      action="<?= base_url('index.php/Sales/update_quotation') ?>">
+      <div class="row">
 
-<head>
-    <meta charset="utf-8">
-    <title>Edit Quotation</title>
+    <!-- Enquiry Code -->
+    <div class="col-md-6">
+        <div class="form-group row align-items-center">
+            <label class="col-sm-4 col-form-label">
+                Enquiry Code:
+            </label>
 
-    <!-- REQUIRED CSS (adjust included files if needed) -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <style>
-        label,
-        h4 {
-            color: black;
-            font-weight: bold;
-        }
+            <div class="col-sm-8">
+                <input type="text"
+                    id="enquiry_code"
+                    name="enquiry_code"
+                    value="<?= $quotation->enquiry_code ?>"
+                    class="form-control"
+                    readonly>
+            </div>
+        </div>
+    </div>
 
-        .main-heading-block {
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 12px;
-        }
 
-        .sub-block {
-            border: 1px dashed #e0e0e0;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-        }
+    <!-- Enquiry Branch -->
+    <div class="col-md-6">
+        <div class="form-group row align-items-center">
 
-        .product-table th,
-        .product-table td {
-            vertical-align: middle;
-        }
+            <label class="col-sm-4 col-form-label">
+                Enquiry Branch:
+            </label>
 
-        .btn-sm {
-            padding: .35rem .5rem;
-            font-size: .85rem;
-        }
+            <div class="col-sm-8">
 
-        /* Add a subtle border around the whole content if requested */
-        .content-border {
-            border: 1px solid #e6e6e6;
-            padding: 12px;
-            border-radius: 6px;
-            background: #fff;
-        }
+                <input type="text"
+                    id="branch_name"
+                    name="branch_name"
+                    value="<?= $quotation->branch_name ?>"
+                    class="form-control"
+                    readonly>
 
-        .remove-btn {
-            cursor: pointer;
-        }
+            </div>
 
-        .cover-hide {
-            display: none;
-        }
+        </div>
+    </div>
 
-        /* placeholder if you want cover-only CSS */
-    </style>
-</head>
+</div>
 
-<body>
-    <div class="container content-border">
-        <div class="x_title">
-            <div class="clearfix"></div>
-            <?php if ($this->session->flashdata('success')): ?>
-                <div class="alert alert-success"><?= $this->session->flashdata('success') ?></div>
-            <?php endif; ?>
-            <?php if ($this->session->flashdata('error')): ?>
-                <div class="alert alert-danger"><?= $this->session->flashdata('error') ?></div>
-            <?php endif; ?>
+
+
+<div class="row">
+
+
+    <!-- Project -->
+    <div class="col-md-6">
+
+        <div class="form-group row align-items-center">
+
+            <label class="col-sm-4 col-form-label">
+                Project Name:
+            </label>
+
+
+            <div class="col-sm-8">
+
+                <input type="text"
+                    id="project_name"
+                    name="project_name"
+                    value="<?= $quotation->project_name ?>"
+                    class="form-control"
+                    readonly>
+
+            </div>
+
         </div>
 
+    </div>
 
-        <!-- <h4>Edit Quotation - <?= isset($qtn_master['quotation_code']) ? $qtn_master['quotation_code'] : '' ?></h4> -->
 
-        <form action="<?= base_url('index.php/Sales/update_quotation') ?>" method="post" id="editQuotationForm">
-            <!-- Hidden -->
-            <input type="hidden" name="quotation_id" value="<?= $qtn_master['quotation_id'] ?? '' ?>">
-            <input type="hidden" name="enquiry_id" value="<?= $qtn_master['enquiry_id'] ?? '' ?>">
-            <input type="hidden" name="estimation_id" value="<?= $qtn_master['estimation_id'] ?? '' ?>">
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label>Quotation Code</label>
-                    <input type="text" name="quotation_code" class="form-control" readonly value="<?= $qtn_master['quotation_code'] ?? '' ?>">
-                </div>
-                <div class="col-md-6">
-                    <label>Quotation Date</label>
-                    <input type="date" name="quotation_date" id="quotation_date" class="form-control" value="<?= date("Y-m-d", strtotime($qtn_master['quotation_date'])) ?>">
-                </div>
+    <!-- Customer -->
+
+    <div class="col-md-6">
+
+        <div class="form-group row align-items-center">
+
+            <label class="col-sm-4 col-form-label">
+                Customer:
+            </label>
+
+
+            <div class="col-sm-8">
+
+                <input type="text"
+                    id="customer_name"
+                    name="customer_name"
+                    value="<?= $quotation->customer_name ?>"
+                    class="form-control"
+                    readonly>
+
             </div>
 
-            <div class="row mb-2">
-                <div class="col">
-                    <button type="button" class="btn btn-primary btn-sm" id="addMainBtn">+ Add Main Heading</button>
-                </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+<div class="row">
+
+
+    <!-- Quotation Code -->
+
+    <div class="col-md-6">
+
+        <div class="form-group row align-items-center">
+
+            <label class="col-sm-4 col-form-label">
+                Quotation Code:
+            </label>
+
+
+            <div class="col-sm-8">
+
+                <input type="text"
+                    name="quotation_code"
+                    class="form-control"
+                    value="<?= $quotation->quotation_code ?>"
+                    readonly>
+
             </div>
 
-            <!-- Container for main headings -->
-            <div id="quotation_container">
-                <!-- Existing main headings rendered server-side (editable) -->
-                <?php if (!empty($qtn_details)): $mi = 0; ?>
-                    <?php foreach ($qtn_details as $main): ?>
-                        <div class="main-heading-block" data-main="<?= $mi ?>">
-                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                <div style="width:40%">
-                                    <label>Main Heading</label>
-                                    <input type="text" name="main_heading[<?= $mi ?>]" class="form-control" value="<?= htmlspecialchars($main['main_heading'] ?? '') ?>">
-                                </div>
-                                <div style="width:45%">
-                                    <label>Details</label>
-                                    <textarea name="main_details[<?= $mi ?>]" class="form-control" rows="2"><?= htmlspecialchars($main['main_details'] ?? '') ?></textarea>
-                                </div>
-                                <div class="ms-2">
-                                    <label>&nbsp;</label><br>
-                                    <button type="button" class="btn btn-danger btn-sm removeMainHeading">🗑</button>
-                                </div>
-                            </div>
+        </div>
 
-                            <!-- Sub-heading blocks -->
-                            <div class="sub-container sub-container-<?= $mi ?>">
-                                <?php if (!empty($main['sub_headings'])): $sj = 0; ?>
-                                    <?php foreach ($main['sub_headings'] as $sub): ?>
-                                        <div class="sub-block" data-sub="<?= $sj ?>">
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <input type="text" name="sub_heading[<?= $mi ?>][<?= $sj ?>]" class="form-control w-75" value="<?= htmlspecialchars($sub['sub_heading'] ?? '') ?>" placeholder="Sub Heading">
-                                                <button type="button" class="btn btn-danger btn-sm removeSubHeading">🗑</button>
-                                            </div>
-
-                                            <table class="table table-sm table-bordered product-table mb-2">
-                                                <thead>
-                                                    <tr class="bg-light">
-                                                        <th>Product</th>
-                                                        <th style="width:100px">Unit</th>
-                                                        <th style="width:100px">Qty</th>
-                                                        <th style="width:120px">Unit Price</th>
-                                                        <th style="width:120px">Amount</th>
-                                                        <th style="width:120px">Discount</th>
-                                                        <!-- <th style="width:120px">Warranty</th> -->
-
-                                                        <th style="width:120px">Taxable</th>
-                                                        <th style="width:60px"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php if (!empty($sub['products'])): $pk = 0; ?>
-                                                        <?php foreach ($sub['products'] as $prod): ?>
-                                                            <tr>
-                                                                <td style="min-width:200px">
-                                                                    <select name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][product_id]" class="form-control product-select">
-                                                                        <option value="">-- Select Product --</option>
-                                                                        <?php foreach ($all_products as $p): ?>
-                                                                            <option value="<?= $p->item_id ?>" <?= ($p->item_id == ($prod['product_id'] ?? $prod['prd_id'])) ? 'selected' : '' ?>>
-                                                                                <?= htmlspecialchars($p->item_name) ?>
-                                                                            </option>
-                                                                        <?php endforeach; ?>
-                                                                    </select>
-                                                                   <textarea 
-    id="product_desc_<?= $mi ?>_<?= $sj ?>_<?= $pk ?>"
-    name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][product_description]" 
-    class="form-control mt-1 product_editor"><?= 
-        strip_tags($prod['product_description'] ?? '') 
-    ?></textarea>
-                                                                </td>
-
-                                                                <td>
-                                                                    <select name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][unit]" class="form-control unit-select">
-                                                                        <option value="">-- Unit --</option>
-                                                                        <?php foreach ($active_units as $u): ?>
-                                                                            <option value="<?= $u->unit_id ?>" <?= (isset($prod['unit_id']) && $prod['unit_id'] == $u->unit_id) ? 'selected' : '' ?>>
-                                                                                <?= htmlspecialchars($u->unit_name) ?>
-                                                                            </option>
-                                                                        <?php endforeach; ?>
-                                                                    </select>
-                                                                </td>
-
-                                                                <td><input type="number" step="0.01" name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][quantity]" class="form-control qtn_qty" value="<?= $prod['quantity'] ?? $prod['qty'] ?? 0 ?>"></td>
-
-                                                                <td><input type="number" step="0.01" name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][unit_price]" class="form-control qtn_unitPrice" value="<?= $prod['unit_price'] ?? 0 ?>"></td>
-
-                                                                <td><input type="number" step="0.01" name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][amount]" class="form-control qtn_amount" readonly value="<?= $prod['amount'] ?? 0 ?>"></td>
-
-                                                                <td>
-                                                                    <input type="number" step="0.01" name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][discount_percent]" class="form-control qtn_discount_percent" id="qtn_discount_percent" value="<?= $prod['discount_percent'] ?? $prod['discount_percent'] ?? 0 ?>">
-                                                                    <input type="number" step="0.01" name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][discount_amount]" class="form-control qtn_discount_amount" id="qtn_discount_amount" value="<?= $prod['dicount_amount'] ?? $prod['discount_amount'] ?? 0 ?>">
-                                                                </td>
- 
+    </div>
 
 
 
-                                                                <td><input type="number" step="0.01" name="products[<?= $mi ?>][<?= $sj ?>][<?= $pk ?>][taxable_amount]" class="form-control qtn_taxable_amount" readonly value="<?= $prod['taxable_amount'] ?? 0 ?>"></td>
+    <!-- Quotation Date -->
 
-                                                                <td><button type="button" class="btn btn-danger btn-sm removeProductRow">🗑</button></td>
-                                                            </tr>
-                                                        <?php $pk++;
-                                                        endforeach; ?>
-                                                    <?php endif; ?>
-                                                </tbody>
-                                            </table>
+    <div class="col-md-6">
 
-                                            <button type="button" class="btn btn-success btn-sm addProduct btn-sm">+ Add Product</button>
-                                        </div>
-                                    <?php $sj++;
-                                    endforeach; ?>
-                                <?php endif; ?>
-                            </div>
+        <div class="form-group row align-items-center">
 
-                            <div class="mt-2">
-                                <button type="button" class="btn btn-secondary btn-sm addSubHeadingBtn">+ Add Sub Heading</button>
-                            </div>
-                        </div>
-                    <?php $mi++;
-                    endforeach; ?>
-                <?php endif; ?>
-            </div> <!-- #quotation_container -->
+            <label class="col-sm-4 col-form-label">
+                Quotation Date:
+            </label>
 
-            <!-- SUMMARY -->
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Sub Total</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="qtn_sub_total" id="qtn_sub_total" class="form-control qtn_sub_total" value="<?= $qtn_master['sub_total'] ?? 0 ?>" readonly>
-                        </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Other Charges</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="other_charges" id="other_charges" class="form-control" value="<?= $qtn_master['other_charge'] ?? 0 ?>">
-                        </div>
-                    </div>
+            <div class="col-sm-8">
 
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Additional Discount (%)</label>
-                        <div class="col-sm-4">
-                            <input type="text" id="qtn_add_discount_percentage" name="qtn_add_discount_percentage" class="form-control" value="<?= $qtn_master['discount_percentage'] ?? 0 ?>">
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" id="qtn_add_discount_amount" name="qtn_add_discount_amount" class="form-control" value="<?= $qtn_master['discount_amount'] ?? 0 ?>">
-                        </div>
-                    </div>
+                <input type="date"
+                    id="quotation_date"
+                    name="quotation_date"
+                    value="<?= date('Y-m-d',strtotime($quotation->quotation_date)) ?>"
+                    class="form-control">
 
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Apply VAT</label>
-                        <div class="col-sm-8">
-                            <input type="checkbox" id="qtn_apply_vat" name="qtn_apply_vat" <?= isset($qtn_master['vat_required']) && $qtn_master['vat_required'] ? 'checked' : '' ?>>
-                            <input type="number" id="qtn_vat_percentage" name="qtn_vat_percentage" class="form-control mt-2" style="width:100px;" value="<?= $qtn_master['vat_percentage'] ?? 5 ?>" readonly>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">VAT Amount</label>
-                        <div class="col-sm-8">
-<input type="text"
-       id="qtn_vat_amount"
-       name="qtn_vat_amount"
-       class="form-control"
-       value="<?= number_format($qtn_master['vat_amount'] ?? 0, 2, '.', '') ?>"
-       readonly>                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Total Before VAT</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="total_before_vat" name="total_before_vat" class="form-control" value="<?= $qtn_master['total_before_vat'] ?? 0 ?>" readonly>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Grand Total</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="qtn_grand_total" name="qtn_grand_total" class="form-control" value="<?= $qtn_master['grand_total'] ?? 0 ?>" readonly>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- Payment & Terms -->
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label>Payment Term</label>
-<textarea name="payment_term" id="payment_term" class="form-control" rows="3"><?= strip_tags($qtn_master['payment_term'] ?? '') ?></textarea>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<input type="hidden"
+       name="qtn_id"
+       value="<?= $quotation->qtn_id ?>">
+
+
+<input type="hidden"
+       name="quotation_customer"
+       id="quotation_customer"
+       value="<?= $quotation->quotation_customer ?>">
+
+
+<input type="hidden"
+       name="quotation_branch_id"
+       id="quotation_branch_id"
+       value="<?= $quotation->quotation_branch_id ?>">
+
+
+<input type="hidden"
+       name="enquiry_id"
+       value="<?= $quotation->enquiry_id ?>">
+
+       <table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th width="35">#</th>
+            <th>Item</th>
+            <th width="100">Qty</th>
+            <th width="150">Price</th>
+            <th width="150">Amount</th>
+            <th width="80">
+                <button type="button" 
+                        class="btn btn-success btn-xs"
+                        id="addNewItem">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </th>
+        </tr>
+    </thead>
+
+
+    <tbody id="selectedCartItems">
+
+<?php 
+$i=1;
+if(!empty($cart_items)) { 
+
+foreach($cart_items as $item) { 
+?>
+
+
+<tr>
+
+
+<td>
+    <?= $i++ ?>
+</td>
+
+
+<td>
+
+    <?= $item->product_name ?>
+
+
+    <input type="hidden"
+           name="item_id[]"
+           value="<?= $item->item_id ?>">
+
+    <input type="hidden"
+           name="product_name[]"
+           value="<?= $item->product_name ?>">
+
+</td>
+
+
+
+<td>
+
+<input type="number"
+       class="form-control form-control-sm cart_qty"
+       name="qty[]"
+       value="<?= $item->qty ?>"
+       min="1"
+       style="width:80px">
+
+</td>
+
+
+
+
+<td>
+
+<input type="number"
+       class="form-control form-control-sm cart_price"
+       name="price[]"
+       value="<?= number_format($item->price,2,'.','') ?>"
+       step="0.01"
+       style="width:100px">
+
+</td>
+
+
+
+<td>
+
+<span class="amount_display">
+<?= number_format($item->amount,2) ?>
+</span>
+
+
+<input type="hidden"
+       class="amount_input"
+       name="amount[]"
+       value="<?= $item->amount ?>">
+
+
+</td>
+
+
+
+
+<td>
+
+
+<button type="button"
+        class="btn btn-danger btn-sm removeCartItem">
+
+<i class="fa fa-trash"></i>
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<?php } } ?>
+
+
+    </tbody>
+
+
+</table>
+
+<!-- Summary -->
+<div class="row justify-content-center">
+
+    <div class="col-md-10">
+
+        <div class="row">
+
+
+            <!-- Gross -->
+            <div class="col-md-6">
+
+                <div class="form-group row">
+
+                    <label class="col-sm-4 col-form-label">
+                        Gross
+                    </label>
+
+                    <div class="col-sm-8">
+
+                        <input type="text"
+                               name="qtn_sub_total"
+                               id="qtn_sub_total"
+                               class="form-control qtn_sub_total"
+                               value="<?= number_format($quotation->sub_total,2,'.','') ?>"
+                               readonly>
+
+                    </div>
+
                 </div>
-                <div class="col-md-6">
-                    <label>Validity</label>
-                    <input type="text" name="validity" class="form-control" value="<?= $qtn_master['validity'] ?? '' ?>">
-                </div>
+
             </div>
 
-            <div class="form-group row">
+
+
+
+            <!-- Discount -->
+            <div class="col-md-6">
+
+                <div class="form-group row">
+
+                    <label class="col-sm-4 col-form-label">
+                        Discount
+                    </label>
+
+
+                    <div class="col-sm-4">
+
+                        <input type="text"
+                               name="qtn_add_discount_percentage"
+                               id="qtn_add_discount_percentage"
+                               class="form-control"
+                               value="<?= isset($quotation->discount_percentage) ? $quotation->discount_percentage : 0 ?>"
+                               placeholder="%">
+
+                    </div>
+
+
+                    <div class="col-sm-4">
+
+                        <input type="text"
+                               name="qtn_add_discount_amount"
+                               id="qtn_add_discount_amount"
+                               class="form-control"
+                               value="<?= number_format($quotation->discount_amount,2,'.','') ?>"
+                               placeholder="Amount">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <!-- VAT -->
+            <div class="col-md-6">
+
+                <div class="form-group row">
+
+
+                    <label class="col-sm-4 col-form-label">
+                        Apply VAT
+                    </label>
+
+
+                    <div class="col-sm-8">
+
+
+                        <input type="checkbox"
+                               id="qtn_apply_vat"
+                               name="qtn_apply_vat"
+                               <?= ($quotation->vat_amount > 0) ? 'checked' : '' ?>>
+
+
+
+                        <input type="number"
+                               name="qtn_vat_percentage"
+                               id="qtn_vat_percentage"
+                               value="<?= isset($quotation->vat_percentage) ? $quotation->vat_percentage : 5 ?>"
+                               class="form-control mt-2"
+                               style="width:100px;">
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+            <!-- VAT Amount -->
+            <div class="col-md-6">
+
+
+                <div class="form-group row">
+
+
+                    <label class="col-sm-4 col-form-label">
+                        VAT Amount
+                    </label>
+
+
+                    <div class="col-sm-8">
+
+
+                        <input type="text"
+                               name="qtn_vat_amount"
+                               id="qtn_vat_amount"
+                               class="form-control"
+                               value="<?= number_format($quotation->vat_amount,2,'.','') ?>">
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+            <!-- Net -->
+            <div class="col-md-6">
+
+
+                <div class="form-group row">
+
+
+                    <label class="col-sm-4 col-form-label">
+                        Net
+                    </label>
+
+
+                    <div class="col-sm-8">
+
+
+                        <input type="text"
+                               name="qtn_grand_total"
+                               id="qtn_grand_total"
+                               class="form-control"
+                               value="<?= number_format($quotation->grand_total,2,'.','') ?>"
+                               readonly>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Payment and Terms -->
+
+<div class="form-group row">
 
     <div class="col-sm-6">
-        <label class="col-form-label">Warranty</label>
+
+        <label class="col-form-label">
+            Payment Term
+        </label>
+
+        <textarea name="payment_term"
+                  id="payment_term"
+                  class="form-control estimation_edit"><?= 
+                  isset($quotation->payment_term) ? $quotation->payment_term : '' 
+                  ?></textarea>
+
+    </div>
+
+
+
+    <div class="col-sm-6">
+
+        <label class="col-form-label">
+            Validity
+        </label>
+
+        <input type="text"
+               name="validity"
+               id="validity"
+               class="form-control estimation_edit"
+               value="<?= isset($quotation->validity) ? $quotation->validity : '' ?>">
+
+    </div>
+
+</div>
+
+
+
+
+<div class="form-group row">
+
+
+    <div class="col-sm-6">
+
+        <label class="col-form-label">
+            Warranty
+        </label>
+
+
         <input type="text"
                name="warranty"
                id="warranty"
-               class="form-control"
-               value="<?= $qtn_master['warranty'] ??  '' ?>">
+               class="form-control estimation_edit"
+               value="<?= isset($quotation->warranty) ? $quotation->warranty : '' ?>">
+
+
     </div>
 
-   <div class="col-sm-6">
-        <label class="col-form-label">Warranty Description</label>
+
+
+
+    <div class="col-sm-6">
+
+
+        <label class="col-form-label">
+            Warranty Description
+        </label>
+
+
         <textarea name="warranty_description"
                   id="warranty_description"
-                  class="form-control estimation_edit"><?= isset($qtn_master['warranty_description']) ? $qtn_master['warranty_description'] : '' ?></textarea>
+                  class="form-control estimation_edit"><?= 
+                  isset($quotation->warranty_description) ? $quotation->warranty_description : '' 
+                  ?></textarea>
+
+
     </div>
+
 
 </div>
 
-            <div class="row mt-2">
-                <div class="col-md-6">
-                    <label>Delivery Term</label>
-                    <textarea name="delivery_term" id="delivery_term" class="form-control" rows="4"><?= strip_tags($qtn_master['delivery_term'] ?? '') ?></textarea>
-                </div>
-                <div class="col-md-6">
-                    <label>Terms & Conditions</label>
-                    <textarea name="terms_condition" id="terms_condition" class="form-control" rows="4"><?= strip_tags($qtn_master['terms_condition'] ?? '') ?></textarea>
-                </div>
-            </div>
 
 
-             <div class="row mt-3">
+
+
+<div class="form-group row">
+
+
+    <div class="col-sm-6">
+
+
+        <label class="col-form-label">
+            Delivery Term
+        </label>
+
+
+        <textarea name="delivery_term"
+                  id="delivery_term"
+                  class="form-control estimation_edit"><?= 
+                  isset($quotation->delivery_term) ? $quotation->delivery_term : '' 
+                  ?></textarea>
+
+
+    </div>
+
+
+
+
+
+    <div class="col-sm-6">
+
+
+        <label class="col-form-label">
+            Terms & Conditions
+        </label>
+
+
+        <textarea name="terms_condition"
+                  id="terms_condition"
+                  class="form-control estimation_edit"><?= 
+                  isset($quotation->terms_condition) ? $quotation->terms_condition : '' 
+                  ?></textarea>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<div class="row mt-3">
+
     <div class="col-md-12">
-        <label>Notes</label>
+
+        <label>
+            Notes
+        </label>
+
+
         <textarea class="form-control"
                   name="notes"
                   id="notes"
-                  rows="4"><?= strip_tags($qtn_master['notes'] ?? '') ?></textarea>
+                  rows="4"><?= 
+                  isset($quotation->notes) ? $quotation->notes : '' 
+                  ?></textarea>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<div class="row mt-3">
+
+
+<div class="col-md-4">
+
+
+<div class="item form-group">
+
+
+<label class="col-form-label col-md-4 col-sm-4 label-align">
+Prepared By:
+</label>
+
+
+<div class="col-md-6 col-sm-6">
+
+
+<select class="form-control select2"
+        id="employee_prepared"
+        name="employee_prepared">
+
+
+<option value="">
+Select
+</option>
+
+
+
+<?php foreach ($employees as $s) { ?>
+
+
+<option value="<?= $s->employee_id ?>"
+<?= ($quotation->employee_prepared == $s->employee_id) ? 'selected' : '' ?>>
+<?= $s->user_code.' '.$s->employee_name ?>
+</option>
+
+
+<?php } ?>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12 text-center">
+
+        <input type="hidden" 
+               name="qtn_id" 
+               value="<?= $quotation->qtn_id ?>">
+
+        <button type="submit" 
+                class="btn btn-success">
+            <i class="fa fa-save"></i> Update Quotation
+        </button>
+
+
+        <a href="<?= base_url('index.php/Sales/view_quotation/'.$quotation->qtn_id) ?>"
+           class="btn btn-secondary">
+            <i class="fa fa-arrow-left"></i> Cancel
+        </a>
+
     </div>
 </div>
 
 
-            <div class="row mt-3">
-      <div class="col-md-4">
-        <!-- Employee Name -->
-        <div class="item form-group">
-            <label class="col-form-label col-md-4 col-sm-4 label-align">Prepared By:</label>
-            <div class="col-md-6 col-sm-6 ">
-              <select class="form-control select2" 
-                id="employee_prepared" name="employee_prepared" required>
-                <option value="">Select</option>
-                <?php foreach ($employees as $s) { ?>
-                <option value="<?php echo $s->employee_id  ?>" <?= (isset($qtn_master['prepared_by']) && $qtn_master['prepared_by'] == $s->employee_id) ? 'selected' : '' ?>><?php echo $s->user_code . ' ' . $s->employee_name; ?></option>
-                <?php } ?>
-              </select>
+<div class="modal fade" id="newItemModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Add Product</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
             </div>
-        </div>
-      </div>
 
-      <div class="col-md-4">
-        <!-- Employee Name -->
-        <div class="item form-group">
-            <label class="col-form-label col-md-4 col-sm-4 label-align">Approved By:</label>
-            <div class="col-md-6 col-sm-6 ">
-              <select class="form-control select2" 
-                id="employee_approved" name="employee_approved" required>
-                <option value="">Select</option>
-                <?php foreach ($employees as $s) { ?>
-                <option value="<?php echo $s->employee_id  ?>" <?= (isset($qtn_master['approved_by']) && $qtn_master['approved_by'] == $s->employee_id) ? 'selected' : '' ?>><?php echo $s->user_code . ' ' . $s->employee_name; ?></option>
-                <?php } ?>
-              </select>
-            </div>
-        </div>
-      </div>      
-    </div>      
-            <div class="text-center mt-3">
+            <div class="modal-body">
 
-                <?php if (($qtn_master['aproval'] ?? 0) == 0): ?>
+                <input type="text" 
+                       id="new_item_search"
+                       class="form-control"
+                       placeholder="Search product">
 
-                    <div class="form-check form-check-inline me-3">
-                        <input class="form-check-input" type="checkbox" id="create_revision" name="create_revision" value="1">
-                        <label class="form-check-label" for="create_revision" style="font-weight:600;">
-                            Create New Revision
-                        </label>
-                    </div>
+                <table class="table table-bordered mt-3">
 
-                    <button type="submit" class="btn btn-success" name="action" value="update">
-                        Update Quotation
-                    </button>
-                    <? php // if (has_access_id(6)) { 
-                    ?>
-                 <?php if($qtn_master['grand_total'] >= 10000){ ?>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
 
-    <!-- 🔹 Step 1: Internal Approval -->
-    <?php if($qtn_master['internal_approval'] == 'Pending'){ ?>
+                    <tbody id="new_item_result">
 
-        <a href="<?= base_url('index.php/Sales/internal_approve/'.$qtn_master['quotation_id']); ?>" 
-           class="btn btn-warning btn-sm">
-            Internal Approval
-        </a>
+                    </tbody>
 
-    <?php } ?>
-
-    <!-- 🔹 Step 2: Client Approval (After Internal Approved) -->
-    <?php if($qtn_master['internal_approval'] == 'Approved' 
-            && $qtn_master['aproval'] == '0'){ ?>
-
-        <a href="<?= base_url('index.php/Sales/approve_quotation/'.$qtn_master['quotation_id']) ?>"
-           class="btn btn-primary">
-            Approve Quotation with LPO
-        </a>
-
-        <a href="<?= base_url('index.php/Sales/approve_quotation_without_LPO/'.$qtn_master['quotation_id']) ?>"
-           class="btn btn-primary">
-            Approve Quotation without LPO
-        </a>
-
-    <?php } ?>
-
-<?php } else { ?>
-
-    <!-- 🔹 If Amount < 10000 → Direct Client Approval -->
-
-    <?php if($qtn_master['aproval'] == '0'){ ?>
-
-        <a href="<?= base_url('index.php/Sales/approve_quotation/'.$qtn_master['quotation_id']) ?>"
-           class="btn btn-primary">
-            Approve Quotation with LPO
-        </a>
-
-        <a href="<?= base_url('index.php/Sales/approve_quotation_without_LPO/'.$qtn_master['quotation_id']) ?>"
-           class="btn btn-primary">
-            Approve Quotation without LPO
-        </a>
-
-    <?php } ?>
-
-<?php } ?>
-                    <? php // } 
-                    ?>
-                <?php else: ?>
-
-                    <a href="<?= base_url('index.php/Sales/add_sales_order/' .$qtn_master['quotation_id']) ?>" 
-   class="btn btn-primary">
-   Create Sales Order
-</a>
-                    <!-- <button type="submit" class="btn btn-primary ml-2" name="action" value="sales_order">Create Sales Order</button> -->
-                <?php endif; ?>
+                </table>
 
             </div>
 
-        </form>
-    </div>
 
-    <!-- Templates (hidden) -->
-    <script type="text/template" id="tpl_main">
-        <div class="main-heading-block" data-main="{{MAIN}}">
-        <div class="d-flex justify-content-between align-items-start mb-2">
-            <div style="width:40%">
-                <label>Main Heading</label>
-                <input type="text" name="main_heading[{{MAIN}}]" class="form-control">
-            </div>
-            <div style="width:45%">
-                <label>Details</label>
-                <textarea name="main_details[{{MAIN}}]" class="form-control" rows="2"></textarea>
-            </div>
-            <div class="ms-2">
-                <label>&nbsp;</label><br>
-                <button type="button" class="btn btn-danger btn-sm removeMainHeading">🗑</button>
-            </div>
-        </div>
+            <div class="modal-footer">
 
-        <div class="sub-container sub-container-{{MAIN}}"></div>
+                <button type="button"
+                        id="addSelectedNewItem"
+                        class="btn btn-success">
+                    Add Selected
+                </button>
 
-        <div class="mt-2">
-            <button type="button" class="btn btn-secondary btn-sm addSubHeadingBtn">+ Add Sub Heading</button>
+            </div>
+
         </div>
     </div>
-</script>
+</div>
 
-    <script type="text/template" id="tpl_sub">
-        <div class="sub-block">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <input type="text" name="sub_heading[{{MAIN}}][{{SUB}}]" class="form-control w-75" placeholder="Sub Heading">
-            <button type="button" class="btn btn-danger btn-sm removeSubHeading">🗑</button>
-        </div>
+</form>
 
-        <table class="table table-sm table-bordered product-table mb-2">
-            <thead>
-                <tr class="bg-light">
-                    <th>Product</th>
-                    <th style="width:100px">Unit</th>
-                    <th style="width:100px">Qty</th>
-                    <th style="width:120px">Unit Price</th>
-                    <th style="width:120px">Amount</th>
-                    <th style="width:120px">Discount</th>
-                     <!-- <th style="width:120px">Warranty</th> -->
-                    <th style="width:120px">Taxable</th>
-                    <th style="width:60px"></th>
-                </tr>
-            </thead>
-            <tbody id="products_{{MAIN}}_{{SUB}}"></tbody>
-        </table>
-
-        <button type="button" class="btn btn-success btn-sm addProduct">+ Add Product</button>
-    </div>
-</script>
-
-    <script type="text/template" id="tpl_product">
-        <tr>
-        <td style="min-width:200px">
-            <select name="products[{{MAIN}}][{{SUB}}][{{ROW}}][product_id]" class="form-control product-select">
-                <option value="">-- Select Product --</option>
-                <?= str_replace("\n", " ", implode("\n", array_map(function ($p) {
-                    return "<option value=\"{$p->item_id}\">" . htmlspecialchars($p->item_name) . "</option>";
-                }, $all_products))) ?>
-            </select>
-<textarea 
-    id="product_desc_{{MAIN}}_{{SUB}}_{{ROW}}"
-    name="products[{{MAIN}}][{{SUB}}][{{ROW}}][product_description]" 
-    class="form-control mt-1 product_editor">
-</textarea>
-        </td>
-        <td>
-            <select name="products[{{MAIN}}][{{SUB}}][{{ROW}}][unit]" class="form-control unit-select">
-                <option value="">-- Unit --</option>
-                <?php foreach ($active_units as $u): ?>
-                    <option value="<?= $u->unit_id ?>"><?= htmlspecialchars($u->unit_name) ?></option>
-                <?php endforeach; ?>
-            </select>
-        </td>
-        <td><input type="number" step="0.01" name="products[{{MAIN}}][{{SUB}}][{{ROW}}][quantity]" class="form-control qtn_qty" value="0"></td>
-        <td><input type="number" step="0.01" name="products[{{MAIN}}][{{SUB}}][{{ROW}}][unit_price]" class="form-control qtn_unitPrice" value="0"></td>
-        <td><input type="number" step="0.01" name="products[{{MAIN}}][{{SUB}}][{{ROW}}][amount]" class="form-control qtn_amount" readonly value="0"></td>
-        <td>
-             <input type="number" step="0.01" name="products[{{MAIN}}][{{SUB}}][{{ROW}}][discount_percent]" class="form-control qtn_discount_percent" value="0">
-            <input type="number" step="0.01" name="products[{{MAIN}}][{{SUB}}][{{ROW}}][discount_amount]" class="form-control qtn_discount_amount" value="0">
-        </td>
-
-        
-        <td><input type="number" step="0.01" name="products[{{MAIN}}][{{SUB}}][{{ROW}}][taxable_amount]" class="form-control qtn_taxable_amount" readonly value="0"></td>
-        <td><button type="button" class="btn btn-danger btn-sm removeProductRow">🗑</button></td>
-    </tr>
-</script>
-
-    <!-- Required scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- select2 -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <!-- CKEditor (if you want WYSIWYG) -->
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-
-    <script>
-        // Prepare product list for autofill
-        const productsList = <?= json_encode(array_map(function ($p) {
-                                    return [
-                                        'item_id' => $p->item_id,
-                                        'item_name' => $p->item_name,
-                                        'item_unit' => $p->item_unit ?? '',
-                                        'unit_price' => $p->unit_price ?? 0
-                                    ];
-                                }, $all_products)) ?>;
-
-        $(function() {
-            // init select2 for any existing selects
-            $('.product-select').select2({
-                width: '100%'
-            });
-
-            // main/sub counters
-            let mainIndex = <?= (int)$initialMain ?>;
-            let subIndex = <?= json_encode($subCounts) ?> || {};
-
-            // helper to generate unique row id for new products
-            function newRowId() {
-                return 'n' + Date.now() + Math.floor(Math.random() * 999);
-            }
-initProductEditors();
-            // Add main heading
-            $('#addMainBtn').on('click', function() {
-                const tpl = $('#tpl_main').html().replace(/{{MAIN}}/g, mainIndex);
-                $('#quotation_container').append(tpl);
-                subIndex[mainIndex] = 0;
-                mainIndex++;
-            });
-
-            // Delegate remove main heading
-            $(document).on('click', '.removeMainHeading', function() {
-                $(this).closest('.main-heading-block').remove();
-                recalcAll();
-            });
-
-            // Add sub heading (delegated)
-            $(document).on('click', '.addSubHeadingBtn', function() {
-                const mainBlock = $(this).closest('.main-heading-block');
-                const main = mainBlock.data('main') ?? (function() {
-                    // attempt to find by index among existing blocks
-                    return $('.main-heading-block').index(mainBlock);
-                })();
-                if (typeof subIndex[main] === 'undefined') subIndex[main] = 0;
-                const sub = subIndex[main]++;
-                const tpl = $('#tpl_sub').html().replace(/{{MAIN}}/g, main).replace(/{{SUB}}/g, sub);
-                mainBlock.find('.sub-container').append(tpl);
-                initSubElements(main, sub);
-            });
-
-            // Initialize sub elements for existing blocks loaded server-side
-            function initSubElements(main, sub) {
-                // bind add product button inside the newly added sub-block
-                const container = $('.sub-container-' + main).last(); // new sub appended
-                container.find('.addProduct').off('click').on('click', function() {
-                    const rowId = newRowId();
-                    const tpl = $('#tpl_product').html()
-                        .replace(/{{MAIN}}/g, main)
-                        .replace(/{{SUB}}/g, sub)
-                        .replace(/{{ROW}}/g, rowId);
-                    container.find('tbody').append(tpl);
-                    // initialize select2 on the newly added product-select
-                    container.find('select.product-select').last().select2({
-                        width: '100%'
-                    });
-                    initProductEditors();
-                });
-            }
-
-            // If page loaded with server-side sub-blocks, attach addProduct handlers for them
-            $('.sub-block').each(function(idx) {
-                const subEl = $(this);
-                subEl.find('.addProduct').off('click').on('click', function() {
-                    // find associated MAIN and SUB indices by traversing name attributes or container
-                    // Using simple approach: find closest .sub-container index
-                    const mainBlock = subEl.closest('.main-heading-block');
-                    const main = mainBlock.data('main');
-                    // find sub index by counting previous sub-blocks within same main
-                    const sub = mainBlock.find('.sub-block').index(subEl);
-                    const rowId = newRowId();
-                    const tpl = $('#tpl_product').html()
-                        .replace(/{{MAIN}}/g, main)
-                        .replace(/{{SUB}}/g, sub)
-                        .replace(/{{ROW}}/g, rowId);
-                    subEl.find('tbody').append(tpl);
-                    subEl.find('select.product-select').last().select2({
-                        width: '100%'
-                    });
-                });
-            });
-
-            // Delegate remove sub heading
-            $(document).on('click', '.removeSubHeading', function() {
-                $(this).closest('.sub-block').remove();
-                recalcAll();
-            });
-
-            // Delegate remove product row
-            $(document).on('click', '.removeProductRow', function() {
-                $(this).closest('tr').remove();
-                recalcAll();
-            });
-
-            // When product selected, autofill unit and unit price
-            $(document).on('change', 'select.product-select', function() {
-                const pid = $(this).val();
-                const product = productsList.find(p => p.item_id == pid);
-                const $row = $(this).closest('tr');
-                if (product) {
-                    // Attempt to set unit select if option value matches product.item_unit
-                    if (product.item_unit) {
-                        const unitSelect = $row.find('select.unit-select');
-                        if (unitSelect.length) {
-                            unitSelect.val(product.item_unit).trigger('change');
-                        }
-                    }
-                    // unit price
-                    $row.find('.qtn_unitPrice').val(parseFloat(product.unit_price || 0).toFixed(2));
-                } else {
-                    $row.find('.qtn_unitPrice').val('');
-                }
-                recalcRow($row);
-                recalcAll();
-            });
-
-            // Row-level calculations (qty, unit price, discount input)
-            $(document).on('input', '.qtn_qty, .qtn_unitPrice', function() {
-                const $row = $(this).closest('tr');
-                recalcRow($row);
-                recalcAll();
-            });
-            //  let discountLock = false;
-
-            $(document).on('input', '.qtn_discount_percent', function() {
-                const $row = $(this).closest('tr');
-                const per = parseFloat($(this).val()) || 0;
-
-                if (per > 0) {
-                    $row.find('.qtn_discount_amount').val('');
-                }
-
-                convertDiscount($row);
-                discountLock = false;
-            });
-
-            $(document).on('input', '.qtn_discount_amount', function() {
-                const $row = $(this).closest('tr');
-                const amt = parseFloat($(this).val()) || 0;
-
-                if (amt > 0) {
-                    $row.find('.qtn_discount_percent').val('');
-                }
-
-                convertDiscount($row);
-                discountLock = false;
-            });
-            $('#qtn_add_discount_percentage').on('blur', function() {
-                if ($(this).val() !== "") {
-                    $('#qtn_add_discount_amount').val(''); // empty instead of 0 avoids confusion
-                    convertAdditionalDiscount();
-                }
-            });
-
-            $('#qtn_add_discount_amount').on('blur', function() {
-                if ($(this).val() !== "") {
-                    $('#qtn_add_discount_percentage').val(''); // clear instead of 0
-                    convertAdditionalDiscount();
-                }
-            });
-
-            function recalcRow($row) {
-                const qty = parseFloat($row.find('.qtn_qty').val()) || 0;
-                const price = parseFloat($row.find('.qtn_unitPrice').val()) || 0;
-                const disc = parseFloat($row.find('.qtn_discount_amount').val()) || 0;
-                const amount = qty * price;
-                const discount = disc > amount ? amount : disc;
-                const taxable = Math.max(amount - discount, 0);
-                $row.find('.qtn_amount').val(amount.toFixed(2));
-                $row.find('.qtn_taxable_amount').val(taxable.toFixed(2));
-            }
-
-            // Full recalculation
-           function recalcAll() {
-
-    let subtotal = 0;
-
-    // ✅ ALWAYS recalc from row data (NOT stored field)
-    $('.product-table tbody tr').each(function () {
-
-        const qty = parseFloat($(this).find('.qtn_qty').val()) || 0;
-        const price = parseFloat($(this).find('.qtn_unitPrice').val()) || 0;
-
-        const amount = qty * price;
-
-        let discountAmt = parseFloat($(this).find('.qtn_discount_amount').val()) || 0;
-
-        if (discountAmt > amount) discountAmt = amount;
-
-        const taxable = amount - discountAmt;
-
-        subtotal += taxable;
-
-        // sync UI field (optional but useful)
-        $(this).find('.qtn_taxable_amount').val(taxable.toFixed(2));
-    });
-
-    $('#qtn_sub_total').val(subtotal.toFixed(2));
-
-    const otherCharges = parseFloat($('#other_charges').val()) || 0;
-
-    let addDiscAmt = parseFloat($('#qtn_add_discount_amount').val());
-
-    if (!addDiscAmt || addDiscAmt == 0) {
-        const addDiscPerc = parseFloat($('#qtn_add_discount_percentage').val()) || 0;
-        addDiscAmt = ((subtotal + otherCharges) * addDiscPerc) / 100;
-        $('#qtn_add_discount_amount').val(addDiscAmt.toFixed(2));
-    }
-
-    const totalBeforeVatRaw = subtotal + otherCharges - addDiscAmt;
-    $('#total_before_vat').val(totalBeforeVatRaw.toFixed(2));
-
-    const applyVat = $('#qtn_apply_vat').is(':checked');
-    const vatPerc = parseFloat($('#qtn_vat_percentage').val()) || 0;
-
-    let vatAmt = 0;
-    if (applyVat) {
-        vatAmt = (totalBeforeVatRaw * vatPerc) / 100;
-    }
-
-    $('#qtn_vat_amount').val(vatAmt.toFixed(2));
-
-    const grand = totalBeforeVatRaw + vatAmt;
-    $('#qtn_grand_total').val(grand.toFixed(2));
-}
-
-            // recalc when discount %, other charges or VAT toggles change
-            $(document).on('input change', '#qtn_add_discount_percentage, #other_charges', function() {
-                recalcAll();
-            });
-            $(document).on('change', '#qtn_apply_vat', function() {
-                recalcAll();
-            });
-
-            // Make sure totals are correct on load
-            recalcAll();
-
-            // Initialize CKEditor if present
-            if (typeof CKEDITOR !== 'undefined') {
-                try {
-                    CKEDITOR.replace('delivery_term');
-                    CKEDITOR.replace('terms_condition');
-                    CKEDITOR.replace('payment_term');
-                    CKEDITOR.replace('notes');
-
-
-                } catch (e) {
-                    /* ignore if already replaced */
-                }
-            }
-
-            // Before submit: update CKEditor fields and recalc once more and validate date
-            $('#editQuotationForm').on('submit', function(e) {
-                // Validate date
-                const qDate = $('#quotation_date').val().trim();
-                if (!qDate) {
-                    alert('Quotation Date is required.');
-                    $('#quotation_date').focus();
-                    e.preventDefault();
-                    return false;
-                }
-
-                // Update CKEditor
-                if (typeof CKEDITOR !== 'undefined') {
-                    for (const ins in CKEDITOR.instances) {
-                        if (CKEDITOR.instances.hasOwnProperty(ins)) {
-                            CKEDITOR.instances[ins].updateElement();
-                        }
-                    }
-                }
-
-                // final recalc
-                recalcAll();
-                return true;
-            });
-        });
-
-        function convertDiscount($row) {
-            const qty = parseFloat($row.find(".qtn_qty").val()) || 0;
-            const price = parseFloat($row.find(".qtn_unitPrice").val()) || 0;
-            const amount = qty * price;
-
-            let discAmt = parseFloat($row.find(".qtn_discount_amount").val()) || 0;
-            let discPer = parseFloat($row.find(".qtn_discount_percent").val()) || 0;
-
-            // If user enters %
-            if ($row.find(".qtn_discount_percent").is(":focus")) {
-                discAmt = (amount * discPer) / 100;
-                $row.find(".qtn_discount_amount").val(discAmt.toFixed(2));
-            }
-
-            // If user enters amount
-            if ($row.find(".qtn_discount_amount").is(":focus")) {
-                discPer = amount ? (discAmt / amount) * 100 : 0;
-                $row.find(".qtn_discount_percent").val(discPer.toFixed(2));
-            }
-
-            // Prevent over discount
-            if (discAmt > amount) {
-                discAmt = amount;
-                $row.find(".qtn_discount_amount").val(amount.toFixed(2));
-                $row.find(".qtn_discount_percent").val("100.00");
-            }
-
-            const taxable = amount - discAmt;
-            $row.find(".qtn_taxable_amount").val(taxable.toFixed(2));
-            recalcAll();
-        }
-
-        function convertAdditionalDiscount() {
-            const total_before_vat = parseFloat($("#total_before_vat").val()) || 0;
-            let per = parseFloat($("#qtn_add_discount_percentage").val()) || 0;
-            let amt = parseFloat($("#qtn_add_discount_amount").val()) || 0;
-
-            if (per > 0) {
-                // User typed percentage → calculate amount
-                amt = (total_before_vat * per) / 100;
-                $("#qtn_add_discount_amount").val(amt.toFixed(2));
-            } else if (amt != 0) {
-                // User typed amount → calculate percentage
-                per = total_before_vat ? (amt / total_before_vat) * 100 : 0;
-                $("#qtn_add_discount_percentage").val(per.toFixed(2));
-            }
-            // Recalculate totals
-            // Qtn_calculateTotals();
-            recalcAll();
-        }
-        // Initialize Product Description Editor
-function initProductEditors() {
-
-    $('.product_editor').each(function () {
-
-        if (!this.id) {
-            this.id = 'editor_' + Math.random().toString(36).substr(2, 9);
-        }
-
-        if (CKEDITOR.instances[this.id]) {
-            CKEDITOR.instances[this.id].destroy(true);
-        }
-
-        CKEDITOR.replace(this.id, {
-            height: 80,   // 👈 reduced size
-            toolbar: [
-                { name: 'basicstyles', items: ['Bold', 'Italic'] },
-                { name: 'paragraph', items: ['NumberedList', 'BulletedList'] }
-            ]
-        });
-    });
-}
-
-function forceRecalc() {
-    recalcAll();
-}
-
-setTimeout(forceRecalc, 500);
-setTimeout(forceRecalc, 1000);
-    </script>
-    
-</body>
-
-</html>
-
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 <script>
+    
+    CKEDITOR.replace('delivery_term');
+  var termsEditor = CKEDITOR.replace('terms_condition');
+  CKEDITOR.replace('payment_term', {
+    height: 120
+});
+
+CKEDITOR.replace('notes', {
+    height: 120
+});
+
+
+       
+      
+
+    // Prevent accidental form submit on Enter
+$(document).on("keydown", "form input, form select", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        return false;
+    }
+});
+
 $(document).ready(function() {
     $('.select2').select2({
         placeholder: "Select",
         allowClear: true,
         width: '100%'
     });
+});
+
+// Load when page opens
+$(document).ready(function () {
+    calculateQuotationTotal();
+    calculateTotals();
+});
+
+   
+     $(document).on('keyup change', '.cart_qty, .cart_price', function () {
+
+    var row = $(this).closest('tr');
+
+    var qty = parseFloat(row.find('.cart_qty').val()) || 0;
+    var price = parseFloat(row.find('.cart_price').val()) || 0;
+
+    var amount = qty * price;
+
+    row.find('.amount_display').text(amount.toFixed(2));
+    row.find('.amount_input').val(amount.toFixed(2));
+
+    calculateQuotationTotal();
+    calculateTotals();
+});
+
+function calculateQuotationTotal()
+{
+    var subtotal = 0;
+
+    $('.amount_input').each(function () {
+        subtotal += parseFloat($(this).val()) || 0;
+    });
+
+    $('#qtn_sub_total').val(subtotal.toFixed(2));
+
+    var discount = parseFloat($('#qtn_add_discount_percentage').val()) || 0;
+    var discountAmount = subtotal * discount / 100;
+
+    $('#qtn_add_discount_amount').val(discountAmount.toFixed(2));
+
+    $('#qtn_total').val((subtotal - discountAmount).toFixed(2));
+}
+
+$('#qtn_add_discount_percentage').on('keyup change', function () {
+    calculateQuotationTotal();
+});
+// Discount % -> Discount Amount
+$('#qtn_add_discount_percentage').on('keyup change', function () {
+
+    var gross = parseFloat($('#qtn_sub_total').val()) || 0;
+    var per = parseFloat($(this).val()) || 0;
+
+    var amount = (gross * per) / 100;
+
+    $('#qtn_add_discount_amount').val(amount.toFixed(2));
+
+    calculateTotals();
+});
+
+// Discount Amount -> Discount %
+$('#qtn_add_discount_amount').on('keyup change', function () {
+
+    var gross = parseFloat($('#qtn_sub_total').val()) || 0;
+    var amount = parseFloat($(this).val()) || 0;
+
+    var per = 0;
+    if (gross > 0) {
+        per = (amount / gross) * 100;
+    }
+
+    $('#qtn_add_discount_percentage').val(per.toFixed(2));
+
+    calculateTotals();
+});
+function calculateTotals() {
+
+    var subtotal = parseFloat($('#qtn_sub_total').val()) || 0;
+    var discount = parseFloat($('#qtn_add_discount_amount').val()) || 0;
+
+    // Before VAT calculation
+    var taxable_amount = subtotal - discount;
+
+    var vat_amount = 0;
+
+    if ($('#qtn_apply_vat').is(':checked')) {
+
+        var vat_percentage = parseFloat($('#qtn_vat_percentage').val()) || 0;
+
+        vat_amount = (taxable_amount * vat_percentage) / 100;
+
+        $('#qtn_vat_amount').val(vat_amount.toFixed(2));
+
+    } else {
+
+        $('#qtn_vat_amount').val('0.00');
+
+    }
+
+    // Net Amount = Sub Total - Discount + VAT
+    var net_amount = taxable_amount + vat_amount;
+
+    $('#qtn_grand_total').val(net_amount.toFixed(2));
+}
+
+$('#qtn_apply_vat, #qtn_vat_percentage').on('keyup change', function () {
+    calculateTotals();
+});
+
+$('#addCartRow').click(function(){
+
+    var row = `
+    <tr>
+
+        <td>
+            <input type="text"
+                   class="form-control form-control-sm"
+                   name="product_name[]"
+                   placeholder="Item Name">
+
+            <input type="hidden"
+                   name="item_id[]"
+                   value="">
+        </td>
+
+        <td>
+            <input type="number"
+                   class="form-control form-control-sm cart_qty"
+                   name="qty[]"
+                   value="1"
+                   style="width:70px">
+        </td>
+
+        <td>
+            <input type="number"
+                   class="form-control form-control-sm cart_price"
+                   name="price[]"
+                   value="0"
+                   step="0.01"
+                   style="width:100px">
+        </td>
+
+        <td>
+
+            <span class="amount_display">0.00</span>
+
+            <input type="hidden"
+                   class="amount_input"
+                   name="amount[]"
+                   value="0">
+
+        </td>
+
+        <td>
+
+            <button type="button"
+                    class="btn btn-danger btn-sm removeCartItem">
+                <i class="fa fa-trash"></i>
+            </button>
+
+        </td>
+
+    </tr>`;
+
+    $('#selectedCartItems').append(row);
+
+});
+
+
+$('#addNewItem').click(function(){
+
+    $('#newItemModal').modal('show');
+
+});
+
+$('#new_item_search').keyup(function(){
+
+    let keyword = $(this).val();
+
+
+    if(keyword.length < 2)
+    {
+        $('#new_item_result').html('');
+        return;
+    }
+
+
+    $.ajax({
+
+        url:"<?= base_url('index.php/Sales/search_items') ?>",
+
+        type:"POST",
+
+        data:{
+            keyword:keyword
+        },
+
+        dataType:"json",
+
+        success:function(data){
+
+            let html='';
+
+
+            $.each(data,function(i,item){
+
+
+                html += `
+
+                <tr>
+
+                <td>
+
+                ${item.product_name}
+
+                <input type="hidden"
+                       class="new_item_id"
+                       value="${item.product_id}">
+
+
+                <input type="hidden"
+                       class="new_item_name"
+                       value="${item.product_name}">
+
+
+                </td>
+
+
+                <td>
+
+                ${item.total_price}
+
+                <input type="hidden"
+                       class="new_item_price"
+                       value="${item.total_price}">
+
+                </td>
+
+
+                <td>
+
+                <input type="number"
+                       class="new_item_qty form-control"
+                       value="1"
+                       min="1">
+
+                </td>
+
+
+                <td>
+
+                <input type="checkbox"
+                       class="new_item_check">
+
+                </td>
+
+
+                </tr>
+
+                `;
+
+            });
+
+
+            $('#new_item_result').html(html);
+
+        }
+
+    });
+
+
+});
+
+$('#addSelectedNewItem').click(function(){
+
+    $('#new_item_result tr').each(function(){
+
+        if($(this).find('.new_item_check').is(':checked'))
+        {
+
+            let id = $(this).find('.new_item_id').val();
+            let name = $(this).find('.new_item_name').val();
+            let price = parseFloat($(this).find('.new_item_price').val()) || 0;
+            let qty = parseFloat($(this).find('.new_item_qty').val()) || 0;
+
+
+            // Check item already exists
+            let existingRow = $('#selectedCartItems')
+                .find('input[name="item_id[]"][value="'+id+'"]')
+                .closest('tr');
+
+
+            if(existingRow.length > 0)
+            {
+
+                // Update existing quantity
+                let oldQty = parseFloat(existingRow.find('.cart_qty').val()) || 0;
+
+                let newQty = oldQty + qty;
+
+                existingRow.find('.cart_qty').val(newQty);
+
+
+                let amount = newQty * price;
+
+                existingRow.find('.amount_display')
+                           .text(amount.toFixed(2));
+
+                existingRow.find('.amount_input')
+                           .val(amount.toFixed(2));
+
+
+            }
+            else
+            {
+
+                // Add new row
+
+                let amount = qty * price;
+
+
+                $('#selectedCartItems').append(`
+
+                <tr>
+                  <td>
+        ${$('#selectedCartItems tr').length + 1}
+    </td>
+
+                   <td>
+    ${name}
+
+    <input type="hidden"
+           name="item_id[]"
+           value="${id}">
+
+    <input type="hidden"
+           name="product_name[]"
+           value="${name}">
+</td>
+
+
+                    <td>
+                        <input type="number"
+                               class="form-control cart_qty"
+                               name="qty[]"
+                               value="${qty}"
+                               style="width:70px">
+                    </td>
+
+
+                    <td>
+                        <input type="number"
+                               class="form-control cart_price"
+                               name="price[]"
+                               value="${price}">
+                    </td>
+
+
+                    <td>
+
+                        <span class="amount_display">
+                            ${amount.toFixed(2)}
+                        </span>
+
+                        <input type="hidden"
+                               class="amount_input"
+                               name="amount[]"
+                               value="${amount.toFixed(2)}">
+
+                    </td>
+
+
+                    <td>
+                        <button type="button"
+                                class="btn btn-danger btn-sm removeCartItem">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+
+                </tr>
+
+                `);
+
+            }
+
+        }
+
+    });
+
+
+    calculateQuotationTotal();
+    calculateTotals();
+
+    $('#newItemModal').modal('hide');
+
+});
+$(document).off('click', '.removeCartItem');
+
+$(document).on('click', '.removeCartItem', function(e){
+
+    e.preventDefault();
+
+    let row = $(this).closest('tr');
+
+    let itemName = row.find('td:first').text().trim();
+
+    if(confirm("Are you sure you want to remove this item?\n\n" + itemName))
+    {
+        row.remove();
+
+        calculateQuotationTotal();
+        calculateTotals();
+    }
+
+});
+
+$('#enquiry_id').change(function(){
+
+    var enquiry_id = $(this).val();
+
+    if(enquiry_id == '')
+    {
+        return;
+    }
+
+
+    $.ajax({
+
+        url:"<?= base_url('index.php/Sales/get_enquiry_details') ?>",
+
+        type:"POST",
+
+        data:{
+            enquiry_id: enquiry_id
+        },
+
+        dataType:"json",
+
+       success:function(data){
+
+    $('#enquiry_code').val(data.enquiry_code);
+    $('#branch_name').val(data.branch_name);
+    $('#project_name').val(data.project_name);
+    $('#customer_name').val(data.customer_name);
+
+    $('#quotation_branch_id').val(data.branch_id);
+    $('#quotation_customer').val(data.enquiry_customer);
+
+
+    // Load enquiry items
+    $('#selectedCartItems').html('');
+
+
+    $.each(data.cart_items,function(i,item){
+
+        let amount = parseFloat(item.qty) * parseFloat(item.price);
+
+
+        $('#selectedCartItems').append(`
+
+        <tr>
+
+          <td>
+    ${item.product_name}
+
+    <input type="hidden"
+           name="item_id[]"
+           value="${item.product_id}">
+
+    <input type="hidden"
+           name="product_name[]"
+           value="${item.product_name}">
+</td>
+
+
+            <td>
+                <input type="number"
+                       class="form-control cart_qty"
+                       name="qty[]"
+                       value="${item.qty}"
+                       style="width:70px">
+            </td>
+
+
+            <td>
+                <input type="number"
+                       class="form-control cart_price"
+                       name="price[]"
+                       value="${item.price}"
+                       step="0.01"
+                       style="width:100px">
+            </td>
+
+
+            <td>
+
+                <span class="amount_display">
+                    ${amount.toFixed(2)}
+                </span>
+
+                <input type="hidden"
+                       class="amount_input"
+                       name="amount[]"
+                       value="${amount.toFixed(2)}">
+
+            </td>
+
+
+            <td>
+
+                <button type="button"
+                        class="btn btn-danger btn-sm removeCartItem">
+                    <i class="fa fa-trash"></i>
+                </button>
+
+            </td>
+
+
+        </tr>
+
+        `);
+
+    });
+
+
+    calculateQuotationTotal();
+    calculateTotals();
+
+}
+
+    });
+
 });
 </script>

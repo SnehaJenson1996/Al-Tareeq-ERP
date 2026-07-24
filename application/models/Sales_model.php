@@ -1878,4 +1878,62 @@ public function get_quotation_cart($quotation_id)
 
     return $this->db->get()->result();
 }
+
+public function get_pending_quotations()
+{
+    $this->db->select('
+        qm.*,
+        cm.customer_name,
+        bm.branch_name,
+        emp.employee_name AS prepared_by_name
+    ');
+
+    $this->db->from('quotation_master qm');
+    $this->db->join('customer_master cm', 'cm.customer_id = qm.quotation_customer', 'left');
+    $this->db->join('branch_master bm', 'bm.branch_id = qm.quotation_branch_id', 'left');
+    $this->db->join('employee_master emp', 'emp.employee_id = qm.prepared_by', 'left');
+
+    $this->db->where('qm.active', 1);
+    $this->db->where('qm.aproval', 0);
+
+    $this->db->order_by('qm.qtn_id', 'DESC');
+
+    return $this->db->get()->result();
+}
+public function get_approved_quotations()
+{
+    $this->db->select('
+        qm.qtn_id,
+        qm.quotation_code,
+        qm.quotation_date,
+        qm.project_name,
+        qm.grand_total,
+        qm.aproval,
+         qm.lpo_number,
+        qm.po_file,
+        qm.approved_on,
+        qm.approval_remarks,
+        cm.customer_name,
+        bm.branch_name
+    ');
+
+    $this->db->from('quotation_master qm');
+
+    $this->db->join(
+        'customer_master cm',
+        'cm.customer_id = qm.quotation_customer',
+        'left'
+    );
+
+    $this->db->join(
+        'branch_master bm',
+        'bm.branch_id = qm.quotation_branch_id',
+        'left'
+    );
+
+    $this->db->where_in('qm.aproval', [1, 2]);
+    $this->db->order_by('qm.approved_on', 'DESC');
+
+    return $this->db->get()->result();
+}
 }
