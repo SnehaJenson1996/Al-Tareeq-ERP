@@ -30,7 +30,7 @@ $user = $this->session->userdata('user_id');
                   <tr>
                     <td><?= $i++; ?></td>
                     <td>
-                      <a href="<?= base_url('index.php/CRM/view_enquiry/' . $enquiry->enquiry_id . '/view'); ?>">
+                      <a href="<?= base_url('index.php/Sales/view_enquiry/' . $enquiry->enquiry_id . '/view'); ?>">
                         <?= $enquiry->enquiry_code; ?><br><?= $enquiry->enquiry_date; ?>
                       </a>
                       
@@ -39,32 +39,11 @@ $user = $this->session->userdata('user_id');
                     <td><?= $enquiry->project_subject; ?></td>
                     <td><?= $enquiry->customer_name; ?></td>
                     <!-- <td> -->
-                      <!-- <?php
-                      echo $enquiry->enquiry_status == 1 ? "Under Site Survey" : ($enquiry->enquiry_status == 2 ? "Completed Site Survey" : (($enquiry->enquiry_status == 3 || $enquiry->enquiry_status == 4)  ? "Estimation" : (($enquiry->enquiry_status == 5 || $enquiry->enquiry_status == 6) ? "Quotation" : (($enquiry->enquiry_status == 7 || $enquiry->enquiry_status == 8) ? "Sales Order" : ($enquiry->enquiry_status == 9  ? "Invoice" :
-                                  "Unknown Status")))));
-                      ?> -->
+                     
 
                       <td>
-<?php
-if ($enquiry->enquiry_status == 2) {
-
-    if ($enquiry->survey_status == 2) {
-
-        echo "Site Survey Completed";
-
-    } elseif ($enquiry->survey_status == 1) {
-
-        if ($enquiry->re_survey_status == 1) {
-            echo "Site Survey Rescheduled";
-        } else {
-            echo "Site Survey Scheduled";
-        }
-
-    } else {
-
-        echo "Under Site Survey";
-    }
-}elseif ($enquiry->enquiry_status == 3 || $enquiry->enquiry_status == 4) {
+<!-- <?php
+if ($enquiry->enquiry_status == 3 || $enquiry->enquiry_status == 4) {
     echo "Estimation";
 
 } elseif ($enquiry->enquiry_status == 5 || $enquiry->enquiry_status == 6) {
@@ -77,29 +56,22 @@ if ($enquiry->enquiry_status == 2) {
     echo "Invoice";
 
 } else {
-    echo "Under Site Survey";
+    echo "Unknown";
 }
-?>
+?> -->
+pending
 </td>
                     <!-- </td> -->
                     <td>
-                      <!-- <?php if (has_access($user, $page_name, 'E')) { ?> -->
-                      <a href="<?= base_url('index.php/CRM/view_enquiry/' . $enquiry->enquiry_id. '/view'); ?>"
+                      <!-- <a href="<?= base_url('index.php/Sales/view_enquiry/' . $enquiry->enquiry_id. '/view'); ?>"
                         title="view" class="btn btn-primary btn-xs">
                         <i class="fa fa-eye"></i>
-                      </a>
-                      <a href="<?= base_url('index.php/CRM/view_enquiry/' . $enquiry->enquiry_id . '/edit'); ?>" title="edit" class="btn btn-primary btn-xs">
+                      </a> -->
+                      <a href="<?= base_url('index.php/Sales/edit_enquiry/' . $enquiry->enquiry_id ); ?>" title="edit" class="btn btn-primary btn-xs">
                         
                          <i class="fa fa-edit"></i>
                       </a>
-                      <!-- <?php } ?> -->
-                      <?php if (has_access($user, $page_name, 'D')) { ?>
-                        <!-- <a href="<?= base_url('index.php/Sales/delete_enquiry/' . $enquiry->enquiry_id); ?>" 
-                           title="Delete" class="btn btn-danger btn-xs" 
-                           onclick="return confirm('Are you sure?');">
-                          <i class="fa fa-trash"></i>
-                        </a> -->
-                      <?php } ?>
+                    
                     </td>
                   </tr>
                 <?php }

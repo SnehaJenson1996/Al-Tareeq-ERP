@@ -4,107 +4,143 @@
         color: black;
         font-weight: bold;
     }
-
-    .ck-editor__editable_inline {
-        min-height: 250px;
-        /* approximately 10 rows */
-    }
-    .ck-editor__editable {
-    min-height: 80px !important; 
-  }  /* Reduce height */
-/* Reduce CKEditor Width */
-.product_editor + .ck-editor {
-    max-width: 300px !important;   /* 👈 Change width here */
-}
-
-.product_editor + .ck-editor .ck-editor__editable {
-    width: 100% !important;
-}
 </style>
+
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="x_panel">
             <div class="x_title">
-                <?php if ($this->session->flashdata('success')): ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong><i class="fa fa-check-circle"></i></strong>
-                        <?= $this->session->flashdata('success'); ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                <?php endif; ?>
-
-                <?php if ($this->session->flashdata('error')): ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><i class="fa fa-exclamation-circle"></i></strong>
-                        <?= $this->session->flashdata('error'); ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                <?php endif; ?>
                 <div class="clearfix"></div>
+
             </div>
             <div class="x_content">
-                <form action="<?= base_url() ?>index.php/Sales/save_direct_quotation" method="post">
-                    <input type="hidden" name="quotation_type" value="DIRECT">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row align-items-center"> <label class="col-sm-4 col-form-label">Select Branch:</label>
-                                <div class="col-sm-8"> <select name="quotation_branch_id" id="quotation_branch_id" class="form-control select2">
-                                        <option value=''>Select</option> <?php foreach ($branch_list as $branch): ?> <option value="<?= $branch->branch_id ?>"><?= $branch->branch_name ?></option> <?php endforeach; ?>
-                                    </select> </div>
-                            </div>
-                        </div>
 
-                       <div class="col-md-6">
-                            <div class="form-group row align-items-center"> <label class="col-sm-4 col-form-label">Project Name:</label>
-                                <div class="col-sm-8"> <input type="text" id="project_name" name="project_name" value="<?= isset($enquiry_data['project_name']) ? $enquiry_data['project_name'] : "" ?>" class="form-control"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row align-items-center"> <label class="col-sm-4 col-form-label">Select Customer:</label>
-                                <div class="col-sm-8"> <select name="quotation_customer" id="quotation_customer" class="form-control select2" required> 
-                                  <option value=''>Select</option> <?php foreach ($customer_list as $c): ?> <option value="<?= $c->customer_id ?>"><?= $c->customer_name ?></option> <?php endforeach; ?>
+                <form action="<?= base_url() ?>index.php/Sales/add_quotation_data" method="post">
+                    <input type="hidden" name="estimation_id" id="estimation_id" value="">
 
-                                </select> </div>
-                            </div>
-                        </div> 
-                        <div class="col-md-6">
-                         <div class="form-group row align-items-center">
-                           <label class="col-sm-4 col-form-label">Project Location:</label>
-                            <div class="col-sm-8">
-                                 <input type="text" name="project_location" id="project_location"
-                                  value="<?= isset($enquiry_data['project_location']) ? $enquiry_data['project_location'] : '' ?>"
-                                  class="form-control" placeholder="Enter Project Location">
-                            </div>
-                          </div>
-
-</div>
-                    </div>
-                    <div class="row"> <!-- Quotation Code -->
-                        <div class="col-md-6">
-                            <div class="form-group row align-items-center"> <label class="col-sm-4 col-form-label">Quotation Code:</label>
-                                <div class="col-sm-8"> <input type="text" id="quotation_code" name="quotation_code" value="<?= isset($quotation_code) ? $quotation_code : "" ?>" class="form-control" readonly> </div>
-                            </div>
-                        </div> <!-- Quotation Date -->
-                        <div class="col-md-6">
-                            <div class="form-group row align-items-center"> <label class="col-sm-4 col-form-label">Quotation Date:</label>
-                                <div class="col-sm-8"> <input type="date" id="quotation_date" name="quotation_date" value="<?= date('Y-m-d') ?>" class="form-control" required> </div>
-                            </div>
-                        </div>
-                    </div> 
-                    
                    
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Select Enquiry:</label>
+                        <div class="col-sm-4">
+                          <select name="enquiry_id" id="enquiry_id" class="form-control">
+    <option value="">Select Enquiry</option>
+
+    <?php foreach($enquiry_list as $row){ ?>
+
+    <option value="<?= $row->enquiry_id ?>"
+        <?= (isset($enquiry_data['enquiry_id']) && $enquiry_data['enquiry_id'] == $row->enquiry_id) ? 'selected' : ''; ?>>
+        
+        <?= $row->enquiry_code ?> - <?= $row->project_name ?>
+
+    </option>
+
+    <?php } ?>
+
+</select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Enquiry Code -->
+                        <div class="col-md-6">
+                            <div class="form-group row align-items-center">
+                                <label class="col-sm-4 col-form-label">Enquiry Code:</label>
+                                <div class="col-sm-8">
+                                  <input type="text"
+       id="enquiry_code"
+       name="enquiry_code"
+       value="<?= isset($enquiry_data['enquiry_code']) ? $enquiry_data['enquiry_code'] : ''; ?>"
+       class="form-control"
+       readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Enquiry Branch -->
+                        <div class="col-md-6">
+                            <div class="form-group row align-items-center">
+                                <label class="col-sm-4 col-form-label">Enquiry Branch:</label>
+                                <div class="col-sm-8">
+                                  <input type="text"
+       id="branch_name"
+       name="branch_name"
+       value="<?= isset($enquiry_data['branch_name']) ? $enquiry_data['branch_name'] : ''; ?>"
+       class="form-control"
+       readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Project Name -->
+                        <div class="col-md-6">
+                            <div class="form-group row align-items-center">
+                                <label class="col-sm-4 col-form-label">Project Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="project_name" name="project_name"
+                                        value="<?= isset($enquiry_data['project_name']) ? $enquiry_data['project_name'] : "" ?>"
+                                        class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Customer Name -->
+                        <div class="col-md-6">
+                            <div class="form-group row align-items-center">
+                                <label class="col-sm-4 col-form-label">Customer:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="customer_name" name="customer_name"
+                                        value="<?= isset($enquiry_data['customer_name']) ? $enquiry_data['customer_name'] : "" ?>"
+                                        class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Quotation Code -->
+                        <div class="col-md-6">
+                            <div class="form-group row align-items-center">
+                                <label class="col-sm-4 col-form-label">Quotation Code:</label>
+                                <div class="col-sm-8">
+                                    <input type="text"
+       name="quotation_code"
+       class="form-control"
+       value="<?= $quotation_code ?>"
+       readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quotation Date -->
+                        <div class="col-md-6">
+                            <div class="form-group row align-items-center">
+                                <label class="col-sm-4 col-form-label">Quotation Date:</label>
+                                <div class="col-sm-8">
+                                    <input type="date" id="quotation_date" name="quotation_date"
+                                        value="<?= date('Y-m-d') ?>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <input type="hidden" 
+       name="quotation_customer" 
+       id="quotation_customer"
+       value="<?= isset($enquiry_data['enquiry_customer']) ? $enquiry_data['enquiry_customer'] : ''; ?>">
+
+<input type="hidden" 
+       name="quotation_branch_id" 
+       id="quotation_branch_id"
+       value="<?= isset($enquiry_data['branch_id']) ? $enquiry_data['branch_id'] : ''; ?>">
+                    <input type="hidden" name="project_name_hidden" id="project_name_hidden">
+
+                 
 
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th width="35">#</th>
             <th>Item</th>
             <th width="100">Qty</th>
             <th width="150">Price</th>
@@ -123,16 +159,9 @@
 
     <?php if(!empty($cart_items)) { ?>
 
-<?php 
-$i = 1;
-foreach($cart_items as $item) { 
-?>
+        <?php foreach($cart_items as $item) { ?>
+
         <tr>
-
-
-<td>
-    <?= $i++ ?>
-</td>
 
             <td>
                 <?= $item->product_name ?>
@@ -140,9 +169,6 @@ foreach($cart_items as $item) {
                 <input type="hidden"
                        name="item_id[]"
                        value="<?= $item->product_id ?>">
-                       <input type="hidden"
-       name="product_name[]"
-       value="<?= $item->product_name ?>">
             </td>
 
             <td>
@@ -213,7 +239,7 @@ foreach($cart_items as $item) {
                         <input type="text" 
                                name="qtn_sub_total" 
                                id="qtn_sub_total" 
-                               class="form-control qtn_sub_total" readonly
+                               class="form-control qtn_sub_total"
                                value="<?= isset($master['sub_total']) ? $master['sub_total'] : "" ?>">
                     </div>
                 </div>
@@ -824,9 +850,6 @@ $('#addSelectedNewItem').click(function(){
                 $('#selectedCartItems').append(`
 
                 <tr>
-                <td>
-        ${$('#selectedCartItems tr').length + 1}
-    </td>
 
                     <td>
                         ${name}
@@ -893,12 +916,6 @@ $('#addSelectedNewItem').click(function(){
 
 });
 $(document).off('click', '.removeCartItem');
-function updateSerialNo()
-{
-    $('#selectedCartItems tr').each(function(index){
-        $(this).find('td:first').text(index + 1);
-    });
-}
 
 $(document).on('click', '.removeCartItem', function(e){
 
@@ -911,7 +928,6 @@ $(document).on('click', '.removeCartItem', function(e){
     if(confirm("Are you sure you want to remove this item?\n\n" + itemName))
     {
         row.remove();
-        updateSerialNo();
 
         calculateQuotationTotal();
         calculateTotals();

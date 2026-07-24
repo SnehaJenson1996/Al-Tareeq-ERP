@@ -91,12 +91,7 @@ class Company_model extends CI_Model {
         return str_pad($next_id, 2, '0', STR_PAD_LEFT); // e.g., 1 → 01, 2 → 02
     }
    
-    public function insert_branch_bank_details($data) {
-        if (!empty($data)) {
-            return $this->db->insert_batch('branch_bank_details', $data);
-        }
-        return false;
-    }
+   
     public function get_all_branches($filter_type="",$filter_value=""){
 		$this->db->select('*');
         $this->db->from('branch_master');
@@ -106,57 +101,7 @@ class Company_model extends CI_Model {
         $query = $this->db->get()->result();
         return $query; 
 	}
-    public function insert_branch_data($data){    
-        $this->db->insert('branch_master',$data);
-        return $this->db->insert_id();;
-    }
-    public function get_branch_by_id($id){
-        return $this->db->get_where('branch_master', ['branch_id' => $id])->row();  
-    }
-    public function get_branch_bank_by_id($id){
-     return $this->db->get_where('branch_bank_details', ['branch_id' => $id])->result();  
-    }
-    public function  check_branch_name_unique($branch_name,$id){
-        $this->db->where('branch_name', $branch_name);
-        $this->db->where('branch_id !=', $id); // Exclude current record
-        $query = $this->db->get('branch_master');
-
-        if ($query->num_rows() > 0) {
-        $this->form_validation->set_message('check_branch_name_unique', 'This Branch Name already exists.');
-            return TRUE;
-        }
-        return FALSE;
-    }
-    public function update_branch($id, $data) {
-        $this->db->where('branch_id', $id);
-        $this->db->update('branch_master', $data);
-    }
-    public function delete_branch_bank($branch_id) {
-        $this->db->where('branch_id', $branch_id);
-        $this->db->delete('branch_bank_details');
-    }
-    public function delete_branch_record($id){
-        $this->db->where('branch_id', $id);
-        return $this->db->delete('branch_master');
-    }
-    
-    public function is_branch_used_in_supplier($branch_id){
-        $this->db->select('*');
-        $this->db->from('supplier_master');
-        $this->db->where('branch_id',$branch_id);
-        $query = $this->db->get()->result();
-        return $query; 
-    }
-    public function is_branch_used_in_customer($branch_id){
-        $this->db->select('*');
-        $this->db->from('customer_master');
-        $this->db->where('branch_id',$branch_id);
-        $query = $this->db->get()->result();
-        return $query; 
-    }
-     public function get_branch_bank_by_bank_id($id){
-     return $this->db->get_where('branch_bank_details', ['bid' => $id])->result();  
-    }
+   
     //Customer
     public function get_all_customer_list() {
         $this->db->select('customer_master.*, branch_master.branch_name');

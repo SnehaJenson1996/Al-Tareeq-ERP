@@ -135,6 +135,7 @@
         </select>
     </div>
 
+
     <div class="col-sm-3" id="year_block" style="display:none;">
         <div class="d-flex align-items-center">
             <label class="mr-2 mb-0">No. of Years</label>
@@ -151,7 +152,23 @@
         </div>
     </div>
 
+
 </div>
+
+	<div class="form-group row">
+		<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-form-label">AMC Start Date<span style="color: red;"> * </span></label>
+			<div class="col-xs-12 col-sm-9 col-md-3 col-lg-2" >
+						                  
+		    			<input type="date" class="form-control form-control-sm " id="amc_start_date" name="amc_start_date"  required tabindex='3'>
+					
+    	    </div>
+			<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-form-label">AMC End Date<span style="color: red;"> * </span></label>
+			<div class="col-xs-12 col-sm-9 col-md-3 col-lg-2" >
+						                  
+		    			<input type="date" class="form-control form-control-sm " id="amc_end_date" name="amc_end_date"  required tabindex='4'>
+					
+    	    </div>
+		</div>
 	<h4>Details</h4>
 	<div class="form-group row" >
 	   <table class="table table-bordered table-hover" id="tab_logic">
