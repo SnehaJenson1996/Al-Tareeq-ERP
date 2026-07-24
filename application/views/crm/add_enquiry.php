@@ -176,58 +176,7 @@ if (isset($enquiry_data['site_survey']) && $enquiry_data['site_survey'] != 1) {
 
                         </div>
 
-                        <!-- Survey Tab -->
-                        <div class="tab-pane fade <?= isset($menu_status) && $menu_status == 2 ? 'active show' : "" ?>" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <form method="post" action="<?= base_url()?>index.php/CRM/save_survey">
-                                <input type="hidden" name="enquiry_id" value="<?= isset($enquiryid) ? $enquiryid : "" ?>">
-
-                                 <div class="form-group">
-    <label for="employee_survey">Surveyor</label>
-    <select name="employee_survey" id="employee_survey" class="form-control">
-        <option value="">-- Select --</option>
-        <?php foreach($employee_list as $employee): ?>
-            <option value="<?= $employee->employee_id ?>" 
-                <?= isset($survey_data['employee_survey']) && $survey_data['employee_survey'] == $employee->employee_id ? 'selected' : '' ?>>
-                <?= $employee->employee_name ?> (<?= $employee->uid_number ?>)
-            </option>
-        <?php endforeach; ?>
-    </select>
-</div>
-                                <div class="row">
-                                    <div class="col-md-2 form-group">
-                                        <label for="survey_date">Schedule Date</label>
-                                        <input type="date" name="survey_date" id="survey_date" class="form-control" value="<?= isset($survey_data['scheduled_date']) ? date('Y-m-d', strtotime($survey_data['scheduled_date'])) : date('Y-m-d') ?>">
-                                    </div>
-
-                                    <div class="col-md-4 form-group">
-                                        <label for="survey_start_datetime">Schedule Start Date & Time <span class="required">*</span></label>
-                                        <input type="datetime-local" name="survey_start_datetime" id="survey_start_datetime" class="form-control" value="<?= isset($enquiry_data['enquiry_date']) ? date('Y-m-d\TH:i', strtotime($enquiry_data['enquiry_date'])) : date('Y-m-d\TH:i') ?>" required>
-                                    </div>
-
-                                    <div class="col-md-4 form-group">
-                                        <label for="survey_end_datetime">Schedule End Date & Time <span class="required">*</span></label>
-                                        <input type="datetime-local" name="survey_end_datetime" id="survey_end_datetime" class="form-control" value="<?= isset($enquiry_data['enquiry_date']) ? date('Y-m-d\TH:i', strtotime($enquiry_data['enquiry_date'])) : date('Y-m-d\TH:i') ?>" required>
-                                    </div>
-
-                                    <div class="col-md-2 form-group">
-                                        <label for="total_hours">Total Hours</label>
-                                        <input type="text" name="total_hours" id="total_hours" class="form-control" value="<?= isset($survey_data['scheduled_hours']) ? $survey_data['scheduled_hours'] : '' ?>" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="remarks">Remarks</label>
-                                    <textarea name="remarks" id="remarks" class="form-control" rows="3"><?= isset($survey_data['remarks']) ? $survey_data['remarks'] : '' ?></textarea>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Schedule Survey</button>
-                            </form>
-                        </div>
-
                        
-                    </div> <!-- End tab-content -->
-                </div>
-        </div>
 <!-- Modal -->
 <div id="myModal"  class="modal fade mymodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg"> <!-- modal-xl for extra width -->

@@ -34,6 +34,187 @@ class Sales extends CI_Controller
 		//$this->load->helper('menu_helper');
 	}
 
+/***New code for Al Tareeq */
+
+public function list_enquiries()
+	{
+		$user				 		 = $this->session->userdata('user_id');
+		
+			$data['title']			= 'Enquiry List';
+
+			$data['all_enquiries']  = $this->Sales_model->get_all_enquiry_list();
+
+			$data['main_content']   = 'sales/list_enquiries.php';
+	
+		$this->load->view('includes/template', $data);
+	}
+
+
+public function add_enquiry()
+{
+    $data['title'] = 'Add Enquiry';
+	$prefix                 = 'AL' . date("y") . '-ENQ';
+    $num                    = $this->Setup_model->get_next_code($prefix, 'enquiry_code', 'enquiry_master', 11) + 1;
+	$digit                  = sprintf("%1$05d", $num);
+	$data['enquiry_code']   = $prefix . $digit;
+	$data['customer_list']  = $this->Setup_model->get_all_customer_list();
+	$data['branch_list']    = $this->Setup_model->get_all_branches();
+	$data['active_users']   = $this->Setup_model->get_active_user_list();
+
+	$data['all_products']   = $this->Setup_model->get_all_item_list();
+	$data['active_units']   = $this->Setup_model->get_all_units();
+    $data['main_content'] = 'sales/add_enquiry';
+
+    $this->load->view('includes/template', $data);
+}
+
+
+
+	public function add_enquiry_data()
+{
+    $this->load->model('Sales_model');
+
+    $data = array(
+        'branch_id'        => $this->input->post('branch'),
+        'project_name'     => $this->input->post('project_name'),
+        'project_subject'  => $this->input->post('project_subject'),
+        'project_location' => $this->input->post('project_location'),
+        'enquiry_category' => $this->input->post('enquiry_category'),
+        'enquiry_code'     => $this->input->post('enquiry_code'),
+        'enquiry_date'     => $this->input->post('enquiry_date'),
+        'enquiry_source'   => $this->input->post('enquiry_source'),
+        'enquiry_customer' => $this->input->post('customer_id'),
+        'client_ref_no'    => $this->input->post('client_ref_no'),
+        'comments'         => $this->input->post('comments'),
+        'created_by'       => $this->session->userdata('user_id'),
+        'created_at'       => date('Y-m-d H:i:s')
+    );
+
+    // Save enquiry master
+    $enquiry_id = $this->Sales_model->add_enquiry_data($data);
+
+    if($enquiry_id)
+    {
+        $product = $this->input->post('item_id');
+		
+        $qty     = $this->input->post('qty');
+        $price   = $this->input->post('price');
+        $amount  = $this->input->post('amount');
+
+        if(!empty($product))
+        {
+            for($i=0; $i<count($product); $i++)
+            {
+                $cart = array(
+                    'enquiry_id' => $enquiry_id,
+                    'product_id' => $product[$i],
+                    'qty'        => $qty[$i],
+                    'price'      => $price[$i],
+                    'amount'     => $amount[$i]
+                );
+
+                $this->Sales_model->add_enquiry_cart($cart);
+            }
+        }
+
+        $this->session->set_flashdata('success','Enquiry Added Successfully.');
+    }
+    else
+    {
+        $this->session->set_flashdata('error','Something went wrong.');
+    }
+
+    redirect('Sales/list_enquiries');
+}
+
+public function edit_enquiry($id)
+{
+	 $data['title'] = 'Edit Enquiry';
+    $this->load->model('Sales_model');
+
+   $data['customer_list']  = $this->Setup_model->get_all_customer_list();
+	$data['branch_list']    = $this->Setup_model->get_all_branches();
+	$data['active_users']   = $this->Setup_model->get_active_user_list();
+
+	$data['all_products']   = $this->Setup_model->get_all_item_list();
+	$data['active_units']   = $this->Setup_model->get_all_units();
+   
+    $data['enquiry_data']  = $this->Sales_model->get_enquiry_details($id);
+	$data['cart_items'] = $this->Sales_model->get_enquiry_cart($id);
+
+    if (!$data['enquiry_data']) {
+        show_404();
+    }
+	 $data['main_content'] = 'sales/edit_enquiry';
+
+    $this->load->view('includes/template', $data);
+}
+
+
+public function update_enquiry_data()
+{
+    $this->load->model('Sales_model');
+
+    $id = $this->input->post('enquiry_id');
+
+    $data = array(
+        'branch_id'         => $this->input->post('branch'),
+        'enquiry_category'  => $this->input->post('enquiry_category'),
+        'enquiry_date'      => $this->input->post('enquiry_date'),
+        'enquiry_source'    => $this->input->post('enquiry_source'),
+        'enquiry_customer'  => $this->input->post('customer_id'),
+        'client_ref_no'     => $this->input->post('client_ref_no'),
+        'project_name'      => $this->input->post('project_name'),
+        'project_subject'   => $this->input->post('project_subject'),
+        'project_location'  => $this->input->post('project_location'),
+        'comments'          => $this->input->post('comments'),
+        'updated_by'        => $this->session->userdata('user_id'),
+        'updated_on'        => date('Y-m-d H:i:s')
+    );
+
+
+    // Update enquiry master
+    $this->Sales_model->update_enquiry($id, $data);
+
+
+    // Remove old cart items
+    $this->db->where('enquiry_id',$id);
+    $this->db->delete('enquiry_cart');
+
+
+    // Insert updated cart items
+    $product = $this->input->post('item_id');
+    $qty     = $this->input->post('qty');
+    $price   = $this->input->post('price');
+    $amount  = $this->input->post('amount');
+
+
+    if(!empty($product))
+    {
+        for($i=0; $i<count($product); $i++)
+        {
+
+            $cart = array(
+                'enquiry_id' => $id,
+                'product_id' => $product[$i],
+                'qty'        => $qty[$i],
+                'price'      => $price[$i],
+                'amount'     => $amount[$i],
+                'created_by' => $this->session->userdata('user_id'),
+                'created_date'=> date('Y-m-d H:i:s')
+            );
+
+
+            $this->Sales_model->add_enquiry_cart($cart);
+
+        }
+    }
+
+
+    $this->session->set_flashdata('success','Enquiry Updated Successfully.');
+
+    redirect('Sales/list_enquiries');
+}
 
 	public function view_enquiry()
 	{
@@ -149,17 +330,7 @@ class Sales extends CI_Controller
 	}
 
 
-	public function create_quotation()
-	{
-		$estimation_id = $this->input->post('estimation_id');
-		$enquiry_id = $this->get_enquiry_id_by_estimation($estimation_id);
-		$this->db->where('enquiry_id', $enquiry_id);
-		$this->db->update('enquiry_master', [
-			'enquiry_status'  => 5,
-			'updated_on'      => date('Y-m-d H:i:s')
-		]);
-		redirect("Sales/view_enquiry/$enquiry_id");
-	}
+	
 	public function add_quotation_old()
 	{
 		$this->db->trans_begin(); // Start transaction
@@ -572,128 +743,128 @@ class Sales extends CI_Controller
 	}*/
 
 
-public function print_quotation($qtn_id, $enquiry_id = "")
-{
-    // -----------------------------
-    // Fetch quotation master details
-    // -----------------------------
-    $quotation = $this->Sales_model->get_quotation_master_by_id($qtn_id);
+// public function print_quotation($qtn_id, $enquiry_id = "")
+// {
+//     // -----------------------------
+//     // Fetch quotation master details
+//     // -----------------------------
+//     $quotation = $this->Sales_model->get_quotation_master_by_id($qtn_id);
 
-    if (empty($quotation)) show_404();
-    $quotation = $quotation[0];
+//     if (empty($quotation)) show_404();
+//     $quotation = $quotation[0];
 
-    // -----------------------------
-    // Branch & Customer info
-    // -----------------------------
-    $data['project_name']     = $quotation['project_name'];
-    $data['project_location'] = $quotation['project_location'] ?? '';
+//     // -----------------------------
+//     // Branch & Customer info
+//     // -----------------------------
+//     $data['project_name']     = $quotation['project_name'];
+//     $data['project_location'] = $quotation['project_location'] ?? '';
 
-    $data['branch_id']        = $quotation['quotation_type'] == 'direct' ? $quotation['quotation_branch_id'] : ($quotation['branch_id'] ?? '');
-    $data['branch_name']      = $quotation['quotation_type'] == 'direct' ? null : ($quotation['branch_name'] ?? '');
-    $data['branch_contact']   = $quotation['branch_contact'] ?? '';
-    $data['branch_email']     = $quotation['branch_email'] ?? '';
-    $data['branch_location']  = $quotation['branch_location'] ?? '';
-    $data['branch_address']   = $quotation['branch_address'] ?? '';
-    $data['branch_website']   = $quotation['branch_web'] ?? '';
-	 $data['branch_stamp']  = $quotation['branch_stamp'] ?? '';
+//     $data['branch_id']        = $quotation['quotation_type'] == 'direct' ? $quotation['quotation_branch_id'] : ($quotation['branch_id'] ?? '');
+//     $data['branch_name']      = $quotation['quotation_type'] == 'direct' ? null : ($quotation['branch_name'] ?? '');
+//     $data['branch_contact']   = $quotation['branch_contact'] ?? '';
+//     $data['branch_email']     = $quotation['branch_email'] ?? '';
+//     $data['branch_location']  = $quotation['branch_location'] ?? '';
+//     $data['branch_address']   = $quotation['branch_address'] ?? '';
+//     $data['branch_website']   = $quotation['branch_web'] ?? '';
+// 	 $data['branch_stamp']  = $quotation['branch_stamp'] ?? '';
 
 
-    $data['customer_name']    = $quotation['customer_name'] ?? '';
-    $data['customer_address'] = $quotation['customer_address'] ?? '';
-    $data['customer_email']   = $quotation['customer_email'] ?? '';
-    $data['contact_number']   = $quotation['contact_number'] ?? '';
-	 $data['customer_TR_no']   = $quotation['customer_TR_no'] ?? '';
-	  $data['contact_name']   = $quotation['contact_name'] ?? '';
-    $data['emirate']          = $quotation['emirate'] ?? '';
+//     $data['customer_name']    = $quotation['customer_name'] ?? '';
+//     $data['customer_address'] = $quotation['customer_address'] ?? '';
+//     $data['customer_email']   = $quotation['customer_email'] ?? '';
+//     $data['contact_number']   = $quotation['contact_number'] ?? '';
+// 	 $data['customer_TR_no']   = $quotation['customer_TR_no'] ?? '';
+// 	  $data['contact_name']   = $quotation['contact_name'] ?? '';
+//     $data['emirate']          = $quotation['emirate'] ?? '';
 
-    $data['sales_person']     = $quotation['user_name'] ?? '';
+//     $data['sales_person']     = $quotation['user_name'] ?? '';
 
-	$this->load->model('Company_model');
-    $prepared_by_id =  $quotation['prepared_by'] ?? '';
-    $approved_by_id = $quotation['approved_by'] ?? '';
+// 	$this->load->model('Company_model');
+//     $prepared_by_id =  $quotation['prepared_by'] ?? '';
+//     $approved_by_id = $quotation['approved_by'] ?? '';
 
-    $prepared_by_name = '';
-    $approved_by_name = '';
-    $prepared_signature = '';
-     $approved_signature = '';
+//     $prepared_by_name = '';
+//     $approved_by_name = '';
+//     $prepared_signature = '';
+//      $approved_signature = '';
 	
-	  if (!empty($prepared_by_id)) {
-        $prepared_emp = $this->Company_model->get_employee_by_id($prepared_by_id);
-        $prepared_by_name = $prepared_emp->employee_name ?? '';
-        $prepared_signature = $prepared_emp->signature_file ?? '';
-		$prepared_by_contact = $prepared_emp->mobile ?? '';
+// 	  if (!empty($prepared_by_id)) {
+//         $prepared_emp = $this->Company_model->get_employee_by_id($prepared_by_id);
+//         $prepared_by_name = $prepared_emp->employee_name ?? '';
+//         $prepared_signature = $prepared_emp->signature_file ?? '';
+// 		$prepared_by_contact = $prepared_emp->mobile ?? '';
 
-    }
+//     }
 
-	if (!empty($approved_by_id)) {
-        $approved_emp = $this->Company_model->get_employee_by_id($approved_by_id);
-        $approved_by_name = $approved_emp->employee_name ?? '';
-        $approved_signature = $approved_emp->signature_file ?? '';
+// 	if (!empty($approved_by_id)) {
+//         $approved_emp = $this->Company_model->get_employee_by_id($approved_by_id);
+//         $approved_by_name = $approved_emp->employee_name ?? '';
+//         $approved_signature = $approved_emp->signature_file ?? '';
 
-    }
-    // -----------------------------
-    // Header & Footer Paths
-    // -----------------------------
-    $headerFile = $quotation['branch_header'] ?? '';
-    $footerFile = $quotation['branch_footer'] ?? '';
+//     }
+//     // -----------------------------
+//     // Header & Footer Paths
+//     // -----------------------------
+//     $headerFile = $quotation['branch_header'] ?? '';
+//     $footerFile = $quotation['branch_footer'] ?? '';
 
-    // Absolute server paths for Dompdf
-    $fullHeaderPath = !empty($headerFile) ? FCPATH . ltrim($headerFile, './') : '';
-    $fullFooterPath = !empty($footerFile) ? FCPATH . ltrim($footerFile, './') : '';
+//     // Absolute server paths for Dompdf
+//     $fullHeaderPath = !empty($headerFile) ? FCPATH . ltrim($headerFile, './') : '';
+//     $fullFooterPath = !empty($footerFile) ? FCPATH . ltrim($footerFile, './') : '';
 
-    // Check if header/footer exist, log if missing
-    if (!empty($fullHeaderPath) && !file_exists($fullHeaderPath)) {
-        log_message('error', "Header file not found: $fullHeaderPath");
-        $fullHeaderPath = '';
-    }
-    if (!empty($fullFooterPath) && !file_exists($fullFooterPath)) {
-        log_message('error', "Footer file not found: $fullFooterPath");
-        $fullFooterPath = '';
-    }
+//     // Check if header/footer exist, log if missing
+//     if (!empty($fullHeaderPath) && !file_exists($fullHeaderPath)) {
+//         log_message('error', "Header file not found: $fullHeaderPath");
+//         $fullHeaderPath = '';
+//     }
+//     if (!empty($fullFooterPath) && !file_exists($fullFooterPath)) {
+//         log_message('error', "Footer file not found: $fullFooterPath");
+//         $fullFooterPath = '';
+//     }
 
-    // For view: use full server path (Dompdf needs absolute path)
-    $data['headerPath'] = $fullHeaderPath;
-    $data['footerPath'] = $fullFooterPath;
+//     // For view: use full server path (Dompdf needs absolute path)
+//     $data['headerPath'] = $fullHeaderPath;
+//     $data['footerPath'] = $fullFooterPath;
 
-	 $data['prepared_by_name'] = $prepared_by_name;
-    $data['approved_by_name'] = $approved_by_name;
-     $data['prepared_signature'] = $prepared_signature ?? '';
-      $data['approved_signature'] = $approved_signature ?? '';
-	  	 $data['prepared_by_contact'] = $prepared_by_contact ?? '';
+// 	 $data['prepared_by_name'] = $prepared_by_name;
+//     $data['approved_by_name'] = $approved_by_name;
+//      $data['prepared_signature'] = $prepared_signature ?? '';
+//       $data['approved_signature'] = $approved_signature ?? '';
+// 	  	 $data['prepared_by_contact'] = $prepared_by_contact ?? '';
 
 
-    // -----------------------------
-    // Quotation details/products
-    // -----------------------------
-    $data['quotation_details']  = $this->Sales_model->get_quotation_details_by_id($qtn_id);
-    $data['quotation_products'] = $this->Sales_model->get_quotation_products_by_id($qtn_id);
-    $this->load->model('Setup_model');
+//     // -----------------------------
+//     // Quotation details/products
+//     // -----------------------------
+//     $data['quotation_details']  = $this->Sales_model->get_quotation_details_by_id($qtn_id);
+//     $data['quotation_products'] = $this->Sales_model->get_quotation_products_by_id($qtn_id);
+//     $this->load->model('Setup_model');
 
-	    $data['comapny_records'] = $this->Setup_model->get_company_details();
+// 	    $data['comapny_records'] = $this->Setup_model->get_company_details();
 
-    // -----------------------------
-    // Load main HTML view
-    // -----------------------------
-    $main_html = $this->load->view('sales/quotation/print_quotation.php', $data, true);
+//     // -----------------------------
+//     // Load main HTML view
+//     // -----------------------------
+//     $main_html = $this->load->view('sales/quotation/print_quotation.php', $data, true);
 
-    // -----------------------------
-    // Dompdf setup
-    // -----------------------------
-    $options = new Options();
-    $options->set('isHtml5ParserEnabled', true);
-    $options->set('isRemoteEnabled', true); // allow external images
-    $options->set('chroot', realpath(FCPATH)); // restrict to public folder
+//     // -----------------------------
+//     // Dompdf setup
+//     // -----------------------------
+//     $options = new Options();
+//     $options->set('isHtml5ParserEnabled', true);
+//     $options->set('isRemoteEnabled', true); // allow external images
+//     $options->set('chroot', realpath(FCPATH)); // restrict to public folder
 
-    $dompdf = new Dompdf($options);
-    $dompdf->loadHtml($main_html);
-    $dompdf->setPaper('A4', 'portrait');
+//     $dompdf = new Dompdf($options);
+//     $dompdf->loadHtml($main_html);
+//     $dompdf->setPaper('A4', 'portrait');
 
-    // -----------------------------
-    // Render and stream PDF
-    // -----------------------------
-    $dompdf->render();
-    $dompdf->stream("quotation_$qtn_id.pdf", ["Attachment" => 0]);
-}
+//     // -----------------------------
+//     // Render and stream PDF
+//     // -----------------------------
+//     $dompdf->render();
+//     $dompdf->stream("quotation_$qtn_id.pdf", ["Attachment" => 0]);
+// }
 	public function estimation_revision($estimation_id, $enquiry_id)
 	{
 		$data['estimation_id'] = $estimation_id;
@@ -941,106 +1112,107 @@ public function print_quotation($qtn_id, $enquiry_id = "")
 	public function list_quotations()
 	{
 		$data['title'] = 'Quotation List';
-		$data['quotations'] = $this->Sales_model->get_quotation_master();
+		    $this->load->model('Sales_model');
+		 $data['quotations'] = $this->Sales_model->get_quotation_list();
 		$data['main_content'] = 'sales/quotation/list_quotation.php';
 		$this->load->view('includes/template', $data);
 	}
 
-	public function view_quotation($qtn_id)
-	{
-		// Get only this quotation's details
-		$quotations_raw = $this->Sales_model->get_all_quotation_details($qtn_id);
-		if (empty($quotations_raw)) {
-			show_404(); // or redirect with flash message
-		}
+	// public function view_quotation($qtn_id)
+	// {
+	// 	// Get only this quotation's details
+	// 	$quotations_raw = $this->Sales_model->get_all_quotation_details($qtn_id);
+	// 	if (empty($quotations_raw)) {
+	// 		show_404(); // or redirect with flash message
+	// 	}
 
-		// Get quotation type
-		$data['quotation_type'] = $quotations_raw[0]['quotation_type'];
-		$is_direct = ($data['quotation_type'] === 'direct');
+	// 	// Get quotation type
+	// 	$data['quotation_type'] = $quotations_raw[0]['quotation_type'];
+	// 	$is_direct = ($data['quotation_type'] === 'direct');
 
-		$quotation = [];
+	// 	$quotation = [];
 
-		foreach ($quotations_raw as $row) {
-			$qid = $row['qtn_id'];
+	// 	foreach ($quotations_raw as $row) {
+	// 		$qid = $row['qtn_id'];
 
-			if (!isset($quotation[$qid])) {
-				$quotation[$qid] = [
-					'qtn_id'            => $row['qtn_id'],
-					'quotation_code'    => $row['quotation_code'],
-					'quotation_date'    => $row['quotation_date'],
-					'enquiry_id'        => $row['enquiry_id'],
-					'enquiry_code'      => $is_direct ? null : ($row['enquiry_code'] ?? null),
-					'estimation_id'     => $row['estimation_id'],
-					'estimation_code'   => $is_direct ? null : ($row['estimation_code'] ?? null),
-					'customer_name'     => $row['customer_name'] ?? '',
-					'branch_name'       => $row['branch_name'] ?? '',
-					'project_name'      => $row['project_name'] ?? '', // for direct quotation
-					'preparedby'        => $row['preparedby'] ?? '',
-					'quotation_status'  => $row['quotation_status'] ?? '',
-					'quotation_revision' => $row['quotation_revision'] ?? '',
-					'vat_required'      => $row['vat_required'] ?? '',
-					'main_headings'     => [],
-					'totals' => [
-						'sub_total'             => $row['sub_total'],
-						'estimation_amount'     => $row['estimation_amount'],
-						'total_before_discount' => $row['total_before_discount'],
-						'discount_percentage' => $row['master_discount_percentage'] ?? 0,
-                        'discount_amount'     => $row['master_discount_amount'] ?? 0,
-						'vat_required'          => $row['vat_required'],
-						'total_before_vat'      => $row['total_before_vat'],
-						'vat_percentage'        => $row['vat_percentage'],
-						'vat_amount'            => $row['vat_amount'],
-						'grand_total'           => $row['grand_total'],
-						    'other_charge'         => $row['other_charge'] ?? 0,
+	// 		if (!isset($quotation[$qid])) {
+	// 			$quotation[$qid] = [
+	// 				'qtn_id'            => $row['qtn_id'],
+	// 				'quotation_code'    => $row['quotation_code'],
+	// 				'quotation_date'    => $row['quotation_date'],
+	// 				'enquiry_id'        => $row['enquiry_id'],
+	// 				'enquiry_code'      => $is_direct ? null : ($row['enquiry_code'] ?? null),
+	// 				'estimation_id'     => $row['estimation_id'],
+	// 				'estimation_code'   => $is_direct ? null : ($row['estimation_code'] ?? null),
+	// 				'customer_name'     => $row['customer_name'] ?? '',
+	// 				'branch_name'       => $row['branch_name'] ?? '',
+	// 				'project_name'      => $row['project_name'] ?? '', // for direct quotation
+	// 				'preparedby'        => $row['preparedby'] ?? '',
+	// 				'quotation_status'  => $row['quotation_status'] ?? '',
+	// 				'quotation_revision' => $row['quotation_revision'] ?? '',
+	// 				'vat_required'      => $row['vat_required'] ?? '',
+	// 				'main_headings'     => [],
+	// 				'totals' => [
+	// 					'sub_total'             => $row['sub_total'],
+	// 					'estimation_amount'     => $row['estimation_amount'],
+	// 					'total_before_discount' => $row['total_before_discount'],
+	// 					'discount_percentage' => $row['master_discount_percentage'] ?? 0,
+    //                     'discount_amount'     => $row['master_discount_amount'] ?? 0,
+	// 					'vat_required'          => $row['vat_required'],
+	// 					'total_before_vat'      => $row['total_before_vat'],
+	// 					'vat_percentage'        => $row['vat_percentage'],
+	// 					'vat_amount'            => $row['vat_amount'],
+	// 					'grand_total'           => $row['grand_total'],
+	// 					    'other_charge'         => $row['other_charge'] ?? 0,
 
 
-					],
-					'terms' => [
-						'payment_term'   => $row['payment_term'],
-						'delivery_term'  => $row['delivery_term'],
-						'terms_condition' => $row['terms_condition'],
-						'validity'       => $row['validity'],
-					]
-				];
-			}
+	// 				],
+	// 				'terms' => [
+	// 					'payment_term'   => $row['payment_term'],
+	// 					'delivery_term'  => $row['delivery_term'],
+	// 					'terms_condition' => $row['terms_condition'],
+	// 					'validity'       => $row['validity'],
+	// 				]
+	// 			];
+	// 		}
 
-			$main_id = $row['main_heading_id'];
-			if (!isset($quotation[$qid]['main_headings'][$main_id])) {
-				$quotation[$qid]['main_headings'][$main_id] = [
-					'main_heading' => $row['main_heading'],
-					'description'  => $row['description'],
-					'sub_headings' => []
-				];
-			}
+	// 		$main_id = $row['main_heading_id'];
+	// 		if (!isset($quotation[$qid]['main_headings'][$main_id])) {
+	// 			$quotation[$qid]['main_headings'][$main_id] = [
+	// 				'main_heading' => $row['main_heading'],
+	// 				'description'  => $row['description'],
+	// 				'sub_headings' => []
+	// 			];
+	// 		}
 
-			$sub_id = $row['sub_heading_id'];
-			if (!isset($quotation[$qid]['main_headings'][$main_id]['sub_headings'][$sub_id])) {
-				$quotation[$qid]['main_headings'][$main_id]['sub_headings'][$sub_id] = [
-					'sub_heading' => $row['sub_heading'],
-					'products'    => []
-				];
-			}
+	// 		$sub_id = $row['sub_heading_id'];
+	// 		if (!isset($quotation[$qid]['main_headings'][$main_id]['sub_headings'][$sub_id])) {
+	// 			$quotation[$qid]['main_headings'][$main_id]['sub_headings'][$sub_id] = [
+	// 				'sub_heading' => $row['sub_heading'],
+	// 				'products'    => []
+	// 			];
+	// 		}
 
-			$quotation[$qid]['main_headings'][$main_id]['sub_headings'][$sub_id]['products'][] = [
-				'product_name'         => $row['item_name'],
-				'product_description'  => $row['product_description'],
-				'unit_name'            => $row['unit_name'],
-				'quantity'             => $row['quantity'],
-				'unit_price'           => $row['unit_price'],
-				'discount_amount'               => $row['discount_amount'],
-				'amount'               => $row['amount'],
-				'taxable_amount'    => $row['taxable_amount']
-			];
-		}
+	// 		$quotation[$qid]['main_headings'][$main_id]['sub_headings'][$sub_id]['products'][] = [
+	// 			'product_name'         => $row['item_name'],
+	// 			'product_description'  => $row['product_description'],
+	// 			'unit_name'            => $row['unit_name'],
+	// 			'quantity'             => $row['quantity'],
+	// 			'unit_price'           => $row['unit_price'],
+	// 			'discount_amount'               => $row['discount_amount'],
+	// 			'amount'               => $row['amount'],
+	// 			'taxable_amount'    => $row['taxable_amount']
+	// 		];
+	// 	}
 
-		// Only one quotation expected
-		$quotation = array_values($quotation)[0];
-		$data['quotation'] = $quotation;
-		//print_r($data['quotation']);exit();
-		$data['title'] = 'Quotation Details';
-		$data['main_content'] = 'sales/quotation/quotation_view.php';
-		$this->load->view('includes/template', $data);
-	}
+	// 	// Only one quotation expected
+	// 	$quotation = array_values($quotation)[0];
+	// 	$data['quotation'] = $quotation;
+	// 	//print_r($data['quotation']);exit();
+	// 	$data['title'] = 'Quotation Details';
+	// 	$data['main_content'] = 'sales/quotation/quotation_view.php';
+	// 	$this->load->view('includes/template', $data);
+	// }
 	public function view_quotation_details($qtn_id)
 	{
 		// Load models
@@ -1340,76 +1512,76 @@ public function print_quotation($qtn_id, $enquiry_id = "")
 	//New Function
 	//Quotation
 
-	public function add_quotations()
-	{
-		$user = $this->session->userdata('user_id');
-		if (!has_access($user, 'Sales/list_quotations', 'A')) {
-			$data['title'] = 'Access Denied';
-			$data['main_content'] = 'errors/access_control.php';
-		} else {
-			$data['title'] = 'Add Quotation';
-			$data['enquiry_list'] = $this->Sales_model->get_all_enquiry_list();
+	// public function add_quotations()
+	// {
+	// 	$user = $this->session->userdata('user_id');
+	// 	if (!has_access($user, 'Sales/list_quotations', 'A')) {
+	// 		$data['title'] = 'Access Denied';
+	// 		$data['main_content'] = 'errors/access_control.php';
+	// 	} else {
+	// 		$data['title'] = 'Add Quotation';
+	// 		$data['enquiry_list'] = $this->Sales_model->get_all_enquiry_list();
 
-			// Check if enquiry_id passed in URL
-			$enquiry_id = $this->input->get('enquiry_id');
-			$data['selected_enquiry_id'] = $enquiry_id ? $enquiry_id : '';
-			 $this->load->model('Hr_model');
-    $data['employees'] = $this->Hr_model->get_employee_list();
+	// 		// Check if enquiry_id passed in URL
+	// 		$enquiry_id = $this->input->get('enquiry_id');
+	// 		$data['selected_enquiry_id'] = $enquiry_id ? $enquiry_id : '';
+	// 		 $this->load->model('Hr_model');
+    // $data['employees'] = $this->Hr_model->get_employee_list();
 
-			$data['main_content'] = 'sales/quotation/add_quotation.php';
-		}
+	// 		$data['main_content'] = 'sales/quotation/add_quotation.php';
+	// 	}
 
-		$this->load->view('includes/template', $data);
-	}
+	// 	$this->load->view('includes/template', $data);
+	// }
 
 
-	public function get_enquiry_details()
-	{
-		$enquiry_id = $this->input->post('enquiry_id');
-		if (empty($enquiry_id)) {
-			echo "<div class='alert alert-danger'>Invalid enquiry selected.</div>";
-			return;
-		}
+	// public function get_enquiry_details()
+	// {
+	// 	$enquiry_id = $this->input->post('enquiry_id');
+	// 	if (empty($enquiry_id)) {
+	// 		echo "<div class='alert alert-danger'>Invalid enquiry selected.</div>";
+	// 		return;
+	// 	}
 
-		// 🔹 Get enquiry basic info
-		$enquiry = $this->Sales_model->get_enquiry_by_id($enquiry_id);
-		if (empty($enquiry)) {
-			echo "<div class='alert alert-warning'>No enquiry details found.</div>";
-			return;
-		}
-		$quotation_code = $this->Sales_model->generate_quotation_code();
-		//$quotation_code		 = "QTN-" . '0' . $enquiry['branch_id'] . "-" . date('Ymd');
-		// 🔹 Get estimation structure
-		$estimation_data = $this->estimation_master_data($enquiry_id);
-		$data['master'] = $estimation_data['master'];
-		$data['estimation'] = $estimation_data['estimation'];
+	// 	// 🔹 Get enquiry basic info
+	// 	$enquiry = $this->Sales_model->get_enquiry_by_id($enquiry_id);
+	// 	if (empty($enquiry)) {
+	// 		echo "<div class='alert alert-warning'>No enquiry details found.</div>";
+	// 		return;
+	// 	}
+	// 	$quotation_code = $this->Sales_model->generate_quotation_code();
+	// 	//$quotation_code		 = "QTN-" . '0' . $enquiry['branch_id'] . "-" . date('Ymd');
+	// 	// 🔹 Get estimation structure
+	// 	$estimation_data = $this->estimation_master_data($enquiry_id);
+	// 	$data['master'] = $estimation_data['master'];
+	// 	$data['estimation'] = $estimation_data['estimation'];
 
-		// 🔹 Load dropdown reference data
-		$data['all_products'] = $this->Item_model->get_active_item_list();     // must return list of products (id + name)
-		$data['active_units'] = $this->Item_model->get_all_units();     // must return list of units (id + name)
+	// 	// 🔹 Load dropdown reference data
+	// 	$data['all_products'] = $this->Item_model->get_active_item_list();     // must return list of products (id + name)
+	// 	$data['active_units'] = $this->Item_model->get_all_units();     // must return list of units (id + name)
 
-		// 🔹 Load and return HTML preview
-		$html = $this->load->view('sales/quotation/quotation_preview.php', $data, TRUE);
-		//print_r($html);exit();sub_total
-		$response = [
-			'branch_id'        => $enquiry['branch_id'],
-			'customer_id'      => $enquiry['customer_id'],
-			'enquiry_id'      => $enquiry['enquiry_id'],
-			'enquiry_code'    => $enquiry['enquiry_code'],
-			'branch_name'     => $enquiry['branch_name'],
-			'project_name'    => $enquiry['project_name'],
-			'customer_name'   => $enquiry['customer_name'],
-			'quotation_code'  => $quotation_code,
-			'estimation_id'   => $estimation_data['master']['estimation_id'] ?? 0,
-			'estimation_cost' => $estimation_data['master']['grand_total'] ?? 0,
-			'sub_total'  	  => $estimation_data['master']['sub_total'] ?? 0,
-			'html'      	  => $html,
-			'all_products'    => $this->Item_model->get_active_item_list(),
-			'active_units'    => $this->Item_model->get_all_units()
-		];
+	// 	// 🔹 Load and return HTML preview
+	// 	$html = $this->load->view('sales/quotation/quotation_preview.php', $data, TRUE);
+	// 	//print_r($html);exit();sub_total
+	// 	$response = [
+	// 		'branch_id'        => $enquiry['branch_id'],
+	// 		'customer_id'      => $enquiry['customer_id'],
+	// 		'enquiry_id'      => $enquiry['enquiry_id'],
+	// 		'enquiry_code'    => $enquiry['enquiry_code'],
+	// 		'branch_name'     => $enquiry['branch_name'],
+	// 		'project_name'    => $enquiry['project_name'],
+	// 		'customer_name'   => $enquiry['customer_name'],
+	// 		'quotation_code'  => $quotation_code,
+	// 		'estimation_id'   => $estimation_data['master']['estimation_id'] ?? 0,
+	// 		'estimation_cost' => $estimation_data['master']['grand_total'] ?? 0,
+	// 		'sub_total'  	  => $estimation_data['master']['sub_total'] ?? 0,
+	// 		'html'      	  => $html,
+	// 		'all_products'    => $this->Item_model->get_active_item_list(),
+	// 		'active_units'    => $this->Item_model->get_all_units()
+	// 	];
 
-		echo json_encode($response);
-	}
+	// 	echo json_encode($response);
+	// }
 	public function save_quotation()
 	{
 		$quotationData = $this->input->post();
@@ -1546,207 +1718,206 @@ $project_location = $enquiry->project_location ?? ''; // assuming you have a pro
 		}
 	}
 
-	public function edit_quotation($qtn_id)
-	{
-		$user                       = $this->session->userdata('user_id');
-		if (!has_access($user, 'Sales/list_quotations', 'E')) {
-			$data['title']          = 'Access Denied';
-			$data['main_content']   = 'errors/access_control.php';
-		} else {
-			$data['title']          	= 'Edit Quotation';
-			$data['Quotation_id']       =  $qtn_id;
-			$quotation_details			= $this->get_quotation_master_data($qtn_id);
-			$data['qtn_master']			= $quotation_details['qtn_master'];
-			$data['qtn_details']        = $quotation_details['quotation'];
-			//print_r($data['qtn_details']);exit();
-			$data['qtn_revisions']		= $this->Sales_model->get_all_qtn_revisions($qtn_id);
-			$data['all_products'] 		= $this->Item_model->get_active_item_list();     // must return list of products (id + name)
-			$data['active_units'] 		= $this->Item_model->get_all_units();     // must return list of units (id + name)
-            $this->load->model('Hr_model');
-            $data['employees'] = $this->Hr_model->get_employee_list();
-			// $data['customer_code']  = $this->Company_model->generate_customer_code();
-			$data['enquiry_list']    = $this->Sales_model->get_all_enquiry_list();
-			$data['main_content']   = 'sales/quotation/edit_quotation.php';
-		}
-
-		$this->load->view('includes/template', $data);
-	}
-	public function update_quotation()
-	{
-		$action = $this->input->post('action'); // detect which button was clicked
-		$this->db->trans_begin();
-
-		try {
-			$qtn_id          = $this->input->post('quotation_id');
-			$enquiry_id      = $this->input->post('enquiry_id');
-			$is_new_revision = $this->input->post('create_revision'); // checkbox
-
-			// --- Basic Validation ---
-			$quotation_date = $this->input->post('quotation_date');
-			if (!$quotation_date) {
-				throw new Exception('Quotation Date is required.');
-			}
-
-			// --- Prepare master data ---
-			$masterData = [
-				'enquiry_id'             => $enquiry_id,
-				'estimation_id'          => $this->input->post('estimation_id'),
-				'quotation_code'         => $this->input->post('quotation_code'),
-				'quotation_date'         => $quotation_date,
-				'discount_percentage'    => $this->input->post('qtn_add_discount_percentage') ?: 0,
-				'discount_amount'        => $this->input->post('qtn_add_discount_amount') ?: 0,
-				'vat_required' => $this->input->post('qtn_apply_vat') ? 1 : 0,
-				'vat_percentage'         => $this->input->post('qtn_vat_percentage') ?: 5,
-				'payment_term'           => $this->input->post('payment_term'),
-				'validity'               => $this->input->post('validity'),
-				'delivery_term'          => $this->input->post('delivery_term'),
-				'warranty'               => $this->input->post('warranty'),
-				'warranty_description'          => $this->input->post('warranty_description'),
-				'terms_condition'        => $this->input->post('terms_condition'),
-				'notes'        => $this->input->post('notes'),
-				'prepared_by' 			=> $this->input->post('employee_prepared'),
-				'approved_by' 			=> $this->input->post('employee_approved'),
-
-			];
-
-			// --- Calculate Totals Server-Side ---
-			$subtotal = 0;
-			$main_headings = $this->input->post('main_heading');
-			$sub_headings  = $this->input->post('sub_heading');
-			$products      = $this->input->post('products');
-
-			if (!empty($main_headings) && !empty($products)) {
-				foreach ($main_headings as $i => $main) {
-					foreach ($products[$i] as $j => $subProducts) {
-						foreach ($subProducts as $k => $prod) {
-							$qty   = floatval($prod['quantity'] ?? 0);
-							$price = floatval($prod['unit_price'] ?? 0);
-							$discount = floatval($prod['discount_amount'] ?? 0);
-							$amount = $qty * $price;
-							if ($discount > $amount) $discount = $amount;
-							$taxable = $amount - $discount;
-							$subtotal += $taxable;
-						}
-					}
-				}
-			}
-
-			$addDiscountAmount = ($subtotal * $masterData['discount_percentage']) / 100;
-			$totalBeforeVat    = $subtotal - $addDiscountAmount;
-			$vatAmount         = $masterData['vat_required'] ? ($totalBeforeVat * $masterData['vat_percentage'] / 100) : 0;
-			$grandTotal        = $totalBeforeVat + $vatAmount;
-
-			// Assign calculated totals
-			$masterData['sub_total']         = $subtotal;
-			$masterData['total_before_discount'] = $subtotal;
-			$masterData['discount_amount']   = $addDiscountAmount;
-			$masterData['total_before_vat']  = $totalBeforeVat;
-			$masterData['vat_amount']        = $vatAmount;
-			$masterData['grand_total']       = $grandTotal;
-
-			// Reset approvals always on update
-$masterData['aproval'] = 'Pending';
-
-if ($grandTotal >= 10000) {
-    $masterData['internal_approval'] = 'Pending';
-} else {
-    $masterData['internal_approval'] = null; // or 'Not Required'
-}
-
-			// --- Handle New Revision ---
-			if ($is_new_revision) {
-
-    $max_revision = $this->Sales_model->get_max_revision($enquiry_id);
-    $new_revision = $max_revision + 1;
-
-    // Mark old quotation inactive
-    $this->Sales_model->update_quotation($qtn_id, [
-        'active' => 0,
-        'updated_on' => date('Y-m-d H:i:s'),
-        'updated_by' => $this->session->userdata('user_id')
-    ]);
-
-    // 🔥 GET OLD DATA (FIXED)
-    $oldArr = $this->Sales_model->get_quotation_master_by_id($qtn_id);
-    $old = $oldArr[0] ?? null;
-
-    if (!$old) {
-        throw new Exception("Old quotation not found");
+	public function edit_quotation($qtn_id = null)
+{
+    if (empty($qtn_id)) {
+        redirect('Sales/list_quotations');
     }
 
-    // 🚨 FORCE REQUIRED FIELDS (PREVENT NULL INSERT)
-    $masterData['quotation_branch_id'] = $old['quotation_branch_id'] ?? 0;
-    $masterData['quotation_customer']  = $old['quotation_customer'] ?? 0;
-    $masterData['project_name']        = $old['project_name'] ?? '';
-    $masterData['quotation_type']      = $old['quotation_type'] ?? '';
-    $masterData['project_location']    = $old['project_location'] ?? '';
+    $user = $this->session->userdata('user_id');
 
-    $masterData['enquiry_id']          = $old['enquiry_id'] ?? 0;
-    $masterData['estimation_id']       = $old['estimation_id'] ?? 0;
+    if (!has_access($user, 'Sales/list_quotations', 'E')) {
+        $data['title'] = 'Access Denied';
+        $data['main_content'] = 'errors/access_control.php';
+    } else {
 
-    // revision info
-    $masterData['active']              = 1;
-    $masterData['created_on']          = date('Y-m-d H:i:s');
-    $masterData['created_by']          = $this->session->userdata('user_id');
-    $masterData['quotation_revision']  = $new_revision;
+        $data['title'] = 'Edit Quotation';
+        $data['Quotation_id'] = $qtn_id;
 
-    $new_qtn_id = $this->Sales_model->insert_quotation($masterData);
+        $data['quotation'] = $this->Sales_model->get_quotation_by_id($qtn_id);
+        $data['cart_items'] = $this->Sales_model->get_quotation_cart($qtn_id);
 
-    $this->_save_qtn_details($new_qtn_id);
+        $data['main_content'] = 'sales/quotation/edit_quotation.php';
+    }
 
-    $this->session->set_flashdata('success', 'New quotation revision created successfully.');
-    $redirect_qtn_id = $new_qtn_id;
+    $this->load->view('includes/template', $data);
 }
-			// --- Update Existing Quotation ---
-			else {
-				$masterData['active']     = 1;
-				$masterData['updated_on'] = date('Y-m-d H:i:s');
-				$masterData['updated_by'] = $this->session->userdata('user_id');
+// 	public function update_quotation()
+// 	{
+// 		$action = $this->input->post('action'); // detect which button was clicked
+// 		$this->db->trans_begin();
 
-				// Update master
-				$this->Sales_model->update_quotation($qtn_id, $masterData);
+// 		try {
+// 			$qtn_id          = $this->input->post('quotation_id');
+// 			$enquiry_id      = $this->input->post('enquiry_id');
+// 			$is_new_revision = $this->input->post('create_revision'); // checkbox
 
-				// Delete old details
-				$this->Sales_model->delete_qtn_main_headings($qtn_id);
-				$this->Sales_model->delete_qtn_sub_headings($qtn_id);
-				$this->Sales_model->delete_qtn_products($qtn_id);
+// 			// --- Basic Validation ---
+// 			$quotation_date = $this->input->post('quotation_date');
+// 			if (!$quotation_date) {
+// 				throw new Exception('Quotation Date is required.');
+// 			}
 
-				// Insert updated details
-				$this->_save_qtn_details($qtn_id);
+// 			// --- Prepare master data ---
+// 			$masterData = [
+// 				'enquiry_id'             => $enquiry_id,
+// 				'estimation_id'          => $this->input->post('estimation_id'),
+// 				'quotation_code'         => $this->input->post('quotation_code'),
+// 				'quotation_date'         => $quotation_date,
+// 				'discount_percentage'    => $this->input->post('qtn_add_discount_percentage') ?: 0,
+// 				'discount_amount'        => $this->input->post('qtn_add_discount_amount') ?: 0,
+// 				'vat_required' => $this->input->post('qtn_apply_vat') ? 1 : 0,
+// 				'vat_percentage'         => $this->input->post('qtn_vat_percentage') ?: 5,
+// 				'payment_term'           => $this->input->post('payment_term'),
+// 				'validity'               => $this->input->post('validity'),
+// 				'delivery_term'          => $this->input->post('delivery_term'),
+// 				'warranty'               => $this->input->post('warranty'),
+// 				'warranty_description'          => $this->input->post('warranty_description'),
+// 				'terms_condition'        => $this->input->post('terms_condition'),
+// 				'notes'        => $this->input->post('notes'),
+// 				'prepared_by' 			=> $this->input->post('employee_prepared'),
+// 				'approved_by' 			=> $this->input->post('employee_approved'),
 
-				$this->session->set_flashdata('success', 'Quotation updated successfully.');
-				$redirect_qtn_id = $qtn_id;
-			}
+// 			];
 
-			// --- Commit Transaction ---
-			if ($this->db->trans_status() === FALSE) {
-				throw new Exception('Database transaction failed.');
-			}
-			$this->db->trans_commit();
-		} catch (Exception $e) {
-			$this->db->trans_rollback();
-			log_message('error', 'Quotation Update Failed: ' . $e->getMessage());
-			$this->session->set_flashdata('error', 'Something went wrong while updating quotation. ' . $e->getMessage());
-		}
+// 			// --- Calculate Totals Server-Side ---
+// 			$subtotal = 0;
+// 			$main_headings = $this->input->post('main_heading');
+// 			$sub_headings  = $this->input->post('sub_heading');
+// 			$products      = $this->input->post('products');
 
-		if ($action === 'sales_order') {
-			redirect(base_url('index.php/Sales/add_sales_order?quotation_id=' . $redirect_qtn_id));
-		} else {
-			redirect('Sales/edit_quotation/' . $redirect_qtn_id);
-		}
-	}
-	public function approve_quotation($quotation_id)
-	{
-		//echo $quotation_id;exit();
-		$data['title']			=  "Approve Quotation";
-		$data['quotation'] = $this->Sales_model->get_quotation_master_by_id($quotation_id);
-		if (!$data['quotation']) {
-			show_error('Quotation not found');
-		}
+// 			if (!empty($main_headings) && !empty($products)) {
+// 				foreach ($main_headings as $i => $main) {
+// 					foreach ($products[$i] as $j => $subProducts) {
+// 						foreach ($subProducts as $k => $prod) {
+// 							$qty   = floatval($prod['quantity'] ?? 0);
+// 							$price = floatval($prod['unit_price'] ?? 0);
+// 							$discount = floatval($prod['discount_amount'] ?? 0);
+// 							$amount = $qty * $price;
+// 							if ($discount > $amount) $discount = $amount;
+// 							$taxable = $amount - $discount;
+// 							$subtotal += $taxable;
+// 						}
+// 					}
+// 				}
+// 			}
 
-		$data['main_content']   = 'sales/quotation/approve_quotation.php';
-		$this->load->view('includes/template', $data);
-	}
+// 			$addDiscountAmount = ($subtotal * $masterData['discount_percentage']) / 100;
+// 			$totalBeforeVat    = $subtotal - $addDiscountAmount;
+// 			$vatAmount         = $masterData['vat_required'] ? ($totalBeforeVat * $masterData['vat_percentage'] / 100) : 0;
+// 			$grandTotal        = $totalBeforeVat + $vatAmount;
+
+// 			// Assign calculated totals
+// 			$masterData['sub_total']         = $subtotal;
+// 			$masterData['total_before_discount'] = $subtotal;
+// 			$masterData['discount_amount']   = $addDiscountAmount;
+// 			$masterData['total_before_vat']  = $totalBeforeVat;
+// 			$masterData['vat_amount']        = $vatAmount;
+// 			$masterData['grand_total']       = $grandTotal;
+
+// 			// Reset approvals always on update
+// $masterData['aproval'] = 'Pending';
+
+// if ($grandTotal >= 10000) {
+//     $masterData['internal_approval'] = 'Pending';
+// } else {
+//     $masterData['internal_approval'] = null; // or 'Not Required'
+// }
+
+// 			// --- Handle New Revision ---
+// 			if ($is_new_revision) {
+
+//     $max_revision = $this->Sales_model->get_max_revision($enquiry_id);
+//     $new_revision = $max_revision + 1;
+
+//     // Mark old quotation inactive
+//     $this->Sales_model->update_quotation($qtn_id, [
+//         'active' => 0,
+//         'updated_on' => date('Y-m-d H:i:s'),
+//         'updated_by' => $this->session->userdata('user_id')
+//     ]);
+
+//     // 🔥 GET OLD DATA (FIXED)
+//     $oldArr = $this->Sales_model->get_quotation_master_by_id($qtn_id);
+//     $old = $oldArr[0] ?? null;
+
+//     if (!$old) {
+//         throw new Exception("Old quotation not found");
+//     }
+
+//     // 🚨 FORCE REQUIRED FIELDS (PREVENT NULL INSERT)
+//     $masterData['quotation_branch_id'] = $old['quotation_branch_id'] ?? 0;
+//     $masterData['quotation_customer']  = $old['quotation_customer'] ?? 0;
+//     $masterData['project_name']        = $old['project_name'] ?? '';
+//     $masterData['quotation_type']      = $old['quotation_type'] ?? '';
+//     $masterData['project_location']    = $old['project_location'] ?? '';
+
+//     $masterData['enquiry_id']          = $old['enquiry_id'] ?? 0;
+//     $masterData['estimation_id']       = $old['estimation_id'] ?? 0;
+
+//     // revision info
+//     $masterData['active']              = 1;
+//     $masterData['created_on']          = date('Y-m-d H:i:s');
+//     $masterData['created_by']          = $this->session->userdata('user_id');
+//     $masterData['quotation_revision']  = $new_revision;
+
+//     $new_qtn_id = $this->Sales_model->insert_quotation($masterData);
+
+//     $this->_save_qtn_details($new_qtn_id);
+
+//     $this->session->set_flashdata('success', 'New quotation revision created successfully.');
+//     $redirect_qtn_id = $new_qtn_id;
+// }
+// 			// --- Update Existing Quotation ---
+// 			else {
+// 				$masterData['active']     = 1;
+// 				$masterData['updated_on'] = date('Y-m-d H:i:s');
+// 				$masterData['updated_by'] = $this->session->userdata('user_id');
+
+// 				// Update master
+// 				$this->Sales_model->update_quotation($qtn_id, $masterData);
+
+// 				// Delete old details
+// 				$this->Sales_model->delete_qtn_main_headings($qtn_id);
+// 				$this->Sales_model->delete_qtn_sub_headings($qtn_id);
+// 				$this->Sales_model->delete_qtn_products($qtn_id);
+
+// 				// Insert updated details
+// 				$this->_save_qtn_details($qtn_id);
+
+// 				$this->session->set_flashdata('success', 'Quotation updated successfully.');
+// 				$redirect_qtn_id = $qtn_id;
+// 			}
+
+// 			// --- Commit Transaction ---
+// 			if ($this->db->trans_status() === FALSE) {
+// 				throw new Exception('Database transaction failed.');
+// 			}
+// 			$this->db->trans_commit();
+// 		} catch (Exception $e) {
+// 			$this->db->trans_rollback();
+// 			log_message('error', 'Quotation Update Failed: ' . $e->getMessage());
+// 			$this->session->set_flashdata('error', 'Something went wrong while updating quotation. ' . $e->getMessage());
+// 		}
+
+// 		if ($action === 'sales_order') {
+// 			redirect(base_url('index.php/Sales/add_sales_order?quotation_id=' . $redirect_qtn_id));
+// 		} else {
+// 			redirect('Sales/edit_quotation/' . $redirect_qtn_id);
+// 		}
+// 	}
+	// public function approve_quotation($quotation_id)
+	// {
+	// 	//echo $quotation_id;exit();
+	// 	$data['title']			=  "Approve Quotation";
+	// 	$data['quotation'] = $this->Sales_model->get_quotation_master_by_id($quotation_id);
+	// 	if (!$data['quotation']) {
+	// 		show_error('Quotation not found');
+	// 	}
+
+	// 	$data['main_content']   = 'sales/quotation/approve_quotation.php';
+	// 	$this->load->view('includes/template', $data);
+	// }
 	public function approve_quotation_without_LPO()
 	{
 		//echo "here";exit();
@@ -3522,4 +3693,643 @@ private function build_invoice_xml($invoice, $quotation, $items)
 
     return $xml->asXML();
 }
+
+public function search_items()
+{
+    $keyword = $this->input->post('keyword');
+
+    $this->db->select('product_id, product_code, product_name, total_price');
+    $this->db->from('item_master');
+
+    $this->db->group_start();
+    $this->db->like('product_name',$keyword);
+    $this->db->or_like('product_code',$keyword);
+    $this->db->group_end();
+
+    $this->db->limit(20);
+
+    $query = $this->db->get();
+
+    echo json_encode($query->result());
+}
+
+public function add_quotations($enquiry_id = 0)
+{
+    $this->load->model('Sales_model');
+
+    $data['title'] = 'Add Quotation';
+
+    // Default empty enquiry data
+    $data['enquiry_data'] = array();
+
+    if($enquiry_id > 0)
+    {
+        $data['enquiry_data'] = $this->Sales_model->get_enquiry_by_id($enquiry_id);
+        $data['cart_items'] = $this->Sales_model->get_enquiry_cart($enquiry_id);
+    }
+    else
+    {
+        $data['cart_items'] = array();
+    }
+
+
+    // Enquiry dropdown
+    $data['enquiry_list'] = $this->Sales_model->get_all_enquiry_list();
+
+
+    // Generate quotation number
+    $data['quotation_code'] = $this->Sales_model->get_quotation_code();
+
+
+    // Customer and branch dropdown
+    $data['customer_list'] = $this->Setup_model->get_all_customer_list();
+    $data['branch_list'] = $this->Setup_model->get_all_branches();
+
+
+    // Employees
+    $this->load->model('Hr_model');
+    $data['employees'] = $this->Hr_model->get_employee_list();
+
+
+    $data['main_content'] = 'sales/add_quotation.php';
+
+    $this->load->view('includes/template', $data);
+}
+public function add_quotation_data()
+{
+    $action = $this->input->post('action');
+
+    // Draft / Confirmed status
+    if($action == 'draft')
+    {
+        $quotation_status = 'Draft';
+    }
+    else
+    {
+        $quotation_status = 'Confirmed';
+    }
+
+
+    // Quotation Master Data
+    $master = array(
+
+        'quotation_code' => $this->input->post('quotation_code'),
+
+        'quotation_date' => $this->input->post('quotation_date'),
+
+        'enquiry_id' => $this->input->post('enquiry_id'),
+
+       'quotation_customer' => $this->input->post('quotation_customer'),
+
+'quotation_branch_id' => $this->input->post('quotation_branch_id'),
+
+        'project_name' => $this->input->post('project_name'),
+
+        'sub_total' => $this->input->post('qtn_sub_total'),
+
+        'discount_percentage' => $this->input->post('qtn_add_discount_percentage'),
+
+        'discount_amount' => $this->input->post('qtn_add_discount_amount'),
+
+        'vat_percentage' => $this->input->post('qtn_vat_percentage'),
+
+        'vat_amount' => $this->input->post('qtn_vat_amount'),
+
+        'grand_total' => $this->input->post('qtn_grand_total'),
+
+
+        'payment_term' => $this->input->post('payment_term'),
+
+        'validity' => $this->input->post('validity'),
+
+        'warranty' => $this->input->post('warranty'),
+
+        'warranty_description' => $this->input->post('warranty_description'),
+
+        'delivery_term' => $this->input->post('delivery_term'),
+
+        'terms_condition' => $this->input->post('terms_condition'),
+
+        'notes' => $this->input->post('notes'),
+
+
+        'prepared_by' => $this->input->post('employee_prepared'),
+
+        // 'employee_approved' => $this->input->post('employee_approved'),
+
+
+        'quotation_status' => $quotation_status,
+		 'active' => 1,
+
+
+        'created_by' => $this->session->userdata('user_id')
+
+        // 'created_date' => date('Y-m-d H:i:s')
+
+    );
+
+
+    // Save quotation master
+
+    $quotation_id = $this->Sales_model->save_quotation_master($master);
+
+
+
+    if($quotation_id)
+    {
+
+
+        // Save quotation items
+
+        $item_ids = $this->input->post('item_id[]');
+
+        $qty = $this->input->post('qty[]');
+
+        $price = $this->input->post('price[]');
+
+        $amount = $this->input->post('amount[]');
+
+
+        if(!empty($item_ids))
+        {
+
+            foreach($item_ids as $key=>$item_id)
+            {
+
+                $item_data = array(
+
+                    'quotation_id' => $quotation_id,
+
+                    'item_id' => $item_id,
+
+                    'qty' => $qty[$key],
+
+                    'price' => $price[$key],
+
+                    'amount' => $amount[$key]
+
+                );
+
+
+                $this->Sales_model->save_quotation_item($item_data);
+
+            }
+
+        }
+
+
+        if($action == 'draft')
+        {
+            $this->session->set_flashdata(
+                'success',
+                'Quotation saved as Draft successfully'
+            );
+        }
+        else
+        {
+            $this->session->set_flashdata(
+                'success',
+                'Quotation created successfully'
+            );
+        }
+
+
+        redirect('Sales/list_quotations');
+
+
+    }
+    else
+    {
+
+        $this->session->set_flashdata(
+            'error',
+            'Failed to save quotation'
+        );
+
+        redirect('Sales/add_quotation');
+
+    }
+
+}
+
+public function get_enquiry_details()
+{
+    $enquiry_id = $this->input->post('enquiry_id');
+
+    $this->load->model('Sales_model');
+
+    $data = $this->Sales_model->get_enquiry_by_id($enquiry_id);
+
+    $data['cart_items'] = $this->Sales_model->get_enquiry_cart($enquiry_id);
+
+    echo json_encode($data);
+}
+
+public function view_quotation($quotation_id)
+{
+    $this->load->model('Sales_model');
+
+    $data['title'] = 'View Quotation';
+
+    $data['quotation'] = $this->Sales_model->get_quotation_by_id($quotation_id);
+
+    $data['cart_items'] = $this->Sales_model->get_quotation_cart($quotation_id);
+
+    $data['main_content'] = 'sales/view_quotation';
+
+    $this->load->view('includes/template', $data);
+}
+
+public function print_quotation($quotation_id)
+{
+    $this->load->model('Sales_model');
+    $this->load->model('Company_model');
+	    $this->load->model('Setup_model');
+
+
+    $data['quotation'] = $this->Sales_model->get_quotation_by_id($quotation_id);
+
+    if(empty($data['quotation']))
+    {
+        show_404();
+    }
+
+    $data['cart_items'] = $this->Sales_model->get_quotation_cart($quotation_id);
+
+    // Company details for header/footer
+	    $data['company'] = $this->Setup_model->get_company_details();
+
+    // $data['company'] = $this->Company_model->get_company_details();
+
+    $this->load->view('sales/print_quotation', $data);
+}
+
+public function update_quotation()
+{
+    $qtn_id = $this->input->post('qtn_id');
+
+    if (empty($qtn_id)) {
+        show_error('Invalid Quotation ID');
+    }
+
+    $master = array(
+
+        'quotation_date'       => $this->input->post('quotation_date'),
+
+        'sub_total'            => $this->input->post('qtn_sub_total'),
+
+        'discount_percentage'  => $this->input->post('qtn_add_discount_percentage'),
+        'discount_amount'      => $this->input->post('qtn_add_discount_amount'),
+
+        'vat_required'         => $this->input->post('qtn_apply_vat') ? 1 : 0,
+        'vat_percentage'       => $this->input->post('qtn_vat_percentage'),
+        'vat_amount'           => $this->input->post('qtn_vat_amount'),
+
+        'grand_total'          => $this->input->post('qtn_grand_total'),
+
+        'payment_term'         => $this->input->post('payment_term'),
+        'delivery_term'        => $this->input->post('delivery_term'),
+        'terms_condition'      => $this->input->post('terms_condition'),
+        'validity'             => $this->input->post('validity'),
+
+        'warranty'             => $this->input->post('warranty'),
+        'warranty_description' => $this->input->post('warranty_description'),
+
+        'notes'                => $this->input->post('notes'),
+
+        'prepared_by'          => $this->input->post('employee_prepared'),
+
+        'updated_by'           => $this->session->userdata('user_id'),
+        'updated_on'           => date('Y-m-d H:i:s')
+    );
+
+    $this->db->trans_begin();
+
+    // Update quotation master
+    $this->db->where('qtn_id', $qtn_id);
+    $this->db->update('quotation_master', $master);
+
+    // Delete existing items
+    $this->db->where('quotation_id', $qtn_id);
+    $this->db->delete('sales_quotation_items');
+
+    $item_id      = $this->input->post('item_id');
+    $product_name = $this->input->post('product_name');
+    $qty          = $this->input->post('qty');
+    $price        = $this->input->post('price');
+    $amount       = $this->input->post('amount');
+
+    if (!empty($item_id))
+    {
+        foreach ($item_id as $k => $value)
+        {
+            $details = array(
+                'quotation_id' => $qtn_id,
+                'item_id'      => $value,
+                'product_name' => isset($product_name[$k]) ? $product_name[$k] : '',
+                'qty'          => $qty[$k],
+                'price'        => $price[$k],
+                'amount'       => $amount[$k],
+                'created_by'   => $this->session->userdata('user_id'),
+                'created_date' => date('Y-m-d H:i:s')
+            );
+
+            $this->db->insert('sales_quotation_items', $details);
+        }
+    }
+
+    if ($this->db->trans_status() == FALSE)
+    {
+        $this->db->trans_rollback();
+        $this->session->set_flashdata('error', 'Quotation Update Failed');
+    }
+    else
+    {
+        $this->db->trans_commit();
+        $this->session->set_flashdata('success', 'Quotation Updated Successfully');
+    }
+
+    redirect('Sales/view_quotation/'.$qtn_id);
+}
+
+public function add_direct_quotation()
+{
+   
+ $data['title'] = 'Direct Quotation';
+$this->load->model('Setup_model');
+	    $this->load->model('Sales_model');
+
+
+    // Customer and branch dropdown
+    $data['customer_list'] = $this->Setup_model->get_all_customer_list();
+    $data['branch_list'] = $this->Setup_model->get_all_branches();
+
+    $data['quotation_code'] = $this->Sales_model->get_quotation_code();
+
+    // Employees
+    $this->load->model('Hr_model');
+    $data['employees'] = $this->Hr_model->get_employee_list();
+   
+	 $data['main_content'] = 'sales/quotation/add_direct_quotation';
+
+    $this->load->view('includes/template', $data);
+    
+}
+
+public function save_direct_quotation()
+{
+    $action = $this->input->post('action');
+
+    // Generate quotation code
+    $quotation_code = $this->input->post('quotation_code');
+
+    if(empty($quotation_code))
+    {
+        $quotation_code = $this->generate_quotation_code();
+    }
+
+
+    // Master data
+    $master = array(
+
+    'quotation_code'       => $this->input->post('quotation_code'),
+
+    'quotation_date'       => $this->input->post('quotation_date'),
+
+    'quotation_type'       => 'DIRECT',
+
+    'quotation_branch_id'  => $this->input->post('quotation_branch_id'),
+
+    'quotation_customer'   => $this->input->post('quotation_customer'),
+
+    'project_name'         => $this->input->post('project_name'),
+
+    'project_location'     => $this->input->post('project_location'),
+
+
+    'sub_total'            => $this->input->post('qtn_sub_total'),
+
+    'total_before_discount'=> $this->input->post('qtn_sub_total'),
+
+    'discount_percentage'  => $this->input->post('qtn_add_discount_percentage'),
+
+    'discount_amount'      => $this->input->post('qtn_add_discount_amount'),
+
+
+    'vat_required'         => $this->input->post('qtn_apply_vat') ? 1 : 0,
+
+    'vat_percentage'       => $this->input->post('qtn_vat_percentage'),
+
+    'vat_amount'           => $this->input->post('qtn_vat_amount'),
+
+    'total_before_vat'     => $this->input->post('qtn_sub_total') 
+                              - $this->input->post('qtn_add_discount_amount'),
+
+    'grand_total'          => $this->input->post('qtn_grand_total'),
+
+
+    'payment_term'         => $this->input->post('payment_term'),
+
+    'delivery_term'        => $this->input->post('delivery_term'),
+
+    'terms_condition'      => $this->input->post('terms_condition'),
+
+    'validity'             => $this->input->post('validity'),
+
+
+    'warranty'             => $this->input->post('warranty'),
+
+    'warranty_description' => $this->input->post('warranty_description'),
+
+
+    'prepared_by'          => $this->input->post('employee_prepared'),
+
+    'notes'                => $this->input->post('notes'),
+
+
+    'quotation_status'     => ($this->input->post('action') == 'draft') 
+                              ? 'DRAFT' : 'CONFIRMED',
+
+    'active'               => 1,
+
+    'created_by'           => $this->session->userdata('user_id'),
+
+    'created_on'           => date('Y-m-d H:i:s')
+
+);
+
+    // Insert quotation master
+    $this->db->insert('quotation_master',$master);
+
+
+    $qtn_id = $this->db->insert_id();
+
+
+
+    // Insert quotation items
+
+    $item_id      = $this->input->post('item_id');
+
+    $product_name = $this->input->post('product_name');
+
+    $qty          = $this->input->post('qty');
+
+    $price        = $this->input->post('price');
+
+    $amount       = $this->input->post('amount');
+
+
+
+    if(!empty($item_id))
+    {
+
+        foreach($item_id as $k=>$item)
+        {
+
+            $item_data=array(
+
+                'quotation_id'=>$qtn_id,
+
+                'item_id'=>$item,
+
+                'product_name'=>isset($product_name[$k]) 
+                                ? $product_name[$k] : '',
+
+                'qty'=>$qty[$k],
+
+                'price'=>$price[$k],
+
+                'amount'=>$amount[$k],
+
+                'created_by'=>$this->session->userdata('user_id'),
+
+                'created_date'=>date('Y-m-d H:i:s')
+
+            );
+
+
+            $this->db->insert('sales_quotation_items',$item_data);
+
+        }
+
+    }
+
+
+
+    if($action == 'draft')
+    {
+        $this->session->set_flashdata(
+            'success',
+            'Direct quotation saved as draft'
+        );
+    }
+    else
+    {
+        $this->session->set_flashdata(
+            'success',
+            'Direct quotation created successfully'
+        );
+    }
+
+
+    redirect('Sales/list_quotations');
+
+}
+
+
+	public function approve_quotation()
+{
+    $data['title'] = 'Quotation Approval';
+
+    $this->load->model('Sales_model');
+    $this->load->model('Setup_model');
+
+    // Pending quotations
+    $data['records'] = $this->Sales_model->get_pending_quotations();
+
+    // Optional (remove if not used in the view)
+    $data['currency_list'] = $this->Setup_model->get_currency_list();
+
+    $data['main_content'] = 'sales/approve_quotation';
+    $this->load->view('includes/template', $data);
+}
+
+public function accept_quotation_approval()
+{
+    $qtn_id  = $this->input->post('qid');
+    $status  = $this->input->post('status');
+    $remarks = $this->input->post('approval_remark');
+    $po_no   = $this->input->post('po_no');
+
+    $user_id = $this->session->userdata('user_id');
+
+    // Upload PO file
+    $po_file = '';
+
+    if (!empty($_FILES['po_file']['name'])) {
+
+        $config['upload_path']   = './uploads/quotation_po/';
+        $config['allowed_types'] = 'pdf|jpg|jpeg|png';
+        $config['encrypt_name']  = TRUE;
+
+        if (!is_dir($config['upload_path'])) {
+            mkdir($config['upload_path'], 0777, TRUE);
+        }
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('po_file')) {
+            $upload_data = $this->upload->data();
+            $po_file = $upload_data['file_name'];
+        }
+    }
+
+    if ($status == 1) {
+
+        $data = array(
+            'aproval'           => 1,
+            'approved_by'       => $user_id,
+            'approved_on'       => date('Y-m-d H:i:s'),
+            'approval_remarks'  => $remarks,
+            'quotation_status'  => 'APPROVED',
+            'lpo_number'        => $po_no
+        );
+
+        if ($po_file != '') {
+            $data['po_file'] = $po_file;
+        }
+
+    } else {
+
+        $data = array(
+            'aproval'           => 2,
+            'approved_by'       => $user_id,
+            'approved_on'       => date('Y-m-d H:i:s'),
+            'approval_remarks'  => $remarks,
+            'quotation_status'  => 'REJECTED'
+        );
+
+        if ($po_file != '') {
+            $data['po_file'] = $po_file;
+        }
+    }
+
+    $this->db->where('qtn_id', $qtn_id);
+    $this->db->update('quotation_master', $data);
+
+    $this->session->set_flashdata('success', 'Quotation status updated successfully.');
+
+    redirect('Sales/approved_quotation_list');
+}
+
+function approved_quotation_list()
+	{
+		$data['title'] = 'Approved Quotation List';
+		$this->load->model('Sales_model');
+		$data['records'] = $this->Sales_model->get_approved_quotations();
+
+		$data['main_content'] = 'sales/quotation_accepted_list.php';
+		$this->load->view('includes/template.php', $data);
+	}
+
 }

@@ -1,368 +1,518 @@
-  <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+<style>
+    label,
+    h4 {
+        color: black;
+        font-weight: bold;
+    }
 
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
- 
- <div class="clearfix"></div>
- <div class="row">
-     <div class="col-md-12 col-sm-12 ">
-         <div class="x_panel">
-             <div class="x_content">
-                 
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Form Wizards</h3>
-              </div>
+    .view-label {
+        font-weight: bold;
+        color: #000;
+    }
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5  form-group row pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                              <button class="btn btn-secondary" type="button">Go!</button>
-                          </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="clearfix"></div>
+    .quotation-box {
+        border: 1px solid #ddd;
+        padding: 15px;
+    }
+</style>
 
-            <div class="row">
-
-              <div class="col-md-12 col-sm-12 ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Form Wizards <small>Sessions</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
+<div class="text-end mb-3">
+    <button type="button"
+        class="btn btn-primary"
+        onclick="window.open('<?= base_url('index.php/Sales/print_quotation/' . $quotation->qtn_id . '/' . $quotation->enquiry_id) ?>', '_blank');">
+        🖨 Print
+    </button>
 
 
-                    <!-- Smart Wizard -->
-                    <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
-                    <div id="wizard" class="form_wizard wizard_horizontal">
-                      <ul class="wizard_steps">
-                        <li>
-                          <a href="#step-1">
-                            <span class="step_no">1</span>
-                            <span class="step_descr">
-                                              Step 1<br />
-                                              <small>Step 1 description</small>
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-2">
-                            <span class="step_no">2</span>
-                            <span class="step_descr">
-                                              Step 2<br />
-                                              <small>Step 2 description</small>
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-3">
-                            <span class="step_no">3</span>
-                            <span class="step_descr">
-                                              Step 3<br />
-                                              <small>Step 3 description</small>
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-4">
-                            <span class="step_no">4</span>
-                            <span class="step_descr">
-                                              Step 4<br />
-                                              <small>Step 4 description</small>
-                                          </span>
-                          </a>
-                        </li>
-                      </ul>
-                      <div id="step-1">
-                        <form class="form-horizontal form-label-left">
+    <a href="<?= base_url('index.php/Sales/edit_quotation/' . $quotation->qtn_id); ?>"
+        class="btn btn-primary btn-xs"
+        data-toggle="tooltip" title="Edit">
+        <i class="fa fa-edit"></i>
+    </a>
+</div>
 
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="x_panel">
+
+           
+
+            <div class="x_content">
+
+
+                <!-- Header Details -->
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 view-label">
+                                Quotation Code:
                             </label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <input type="text" id="first-name" required="required" class="form-control  ">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <input type="text" id="last-name" name="last-name" required="required" class="form-control ">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <input id="middle-name" class="form-control col" type="text" name="middle-name">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <div id="gender" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                  <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Male &nbsp;
-                                </label>
-                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                  <input type="radio" name="gender" value="female" class="join-btn"> Female
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <input id="birthday" class="date-picker form-control" required="required" type="text">
-                            </div>
-                          </div>
 
-                        </form>
+                            <div class="col-sm-8">
+                                <?= $quotation->quotation_code ?>
+                            </div>
+                        </div>
+                    </div>
 
-                      </div>
-                      <div id="step-2">
-                        <h2 class="StepTitle">Step 2 Content</h2>
-                        <p>
-                          do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-                      <div id="step-3">
-                        <h2 class="StepTitle">Step 3 Content</h2>
-                        <p>
-                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-                      <div id="step-4">
-                        <h2 class="StepTitle">Step 4 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+
+                            <label class="col-sm-4 view-label">
+                                Quotation Date:
+                            </label>
+
+                            <div class="col-sm-8">
+                                <?= date('d-m-Y',strtotime($quotation->quotation_date)) ?>
+                            </div>
+
+                        </div>
 
                     </div>
-                    <!-- End SmartWizard Content -->
 
-
-
-
-
-                    <h2>Example: Vertical Style</h2>
-                    <!-- Tabs -->
-                    <div id="wizard_verticle" class="form_wizard wizard_verticle">
-                      <ul class="list-unstyled wizard_steps">
-                        <li>
-                          <a href="#step-11">
-                            <span class="step_no">1</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-22">
-                            <span class="step_no">2</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-33">
-                            <span class="step_no">3</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-44">
-                            <span class="step_no">4</span>
-                          </a>
-                        </li>
-                      </ul>
-
-                      <div id="step-11">
-                        <h2 class="StepTitle">Step 1 Content</h2>
-                        <form class="form-horizontal form-label-left">
-
-                          <span class="section">Personal Info</span>
-
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                              <input type="text" id="first-name2" required="required" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                              <input type="text" id="last-name2" name="last-name" required="required" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
-                            <div class="col-md-6 col-sm-6">
-                              <input id="middle-name2" class="form-control " type="text" name="middle-name">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-                            <div class="col-md-6 col-sm-6">
-                              <div id="gender2" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                  <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Male &nbsp;
-                                </label>
-                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                  <input type="radio" name="gender" value="female" class="join-btn" checked=""> Female
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                              <input id="birthday2" class="date-picker form-control" required="required" type="text">
-                            </div>
-                          </div>
-
-                        </form>
-                      </div>
-                      <div id="step-22">
-                        <h2 class="StepTitle">Step 2 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-                      <div id="step-33">
-                        <h2 class="StepTitle">Step 3 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-                      <div id="step-44">
-                        <h2 class="StepTitle">Step 4 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-                    </div>
-                    <!-- End SmartWizard Content -->
-                  </div>
                 </div>
-              </div>
+
+
+
+                <div class="row">
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+
+                            <label class="col-sm-4 view-label">
+                                Enquiry Code:
+                            </label>
+
+                            <div class="col-sm-8">
+                                <?= $quotation->enquiry_code ?>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+
+                            <label class="col-sm-4 view-label">
+                                Branch:
+                            </label>
+
+                            <div class="col-sm-8">
+                                <?= $quotation->branch_name ?>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="row">
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+
+                            <label class="col-sm-4 view-label">
+                                Project:
+                            </label>
+
+                            <div class="col-sm-8">
+                                <?= $quotation->project_name ?>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+
+                            <label class="col-sm-4 view-label">
+                                Customer:
+                            </label>
+
+                            <div class="col-sm-8">
+                                <?= $quotation->customer_name ?>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <hr>
+
+
+
+                <!-- Items -->
+
+                <h4>Items</h4>
+
+
+                <table class="table table-bordered">
+
+                    <thead>
+
+                        <tr>
+
+                            <th width="50">#</th>
+                            <th>Item</th>
+                            <th width="120">Qty</th>
+                            <th width="150">Price</th>
+                            <th width="150">Amount</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                    <?php 
+                    $i=1;
+                    foreach($cart_items as $item)
+                    {
+                    ?>
+
+                        <tr>
+
+                            <td>
+                                <?= $i++ ?>
+                            </td>
+
+
+                            <td>
+                                <?= $item->product_name ?>
+                            </td>
+
+
+                            <td>
+                                <?= $item->qty ?>
+                            </td>
+
+
+                            <td>
+                                <?= number_format($item->price,2) ?>
+                            </td>
+
+
+                            <td>
+                                <?= number_format($item->amount,2) ?>
+                            </td>
+
+
+                        </tr>
+
+
+                    <?php } ?>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+
+                <br>
+
+
+
+                <!-- Summary -->
+
+
+                <table class="table table-bordered">
+
+                    <tr>
+
+                        <td width="70%" align="right">
+                            <b>Gross</b>
+                        </td>
+
+                        <td>
+                            <?= number_format($quotation->sub_total,2) ?>
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <td align="right">
+                            <b>Discount</b>
+                        </td>
+
+                        <td>
+
+                            <?= number_format($quotation->discount_amount,2) ?>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <td align="right">
+
+                            <b>VAT</b>
+
+                        </td>
+
+
+                        <td>
+
+                            <?= number_format($quotation->vat_amount,2) ?>
+
+                        </td>
+
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <td align="right">
+
+                            <b>Net Total</b>
+
+                        </td>
+
+
+                        <td>
+
+                            <b>
+                            <?= number_format($quotation->grand_total,2) ?>
+                            </b>
+
+                        </td>
+
+
+                    </tr>
+
+
+                </table>
+
+
+
+
+                <hr>
+
+
+
+                <!-- Terms -->
+
+
+                <div class="row">
+
+
+                    <div class="col-md-6">
+
+                        <label>
+                            Payment Term
+                        </label>
+
+                        <div class="quotation-box">
+
+                            <?= $quotation->payment_term ?>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-6">
+
+                        <label>
+                            Validity
+                        </label>
+
+                        <div class="quotation-box">
+
+                            <?= $quotation->validity ?>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <br>
+
+
+
+                <div class="row">
+
+
+                    <div class="col-md-6">
+
+                        <label>
+                            Warranty
+                        </label>
+
+
+                        <div class="quotation-box">
+
+                            <?= $quotation->warranty ?>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-6">
+
+
+                        <label>
+                            Warranty Description
+                        </label>
+
+
+                        <div class="quotation-box">
+
+                            <?= $quotation->warranty_description ?>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <br>
+
+
+
+                <div class="row">
+
+
+                    <div class="col-md-6">
+
+                        <label>
+                            Delivery Term
+                        </label>
+
+
+                        <div class="quotation-box">
+
+                            <?= $quotation->delivery_term ?>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-6">
+
+
+                        <label>
+                            Terms & Conditions
+                        </label>
+
+
+                        <div class="quotation-box">
+
+                            <?= $quotation->terms_condition ?>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <br>
+
+
+
+                <div class="row">
+
+
+                    <div class="col-md-12">
+
+                        <label>
+                            Notes
+                        </label>
+
+
+                        <div class="quotation-box">
+
+                            <?= $quotation->notes ?>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <br>
+
+
+                <div class="text-center">
+
+                    <a href="<?= base_url('index.php/Sales/list_quotations') ?>"
+                       class="btn btn-secondary">
+
+                        Back
+
+                    </a>
+
+
+                </div>
+
+
+
             </div>
-          </div>
+
         </div>
-        <!-- /page content -->
 
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-             </div>
-         </div>
-     </div>
- </div>
-
- <!-- jQuery -->
- <script src="../vendors/jquery/dist/jquery.min.js"></script>
- <!-- Bootstrap -->
- <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
- <!-- FastClick -->
- <script src="../vendors/fastclick/lib/fastclick.js"></script>
- <!-- NProgress -->
- <script src="../vendors/nprogress/nprogress.js"></script>
- <!-- jQuery Smart Wizard -->
- <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
- <!-- Custom Theme Scripts -->
- <script src="../build/js/custom.min.js"></script>
-
-
- <script>
-     $(document).ready(function() {
-         $('#wizard').smartWizard({
-             selected: 0,
-             theme: 'arrows',
-             autoAdjustHeight: true,
-             transitionEffect: 'fade',
-             showStepURLhash: false
-         });
-     });
- </script>
-
- </body>
-
- </html>
+    </div>
+</div>
