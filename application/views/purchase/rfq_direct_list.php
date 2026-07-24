@@ -4,30 +4,29 @@
      <div class="form-group" role="main">
        <div class="">
          <div class="page-title">
-           <?php if ($this->session->flashdata('success')): ?>
-             <div class="alert alert-success alert-dismissible fade show" role="alert">
-               <strong><i class="fa fa-check-circle"></i></strong>
-               <?= $this->session->flashdata('success'); ?>
-               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-               </button>
-             </div>
-           <?php endif; ?>
-
-           <?php if ($this->session->flashdata('error')): ?>
-             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-               <strong><i class="fa fa-exclamation-circle"></i></strong>
-               <?= $this->session->flashdata('error'); ?>
-               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-               </button>
-             </div>
-           <?php endif; ?>
 
            <div class="clearfix"></div>
 
            <div class="x_content">
+             <?php if ($this->session->flashdata('success')): ?>
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                 <strong><i class="fa fa-check-circle"></i></strong>
+                 <?= $this->session->flashdata('success'); ?>
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+             <?php endif; ?>
 
+             <?php if ($this->session->flashdata('error')): ?>
+               <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                 <strong><i class="fa fa-exclamation-circle"></i></strong>
+                 <?= $this->session->flashdata('error'); ?>
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+             <?php endif; ?>
 
              <div class="well" style="overflow: auto">
 
@@ -36,7 +35,7 @@
                  <table id="datatable" class="table table-striped" data-toggle="data-table">
                    <thead>
                      <tr>
-                       <th>Sr.no</th>
+                       <th>Sl.No</th>
                        <th>RFQ Code</th>
                        <th>Date</th>
                        <th>Supplier</th>

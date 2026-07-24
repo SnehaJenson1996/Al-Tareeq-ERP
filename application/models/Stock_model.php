@@ -212,7 +212,7 @@ Class Stock_Model extends CI_Model
     	}
         $model_code= $tmp."' '";
         
-    	$query=$this->db->query("select r.order_code, p.item_description from reorder_stock_qty r, item_master p where r.product_id=p.item_id and r.product_id in($model_code)");
+    	$query=$this->db->query("select r.order_code, p.description from reorder_stock_qty r, item_master p where r.product_id=p.product_id and r.product_id in($model_code)");
         return $query->result();
     }
     function delete_min_stock($id){

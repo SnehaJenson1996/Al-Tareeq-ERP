@@ -16,7 +16,7 @@
                <div class="col-md-4">
                  <label class="control-label">Branch</label>
                  <select class="form-control" name="branch_id" id="branch_id" required>
-                   <option value="">Select</option>
+                   <option value="">Select Branch</option>
                    <?php foreach ($branch_records as $b) { ?>
                      <option value="<?php echo $b->branch_id ?>"><?php echo $b->branch_name ?></option>
                    <?php } ?>
@@ -27,7 +27,7 @@
                  <label class="control-label">Supplier</label>
                  <div id="supplier_dropdown_wrapper">
                    <select class="form-control" name="supplier_id" id="supplier_id" required onchange="get_supplier_info()">
-                     <option value="">Select</option>
+                     <option value="">Select Supplier</option>
                      <?php foreach ($supplier_records as $s) { ?>
                        <option value="<?php echo $s->supplier_id ?>"><?php echo $s->supplier_code . ' - ' . $s->supplier_name; ?></option>
                      <?php } ?>
@@ -64,7 +64,7 @@
                <div class="col-md-4">
                  <label class="control-label">Freight Mode</label>
                  <select class="form-control" name="freight_mode" id="freight_mode">
-                   <option value=""></option>
+                   <option value="">Select Freight Mode</option>
                    <option value="Sea">Sea</option>
                    <option value="Air">Air</option>
                    <option value="Road">Road</option>
@@ -100,8 +100,8 @@
                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                  <thead>
                    <tr>
-                     <th width="13%">Product Code</th>
-                     <th>Brand</th>
+                     <th>Product Code</th>
+                     <!-- <th>Brand</th> -->
                      <th>Description</th>
 
                      <th>Unit</th>
@@ -121,11 +121,11 @@
                          <option value=''>Select</option>
                          <option value="new">+ Add New Product</option>
                          <?php foreach ($active_items as $item) { ?>
-                           <option value='<?php echo $item->item_id ?>'><?php echo $item->item_name; ?></option>
+                           <option value='<?php echo $item->product_id ?>'><?php echo $item->product_name; ?></option>
                          <?php } ?>
                        </select>
                      </td>
-                     <td><input class="form-control" type="text" name="item_brand[]" id="brand0"></td>
+                     <!-- <td><input class="form-control" type="text" name="item_brand[]" id="brand0"></td> -->
                      <td><input class="form-control" type="text" name="item_description[]" id="description0"></td>
                      <td>
                        <select class="form-control" name="item_unit[]" id='unit0'>
@@ -155,8 +155,10 @@
                        <input type="number" class="form-control total_price" id="total_price0" step='any' name="total_price[]" />
                      </td>
                      <td>
-                       <a href="#" class="addRow" title="Add"><i class="fa fa-plus-circle text-success"></i></a>
-                       <a href="#" class="deleteRow" title="Delete"><i class="fa fa-trash text-danger"></i></a>
+                       <!-- <a href="#" class="addRow" title="Add"><i class="fa fa-plus-circle text-success"></i></a>
+                       <a href="#" class="deleteRow" title="Delete"><i class="fa fa-trash text-danger"></i></a> -->
+                        <button type="button" class="btn btn-success addRow" title="Add"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="btn btn-danger deleteRow" title="Delete"><i class="fa fa-minus"></i></button>
                      </td>
                    </tr>
                  </tbody>
@@ -449,11 +451,11 @@
                   <option value="">Select</option>
                   <option value="new">+ Add New Product</option>
                   <?php foreach ($active_items as $item) { ?>
-                    <option value="<?php echo $item->item_id ?>"><?php echo $item->item_name; ?></option>
+                    <option value="<?php echo $item->product_id ?>"><?php echo $item->product_name; ?></option>
                   <?php } ?>
                 </select>
             </td>
-            <td><input class="form-control" type="text" name="item_brand[]" id="brand${rowIndex}"></td>
+
             <td><input class="form-control" type="text" name="item_description[]" id="description${rowIndex}"></td>
             <td>
                 <select class="form-control" name="item_unit[]" id="unit${rowIndex}">
@@ -467,8 +469,8 @@
             <td><input type="number" class="form-control unit_price" name="unit_price[]" step="any" id="unit_price${rowIndex}" /></td>
             <td><input type="number" class="form-control total_price" name="total_price[]" step="any" id="total_price${rowIndex}" /></td>
             <td>
-              <a href="#" class="addRow" title="Add"><i class="fa fa-plus-circle text-success"></i></a>
-              <a href="#" class="deleteRow" title="Delete"><i class="fa fa-trash text-danger"></i></a>
+              <button type="button" class="btn btn-success addRow" title="Add"><i class="fa fa-plus"></i></button>
+              <button type="button" class="btn btn-danger deleteRow" title="Delete"><i class="fa fa-minus"></i></button>
             </td>
         </tr>`;
 
@@ -604,7 +606,7 @@
            }
          });
        } else {
-         $('#brand' + row_no).text('');
+        //  $('#brand' + row_no).text('');
          $('#description' + row_no).text('');
          $('#unit' + row_no).val('').change();
          $('#actual_price' + row_no).val('');

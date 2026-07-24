@@ -131,9 +131,9 @@ class Inventory_model extends CI_Model
 
         foreach ($issues as &$issue) {
             $issue['items'] = $this->db
-                ->select('mii.*, im.item_name')
+                ->select('mii.*, im.product_name')
                 ->from('material_issue_items mii')
-                ->join('item_master im', 'im.item_id = mii.product_id', 'left')
+                ->join('item_master im', 'im.product_id = mii.product_id', 'left')
                 ->where('mii.mi_id', $issue['mi_id'])
                 ->get()
                 ->result_array();
@@ -146,48 +146,46 @@ class Inventory_model extends CI_Model
 
     public function get_itemwise_stock_summary()
     {
-        return $this->db->select("
-            im.item_id,
-            im.item_code,
-            im.item_name,
-            im.item_brand,
-            im.item_model,
-            im.model_group,
-            im.item_unit,
-            im.unit_price,
+        return $this->db
+            ->select("
+                im.product_id,
+                im.product_code,
+                im.product_name,
 
-            SUM(
-                CASE 
-                    WHEN sd.stock_type = 'IN' AND sd.status = 1 
-                    THEN sd.quantity 
-                    ELSE 0 
-                END
-            ) AS total_stock,
+                SUM(
+                    CASE
+                        WHEN sd.stock_type='IN' AND sd.status=1
+                        THEN sd.quantity
+                        ELSE 0
+                    END
+                ) AS total_stock,
 
-            SUM(
-                CASE 
-                    WHEN sd.stock_type = 'RESERVE' AND sd.status = 1 
-                    THEN sd.reserved_quantity 
-                    ELSE 0 
-                END
-            ) AS total_reserved,
+                SUM(
+                    CASE
+                        WHEN sd.stock_type='RESERVE' AND sd.status=1
+                        THEN sd.reserved_quantity
+                        ELSE 0
+                    END
+                ) AS total_reserved,
 
-            SUM(
-                CASE 
-                    WHEN sd.stock_type = 'RESERVE' AND sd.status = 1 
-                    THEN sd.pending_quantity 
-                    ELSE 0 
-                END
-            ) AS total_pending
-        ")
+                SUM(
+                    CASE
+                        WHEN sd.stock_type='RESERVE' AND sd.status=1
+                        THEN sd.pending_quantity
+                        ELSE 0
+                    END
+                ) AS total_pending
+            ")
             ->from('item_master im')
-            ->join('stock_details sd', 'sd.product_id = im.item_id', 'LEFT')
-            ->where('im.active', 1)
-            ->group_by('im.item_id')
-            ->order_by('im.item_name', 'ASC')
+            ->join('stock_details sd','sd.product_id=im.product_id','left')
+            ->where('im.is_inactive',0)
+            ->where('im.is_marked_delete',0)
+            ->group_by('im.product_id')
+            ->order_by('im.product_name','ASC')
             ->get()
             ->result_array();
     }
+    
     public function get_item_reservation_list($item_id)
     {
         $this->db->select("
@@ -238,9 +236,9 @@ class Inventory_model extends CI_Model
             um.unit_abbr
         ')
             ->from('item_master im')
-            ->join('brand_master bm', 'bm.brand_id = im.item_brand', 'left')
+            // ->join('brand_master bm', 'bm.brand_id = im.item_brand', 'left')
             ->join('unit_master um', 'um.unit_id = im.item_unit', 'left')
-            ->where('im.item_id', $item_id)
+            ->where('im.product_id', $item_id)
             ->where('im.active', 1)
             ->get()
             ->row_array();
