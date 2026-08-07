@@ -20,6 +20,7 @@ class Inventory extends CI_Controller
         $this->load->model('Company_model');
         $this->load->model('Item_model');
         $this->load->model('Inventory_model');
+        $this->load->model('Setup_model');
     }
 
 
@@ -290,8 +291,265 @@ class Inventory extends CI_Controller
         $data['main_content'] = 'inventory/list_material_issue';
         $this->load->view('includes/template', $data);
     }
+    /////////////////////// DIRECT MATERIAL ISSUE START ////////////////////////
+    public function add_direct_material_issue()
+    {
+        $data['approved_projects'] = $this->Project_model->get_approved_projects();
+        $data['branch_records']    = $this->Company_model->get_all_branches();
+        $data['warehouse_list']    = $this->Setup_model->get_warehouse_list();
+        $data['products']          = $this->Setup_model->get_active_item_list();
+        $data['units']             = $this->Setup_model->get_active_unit_list();
+        $data['store_list']        = [];
+
+        $data['title'] = "Direct Material Issue";
+        $data['main_content'] = "inventory/add_direct_material_issue";
+
+        $this->load->view('includes/template', $data);
+    }
+
+    public function save_direct_material_issue()
+    {
+        $warehouse_id = $this->input->post('warehouse_id');
+        $store_id     = $this->input->post('store_id');
+
+        $products           = $this->input->post('product_id');
+        $units              = $this->input->post('unit_id');
+        $requested_qtys     = $this->input->post('requested_qty');
+        $issue_qtys         = $this->input->post('issue_qty');
+        $pending_qtys       = $this->input->post('pending_qty');
+        $previously_issued  = $this->input->post('previously_issued');
+
+        if (empty($warehouse_id) || empty($store_id)) {
+
+            $this->session->set_flashdata(
+                'error',
+                'Please select Warehouse and Store.'
+            );
+
+            redirect('Inventory/add_direct_material_issue');
+            return;
+        }
+
+        if (empty($products)) {
+
+            $this->session->set_flashdata(
+                'error',
+                'Please add at least one product.'
+            );
+
+            redirect('Inventory/add_direct_material_issue');
+            return;
+        }
+
+        foreach ($products as $i => $product_id) {
+            if (empty($product_id))
+                continue;
+
+            $issue_qty = (float)$issue_qtys[$i];
+
+            if ($issue_qty <= 0)
+                continue;
+
+            $available = $this->db
+                ->select_sum('balance_qty')
+                ->where('warehouse_id', $warehouse_id)
+                ->where('store_id', $store_id)
+                ->where('product_id', $product_id)
+                ->where('stock_type', 'IN')
+                ->get('stock_details')
+                ->row();
+
+            $available_qty = (float)($available->balance_qty ?? 0);
+
+            if ($issue_qty > $available_qty) {
+
+                $product = $this->db
+                    ->select('product_name')
+                    ->where('product_id', $product_id)
+                    ->get('item_master')
+                    ->row();
+
+                $product_name = $product ? $product->product_name : 'Selected Product';
+
+                $this->session->set_flashdata(
+                    'error',
+                    $product_name .
+                        ' has only ' .
+                        $available_qty .
+                        ' Qty available in the selected Warehouse/Store.'
+                );
+
+                redirect('Inventory/add_direct_material_issue');
+                return;
+            }
+        }
+
+        $this->db->trans_begin();
+
+        $miData = [
+            'issue_type'    => 'DIRECT',
+            'mr_id'         => NULL,
+            'project_id'    => $this->input->post('project_id'),
+            'project_code'  => $this->input->post('project_code'),
+            'customer_name' => $this->input->post('customer_name'),
+            'branch_name'   => $this->input->post('branch_name'),
+            'warehouse_id'  => $warehouse_id,
+            'store_id'      => $store_id,
+            'issued_by'     => $this->session->userdata('user_id'),
+            'issue_date'    => date('Y-m-d H:i:s'),
+            'status'        => 'Issued'
+        ];
+
+        $this->db->insert('material_issue', $miData);
+
+        $mi_id = $this->db->insert_id();
+        $mi_code = 'MI-' . str_pad($mi_id, 6, '0', STR_PAD_LEFT);
+
+        $this->db
+            ->where('mi_id', $mi_id)
+            ->update('material_issue', [
+                'mi_code' => $mi_code
+            ]);
 
 
+        foreach ($products as $i => $product_id) {
+            if (empty($product_id))
+                continue;
+
+            $issue_qty = (float)$issue_qtys[$i];
+
+            if ($issue_qty <= 0)
+                continue;
+
+            $itemData = [
+                'mi_id'                 => $mi_id,
+                'product_id'            => $product_id,
+                'unit_id'               => $units[$i],
+                'requested_qty'         => $requested_qtys[$i],
+                'issued_qty'            => $issue_qty,
+                'pending_qty'           => $pending_qtys[$i],
+                'previously_issued_qty' => $previously_issued[$i]
+
+            ];
+
+            $this->db->insert(
+                'material_issue_items',
+                $itemData
+            );
+
+            $result = $this->Inventory_model->allocate_stock_for_mi(
+                $product_id,
+                $issue_qty,
+                $mi_id,
+                $warehouse_id,
+                $store_id
+            );
+
+            if (!$result) {
+                $this->db->trans_rollback();
+                $this->session->set_flashdata(
+                    'error',
+                    'Stock allocation failed.'
+                );
+                redirect('Inventory/add_direct_material_issue');
+                return;
+            }
+        }
+
+        if ($this->db->trans_status() == FALSE) {
+            $this->db->trans_rollback();
+            $this->session->set_flashdata(
+                'error',
+                'Failed to create Material Issue.'
+            );
+        } else {
+            $this->db->trans_commit();
+            $this->session->set_flashdata(
+                'success',
+                'Direct Material Issue created successfully.'
+            );
+        }
+
+        redirect('Inventory/list_material_issue');
+    }
+    /////////////////////// DIRECT MATERIAL ISSUE END ////////////////////////
+
+    /////////////////////// STOCK TRANFSER CODE START ////////////////////////
+
+    public function list_stock_transfer()
+    {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_access($user, 'Inventory/list_stock_transfer', 'A')) {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template', $data);
+            return;
+        }
+
+        $this->load->model('Inventory_model');
+
+        $data['title'] = 'Stock Transfer';
+
+        $data['records'] = $this->Inventory_model->get_stock_transfer_list();
+
+        $data['main_content'] = 'inventory/list_stock_transfer';
+
+        $this->load->view('includes/template', $data);
+    }
+
+    public function add_stock_transfer()
+    {
+        $user = $this->session->userdata('user_id');
+
+        if (!has_access($user, 'Inventory/list_stock_transfer', 'A')) {
+            $data['title'] = 'Access Denied';
+            $data['main_content'] = 'errors/access_control.php';
+            $this->load->view('includes/template', $data);
+            return;
+        }
+
+        $this->load->model('Company_model');
+        $this->load->model('Setup_model');
+
+        $data['title'] = 'Stock Transfer';
+
+        $data['branch_records'] = $this->Company_model->get_all_branches();
+        $data['warehouse_list'] = $this->Setup_model->get_warehouse_list();
+        $data['store_list'] = [];
+
+        $data['products'] = $this->Setup_model->get_active_item_list();
+        $data['units'] = $this->Setup_model->get_active_unit_list();
+        $data['main_content'] = 'inventory/add_stock_transfer';
+
+        $this->load->view('includes/template', $data);
+    }
+
+    public function save_stock_transfer()
+    {
+        $this->db->trans_begin();
+
+        // We'll implement saving logic after designing the UI.
+
+        if ($this->db->trans_status() == FALSE) {
+            $this->db->trans_rollback();
+
+            $this->session->set_flashdata(
+                'error',
+                'Failed to save Stock Transfer.'
+            );
+        } else {
+            $this->db->trans_commit();
+
+            $this->session->set_flashdata(
+                'success',
+                'Stock Transfer created successfully.'
+            );
+        }
+
+        redirect('Inventory/list_stock_transfer');
+    }
+    /////////////////////// STOCK TRANFSER CODE END  ////////////////////////
 
     public function itemwise_stock_summary()
     {

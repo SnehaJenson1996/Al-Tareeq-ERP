@@ -25,8 +25,11 @@
                 <th>Product Code</th>
                 <th>Product</th>
                 <th>Warehouse</th>
+                <th>Store</th>
+                <th>Project</th>
                 <th>Transaction</th>
                 <th>Qty</th>
+                <th>Balance Qty</th>
                 <th>Unit Price</th>
                 <th>Stock Value</th>
                 <th>Reference</th>
@@ -43,31 +46,6 @@
 
                 <?php foreach ($records as $row): ?>
 
-                    <?php
-
-                    switch ($row->stock_type) {
-                        case 'IN':
-                            $label = 'success';
-                            break;
-
-                        case 'OUT':
-                            $label = 'danger';
-                            break;
-
-                        case 'RESERVE':
-                            $label = 'warning';
-                            break;
-
-                        case 'ADJUSTMENT':
-                            $label = 'primary';
-                            break;
-
-                        default:
-                            $label = 'default';
-                    }
-
-                    ?>
-
                     <tr>
 
                         <td><?= $i++; ?></td>
@@ -80,17 +58,47 @@
 
                         <td><?= $row->warehouse_name; ?></td>
 
+                        <td><?= $row->store_name; ?></td>
+
+                        <td><?= $row->project ?: '-'; ?></td>
+
+                        <?php
+                            switch ($row->stock_type) {
+
+                                case 'IN':
+                                    $badge = 'success';
+                                    break;
+
+                                case 'OUT':
+                                    $badge = 'danger';
+                                    break;
+
+                                case 'RESERVE':
+                                    $badge = 'warning';
+                                    break;
+
+                                case 'ADJUSTMENT':
+                                    $badge = 'primary';
+                                    break;
+
+                                default:
+                                    $badge = 'secondary';
+                            }
+                        ?>
                         <td>
-                            <span class="label label-<?= $label ?>">
+                            <span class="badge badge-<?= $badge ?>">
                                 <?= $row->stock_type ?>
                             </span>
                         </td>
 
+
                         <td><?= number_format($row->quantity, 2); ?></td>
+
+                        <td><?= number_format($row->balance_qty, 2); ?></td>
 
                         <td><?= number_format($row->price, 2); ?></td>
 
-                        <td><?= number_format($row->quantity * $row->price, 2); ?></td>
+                        <td><?= number_format($row->stock_value, 2); ?></td>
 
                         <td><?= $row->remark; ?></td>
 

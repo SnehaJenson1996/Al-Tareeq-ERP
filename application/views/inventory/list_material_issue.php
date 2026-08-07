@@ -27,6 +27,7 @@
                 <th>Sl. No</th>
                 <th>MI Code</th>
                 <th>Project</th>
+                <th>Issue Type</th>
                 <th>Customer</th>
                 <th>Branch</th>
                 <th>Warehouse</th>
@@ -45,6 +46,7 @@
                         <td><?= $i + 1; ?></td>
                         <td><?= $mi['mi_code']; ?></td>
                         <td><?= $mi['project_name']; ?></td>
+                        <td><?= $mi['issue_type']; ?></td>
                         <td><?= $mi['customer_name']; ?></td>
                         <td><?= $mi['branch_name']; ?></td>
                         <td>

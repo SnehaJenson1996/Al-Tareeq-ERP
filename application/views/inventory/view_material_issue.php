@@ -3,12 +3,39 @@
 <div class="container">
 
     <!-- Material Request Info -->
-    <h4>Material Issue Details (MI #: <?= $mi['mi_id'] ?>)</h4>
+    <h4>
+        Material Issue Details
+        <small>(<?= $mi['mi_code'] ?>)</small>
+    </h4>
     <table class="table table-bordered">
         <tr>
-            <th>Material Request</th>
-            <td><?= $mi['mr_code'] ?> (<?= $mi['project_name'] ?>)</td>
+            <th>Issue Type</th>
+            <td>
+                <?php if ($mi['issue_type'] == 'DIRECT') { ?>
+                    <span class="badge badge-success">DIRECT</span>
+                <?php } else { ?>
+                    <span class="badge badge-primary">MR</span>
+                <?php } ?>
+            </td>
         </tr>
+
+        <?php if ($mi['issue_type'] == 'MR') { ?>
+            <tr>
+                <th>Material Request</th>
+                <td><?= $mi['mr_code']; ?></td>
+            </tr>
+        <?php } ?>
+
+        <tr>
+            <th>Material Issue No</th>
+            <td><?= $mi['mi_code']; ?></td>
+        </tr>
+
+        <tr>
+            <th>Issue Date</th>
+            <td><?= date('d-m-Y H:i', strtotime($mi['issue_date'])); ?></td>
+        </tr>
+        
         <tr>
             <th>Project</th>
             <td><?= $mi['project_name'] ?></td>

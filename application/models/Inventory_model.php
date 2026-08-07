@@ -545,8 +545,8 @@ class Inventory_model extends CI_Model
         foreach ($stocks as $out) {
             if ($out->parent_stock_id != NULL) {
                 $this->db
-                    ->set('balance_qty','balance_qty + ' . $out->quantity,FALSE)
-                    ->where('stock_id',$out->parent_stock_id)
+                    ->set('balance_qty', 'balance_qty + ' . $out->quantity, FALSE)
+                    ->where('stock_id', $out->parent_stock_id)
                     ->update('stock_details');
             }
 
@@ -565,6 +565,7 @@ class Inventory_model extends CI_Model
         return true;
     }
 
+    ///// Stock Ledger /////
     public function get_stock_ledger()
     {
         $this->db->select("
@@ -572,20 +573,118 @@ class Inventory_model extends CI_Model
             im.product_code,
             im.product_name,
             wm.warehouse_name,
+            sm.store_name,
+            um.unit_name,
             u.user_name
         ");
 
         $this->db->from('stock_details sd');
 
-        $this->db->join('item_master im', 'im.product_id = sd.product_id');
+        $this->db->join(
+            'item_master im',
+            'im.product_id=sd.product_id',
+            'left'
+        );
 
-        $this->db->join('warehouse_master wm', 'wm.warehouse_id = sd.warehouse_id', 'left');
+        $this->db->join(
+            'warehouse_master wm',
+            'wm.warehouse_id=sd.warehouse_id',
+            'left'
+        );
 
-        $this->db->join('users u', 'u.user_id = sd.created_by', 'left');
+        $this->db->join(
+            'store_master sm',
+            'sm.store_id=sd.store_id',
+            'left'
+        );
 
-        $this->db->order_by('sd.stock_date', 'DESC');
+        $this->db->join(
+            'unit_master um',
+            'um.unit_id=sd.unit_id',
+            'left'
+        );
 
-        $this->db->order_by('sd.stock_id', 'DESC');
+        $this->db->join(
+            'users u',
+            'u.user_id=sd.created_by',
+            'left'
+        );
+
+        $this->db->order_by('sd.created_date', 'DESC');
+
+        return $this->db->get()->result();
+    }
+
+    ///// Stock Transfer /////
+    public function get_stock_transfer_list()
+    {
+        $this->db->select("
+            stm.*,
+
+            fw.warehouse_name AS from_warehouse,
+            tw.warehouse_name AS to_warehouse,
+
+            fs.store_name AS from_store,
+            ts.store_name AS to_store,
+
+            fb.branch_name AS from_branch,
+            tb.branch_name AS to_branch,
+
+            u.user_name
+        ");
+
+        $this->db->from('stock_transfer_master stm');
+
+        // From Warehouse
+        $this->db->join(
+            'warehouse_master fw',
+            'fw.warehouse_id = stm.from_warehouse_id',
+            'left'
+        );
+
+        // To Warehouse
+        $this->db->join(
+            'warehouse_master tw',
+            'tw.warehouse_id = stm.to_warehouse_id',
+            'left'
+        );
+
+        // From Store
+        $this->db->join(
+            'store_master fs',
+            'fs.store_id = stm.from_store_id',
+            'left'
+        );
+
+        // To Store
+        $this->db->join(
+            'store_master ts',
+            'ts.store_id = stm.to_store_id',
+            'left'
+        );
+
+        // From Branch
+        $this->db->join(
+            'branch_master fb',
+            'fb.branch_id = stm.from_branch_id',
+            'left'
+        );
+
+        // To Branch
+        $this->db->join(
+            'branch_master tb',
+            'tb.branch_id = stm.to_branch_id',
+            'left'
+        );
+
+        // User
+        $this->db->join(
+            'users u',
+            'u.user_id = stm.created_by',
+            'left'
+        );
+
+        $this->db->order_by('stm.transfer_id', 'DESC');
 
         return $this->db->get()->result();
     }

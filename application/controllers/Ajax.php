@@ -813,11 +813,51 @@ class Ajax extends CI_Controller
                 ->where('stock_type', 'IN')
                 ->get('stock_details')
                 ->row();
-                
+
             $result[$product_id] = (float)($available->balance_qty ?? 0);
         }
 
         echo json_encode($result);
+    }
+
+    public function get_direct_issue_product_details()
+    {
+        $warehouse_id = $this->input->post('warehouse_id');
+        $store_id     = $this->input->post('store_id');
+        $product_id   = $this->input->post('product_id');
+
+        // Available Stock
+        $available = $this->db
+            ->select_sum('balance_qty')
+            ->where('warehouse_id', $warehouse_id)
+            ->where('store_id', $store_id)
+            ->where('product_id', $product_id)
+            ->where('stock_type', 'IN')
+            ->get('stock_details')
+            ->row();
+
+        // Product Details
+        $product = $this->db
+            ->select('unit_id')
+            ->where('product_id', $product_id)
+            ->get('item_master')
+            ->row();
+
+        // Previous Issued Stock
+        $previous = $this->db
+            ->select_sum('issued_qty')
+            ->from('material_issue_items mii')
+            ->join('material_issue mi', 'mi.mi_id = mii.mi_id')
+            ->where('mi.project_id', $this->input->post('project_id'))
+            ->where('mii.product_id', $product_id)
+            ->get()
+            ->row();
+
+        echo json_encode([
+            'unit_id'           => $product->unit_id ?? '',
+            'available_stock'   => (float)($available->balance_qty ?? 0),
+            'previously_issued' => (float)($previous->issued_qty ?? 0)
+        ]);
     }
 
     public function get_mi_items_ajax()
